@@ -215,7 +215,14 @@ library(quanteda)     # Fortgeschrittene Computerlinguistik
 #'## Zusätzliche Funktionen einlesen
 #' **Hinweis:** Die hieraus verwendeten Funktionen werden jeweils vor der ersten Benutzung in vollem Umfang angezeigt um den Lesefluss zu verbessern.
 
-source("General_Source_Functions.R")
+source("R-fobbe-proto-package/f.linkextract.R")
+source("R-fobbe-proto-package/f.year.iso.R")
+source("R-fobbe-proto-package/f.dopar.pdfextract.R")
+source("R-fobbe-proto-package/f.hyphen.remove.R")
+source("R-fobbe-proto-package/f.fast.freqtable.R")
+source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
+source("R-fobbe-proto-package/f.dopar.multihashes.R")
+source("R-fobbe-proto-package/f.dopar.spacyparse.R")
 
 
 #'## Quanteda-Optionen setzen
