@@ -1,5 +1,5 @@
 #'---
-#'title: "Source Code des Corpus der Entscheidungen des Bundesgerichtshofs (CE-BGH-Source)"
+#'title: "Source Code des Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG-Source)"
 #'author: Seán Fobbe
 #'geometry: margin=3cm
 #'fontsize: 11pt
@@ -11,7 +11,7 @@
 #'    pandoc_args: --listings
 #'    includes:
 #'      in_header: General_Source_TEX_Preamble_DE.tex
-#'      before_body: [CE-BGH_Source_TEX_Definitions.tex,CE-BGH_Source_TEX_CompilationTitle.tex]
+#'      before_body: [CE-BPatG_Source_TEX_Definitions.tex,CE-BPatG_Source_TEX_CompilationTitle.tex]
 #'papersize: a4
 #'bibliography: packages.bib
 #'nocite: '@*'
@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE,
 #'
 #+
 #'## Überblick
-#' Dieses R-Skript lädt alle in der amtlichen Datenbank des Bundesgerichtshofs\footnote{\url{https://www.bundesgerichtshof.de}} veröffentlichten Entscheidungen des Bundesgerichtshofs (BGH) herunter und kompiliert sie in einen reichhaltigen menschen- und maschinenlesbaren Korpus. Es ist die Basis für den \textbf{\datatitle\ (\datashort )}.
+#' Dieses R-Skript lädt alle in der amtlichen Datenbank des Bundespatentgerichts\footnote{\url{www.bundespatentgericht.de}} veröffentlichten Entscheidungen des Bundespatentgerichts (BPatG) herunter und kompiliert sie in einen reichhaltigen menschen- und maschinenlesbaren Korpus. Es ist die Basis für den \textbf{\datatitle\ (\datashort )}.
 #'
 #' Alle mit diesem Skript erstellten Datensätze werden dauerhaft kostenlos und urheberrechtsfrei auf Zenodo, dem wissenschaftlichen Archiv des CERN, veröffentlicht. Alle Versionen sind mit einem persistenten Digital Object Identifier (DOI) versehen. Die neueste Version des Datensatzes ist immer über diesen Link erreichbar: \dataconcepturldoi
 
@@ -43,8 +43,8 @@ knitr::opts_chunk$set(echo = TRUE,
 #' \item Die reinen Metadaten im CSV-Format (wie unter 1, nur ohne Entscheidungsinhalte)
 #' \item Alle Entscheidungen im TXT-Format
 #' \item Alle Entscheidungen im PDF-Format
-#' \item Nur Leitsatz-Entscheidungen im PDF-Format
-#' \item Nur benannte Entscheidungen im PDF-Format
+#' \item Nur Leitsatz-Entscheidungen im PDF-Format???
+#' \item Nur benannte Entscheidungen im PDF-Format???
 #' \item Alle Analyse-Ergebnisse (Tabellen als CSV, Grafiken als PDF und PNG)
 #' \end{enumerate}
 #'
@@ -57,7 +57,7 @@ knitr::opts_chunk$set(echo = TRUE,
 #'
 #' In der Standard-Einstellung wird das Skript vollautomatisch versuchen die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Wenn die Anzahl Threads (Variable "fullCores") auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
 #'
-#' Auf der Festplatte sollten 20 GB Speicherplatz vorhanden sein.
+#' Auf der Festplatte sollten 20??? GB Speicherplatz vorhanden sein.
 #' 
 #' Um die PDF-Berichte kompilieren zu können benötigen Sie das R package **rmarkdown**, eine vollständige Installation von \LaTeX\ und alle in der Präambel-TEX-Datei angegebenen \LaTeX\ Packages.
 
@@ -75,8 +75,8 @@ knitr::opts_chunk$set(echo = TRUE,
 
 #+ eval = FALSE
 
-rmarkdown::render(input = "CE-BGH_Source_CorpusCreation.R",
-                  output_file = paste0("CE-BGH_",
+rmarkdown::render(input = "CE-BPatG_Source_CorpusCreation.R",
+                  output_file = paste0("CE-BPatG_",
                                        Sys.Date(),
                                        "_CompilationReport.pdf"),
                   envir = new.env())
@@ -89,8 +89,8 @@ rmarkdown::render(input = "CE-BGH_Source_CorpusCreation.R",
 
 #+ eval = FALSE
 
-rmarkdown::render(input = "CE-BGH_Source_CodebookCreation.R",
-                  output_file = paste0("CE-BGH_",
+rmarkdown::render(input = "CE-BPatG_Source_CodebookCreation.R",
+                  output_file = paste0("CE-BPatG_",
                                        Sys.Date(),
                                        "_Codebook.pdf"),
                   envir = new.env())
@@ -106,13 +106,13 @@ rmarkdown::render(input = "CE-BGH_Source_CodebookCreation.R",
 
 #+
 #'## Name des Datensatzes
-datasetname <- "CE-BGH"
+datasetname <- "CE-BPatG"
 
 #'## DOI des Datensatz-Konzeptes
-doi.concept <- "10.5281/zenodo.3942742" # checked
+doi.concept <- "???" 
 
 #'## DOI der konkreten Version
-doi.version <- "10.5281/zenodo.4705855" # checked
+doi.version <- "???" 
 
 #'## Lizenz
 license <- "Creative Commons Zero 1.0 Universal"
@@ -312,7 +312,7 @@ if (file.exists("PVP-FCG_2021-04-08_GermanFederalCourts_VicePresidents.csv") == 
 #'# Links suchen
 
 #'## Maximalen Such-Umfang einlesen
-scope.source <- fread("CE-BGH_Source_Scope.csv")
+scope.source <- fread("CE-BPatG_Source_Scope.csv")
 
 
 
@@ -393,7 +393,7 @@ for (i in seq_along(scope.random)){
     year <- scope$year[scope.random[i]]
     page <- scope$page[scope.random[i]]
 
-    URL  <- paste0("https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/list.py?Gericht=bgh&Art=en&Datum=",
+    URL  <- paste0("https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/list.py?Gericht=bpatg&Art=en&Datum=",
                    year,
                    "&Seite=",
                    page)
@@ -541,109 +541,52 @@ dt.download[, datum := {
 az.out <- dt.download$az
 
 
-#'**Hinweis**: An dieser Stelle wird eine mysteriöse Unterstrich-Variante mit einem regulären Unterstrich ersetzt. Es ist mir aktuell unklar um was für eine Art von Zeichen es sich handelt und wieso es in den Daten des Bundesgerichtshofs auftaucht. Weil die Code-Zeile zu einem Anzeigefehler in der LaTeX-Kompilierung führt, ist sie im Compilation Report nicht abgedruckt. Sie finden die Zeile im eigentlichen Source Code. Ich arbeite daran, die Anzeige zu vervollständigen.
+#'**Hinweis**: An dieser Stelle wird eine mysteriöse Unterstrich-Variante mit einem regulären Unterstrich ersetzt. Es ist mir aktuell unklar um was für eine Art von Zeichen es sich handelt und wieso es in den Daten des Bundespatentgerichts auftaucht. Weil die Code-Zeile zu einem Anzeigefehler in der LaTeX-Kompilierung führt, ist sie im Compilation Report nicht abgedruckt. Sie finden die Zeile im eigentlichen Source Code. Ich arbeite daran, die Anzeige zu vervollständigen.
 
 #+ echo = FALSE
 az.out1 <- gsub(" ", "_", az.out)
 
+datum.out1 <- as.character(datum.out)
+datum.out1 <- as.Date(datum.out1, "%d.%m.%Y")
 
-#+ echo = TRUE
-az.out1 <- gsub("\\/", "_", az.out1)
-
-az.out1 <- gsub("_und.*$", "", az.out1)
-
-az.out1 <- gsub("StB_", "NA_StB_", az.out1)
-az.out1 <- gsub("StbSt_\\(R\\)", "NA_StbStR", az.out1)
-az.out1 <- gsub("StbSt_\\(B\\)", "NA_StbStB", az.out1)
-
-az.out1 <- gsub("PatAnwZ_", "NA_PatAnwZ_", az.out1)
-
-az.out1 <- gsub("AnwZ_\\(Brf[gG]\\)", "NA_AnwZBrfg", az.out1)
-az.out1 <- gsub("AK", "NA_AK", az.out1)
-az.out1 <- gsub("ARAnw_", "NA_ARAnw_", az.out1)
-az.out1 <- gsub("ARs_\\(Voll[zZ]\\)_", "ARsVollz_", az.out1)
-az.out1 <- gsub("AR_\\(VZ\\)", "ARVZ", az.out1)
-az.out1 <- gsub("AR_\\(VS\\)", "ARVS", az.out1)
-az.out1 <- gsub("AR_\\(Ri\\)", "NA_ARRi", az.out1)
-az.out1 <- gsub("^AnwSt_\\(B\\)", "NA_AnwStB", az.out1)
-az.out1 <- gsub("^AnwSt_\\(R\\)", "NA_AnwStR", az.out1)
-az.out1 <- gsub("^PatAnwSt_\\(B\\)", "NA_PatAnwStB", az.out1)
-az.out1 <- gsub("^PatAnwSt_\\(R\\)", "NA_PatAnwStR", az.out1)
-az.out1 <- gsub("AnwZ_\\(B\\)", "NA_AnwZB", az.out1)
-az.out1 <- gsub("AnwZ_\\(P\\)_", "NA_AnwZP_", az.out1)
-az.out1 <- gsub("^AnwZ_", "NA_AnwZ_", az.out1)
-az.out1 <- gsub("ARNot_", "NA_ARNot_", az.out1)
-
-az.out1 <- gsub("BLw", "NA_BLw", az.out1)
-
-az.out1 <- gsub("En[vV]R_", "NA_EnVR_", az.out1)
-az.out1 <- gsub("EnZR_", "NA_EnZR_", az.out1)
-az.out1 <- gsub("EnVZ_", "NA_EnVZ_", az.out1)
-az.out1 <- gsub("EnZB_", "NA_EnZB_", az.out1)
-
-az.out1 <- gsub("GmS-OGB_", "NA_GMSOGB_", az.out1)
-az.out1 <- gsub("GSSt_", "NA_GSSt_", az.out1)
-az.out1 <- gsub("GSZ_", "NA_GSZ_", az.out1)
-
-az.out1 <- gsub("KZR_", "NA_KZR_", az.out1)
-az.out1 <- gsub("KVZ_", "NA_KVZ_", az.out1)
-az.out1 <- gsub("KRB_", "NA_KRB_", az.out1)
-az.out1 <- gsub("KZB_", "NA_KZB_", az.out1)
-az.out1 <- gsub("KVR_", "NA_KVR_", az.out1)
-
-az.out1 <- gsub("LwZA_", "NA_LwZA_", az.out1)
-az.out1 <- gsub("LwZR_", "NA_LwZR_", az.out1)
-az.out1 <- gsub("LwZB", "NA_LwZB", az.out1)
-
-az.out1 <- gsub("NotSt_\\(B\\)", "NA_NotStB", az.out1)
-az.out1 <- gsub("NotSt_\\(Brfg\\)", "NA_NotStBrfg", az.out1)
-az.out1 <- gsub("NotZ_\\(Brfg\\)", "NA_NotZBrfg", az.out1)
-az.out1 <- gsub("NotZ_", "NA_NotZ_", az.out1)
-
-az.out1 <- gsub("RiZ_\\(R\\)", "NA_RiZR", az.out1)
-az.out1 <- gsub("RiZ\\(R\\)", "NA_RiZR", az.out1)
-az.out1 <- gsub("RiZ_\\(B\\)", "NA_RiZB", az.out1)
-az.out1 <- gsub("RiZ_", "NA_RiZ_", az.out1)
-az.out1 <- gsub("RiSt_\\(R\\)_", "NA_RiStR_", az.out1)
-az.out1 <- gsub("RiSt_\\(B\\)_", "NA_RiStB_", az.out1)
+az.out1 <- gsub("\\/", "_", az.out)
+az.out1 <- gsub("\\(", "", az.out1)
+az.out1 <- gsub("\\)", "", az.out1)
+az.out1 <- sub(" pat", "-pat", az.out1)
 
 
-az.out1 <- gsub("WpSt_\\(R\\)_", "NA_WpStR_", az.out1)
-az.out1 <- gsub("WpSt_\\(B\\)_", "NA_WpStB_", az.out1)
-
-az.out1 <- gsub("VGS_", "NA_VGS_", az.out1)
-
-az.out1 <- gsub("V_I_", "VI_", az.out1)
-
-
-#'### Einzelne Fehler bereinigen
-
-az.out1 <- gsub("_ZR_\\(Ü\\)_", "_ZRÜ_", az.out1)
-az.out1 <- gsub("_\\+_48", "", az.out1)
-az.out1 <- gsub("u\\._25_", "", az.out1)
-az.out1 <- gsub("_-_28_07", "", az.out1)
+spruch.out1 <- gsub(".*\\(", "", spruch.out)
+spruch.out1 <- gsub("\\)", "", spruch.out1)
+spruch.out1 <- gsub("\\.", "", spruch.out1)
 
 
 
-az.out1 <- gsub("-[0-9]*_", "_", az.out1)
+filename <- paste("BPatG", datum.out1, spruch.out1, az.out1, sep="_")
+filename1 <- paste0(filename, "_NA.pdf")
+filename1 <- gsub("EU_NA", "EU", filename1)
+filename1 <- gsub("EP_NA", "EP", filename1)
+filename1 <- gsub(" ", "_", filename1)
+filename1 <- gsub("\\/", "", filename1)
+filename1 <- gsub("99EU.pdf", "99_EU.pdf", filename1)
+filename1 <- gsub("00EU.pdf", "00_EU.pdf", filename1)
+filename1 <- gsub("11EP.pdf", "11_EP.pdf", filename1)
+filename1 <- gsub("pat103_00", "pat_103_00", filename1)
+filename1 <- gsub("W-pat9", "W-pat", filename1)
+filename1 <- gsub("W-pat16_17", "W-pat_16_17", filename1)
+filename1 <- gsub("BPatG_NA_Marken_27_W-pat_69_08_NA.pdf", "BPatG_2008-06-03_Marken_27_W-pat_69_08_NA.pdf", filename1)
 
-az.out1 <- gsub("_\\(a\\)", "_a", az.out1)
+
+# one single date missing BPatG_NA_Marken_27_W-pat_69_08_NA.pdf
+
+print(filename1)
+
+# some have w_pat, others only Ni
 
 
 
-#'### Variable "zusatz_az" einfügen
 
-indices <- grep("[0-9]*_[A-Za-zÜ]*_[0-9]*_[0-9]*_[a-z]*",
-                az.out1,
-                invert = TRUE)
+grep("BPatG_[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[A-Za-z]*_[0-9]*_[A-za-z\\-]*_[0-9]*_[0-9]*_[A-Z]*.pdf", filename1, value=TRUE, invert=TRUE)
 
-values <- grep("[0-9]*_[A-Za-zÜ]*_[0-9]*_[0-9]*_[a-z]*",
-               az.out1,
-               invert = TRUE,
-               value = TRUE)
-
-az.out1[indices] <- paste0(values,
-                  "_NA")
 
 
 #'### Finale Korrekturen
@@ -687,7 +630,7 @@ dt.download$az <- az.out1
 #+
 #'### Reguläre Substitutionen
 
-#'**Hinweis**: An dieser Stelle wird eine mysteriöse Unterstrich-Variante mit einem regulären Unterstrich ersetzt. Es ist mir aktuell unklar um was für eine Art von Zeichen es sich handelt und wieso es in den Daten des Bundesgerichtshofs auftaucht. Weil die Code-Zeile zu einem Anzeigefehler in der LaTeX-Kompilierung führt, ist sie im Compilation Report nicht abgedruckt. Sie finden die Zeile im eigentlichen Source Code. Ich arbeite daran, die Anzeige zu vervollständigen.
+#'**Hinweis**: An dieser Stelle wird eine mysteriöse Unterstrich-Variante mit einem regulären Unterstrich ersetzt. Es ist mir aktuell unklar um was für eine Art von Zeichen es sich handelt und wieso es in den Daten des Bundespatentgerichts auftaucht. Weil die Code-Zeile zu einem Anzeigefehler in der LaTeX-Kompilierung führt, ist sie im Compilation Report nicht abgedruckt. Sie finden die Zeile im eigentlichen Source Code. Ich arbeite daran, die Anzeige zu vervollständigen.
 
 #+ echo = FALSE
 spruch1 <- gsub(" ",
@@ -837,7 +780,7 @@ dt.download$name_datei <- name_datei
 
 #'## Dateinamen erstellen
 
-filename <- paste("BGH",
+filename <- paste("BPatG",
                   dt.download$spruch,
                   dt.download$leitsatz,
                   dt.download$datum,
@@ -849,8 +792,8 @@ filename <- paste("BGH",
 
 #'## Einzelkorrektur vornehmen
 
-filename <- gsub("BGH_3_([NALE]{2})_NA_NA_AK_13_19_NA",
-                  "BGH_3_\\1_2019-05-07_NA_AK_13_19_NA",
+filename <- gsub("BPatG_3_([NALE]{2})_NA_NA_AK_13_19_NA",
+                  "BPatG_3_\\1_2019-05-07_NA_AK_13_19_NA",
                   filename)
 
 
@@ -897,7 +840,7 @@ filenames2 <- paste0(filenames1,
 
 #'## Strenge REGEX-Validierung: Gesamter Dateiname
 
-regex.test2 <-grep("BGH_.*_[NALE]{2}_[0-9]{4}-[0-9]{2}-[0-9]{2}_[A-Za-z0-9]*_[A-Za-zÜ]*_[0-9-]*_[0-9]{2}_[A-Za-z]*_.*_[NA0-9]*.pdf",
+regex.test2 <-grep("BPatG_.*_[NALE]{2}_[0-9]{4}-[0-9]{2}-[0-9]{2}_[A-Za-z0-9]*_[A-Za-zÜ]*_[0-9-]*_[0-9]{2}_[A-Za-z]*_.*_[NA0-9]*.pdf",
      filenames2,
      value = TRUE,
      invert = TRUE)
@@ -1106,7 +1049,7 @@ result <- f.dopar.pdfextract(files.pdf,
 #'## TXT-Dateien Einlesen
 
 
-txt.bgh <- readtext("./*.txt",
+txt.bpatg <- readtext("./*.txt",
                     docvarsfrom = "filenames", 
                     docvarnames = c("gericht",
                                     "spruchkoerper_db",
@@ -1126,7 +1069,7 @@ txt.bgh <- readtext("./*.txt",
 
 
 #'## In Data Table umwandeln
-setDT(txt.bgh)
+setDT(txt.bpatg)
 
 
 
@@ -1139,21 +1082,21 @@ setDT(txt.bgh)
 print(f.hyphen.remove)
 
 #'### Funktion ausführen
-txt.bgh[, text := lapply(.(text), f.hyphen.remove)]
+txt.bpatg[, text := lapply(.(text), f.hyphen.remove)]
 
 
 #'## Variable "datum" als Datentyp "IDate" kennzeichnen
-txt.bgh$datum <- as.IDate(txt.bgh$datum)
+txt.bpatg$datum <- as.IDate(txt.bpatg$datum)
 
 
 
 
 #'## Variable "entscheidungsjahr" hinzufügen
-txt.bgh$entscheidungsjahr <- year(txt.bgh$datum)
+txt.bpatg$entscheidungsjahr <- year(txt.bpatg$datum)
 
 
 #'## Variable "eingangsjahr_iso" hinzufügen
-txt.bgh$eingangsjahr_iso <- f.year.iso(txt.bgh$eingangsjahr_az)
+txt.bpatg$eingangsjahr_iso <- f.year.iso(txt.bpatg$eingangsjahr_az)
 
 
 
@@ -1162,7 +1105,7 @@ txt.bgh$eingangsjahr_iso <- f.year.iso(txt.bgh$eingangsjahr_az)
 #'## Datensatz nach Datum sortieren
 #' Die Erstellung der Variablen für Präsident:innen und Vize-Präsident:innen trifft die starke Annahme, dass eine aufsteigende Sortierung nach Datum besteht. Wäre das nicht der Fall, würden dort Fehler auftreten.
 
-setorder(txt.bgh,
+setorder(txt.bpatg,
          datum)
 
 
@@ -1175,7 +1118,7 @@ setorder(txt.bgh,
 #'### Personaldaten einlesen
 
 praesi <- fread("PVP-FCG_2021-04-08_GermanFederalCourts_Presidents.csv")
-praesi <- praesi[court == "BGH", c(1:3, 5:6)]
+praesi <- praesi[court == "BPatG", c(1:3, 5:6)]
 
 
 
@@ -1205,7 +1148,7 @@ praesi.list <- vector("list", N)
 #'### Vektor erstellen
 
 for (i in seq_len(N)){
-    praesi.N <- txt.bgh[datum >= praesi$term_begin_date[i] & datum <= praesi$term_end_date[i], .N]
+    praesi.N <- txt.bpatg[datum >= praesi$term_begin_date[i] & datum <= praesi$term_end_date[i], .N]
     praesi.list[[i]] <- rep(praesi$name_last[i],
                             praesi.N)
 }
@@ -1214,7 +1157,7 @@ for (i in seq_len(N)){
 
 #'### Vektor einfügen
 
-txt.bgh$praesi <- unlist(praesi.list)
+txt.bpatg$praesi <- unlist(praesi.list)
 
 
 
@@ -1230,7 +1173,7 @@ txt.bgh$praesi <- unlist(praesi.list)
 #'### Personaldaten einlesen
 
 vpraesi <- fread("PVP-FCG_2021-04-08_GermanFederalCourts_VicePresidents.csv")
-vpraesi <- vpraesi[court == "BGH", c(1:3, 5:6)]
+vpraesi <- vpraesi[court == "BPatG", c(1:3, 5:6)]
 
 
 
@@ -1262,7 +1205,7 @@ vpraesi.list <- vector("list", N)
 #'### Vektor erstellen
 
 for (i in seq_len(N)){
-    vpraesi.N <- txt.bgh[datum >= vpraesi$term_begin_date[i] & datum <= vpraesi$term_end_date[i], .N]
+    vpraesi.N <- txt.bpatg[datum >= vpraesi$term_begin_date[i] & datum <= vpraesi$term_end_date[i], .N]
     vpraesi.list[[i]] <- rep(vpraesi$name_last[i],
                             vpraesi.N)
 }
@@ -1272,7 +1215,7 @@ for (i in seq_len(N)){
 
 #'### Vektor einfügen
 
-txt.bgh$v_praesi <- unlist(vpraesi.list)
+txt.bpatg$v_praesi <- unlist(vpraesi.list)
 
 
 
@@ -1296,15 +1239,15 @@ az.source <- fread("AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv")
 
 
 #'### Datensatz auf relevante Daten reduzieren
-az.bgh <- az.source[stelle == "BGH" & position == "hauptzeichen"]
+az.bpatg <- az.source[stelle == "BPatG" & position == "hauptzeichen"]
 
 
 #'### Indizes bestimmen
-targetindices <- match(txt.bgh$registerzeichen,
-                       az.bgh$zeichen_code)
+targetindices <- match(txt.bpatg$registerzeichen,
+                       az.bpatg$zeichen_code)
 
 #'### Vektor der Verfahrensarten erstellen und einfügen
-txt.bgh$verfahrensart <- az.bgh$bedeutung[targetindices]
+txt.bpatg$verfahrensart <- az.bpatg$bedeutung[targetindices]
 
 
 
@@ -1312,20 +1255,20 @@ txt.bgh$verfahrensart <- az.bgh$bedeutung[targetindices]
 
 #'## Variable "aktenzeichen" hinzufügen
 
-txt.bgh$aktenzeichen <- paste0(txt.bgh$spruchkoerper_az,
+txt.bpatg$aktenzeichen <- paste0(txt.bpatg$spruchkoerper_az,
                                   " ",
-                               mgsub(txt.bgh$registerzeichen,
-                                     az.bgh$zeichen_code,
-                                     az.bgh$zeichen_original),
+                               mgsub(txt.bpatg$registerzeichen,
+                                     az.bpatg$zeichen_code,
+                                     az.bpatg$zeichen_original),
                                " ",
-                               txt.bgh$eingangsnummer,
+                               txt.bpatg$eingangsnummer,
                                "/",
-                               txt.bgh$eingangsjahr_az)
+                               txt.bpatg$eingangsjahr_az)
 
 
-txt.bgh$aktenzeichen <- gsub("NA ",
+txt.bpatg$aktenzeichen <- gsub("NA ",
                              "",
-                             txt.bgh$aktenzeichen)
+                             txt.bpatg$aktenzeichen)
 
 
 
@@ -1335,7 +1278,7 @@ txt.bgh$aktenzeichen <- gsub("NA ",
 #+
 #'### Entscheidungen Parsen
 matches <- regexpr("BESCHLUSS|URTEIL|VERFÜGUNG",
-                   txt.bgh$text,
+                   txt.bpatg$text,
                    ignore.case = TRUE)
 
 
@@ -1352,12 +1295,12 @@ matches.indices <- which(matches.logical)
 #'### Leeren Vektor erstellen
 
 entscheidung_typ <- rep(NA,
-                        txt.bgh[,.N])
+                        txt.bpatg[,.N])
 
 
 #'### Typen bei Indizes platzieren
 
-entscheidung_typ[matches.indices] <- regmatches(txt.bgh$text,
+entscheidung_typ[matches.indices] <- regmatches(txt.bpatg$text,
                                                 matches)
 
 
@@ -1382,7 +1325,7 @@ entscheidung_typ  <- gsub("VERFÜGUNG",
 
 #'### Vektor in Datensatz einfügen
 
-txt.bgh$entscheidung_typ <- entscheidung_typ
+txt.bpatg$entscheidung_typ <- entscheidung_typ
 
 
 
@@ -1395,13 +1338,13 @@ txt.bgh$entscheidung_typ <- entscheidung_typ
 #'
 #' Sofern die Variablen korrekt extrahiert wurden lässt sich die ECLI vollständig rekonstruieren.
 #'
-#' **ACHTUNG:** diese ECLIs sind experimentell. Der BGH vergibt offiziell ECLI-Identifikatoren nur für Entscheidungen ab 2016. Ausserdem steht die originale Kollisions-ID nicht zur Verfügung. Alle Entscheidungen mit einer Kollisions-ID größer 0 und ihre korrespondierenden Entscheidungen mit der ID 0 haben potenziell syntaktisch korrekte, aber semantisch fehlerhafte ECLIs.
+#' **ACHTUNG:** diese ECLIs sind experimentell. Der BPatG vergibt offiziell ECLI-Identifikatoren nur für Entscheidungen ab 2016. Ausserdem steht die originale Kollisions-ID nicht zur Verfügung. Alle Entscheidungen mit einer Kollisions-ID größer 0 und ihre korrespondierenden Entscheidungen mit der ID 0 haben potenziell syntaktisch korrekte, aber semantisch fehlerhafte ECLIs.
 
 
 #+
 #'### Formatieren der Registerzeichen für ECLI
 
-ecli.registerzeichen <- az.bgh$zeichen_original[targetindices]
+ecli.registerzeichen <- az.bpatg$zeichen_original[targetindices]
 
 ecli.registerzeichen <- gsub("\\(",
                              "\\.",
@@ -1419,35 +1362,35 @@ ecli.registerzeichen <- toupper(ecli.registerzeichen)
 
 #'### Erstellen der ECLI-Ordinalzahl
 
-ecli.ordinalzahl <- paste0(format(txt.bgh$datum,
+ecli.ordinalzahl <- paste0(format(txt.bpatg$datum,
                                   "%d%m%y"),
-                           txt.bgh$entscheidung_typ,
-                           ifelse(is.na(txt.bgh$spruchkoerper_az),
+                           txt.bpatg$entscheidung_typ,
+                           ifelse(is.na(txt.bpatg$spruchkoerper_az),
                                   "",
-                                  txt.bgh$spruchkoerper_az),
+                                  txt.bpatg$spruchkoerper_az),
                            ecli.registerzeichen,
-                           txt.bgh$eingangsnummer,
+                           txt.bpatg$eingangsnummer,
                            ".",
-                           formatC(txt.bgh$eingangsjahr_az,
+                           formatC(txt.bpatg$eingangsjahr_az,
                                    width = 2,
                                    flag = "0"),
                            ".",
-                           txt.bgh$kollision)
+                           txt.bpatg$kollision)
 
 
 
 
 #'### Vollständige ECLI erstellen
 
-txt.bgh$ecli <- paste0("ECLI:DE:BGH:",
-                          txt.bgh$entscheidungsjahr,
+txt.bpatg$ecli <- paste0("ECLI:DE:BPatG:",
+                          txt.bpatg$entscheidungsjahr,
                           ":",
                           ecli.ordinalzahl)
 
 
 #'### Zufällige ECLI-Beispiele zur manuellen Nachprüfung
 
-sample(txt.bgh$ecli,
+sample(txt.bpatg$ecli,
        20)
 
 
@@ -1461,17 +1404,17 @@ dt.names.txt <- gsub("\\.pdf",
                      "\\.txt",
                      dt.download$filenames.final)
 
-targetindices <- match(txt.bgh$doc_id,
+targetindices <- match(txt.bpatg$doc_id,
                        dt.names.txt)
 
-txt.bgh$bemerkung <- dt.download[targetindices]$comment
+txt.bpatg$bemerkung <- dt.download[targetindices]$comment
 
 
 
 #'## Variable "berichtigung" hinzufügen
 
-txt.bgh$berichtigung <- ifelse(grepl("Berichtigung",
-                                     txt.bgh$bemerkung,
+txt.bpatg$berichtigung <- ifelse(grepl("Berichtigung",
+                                     txt.bpatg$bemerkung,
                                      ignore.case = TRUE),
                                "Berichtigung",
                                NA)
@@ -1480,12 +1423,12 @@ txt.bgh$berichtigung <- ifelse(grepl("Berichtigung",
 
 
 #'## Variable "leitsatz" hinzufügen
-txt.bgh$leitsatz <- dt.download[targetindices]$leitsatz
+txt.bpatg$leitsatz <- dt.download[targetindices]$leitsatz
 ##---- ACHTUNG Dopplung mit Dateinamen---
 
 
 #'## Variable "name" hinzufügen
-txt.bgh$name <- dt.download[targetindices]$name
+txt.bpatg$name <- dt.download[targetindices]$name
 ##---- ACHTUNG Dopplung mit Dateinamen---
 
 
@@ -1493,22 +1436,22 @@ txt.bgh$name <- dt.download[targetindices]$name
 
 
 #'## Variable "doi_concept" hinzufügen
-txt.bgh$doi_concept <- rep(doi.concept,
-                       txt.bgh[,.N])
+txt.bpatg$doi_concept <- rep(doi.concept,
+                       txt.bpatg[,.N])
 
 
 #'## Variable "doi_version" hinzufügen
-txt.bgh$doi_version <- rep(doi.version,
-                       txt.bgh[,.N])
+txt.bpatg$doi_version <- rep(doi.version,
+                       txt.bpatg[,.N])
 
 
 #'## Variable "version" hinzufügen
-txt.bgh$version <- as.character(rep(datestamp,
-                                txt.bgh[,.N]))
+txt.bpatg$version <- as.character(rep(datestamp,
+                                txt.bpatg[,.N]))
 
 #'## Variable "lizenz" hinzufügen
-txt.bgh$lizenz <- as.character(rep(license,
-                                   txt.bgh[,.N]))
+txt.bpatg$lizenz <- as.character(rep(license,
+                                   txt.bpatg[,.N]))
 
 
 
@@ -1524,7 +1467,7 @@ txt.bgh$lizenz <- as.character(rep(license,
 #'### Platzhalter-Dokumente definieren
 #' Dokumente ohne Typ, Name und Berichtigung sind fast immer Platzhalter-Dokumente, die keine Begründung enthalten und/oder auf den Push-Service der Universität des Saarlandes hinweisen. Diese werden am Ende dieses Abschnitts entfernt.
 
-placeholder.txt <- txt.bgh[is.na(entscheidung_typ) == TRUE & is.na(name) == TRUE & is.na(berichtigung) == TRUE]$doc_id
+placeholder.txt <- txt.bpatg[is.na(entscheidung_typ) == TRUE & is.na(name) == TRUE & is.na(berichtigung) == TRUE]$doc_id
 
 
 
@@ -1532,10 +1475,10 @@ placeholder.txt <- txt.bgh[is.na(entscheidung_typ) == TRUE & is.na(name) == TRUE
 #' Das folgende Dokument ist nach Extraktion ein leeres Text-Dokument, im originalen PDF aber ein funktionaler Scan. Es wird temporär vom Datensatz ausgeschlossen damit keine Fehler in der Zählung linguistischer Kennzahlen auftreten. In Zukunft wird ein OCR-Modul hierfür eingerichtet.
 
 
-if (file.exists("BGH_I_LE_2006-07-13_I_ZR_241_03_NA_Kontaktanzeigen_0.txt") == TRUE){
+if (file.exists("BPatG_I_LE_2006-07-13_I_ZR_241_03_NA_Kontaktanzeigen_0.txt") == TRUE){
 
 placeholder.txt <- c(placeholder.txt,
-                     "BGH_I_LE_2006-07-13_I_ZR_241_03_NA_Kontaktanzeigen_0.txt")
+                     "BPatG_I_LE_2006-07-13_I_ZR_241_03_NA_Kontaktanzeigen_0.txt")
 
 }
 
@@ -1564,7 +1507,7 @@ file_move(placeholder.pdf,
 
 
 #'### Platzhalter aus Datensatz entfernen
-txt.bgh <- txt.bgh[!(doc_id %in% placeholder.txt)]
+txt.bpatg <- txt.bpatg[!(doc_id %in% placeholder.txt)]
 
 
 
@@ -1588,7 +1531,7 @@ print(varremove)
 
 #'## Liste zu prüfender Variablen
 
-varlist <- names(txt.bgh)
+varlist <- names(txt.bpatg)
 varlist <- grep(paste(varremove,
                       collapse="|"),
                 varlist,
@@ -1608,7 +1551,7 @@ prefix <- paste0(datasetname,
 
 
 #+ results = "asis"
-f.fast.freqtable(txt.bgh,
+f.fast.freqtable(txt.bpatg,
                  varlist = varlist,
                  sumrow = TRUE,
                  output.list = FALSE,
@@ -1671,7 +1614,7 @@ table.output.vpraesi <- fread(paste0(prefix,
 freqtable <- table.entsch.typ[-.N]
 
 
-#+ CE-BGH_02_Barplot_Entscheidungstyp, fig.height = 5, fig.width = 8
+#+ CE-BPatG_02_Barplot_Entscheidungstyp, fig.height = 5, fig.width = 8
 ggplot(data = freqtable) +
     geom_bar(aes(x = reorder(entscheidung_typ,
                              -N),
@@ -1706,7 +1649,7 @@ ggplot(data = freqtable) +
 freqtable <- table.spruch.db[-.N]
 
 
-#+ CE-BGH_03_Barplot_Spruchkoerper_DB, fig.height = 12, fig.width = 8
+#+ CE-BPatG_03_Barplot_Spruchkoerper_DB, fig.height = 12, fig.width = 8
 ggplot(data = freqtable) +
     geom_bar(aes(x = reorder(spruchkoerper_db,
                              N),
@@ -1745,7 +1688,7 @@ ggplot(data = freqtable) +
 freqtable <- table.spruch.az[-.N]
 
 
-#+ CE-BGH_03_Barplot_Spruchkoerper_AZ, fig.height = 5, fig.width = 8
+#+ CE-BPatG_03_Barplot_Spruchkoerper_AZ, fig.height = 5, fig.width = 8
 ggplot(data = freqtable) +
     geom_bar(aes(x = reorder(spruchkoerper_az,
                              -N),
@@ -1782,7 +1725,7 @@ ggplot(data = freqtable) +
 
 freqtable <- table.regz[-.N]
 
-#+ CE-BGH_04_Barplot_Registerzeichen, fig.height = 14, fig.width = 10
+#+ CE-BPatG_04_Barplot_Registerzeichen, fig.height = 14, fig.width = 10
 ggplot(data = freqtable) +
     geom_bar(aes(x = reorder(registerzeichen,
                              N),
@@ -1819,7 +1762,7 @@ ggplot(data = freqtable) +
 
 freqtable <- table.output.praesi[-.N]
 
-#+ CE-BGH_05_Barplot_PraesidentIn, fig.height = 5.5, fig.width = 8
+#+ CE-BPatG_05_Barplot_PraesidentIn, fig.height = 5.5, fig.width = 8
 ggplot(data = freqtable) +
     geom_bar(aes(x = reorder(praesi,
                              N),
@@ -1857,7 +1800,7 @@ ggplot(data = freqtable) +
 
 freqtable <- table.output.vpraesi[-.N]
 
-#+ CE-BGH_06_Barplot_VizePraesidentIn, fig.height = 5.5, fig.width = 8
+#+ CE-BPatG_06_Barplot_VizePraesidentIn, fig.height = 5.5, fig.width = 8
 ggplot(data = freqtable) +
     geom_bar(aes(x = reorder(v_praesi,
                              N),
@@ -1893,7 +1836,7 @@ ggplot(data = freqtable) +
 
 freqtable <- table.jahr.entscheid[-.N][,lapply(.SD, as.numeric)]
 
-#+ CE-BGH_07_Barplot_Entscheidungsjahr, fig.height = 7, fig.width = 11
+#+ CE-BPatG_07_Barplot_Entscheidungsjahr, fig.height = 7, fig.width = 11
 ggplot(data = freqtable) +
     geom_bar(aes(x = entscheidungsjahr,
                  y = N),
@@ -1927,7 +1870,7 @@ freqtable <- table.jahr.eingangISO[-.N][,lapply(.SD, as.numeric)]
 
 
 
-#+ CE-BGH_08_Barplot_EingangsjahrISO, fig.height = 7, fig.width = 11
+#+ CE-BPatG_08_Barplot_EingangsjahrISO, fig.height = 7, fig.width = 11
 ggplot(data = freqtable) +
     geom_bar(aes(x = eingangsjahr_iso,
                  y = N),
@@ -1978,7 +1921,7 @@ print(f.summarize.iterator,
 
 
 #'### Berechnung durchführen
-summary.corpus <- f.summarize.iterator(txt.bgh)
+summary.corpus <- f.summarize.iterator(txt.bpatg)
 
 
 
@@ -1996,17 +1939,17 @@ setnames(summary.corpus,
                  "typen",
                  "saetze"))
 
-setnames(txt.bgh,
+setnames(txt.bpatg,
          old = "nchars",
          new = "zeichen")
 
 
 #'### Kennwerte dem Korpus hinzufügen
 
-txt.bgh$zeichen <- summary.corpus$zeichen
-txt.bgh$tokens <- summary.corpus$tokens
-txt.bgh$typen <- summary.corpus$typen
-txt.bgh$saetze <- summary.corpus$saetze
+txt.bpatg$zeichen <- summary.corpus$zeichen
+txt.bpatg$tokens <- summary.corpus$tokens
+txt.bpatg$typen <- summary.corpus$typen
+txt.bpatg$saetze <- summary.corpus$saetze
 
 
 
@@ -2152,7 +2095,7 @@ fwrite(dt.stats.docvars,
 #+
 #'### Diagramm: Verteilung Zeichen
 
-#+ CE-BGH_09_Density_Zeichen, fig.height = 6, fig.width = 9
+#+ CE-BPatG_09_Density_Zeichen, fig.height = 6, fig.width = 9
 ggplot(data = summary.corpus)+
     geom_density(aes(x = zeichen),
                  fill = "#7e0731")+
@@ -2184,7 +2127,7 @@ ggplot(data = summary.corpus)+
 #+
 #'### Diagramm: Verteilung Tokens
 
-#+ CE-BGH_10_Density_Tokens, fig.height = 6, fig.width = 9
+#+ CE-BPatG_10_Density_Tokens, fig.height = 6, fig.width = 9
 ggplot(data = summary.corpus)+
     geom_density(aes(x = tokens),
                  fill = "#7e0731")+
@@ -2217,7 +2160,7 @@ ggplot(data = summary.corpus)+
 #'\newpage
 #'### Diagramm: Verteilung Typen
 
-#+ CE-BGH_11_Density_Typen, fig.height = 6, fig.width = 9
+#+ CE-BPatG_11_Density_Typen, fig.height = 6, fig.width = 9
 ggplot(data = summary.corpus)+
     geom_density(aes(x = typen),
                  fill = "#7e0731")+
@@ -2249,7 +2192,7 @@ ggplot(data = summary.corpus)+
 #'\newpage
 #'### Diagramm: Verteilung Sätze
 
-#+ CE-BGH_12_Density_Saetze, fig.height = 6, fig.width = 9
+#+ CE-BPatG_12_Density_Saetze, fig.height = 6, fig.width = 9
 ggplot(data = summary.corpus)+
     geom_density(aes(x = saetze),
                  fill = "#7e0731")+
@@ -2280,11 +2223,11 @@ ggplot(data = summary.corpus)+
 
 
 #'## Anzahl Variablen im Korpus
-length(txt.bgh)
+length(txt.bpatg)
 
 
 #'## Namen der Variablen im Korpus
-names(txt.bgh)
+names(txt.bpatg)
 
 
 
@@ -2302,7 +2245,7 @@ csvname.full <- paste(datasetname,
                       "DE_CSV_Datensatz.csv",
                       sep = "_")
 
-fwrite(txt.bgh,
+fwrite(txt.bpatg,
        csvname.full,
        na = "NA")
 
@@ -2333,7 +2276,7 @@ fwrite(summary.corpus,
 #+
 #'### Korpus-Objekt in RAM (MB)
 
-print(object.size(corpus(txt.bgh)),
+print(object.size(corpus(txt.bpatg)),
       standard = "SI",
       humanReadable = TRUE,
       units = "MB")
@@ -2375,7 +2318,7 @@ sum(txt.MB)
 
 dt.plot <- data.table(pdf.MB)
 
-#+ CE-BGH_13_Density_Dateigroessen_PDF, fig.height = 6, fig.width = 9
+#+ CE-BPatG_13_Density_Dateigroessen_PDF, fig.height = 6, fig.width = 9
 ggplot(data = dt.plot,
        aes(x = pdf.MB)) +
     geom_density(fill = "#7e0731") +
@@ -2409,7 +2352,7 @@ ggplot(data = dt.plot,
 
 dt.plot <- data.table(txt.MB)
 
-#+ CE-BGH_14_Density_Dateigroessen_TXT, fig.height = 6, fig.width = 9
+#+ CE-BPatG_14_Density_Dateigroessen_TXT, fig.height = 6, fig.width = 9
 ggplot(data = dt.plot,
        aes(x = txt.MB)) +
     geom_density(fill = "#7e0731") +
@@ -2478,7 +2421,7 @@ unlink(csvname.meta)
 
 files.leitsatz <- gsub("\\.txt",
                        "\\.pdf",
-                       txt.bgh[leitsatz == "LE"]$doc_id)
+                       txt.bpatg[leitsatz == "LE"]$doc_id)
 
 #+ results = 'hide'
 zip(paste(datasetname,
@@ -2492,7 +2435,7 @@ zip(paste(datasetname,
 
 files.benannt <- gsub("\\.txt",
                       "\\.pdf",
-                      txt.bgh[is.na(name) == FALSE]$doc_id)
+                      txt.bpatg[is.na(name) == FALSE]$doc_id)
 
 #+ results = 'hide'
 zip(paste(datasetname,
