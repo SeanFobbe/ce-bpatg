@@ -377,7 +377,7 @@ for (i in seq_along(scope.random)){
     year <- scope$year[scope.random[i]]
     page <- scope$page[scope.random[i]]
 
-    URL  <- paste0("https://juris.bundespatentgericht.de.de/cgi-bin/rechtsprechung/list.py?Gericht=bpatg&Art=en&Datum=",
+    URL  <- paste0("https://juris.bundespatentgericht.de/cgi-bin/rechtsprechung/list.py?Gericht=bpatg&Art=en&Datum=",
                    year,
                    "&Seite=",
                    page)
@@ -391,7 +391,7 @@ for (i in seq_along(scope.random)){
                    ignore.case = TRUE,
                    value = TRUE)
         
-    link <- sprintf("https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/%s",
+    link <- sprintf("https://juris.bundespatentgericht.de/cgi-bin/rechtsprechung/%s",
                      link)
         
 
