@@ -129,7 +129,7 @@ outputdir <- paste0(getwd(),
 #'## Debugging-Modus
 #' Der Debugging-Modus reduziert den Such-Umfang auf den in der Variable "debug.scope" angegebenen Umfang Seiten (jede Seite enthält idR 30 Entscheidungen), den Download-Umfang auf den in der Variable "debug.sample" definierten Umfang zufällig ausgewählter Entscheidungen und löscht im Anschluss fünf zufällig ausgewählte Entscheidungen um den Wiederholungsversuch zu testen. Nur für Test- und Demonstrationszwecke. 
 
-mode.debug <- FALSE
+mode.debug <- TRUE
 debug.scope <- 50
 debug.sample <- 500
 
@@ -377,7 +377,7 @@ for (i in seq_along(scope.random)){
     year <- scope$year[scope.random[i]]
     page <- scope$page[scope.random[i]]
 
-    URL  <- paste0("https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/list.py?Gericht=bpatg&Art=en&Datum=",
+    URL  <- paste0("https://juris.bundespatentgericht.de.de/cgi-bin/rechtsprechung/list.py?Gericht=bpatg&Art=en&Datum=",
                    year,
                    "&Seite=",
                    page)
