@@ -456,7 +456,7 @@ dt.download[, loc := {
 
 #'## Theoretischer Fehlbetrag
 
-SOLL <- scope[,.N] * 30 
+SOLL <- scope[,.N] * 15
 IST <- dt.download[,.N]
 
 missing.N <- SOLL - IST
@@ -464,33 +464,33 @@ missing.N <- SOLL - IST
 print(missing.N)
 
 
-#'## Seiten mit weniger als 30 Entscheidungen anzeigen
+#'## Seiten mit weniger als 15 Entscheidungen anzeigen
 
-less30 <- dt.download[, .N,  keyby = "loc"][N < 30]
+less15 <- dt.download[, .N,  keyby = "loc"][N < 15]
 
-print(less30)
+print(less15)
 
 
-#'## Fehlbetrag durch Seiten mit weniger als 30 Entscheidungen
+#'## Fehlbetrag durch Seiten mit weniger als 15 Entscheidungen
 
-less30.N <- (length(less30$N) * 30) - sum(less30$N)
-print(less30.N)
+less15.N <- (length(less15$N) * 15) - sum(less15$N)
+print(less15.N)
 
 
 #'## Tatsächlicher Fehlbetrag
-#' **Test:** Ist der Fehlbetrag vollständig durch Seiten mit weniger als 30 Entscheidungen zu erklären? Falls ja, weisen beide sub-Tests maximal ein Ergebnis von 0 auf.
+#' **Test:** Ist der Fehlbetrag vollständig durch Seiten mit weniger als 15 Entscheidungen zu erklären? Falls ja, weisen beide sub-Tests maximal ein Ergebnis von 0 auf.
 
 
 #+
-#'### Fehlbetrag der NICHT durch Seiten mit weniger als 30 Entscheidungen erklärbar ist
-print(missing.N - less30.N)
+#'### Fehlbetrag der NICHT durch Seiten mit weniger als 15 Entscheidungen erklärbar ist
+print(missing.N - less15.N)
 
 
-#'### Gegenüberstellung: Anzahl Jahre und Anzahl Seiten mit weniger als 30 Entscheidungen
-#' Für jedes Jahr sollte es eine letzte Seite mit weniger als 30 Entscheidungen geben. Falls zufällig die letzte Seite exakt 30 Entscheidungen hat, wäre das Ergebnis negativ. Ein Ergebnis von 0 oder kleiner bedeutet, dass der Test bestanden wurde. Der Test ist nur aussagekräftig wenn der gesamte Such-Umfang abgefragt wurde.
+#'### Gegenüberstellung: Anzahl Jahre und Anzahl Seiten mit weniger als 15 Entscheidungen
+#' Für jedes Jahr sollte es eine letzte Seite mit weniger als 15 Entscheidungen geben. Falls zufällig die letzte Seite exakt 15 Entscheidungen hat, wäre das Ergebnis negativ. Ein Ergebnis von 0 oder kleiner bedeutet, dass der Test bestanden wurde. Der Test ist nur aussagekräftig wenn der gesamte Such-Umfang abgefragt wurde.
 
 if (mode.debug == FALSE){
-    less30[,.N] - uniqueN(scope$year)
+    less15[,.N] - uniqueN(scope$year)
     }
 
 
@@ -513,6 +513,15 @@ dt.download[, datum := {
     datum <- as.character(datum)
     datum <- as.IDate(datum, "%d.%m.%Y")
     list(datum)}]
+
+
+
+
+
+
+
+##### HIER GEHT ES WEITER
+
 
 
 
