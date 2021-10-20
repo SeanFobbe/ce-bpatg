@@ -399,7 +399,7 @@ for (i in seq_along(scope.random)){
 
     spruch <- html_nodes(html, "[class='ESpruchk']") %>% html_text(trim = TRUE)
     
-    az <- html_nodes(html, "[class='doklink']") %>% html_text(trim = TRUE)
+    az <- html_nodes(html, "[class='EAz']") %>% html_text(trim = TRUE)
 
     comment <- html_nodes(html, "[class='ETitel']") %>% html_text(trim = TRUE)
 
