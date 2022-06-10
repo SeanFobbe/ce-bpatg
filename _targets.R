@@ -53,7 +53,7 @@ list(
     tar_target(dt.download, f.make.download.table(x = scope,
                                                   debug.toggle = config$debug$toggle,
                                                   debug.pages = config$debug$pages)),
-    tar_target(clean_az, f.clean_az_bpatg(dt.download$az)),
-    tar_target(clean_spruch, f.clean_spruch_bpatg(dt.download$az))
+    tar_target(az_clean, f.clean_az_bpatg(dt.download$az)),
+    tar_target(spruch_clean, f.clean_spruch_bpatg(dt.download$az))
                
 )
