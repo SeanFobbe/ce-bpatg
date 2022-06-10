@@ -151,7 +151,7 @@ list(
     tar_target(zip.source,
                f.zip_targets(files.source,
                              zipname.source,
-                             mode = "mirror")
+                             mode = "mirror"))
                
 )
 
