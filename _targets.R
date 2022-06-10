@@ -57,7 +57,10 @@ list(
     tar_target(spruchgruppe_clean, f.clean_spruch_bpatg(dt.download$spruch)),
     tar_target(dt.download.final, f.clean_add_variables(x = dt.download,
                                                         az = az_clean,
-                                                        spruchgruppe = spruchgruppe_clean))
+                                                        spruchgruppe = spruchgruppe_clean)),
+    tar_target(files.pdf, f.download(dt.download.final,
+                                     debug.toggle = FALSE,
+                                     debug.files = 500)
                
 )
 
