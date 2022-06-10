@@ -27,7 +27,7 @@ doi.aktenzeichen = "10.5281/zenodo.4569564" # checked
 
 # Debugging
 
-debug.toggle = true   # Ob Debugging aktiv ist; Möglichkeiten sind "true" oder "false"
+debug.toggle = false   # Ob Debugging aktiv ist; Möglichkeiten sind "true" oder "false"
 debug.pages = 50     # Die Anzahl der zufällig ausgewählten Seiten aus der Datenbank, die im Debugging-Modus berücksichtigt werden sollen (jede Seite enthält idR 30 Entscheidungen).
 debug.files = 500 # Die Anzahl der Dateien, die testweise heruntergeladen werden soll.
 
