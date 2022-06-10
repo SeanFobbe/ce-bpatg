@@ -55,5 +55,5 @@ list(
                format = "file"),
     tar_target(dt.download, f.make.download.table(x = scope,
                                                   debug.toggle = TRUE,
-                                                  debug.scope = 50)
+                                                  debug.scope = 50))
 )
