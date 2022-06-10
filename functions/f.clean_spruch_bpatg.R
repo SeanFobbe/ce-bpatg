@@ -15,7 +15,7 @@ f.clean_spruch_bpatg <- function(x){
     ## Strenge REGEX-Validierung des Aktenzeichens
 
     regex.test <- grep("[A-Za-z-]+",
-                       az,
+                       spruch,
                        invert = TRUE,
                        value = TRUE)
 
