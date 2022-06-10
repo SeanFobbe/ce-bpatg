@@ -151,6 +151,7 @@ list(
                              zipname.txt,
                              mode = "cherry-pick"),
                format = "file"),
+    
     tar_target(files.source,
                files.source.raw,
                format = "file"),
