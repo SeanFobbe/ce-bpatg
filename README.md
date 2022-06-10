@@ -9,8 +9,6 @@ Alle mit diesem Skript erstellten Datensätze werden dauerhaft kostenlos und urh
 
 Aktuellster, funktionaler und zitierfähiger Release des Datensatzes: https://doi.org/10.5281/zenodo.3954850
 
-Aktuellster, funktionaler und zitierfähiger Release des Source Codes: ???
-
 
 
 ## Funktionsweise
