@@ -55,7 +55,7 @@ prefix.figuretitle <- paste(config$project$shortname,
 
 
 
-## ZIP-Dateien definieren
+## ZIP-Datei für PDF definieren
 zipname.pdf <- paste(prefix.files,
                      "DE_PDF_Datensatz.zip",
                      sep = "_")
@@ -63,6 +63,7 @@ zipname.pdf <- paste(prefix.files,
 zipname.pdf <- file.path("output", zipname.pdf)
 
 
+## ZIP-Datei für TXT definieren
 zipname.txt <- paste(prefix.files,
                      "DE_TXT_Datensatz.zip",
                      sep = "_")
@@ -70,23 +71,26 @@ zipname.txt <- paste(prefix.files,
 zipname.txt <- file.path("output", zipname.txt)
 
 
-
+## ZIP-Datei für Source definieren
 files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
-                   "R-fobbe-proto-package",
-                   "data",
-                   "functions",
-                   "tex",
-                   "gpg",
-                   "buttons",
-                   list.files(pattern = "renv\\.lock|\\.Rprofile",
-                              all.files = TRUE),
-                   list.files("renv",
-                              pattern = "activate\\.R",
-                              full.names = TRUE))
+                       "R-fobbe-proto-package",
+                       "data",
+                       "functions",
+                       "tex",
+                       "gpg",
+                       "buttons",
+                       list.files(pattern = "renv\\.lock|\\.Rprofile",
+                                  all.files = TRUE),
+                       list.files("renv",
+                                  pattern = "activate\\.R",
+                                  full.names = TRUE))
 
 
 zipname.source <- paste0(prefix.files,
                          "_Source_Code.zip")
+
+zipname.source <- file.path("output", zipname.source)
+
 
 
 
