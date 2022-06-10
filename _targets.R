@@ -62,9 +62,13 @@ list(
     tar_target(dt.download.final, f.clean_add_variables(x = dt.download,
                                                         az = az_clean,
                                                         spruchgruppe = spruchgruppe_clean)),
-    tar_target(files.pdf, f.download(dt.download.final,
-                                     debug.toggle = FALSE,
-                                     debug.files = 500),
+    tar_target(files.pdf,
+               f.download(dt.download.final,
+                          debug.toggle = FALSE,
+                          debug.files = 500),
+               format = "file"),
+    tar_target(files.txt,
+               f.pdf_extract(files.pdf),
                format = "file")
                
 )
