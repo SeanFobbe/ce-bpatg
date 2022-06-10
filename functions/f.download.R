@@ -20,7 +20,7 @@ f.download <- function(x,
 
     ## Ordner säubern: Nur in Tabelle enthaltene PDFs dürfen verbleiben
     files.all <- list.files("pdf", full.names = TRUE)
-    delete <- setdiff(files.pdf, file.path("pdf", x$filename))
+    delete <- setdiff(files.all, file.path("pdf", x$filename))
     unlink(delete)
 
     ## Bereits heruntergeladene Dateien ausklammern
