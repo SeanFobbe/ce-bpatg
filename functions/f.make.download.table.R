@@ -94,7 +94,10 @@ f.make.download.table <- function(x,
         remaining <- length(scope.random) - i
         
         if ((remaining %% 100) == 0){
-            message(paste(Sys.time(), "| Noch", remaining , "verbleibend."))
+            message(paste(Sys.time(),
+                          "| Noch",
+                          remaining,
+                          "verbleibend."))
         }
 
         if((i %% 100) == 0){
