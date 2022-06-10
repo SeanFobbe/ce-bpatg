@@ -53,5 +53,6 @@ list(
     tar_target(scope,
                fread("data/CE-BPatG_Scope.csv"),
                format = "file"),
-  tar_target(dt.download, print(scope)) # Call your custom functions as needed.
+    tar_target(dt.download, f.make.download.table(x = scope,
+                                                  debug.toggle = TRUE)
 )
