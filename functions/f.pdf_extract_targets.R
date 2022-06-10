@@ -14,6 +14,8 @@ f.pdf_extract_targets <- function(x,
     pdf_extract(x,
                 outputdir = "txt")
 
-    return("txt")
+    files.txt <- list.files("txt", pattern = "\\.txt", full.names = TRUE)
+
+    return(files.txt)
     
 }
