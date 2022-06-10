@@ -71,7 +71,7 @@ zipname.txt <- file.path("output", zipname.txt)
 
 
 
-files.source <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
+files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
                    "R-fobbe-proto-package",
                    "data",
                    "functions",
@@ -149,7 +149,7 @@ list(
                format = "file"),
     tar_target(files.source, files.source),
     tar_target(zip.source,
-               f.zip_targets(files.source,
+               f.zip_targets(files.source.raw,
                              zipname.source,
                              mode = "mirror"))
                
