@@ -147,9 +147,9 @@ list(
                              zipname.txt,
                              mode = "cherry-pick"),
                format = "file"),
-    tar_target(files.source, files.source),
+    tar_target(files.source, files.source.raw),
     tar_target(zip.source,
-               f.zip_targets(files.source.raw,
+               f.zip_targets(files.source,
                              zipname.source,
                              mode = "mirror"))
                
