@@ -56,7 +56,7 @@ list(
     tar_target(az_clean, f.clean_az_bpatg(dt.download$az)),
     tar_target(spruch_clean, f.clean_spruch_bpatg(dt.download$spruch)),
     tar_target(dt.download.final, f.clean_add_variables(x = dt.download,
-                                                        az = az_clean
+                                                        az = az_clean,
                                                         spruch = spruch_clean)
                
 )
