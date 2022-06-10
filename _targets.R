@@ -3,7 +3,7 @@ library(targets)
 library(tarchetypes)
 library(RcppTOML)
 
-## Read config file
+## Read Config File
 config <- parseTOML("CE-BPatG_Config.toml")
 
 
@@ -18,12 +18,16 @@ source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
 source("R-fobbe-proto-package/f.dopar.multihashes.R")
 source("R-fobbe-proto-package/f.dopar.spacyparse.R")
 
-
 lapply(list.files("functions", full.names = TRUE), source)
 
 
+## General Options
 
-## Set target-specific options such as packages.
+options(timeout = config$download$timeout)
+
+
+
+## Targets Options
 
 tar_option_set(packages = c("fs",           # Verbessertes File Handling
                             "mgsub",        # Vektorisiertes Gsub
