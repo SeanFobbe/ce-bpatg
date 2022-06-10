@@ -54,6 +54,6 @@ list(
                                                   debug.toggle = config$debug$toggle,
                                                   debug.pages = config$debug$pages)),
     tar_target(az_clean, f.clean_az_bpatg(dt.download$az)),
-    tar_target(spruch_clean, f.clean_spruch_bpatg(dt.download$az))
+    tar_target(spruch_clean, f.clean_spruch_bpatg(dt.download$spruch))
                
 )
