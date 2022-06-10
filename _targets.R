@@ -60,3 +60,6 @@ list(
                                                         spruchgruppe = spruchgruppe_clean))
                
 )
+
+
+# todo: rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
