@@ -16,9 +16,18 @@ f.download <- function(x,
                       debug.files)]
     }
 
-    ## Ordner stellen
+    ## Ordner erstellen
     dir.create("pdf")
 
+    ## Ordner säubern: Nur in Tabelle enthaltene PDFs dürfen verbleiben
+    files.all <- list.files("pdf", full.names = TRUE)
+    delete <- setdiff(files.pdf, file.path("pdf", x$filename))
+    unlink(delete)
+
+    ## Bereits heruntergeladene Dateien ausklammern
+    files.pdf <- list.files("pdf", pattern = "\\.pdf")
+    x <- x[!filename %in% files.pdf]
+    
     
     ## Download: Erstversuch
     for (i in sample(x[,.N])){
