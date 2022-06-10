@@ -27,28 +27,66 @@ source("R-fobbe-proto-package/f.dopar.spacyparse.R")
 
 
 ## Create Directories
-
 dir.create("output")
 
 
-## Define Global Objects
-
+## Datesttamp
 datestamp <- Sys.Date()
 
-zipname.pdf <- paste(config$project$shortname,
-                     datestamp,
+
+## Quellenangabe für Diagramme definieren
+
+caption <- paste("Fobbe | DOI:",
+                 config$doi$data$version)
+
+
+## Präfix für Dateien definieren
+
+prefix.files <- paste0(config$project$shortname,
+                       "_",
+                       datestamp)
+
+
+## Präfix für Diagramme definieren
+
+prefix.figuretitle <- paste(config$project$shortname,
+                            "| Version",
+                            datestamp)
+
+
+
+## ZIP-Dateien definieren
+zipname.pdf <- paste(prefix.files,
                      "DE_PDF_Datensatz.zip",
                      sep = "_")
 
 zipname.pdf <- file.path("output", zipname.pdf)
 
 
-zipname.txt <- paste(config$project$shortname,
-                     datestamp,
+zipname.txt <- paste(prefix.files,
                      "DE_TXT_Datensatz.zip",
                      sep = "_")
 
 zipname.txt <- file.path("output", zipname.txt)
+
+
+
+files.source <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
+                   "R-fobbe-proto-package",
+                   "data",
+                   "functions",
+                   "tex",
+                   "gpg",
+                   "buttons",
+                   list.files(pattern = "renv\\.lock|\\.Rprofile",
+                              all.files = TRUE),
+                   list.files("renv",
+                              pattern = "activate\\.R",
+                              full.names = TRUE))
+
+
+zipname.source <- paste0(prefix.files,
+                         "_Source_Code.zip")
 
 
 
@@ -108,7 +146,12 @@ list(
                f.zip_targets(files.txt,
                              zipname.txt,
                              mode = "cherry-pick"),
-               format = "file")
+               format = "file"),
+    tar_target(files.source, files.source),
+    tar_target(zip.source,
+               f.zip_targets(files.source,
+                             zipname.source,
+                             mode = "mirror")
                
 )
 
