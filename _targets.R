@@ -50,9 +50,11 @@ tar_option_set(packages = c("fs",           # Verbessertes File Handling
 
 
 list(
-    tar_target(scope,
-               fread("data/CE-BPatG_Scope.csv"),
+    tar_target(scopefile,
+               "data/CE-BPatG_Scope.csv",
                format = "file"),
+    tar_target(scope,
+               fread(scopefile)),
     tar_target(dt.download, f.make.download.table(x = scope,
                                                   debug.toggle = TRUE,
                                                   debug.scope = 50))
