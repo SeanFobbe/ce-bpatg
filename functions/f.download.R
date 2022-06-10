@@ -6,7 +6,7 @@
 #' 
 
 f.download <- function(x,
-                       debug.toggle = FALSE
+                       debug.toggle = FALSE,
                        debug.files = 500){
 
     ## [Debugging Modus] Reduzierung des Download-Umfangs
