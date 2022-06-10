@@ -68,7 +68,7 @@ list(
                           debug.files = 500),
                format = "file"),
     tar_target(files.txt,
-               f.pdf_extract(files.pdf),
+               f.pdf_extract_targets(files.pdf),
                format = "file")
                
 )
