@@ -11,7 +11,7 @@ f.download <- function(x,
 
     ## [Debugging Modus] Reduzierung des Download-Umfangs
 
-    if (mode.debug == TRUE){
+    if (debug.toggle == TRUE){
         x <- x[sample(.N,
                       debug.files)]
     }
@@ -20,7 +20,7 @@ f.download <- function(x,
     dir.create("pdf")
 
     
-    
+    ## Download: Erstversuch
     for (i in sample(x[,.N])){
         tryCatch({download.file(url = x$link[i],
                                 destfile = file.path("pdf",
@@ -37,91 +37,44 @@ f.download <- function(x,
     ## Dient dazu den Wiederholungsversuch zu testen.
 
     if (debug.toggle == TRUE){
-        files.pdf <- list.files(pattern = "\\.pdf", full.names = TRUE)
+        files.pdf <- list.files("pdf", pattern = "\\.pdf", full.names = TRUE)
         unlink(sample(files.pdf, 5))
     }
-    
+
+    ## Fehlende Dateien
+    files.pdf <- list.files("pdf", pattern = "\\.pdf", full.names = TRUE)
+    missing <- setdiff(x$filename, basename(files.pdf))
 
 
+    ## Download: Wiederholungsversuch
+    if(length(missing) > 0){
+
+        dt.retry <- x[filename %in% missing]
+        
+        for (i in 1:dt.retry[,.N]){
+            
+            response <- GET(dt.retry$link[i])
+            
+            Sys.sleep(runif(1, 0.25, 0.75))
+            
+            if (response$headers$"content-type" == "application/pdf" & response$status_code == 200){
+                tryCatch({download.file(url = dt.retry$link[i],
+                                        destfile = file.path("pdf",
+                                                             dt.retry$filename[i]))
+                },
+                error = function(cond) {
+                    return(NA)}
+                )     
+            }else{
+                message(paste0(dt.retry$filenames.final[i], " : kein PDF vorhanden"))  
+            }
+            Sys.sleep(runif(1, 2, 5))
+        } 
+    }
+
+    ## Final File Count
+    files.pdf <- list.files("pdf", pattern = "\\.pdf", full.names = TRUE)
+
+    return(files.pdf)
     
 }
-
-
-
-
-
-
-
-
-
-#'## Download: Zwischenergebnis
-
-#+
-#'### Anzahl herunterzuladender Dateien
-x[,.N]
-
-#'### Anzahl heruntergeladener Dateien
-files.pdf <- list.files(pattern = "\\.pdf")
-length(files.pdf)
-
-#'### Fehlbetrag
-N.missing <- x[,.N] - length(files.pdf)
-print(N.missing)
-
-#'### Fehlende Dateien
-missing <- setdiff(x$filenames.final, files.pdf)
-print(missing)
-
-
-
-
-
-
-
-
-#'## Wiederholungsversuch: Download
-#' Download für fehlende Dokumente wiederholen.
-
-if(N.missing > 0){
-
-    dt.retry <- x[filenames.final %in% missing]
-    
-    for (i in 1:dt.retry[,.N]){
-        response <- GET(dt.retry$link[i])
-        Sys.sleep(runif(1, 0.25, 0.75))
-        if (response$headers$"content-type" == "application/pdf" & response$status_code == 200){
-            tryCatch({download.file(url = dt.retry$link[i],
-                                    destfile = dt.retry$filenames.final[i])
-            },
-            error=function(cond) {
-                return(NA)}
-            )     
-        }else{
-            print(paste0(dt.retry$filenames.final[i], " : kein PDF vorhanden"))  
-        }
-        Sys.sleep(runif(1, 2, 5))
-    } 
-}
-
-
-
-
-
-
-#'## Download: Gesamtergebnis
-
-#+
-#'### Anzahl herunterzuladender Dateien
-x[,.N]
-
-#'### Anzahl heruntergeladener Dateien
-files.pdf <- list.files(pattern = "\\.pdf")
-length(files.pdf)
-
-#'### Fehlbetrag
-N.missing <- x[,.N] - length(files.pdf)
-print(N.missing)
-
-#'### Fehlende Dateien
-missing <- setdiff(x$filenames.final, files.pdf)
-print(missing)
