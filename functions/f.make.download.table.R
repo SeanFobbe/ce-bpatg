@@ -1,14 +1,19 @@
 
+#' Diese Funktion wertet die Entscheidungsdatenbank des Bundespatentgerichts aus und sammelt Links zu den Entscheidungsvolltexten und verbindet sie mit den in der Datenbank angegebenen Metadaten.
 
 #' @param x Der Umfang der Datenbankseiten, der berücksichtigt werden soll
-#'
+#' @param debug.toggle Ob der Debugging-Modus aktiviert werden soll. Im Debugging-Modus wird nur eine reduzierte Anzahl Datenbankseiten ausgewertet. Jede Seite enthält idR 30 Entscheidungen.
+#' @param deubg.scope Anzahl der auszuwertenden Datenbankseiten.
+
+
 #' @return Eine Tabelle mit allen Links und in der Datenbank verfügbaren Metadaten.
+
+
 
 
 f.make.download.table <- function(x,
                                   debug.toggle = FALSE,
-                                  debug.scope = 50,
-                                  debug.sample = 500){
+                                  debug.scope = 50){
 
 
     ## Genauen Such-Umfang berechnen
