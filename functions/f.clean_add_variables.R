@@ -9,9 +9,16 @@ f.clean_add_variables <- function(x,
                                   spruch){
 
 
+    ## Korrigierte Variablen einfügen
 
+    x$az <- az
+    x$spruch <- spruch
 
+    ## Einzelkorrektur
 
+    x[az == "27_W-pat_69_08"]$datum <- as.Date("2008-06-03")
+
+    
     ## Variable "leitsatz" erstellen
 
     x$leitsatz <- ifelse(grepl("Leitsatz",
@@ -66,65 +73,90 @@ f.clean_add_variables <- function(x,
                       x$az,
                       sep = "_")
 
+    ## NA einfügen falls EU/EP flag nicht vorhanden
+    filename <- ifelse(grepl("(EU|EP)$",
+                             filename),
+                       filename,
+                       paste0(filename, "_NA"))
+
     
-## Anzahl Duplikate
-##length(filename[duplicated(filename)])
+    ## Anzahl Duplikate
+    ##length(filename[duplicated(filename)])
+
+
+    ## Kollisions-IDs vergeben
+    filenames1 <- make.unique(filename, sep = "-----")
+
+
+    indices <- grep("-----",
+                    filenames1,
+                    invert = TRUE)
+
+    values <- grep("-----",
+                   filenames1,
+                   invert = TRUE,
+                   value = TRUE)
+
+    filenames1[indices] <- paste0(values,
+                                  "_0")
+
+    filenames1 <- gsub("-----",
+                       "_",
+                       filenames1)
+
+    ## Zufällige Auswahl zur Prüfung anzeigen
+    #filenames1[sample(length(filenames1), 50)]
+
+
+    ## PDF-Endung anfügen
+    filenames2 <- paste0(filenames1,
+                         ".pdf")
+
+
+
+
+    ## Strenge REGEX-Validierung: Gesamter Dateiname
     
+    regex.test <- grep(paste0("^BPatG",  # gericht
+                             "_",
+                             "[A-Za-z-]+", # senatsgruppe
+                             "_",
+                             "(LE|NA)", # leitsatz 
+                             "_",
+                             "[0-9]{4}-[0-9]{2}-[0-9]{2}", # datum
+                             "_",
+                             "[0-9]{1,2}", # senatsnummer
+                             "_",
+                             "((Ni)|(W-pat)|(ZA-pat)|(Li)|(LiQ))", # registerzeichen
+                             "_",
+                             "[0-9]+", # eingangsnummer
+                             "_",
+                             "[0-9]{2}", # Ringangsjahr 
+                             "_",
+                             "EU|EP|NA", # zusatz_az
+                             "_",
+                             "[0-9]+"), # kollision
+                      filenames2,
+                      value = TRUE,
+                      invert = TRUE)
 
-## KollisionsID einfügen
-
-
-## Kollisions-IDs vergeben
-filenames1 <- make.unique(filename, sep = "-----")
-
-
-indices <- grep("-----",
-                filenames1,
-                invert = TRUE)
-
-values <- grep("-----",
-               filenames1,
-               invert = TRUE,
-               value = TRUE)
-
-filenames1[indices] <- paste0(values,
-                              "_0")
-
-filenames1 <- gsub("-----",
-                   "_",
-                   filenames1)
-
-## Zufällige Auswahl zur Prüfung anzeigen
-filenames1[sample(length(filenames1), 50)]
-
-
-## PDF-Endung anfügen
-filenames2 <- paste0(filenames1,
-                    ".pdf")
+    
+    ## Ergebnis der REGEX-Validierung
+    #print(regex.test)
 
 
+    ## Stoppen falls REGEX-Validierung gescheitert
 
-
-## Strenge REGEX-Validierung: Gesamter Dateiname
-
-regex.test2 <-grep("BPatG_.*_[NALE]{2}_[0-9]{4}-[0-9]{2}-[0-9]{2}_[A-Za-z0-9]*_[A-Za-zÜ]*_[0-9-]*_[0-9]{2}_[A-Za-z]*_.*_[NA0-9]*.pdf",
-     filenames2,
-     value = TRUE,
-     invert = TRUE)
-
-
-## Ergebnis der REGEX-Validierung
-print(regex.test2)
-
-
-## Skript stoppen falls REGEX-Validierung gescheitert
-
-if (length(regex.test2) != 0){
-    stop("REGEX VALIDIERUNG GESCHEITERT: DATEINAMEN ENTSPRECHEN NICHT DEM CODEBOOK-SCHEMA!")
+    if (length(regex.test) != 0){
+        stop("REGEX VALIDIERUNG GESCHEITERT: DATEINAMEN ENTSPRECHEN NICHT DEM CODEBOOK-SCHEMA!")
     }
 
-## Vollen Dateinamen in Download Table einfügen
-x$filenames.final <- filenames2
+    ## Vollen Dateinamen in Download Table einfügen
+    x$filename <- filenames2
+
+
+    ## Return
+    return(x)
     
     
-    }
+}
