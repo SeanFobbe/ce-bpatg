@@ -25,11 +25,24 @@ lapply(list.files("functions", full.names = TRUE), source)
 
 options(timeout = config$download$timeout)
 
+datestamp <- Sys.Date()
+
+zipname.pdf <- paste(config$project$shortname,
+                     datestamp,
+                     "DE_PDF_Datensatz.zip",
+                     sep = "_")
+
+zipname.txt <- paste(config$project$shortname,
+                     datestamp,
+                     "DE_TXT_Datensatz.zip",
+                     sep = "_")
+
 
 
 ## Targets Options
 
 tar_option_set(packages = c("fs",           # Verbessertes File Handling
+                            "zip",          # Verbessertes ZIP Handling
                             "mgsub",        # Vektorisiertes Gsub
                             "httr",         # HTTP-Werkzeuge
                             "rvest",        # HTML/XML-Extraktion
@@ -70,9 +83,17 @@ list(
                format = "file"),
     tar_target(files.txt,
                f.pdf_extract_targets(files.pdf),
+               format = "file"),
+    tar_target(zip.txt,
+               f.zip_targets(files.txt,
+                             zipname.txt,
+                             mode = "cherry-pick"),
                format = "file")
                
 )
+
+
+
 
 
 # todo: rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
