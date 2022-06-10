@@ -1,10 +1,13 @@
+## Load Packages
 library(targets)
 library(tarchetypes)
+library(RcppTOML)
+
+## Read config file
+config <- parseTOML("config.toml")
 
 
-# Define custom functions and other global objects.
-# This is where you write source(\"R/functions.R\")
-# if you keep your functions in external scripts.
+## Define custom functions and other global objects.
 
 source("R-fobbe-proto-package/f.linkextract.R")
 source("R-fobbe-proto-package/f.year.iso.R")
@@ -15,13 +18,12 @@ source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
 source("R-fobbe-proto-package/f.dopar.multihashes.R")
 source("R-fobbe-proto-package/f.dopar.spacyparse.R")
 
-source("functions/f.make.download.table.R")
-source("functions/f.extend.R")
+
+lapply(list.files("functions", full.names = TRUE), source)
 
 
 
 ## Set target-specific options such as packages.
-
 
 tar_option_set(packages = c("fs",           # Verbessertes File Handling
                             "mgsub",        # Vektorisiertes Gsub
