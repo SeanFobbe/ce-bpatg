@@ -26,6 +26,6 @@ f.clean_spruch_bpatg <- function(x){
         stop("REGEX VALIDIERUNG GESCHEITERT: SPRUCHKÖRPER ENTSPRECHEN NICHT DEM CODEBOOK-SCHEMA!")
     }
     
-    return(spruch)
+    return(spruchgruppe)
     
 }
