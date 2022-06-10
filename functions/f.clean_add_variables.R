@@ -6,13 +6,13 @@
 
 f.clean_add_variables <- function(x,
                                   az,
-                                  spruch){
+                                  spruchgruppe){
 
 
     ## Korrigierte Variablen einfügen
 
     x$az <- az
-    x$spruch <- spruch
+    x$spruchgruppe <- spruchgruppe
 
     ## Einzelkorrektur
 
@@ -67,7 +67,7 @@ f.clean_add_variables <- function(x,
     ## Dateinamen erstellen
 
     filename <- paste("BPatG",
-                      x$spruch,
+                      x$spruchgruppe,
                       x$leitsatz,
                       x$datum,
                       x$az,
