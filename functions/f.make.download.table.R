@@ -108,6 +108,13 @@ f.make.download.table <- function(x,
     ## Zusammenfügen
     dt.download <- rbindlist(meta.all.list)
 
+    
+    ## Datum bereinigen
+    dt.download[, datum := {
+        datum <- as.character(datum)
+        datum <- as.IDate(datum, "%d.%m.%Y")
+        list(datum)}]
+    
 
     return(dt.download)
 
