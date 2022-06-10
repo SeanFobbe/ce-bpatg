@@ -4,7 +4,7 @@ library(tarchetypes)
 library(RcppTOML)
 
 ## Read config file
-config <- parseTOML("config.toml")
+config <- parseTOML("CE-BPatG_Config.toml")
 
 
 ## Define custom functions and other global objects.
@@ -51,6 +51,6 @@ list(
     tar_target(scope,
                fread(scopefile)),
     tar_target(dt.download, f.make.download.table(x = scope,
-                                                  debug.toggle = TRUE,
-                                                  debug.scope = 50))
+                                                  debug.toggle = config$debug$toggle,
+                                                  debug.pages = config$debug$pages))
 )
