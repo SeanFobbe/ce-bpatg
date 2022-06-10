@@ -40,7 +40,7 @@ f.make.download.table <- function(x,
     ## [Debugging Modus] Reduzierung des Such-Umfangs
 
     if (debug.toggle == TRUE){
-        scope <- scope[sample(scope[,.N], debug.scope)][order(year, page)]
+        scope <- scope[sample(scope[,.N], debug.pages)][order(year, page)]
     }
 
 
