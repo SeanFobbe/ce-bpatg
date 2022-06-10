@@ -26,6 +26,9 @@ source("R-fobbe-proto-package/f.dopar.multihashes.R")
 source("R-fobbe-proto-package/f.dopar.spacyparse.R")
 
 
+## Create Directories
+
+dir.create("output")
 
 
 ## Define Global Objects
