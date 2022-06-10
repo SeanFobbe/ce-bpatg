@@ -6,7 +6,9 @@
 
 
 f.make.download.table <- function(x,
-                                  debug.toggle = FALSE){
+                                  debug.toggle = FALSE,
+                                  debug.scope = 50,
+                                  debug.sample = 500){
 
 
     ## Genauen Such-Umfang berechnen
@@ -21,6 +23,7 @@ f.make.download.table <- function(x,
              c("year",
                "page"))
 
+
     ## Locator einfügen
 
     scope[, loc := {
@@ -28,6 +31,7 @@ f.make.download.table <- function(x,
         list(loc)
     }]
 
+    
     ## [Debugging Modus] Reduzierung des Such-Umfangs
 
     if (debug.toggle == TRUE){
@@ -85,7 +89,7 @@ f.make.download.table <- function(x,
         remaining <- length(scope.random) - i
         
         if ((remaining %% 10^2) == 0){
-            print(paste(Sys.time(), "| Noch", remaining , "verbleibend."))
+            message(paste(Sys.time(), "| Noch", remaining , "verbleibend."))
         }
 
         if((i %% 100) == 0){
