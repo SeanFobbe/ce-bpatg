@@ -3,7 +3,7 @@
 
 #' @param x Der Umfang der Datenbankseiten, der berücksichtigt werden soll
 #' @param debug.toggle Ob der Debugging-Modus aktiviert werden soll. Im Debugging-Modus wird nur eine reduzierte Anzahl Datenbankseiten ausgewertet. Jede Seite enthält idR 30 Entscheidungen.
-#' @param deubg.scope Anzahl der auszuwertenden Datenbankseiten.
+#' @param deubg.pages Anzahl der auszuwertenden Datenbankseiten.
 
 
 #' @return Eine Tabelle mit allen Links und in der Datenbank verfügbaren Metadaten.
@@ -13,7 +13,7 @@
 
 f.make.download.table <- function(x,
                                   debug.toggle = FALSE,
-                                  debug.scope = 50){
+                                  debug.pages = 50){
 
 
     ## Genauen Such-Umfang berechnen
