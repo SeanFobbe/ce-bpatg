@@ -36,12 +36,13 @@ tar_option_set(packages = c("fs",           # Verbessertes File Handling
                             "knitr",        # Professionelles Reporting
                             "kableExtra",   # Verbesserte Kable Tabellen
                             "pdftools",     # Verarbeitung von PDF-Dateien
-                            "doParallel",   # Parallelisierung
                             "ggplot2",      # Fortgeschrittene Datenvisualisierung
                             "scales",       # Skalierung von Diagrammen
                             "data.table",   # Fortgeschrittene Datenverarbeitung
                             "readtext",     # TXT-Dateien einlesen
-                            "quanteda"))     # Fortgeschrittene Computerlinguistik
+                            "quanteda",     # Fortgeschrittene Computerlinguistik
+                            "future",       # Parallelisierung
+                            "future.apply"))# Funktionen höherer Ordnung für Parallelisierung
 
 
 
