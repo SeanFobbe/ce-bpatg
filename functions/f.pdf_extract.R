@@ -29,7 +29,7 @@ f.pdf_extract <- function(x){
 
     ## Perform conversion from PDF to TXT
     invisible(future.apply::future_lapply(x,
-                                          pdf_extract_single,
+                                          f.pdf_extract_single,
                                           future.seed = TRUE))
 
 
