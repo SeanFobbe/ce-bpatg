@@ -15,15 +15,8 @@ source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
 source("R-fobbe-proto-package/f.dopar.multihashes.R")
 source("R-fobbe-proto-package/f.dopar.spacyparse.R")
 
-
-f.extend <- function(x, y, begin = 0){
-    y.ext <- begin:y
-    x.ext <- rep(x, length(y.ext))
-    dt.out <- list(data.table(x.ext, y.ext))
-    return(dt.out)
-}
-
-f.extend <- Vectorize(f.extend)
+source("functions/f.make.download.table.R")
+source("functions/f.extend.R")
 
 
 
