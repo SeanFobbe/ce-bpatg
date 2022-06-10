@@ -18,14 +18,15 @@ f.clean_az_bpatg <- function(x){
     az <- gsub("\\(|\\)", "", az)
     az <- gsub("W_pat9", "W-pat", az)
     az <- gsub("W_pat", "W-pat", az)
-
+    az <- gsub("30_W-pat103_00", "30_W-pat_103_00", az)
+    az <- gsub("15_W-pat16_17", "15_W-pat_16_17", az)
 
 
     ## Strenge REGEX-Validierung des Aktenzeichens
 
     regex.test <- grep(paste0("^[0-9]{1,2}", # Senatsnummer
                               "_",
-                              "(Ni)|(W-pat)|(ZA-pat)|(Li)|(LiQ)", # Registerzeichen
+                              "((Ni)|(W-pat)|(ZA-pat)|(Li)|(LiQ))", # Registerzeichen
                               "_",
                               "[0-9]+", # Eingangsnummer
                               "_",
@@ -34,6 +35,8 @@ f.clean_az_bpatg <- function(x){
                        invert = TRUE,
                        value = TRUE)
 
+    print(regex.test)
+    
     ## Stoppen falls REGEX-Validierung gescheitert
 
     if (length(regex.test) != 0){
