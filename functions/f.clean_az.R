@@ -23,20 +23,18 @@ f.clean_az_bpatg <- function(x){
 
     ## Strenge REGEX-Validierung des Aktenzeichens
 
-    regex.test <- grep(paste0("^[0-9]{1,2}",
+    regex.test <- grep(paste0("^[0-9]{1,2}", # Senatsnummer
                               "_",
-                              "(Ni)|(W-pat)|(ZA-pat)|(Li)|(LiQ)",
-                              "_"),
+                              "(Ni)|(W-pat)|(ZA-pat)|(Li)|(LiQ)", # Registerzeichen
+                              "_",
+                              "[0-9]+", # Eingangsnummer
+                              "_",
+                              "[0-9]{2}"), # Eingangsjahr
                        az,
                        invert = TRUE,
                        value = TRUE)
 
-
-    ## Ergebnis der REGEX-Validierung
-    print(regex.test)
-
-
-    ## Skript stoppen falls REGEX-Validierung gescheitert
+    ## Stoppen falls REGEX-Validierung gescheitert
 
     if (length(regex.test) != 0){
         stop("REGEX VALIDIERUNG GESCHEITERT: AKTENZEICHEN ENTSPRECHEN NICHT DEM CODEBOOK-SCHEMA!")
