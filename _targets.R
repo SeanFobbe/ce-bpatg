@@ -52,5 +52,6 @@ list(
                fread(scopefile)),
     tar_target(dt.download, f.make.download.table(x = scope,
                                                   debug.toggle = config$debug$toggle,
-                                                  debug.pages = config$debug$pages))
+                                                  debug.pages = config$debug$pages)),
+    tar_target(clean_az, f.clean_az_bpatg(dt.download$az)
 )
