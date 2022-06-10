@@ -3,11 +3,18 @@ library(targets)
 library(tarchetypes)
 library(RcppTOML)
 
-## Read Config File
+
+## General Options
+
 config <- parseTOML("CE-BPatG_Config.toml")
 
+options(timeout = config$download$timeout)
 
-## Define custom functions and other global objects.
+
+
+## Define custom functions
+
+lapply(list.files("functions", full.names = TRUE), source)
 
 source("R-fobbe-proto-package/f.linkextract.R")
 source("R-fobbe-proto-package/f.year.iso.R")
@@ -18,12 +25,10 @@ source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
 source("R-fobbe-proto-package/f.dopar.multihashes.R")
 source("R-fobbe-proto-package/f.dopar.spacyparse.R")
 
-lapply(list.files("functions", full.names = TRUE), source)
 
 
-## General Options
 
-options(timeout = config$download$timeout)
+## Define Global Objects
 
 datestamp <- Sys.Date()
 
@@ -32,10 +37,15 @@ zipname.pdf <- paste(config$project$shortname,
                      "DE_PDF_Datensatz.zip",
                      sep = "_")
 
+zipname.pdf <- file.path("output", zipname.pdf)
+
+
 zipname.txt <- paste(config$project$shortname,
                      datestamp,
                      "DE_TXT_Datensatz.zip",
                      sep = "_")
+
+zipname.txt <- file.path("output", zipname.txt)
 
 
 
@@ -84,6 +94,13 @@ list(
     tar_target(files.txt,
                f.pdf_extract_targets(files.pdf),
                format = "file"),
+
+    tar_target(zip.pdf,
+               f.zip_targets(files.pdf,
+                             zipname.pdf,
+                             mode = "cherry-pick"),
+               format = "file"),
+    
     tar_target(zip.txt,
                f.zip_targets(files.txt,
                              zipname.txt,
