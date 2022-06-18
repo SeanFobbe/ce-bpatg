@@ -27,10 +27,11 @@ source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
 
 
 ## Create Directories
+#unlink("output", recursive = TRUE)
 dir.create("output")
 
 
-## Datesttamp
+## Datestamp
 datestamp <- Sys.Date()
 
 
