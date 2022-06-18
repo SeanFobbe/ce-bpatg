@@ -18,12 +18,12 @@ lapply(list.files("functions", full.names = TRUE), source)
 
 source("R-fobbe-proto-package/f.linkextract.R")
 source("R-fobbe-proto-package/f.year.iso.R")
-source("R-fobbe-proto-package/f.dopar.pdfextract.R")
+#source("R-fobbe-proto-package/f.dopar.pdfextract.R")
 source("R-fobbe-proto-package/f.hyphen.remove.R")
 source("R-fobbe-proto-package/f.fast.freqtable.R")
 source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
-source("R-fobbe-proto-package/f.dopar.multihashes.R")
-source("R-fobbe-proto-package/f.dopar.spacyparse.R")
+#source("R-fobbe-proto-package/f.dopar.multihashes.R")
+#source("R-fobbe-proto-package/f.dopar.spacyparse.R")
 
 
 ## Create Directories
