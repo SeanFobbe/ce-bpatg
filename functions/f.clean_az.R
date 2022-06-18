@@ -20,6 +20,7 @@ f.clean_az_bpatg <- function(x){
     az <- gsub("W_pat", "W-pat", az)
     az <- gsub("30_W-pat103_00", "30_W-pat_103_00", az)
     az <- gsub("15_W-pat16_17", "15_W-pat_16_17", az)
+    az <- gsub("([0-9]{2})(E[UP])", "\\1_\\2", az)
 
 
     ## Strenge REGEX-Validierung des Aktenzeichens
