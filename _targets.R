@@ -55,6 +55,22 @@ prefix.figuretitle <- paste(config$project$shortname,
 
 
 
+## Metadaten für TXT-Dateien definieren
+
+docvarnames <- c("gericht",
+                 "spruchkoerper_db",
+                 "leitsatz",
+                 "datum",
+                 "spruchkoerper_az",
+                 "registerzeichen",
+                 "eingangsnummer",
+                 "eingangsjahr_az",
+                 "zusatz_az",
+                 "name",
+                 "kollision")
+
+
+
 ## ZIP-Datei für PDF definieren
 zipname.pdf <- paste(prefix.files,
                      "DE_PDF_Datensatz.zip",
@@ -159,8 +175,11 @@ list(
                f.zip_targets(files.source,
                              zipname.source,
                              mode = "mirror"),
-               format = "file")
-               
+               format = "file"),
+    tar_target(dt.bpatg,
+               f.readtext(x = files.txt,
+                          docvarnames = docvarnames))
+    
 )
 
 
