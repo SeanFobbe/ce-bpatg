@@ -152,7 +152,7 @@ freqtable.az <- f.fast.freqtable(dt.bpatg,
                  output.list = TRUE,
                  output.kable = FALSE,
                  output.csv = FALSE,
-                 align = c("p{5cm}"))[[1]]
+                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
 
 freqtable.az.nosum <- freqtable.az[-.N]
 
