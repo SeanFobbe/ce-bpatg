@@ -30,7 +30,7 @@ f.download <- function(url,
 
         stop("Length of arguments url and filename is not equal.")
         
-        }
+    }
 
     ## [Debugging Mode] Reduce download scope
     if (debug.toggle == TRUE){
