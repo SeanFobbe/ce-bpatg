@@ -180,6 +180,8 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                     )
 
 
+
+
 tar.zip <- list(tar_target(zip.pdf.all,
                            f.zip_targets(files.pdf,
                                          filename = paste(prefix.files,
@@ -221,12 +223,19 @@ tar.zip <- list(tar_target(zip.pdf.all,
 
 
 
+tar.reports <- list(tar_render(report.tests,
+                               file.path("markdown",
+                                         "CE-BPatG_Testreport.Rmd"))
+                    )
+
 
 list(tar.data,
      tar.download,
      tar.convert,
      tar.enhance,
-     tar.zip)
+     tar.zip,
+     tar.reports
+     )
 
 
 ## zipname.source <- paste0(prefix.files,
