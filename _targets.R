@@ -80,10 +80,15 @@ docvarnames <- c("gericht",
 
 
 
-## ZIP-Datei für PDF definieren
+## ZIP-Datei für PDF (alle) definieren
 zipname.pdf <- paste(prefix.files,
                      "DE_PDF_Datensatz.zip",
                      sep = "_")
+
+## ZIP-Datei für PDF (Leitsatzentscheidungen) definieren
+zipname.pdfleitsatz <- paste(prefix.files,
+                             "DE_PDF_Leitsatz-Entscheidungen_Datensatz.zip",
+                             sep = "_")
 
 
 ## ZIP-Datei für TXT definieren
@@ -188,9 +193,16 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                     )
 
 
-tar.zip <- list(tar_target(zip.pdf,
+tar.zip <- list(tar_target(zip.pdf.all,
                            f.zip_targets(files.pdf,
                                          filename = zipname.pdf,
+                                         dir = "output",
+                                         mode = "cherry-pick"),
+                           format = "file"),
+
+                tar_target(zip.pdf.leitsatz,
+                           f.zip_targets(grep("_LE_", files.pdf, value = TRUE),
+                                         filename = zipname.pdfleitsatz,
                                          dir = "output",
                                          mode = "cherry-pick"),
                            format = "file"),
