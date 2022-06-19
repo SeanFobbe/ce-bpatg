@@ -1,3 +1,25 @@
+#' @param command.name The name of the new LaTeX command.
+#' @param command.body The body of the new LaTeX command.
+#'
+#' @return A new LaTeX command.
+
+
+f.latexcommand <- function(command.name,
+                           command.body){
+    
+    newcommand <- paste0("\\newcommand{\\",
+                         command.name,
+                         "}{",
+                         command.body,
+                         "}")
+    
+    return(newcommand)
+    
+}
+
+
+
+
 
 
 #' @param x A list with the relevant entries.
@@ -15,38 +37,38 @@ f.latexdefs <- function(x,
     latexdefs <- c("%===========================\n% Definitions \n%===========================",
                    "\n% NOTE: This file was created automatically. Do not change it by hand.\n",
                    "\n%-----Author-----",
-                   latexcommand("projectauthor", x$project$author),
+                   f.latexcommand("projectauthor", x$project$author),
                    
                    "\n%-----Version-----",
-                   latexcommand("version", datestamp),
+                   f.latexcommand("version", datestamp),
                    
                    "\n%-----Titles-----",
-                   latexcommand("datatitle", x$project$fullname),
-                   latexcommand("datashort", x$project$shortname),
-                   latexcommand("softwaretitle",
+                   f.latexcommand("datatitle", x$project$fullname),
+                   f.latexcommand("datashort", x$project$shortname),
+                   f.latexcommand("softwaretitle",
                                 paste0("Source Code des \\enquote{", x$project$fullname, "}")),
-                   latexcommand("softwareshort", paste0(x$project$shortname, "-Source")),
+                   f.latexcommand("softwareshort", paste0(x$project$shortname, "-Source")),
                    
                    "\n%-----Data DOIs-----",
-                   latexcommand("dataconceptdoi", x$doi$data$concept), 
-                   latexcommand("dataversiondoi", x$doi$data$version),
-                   latexcommand("dataconcepturldoi",
+                   f.latexcommand("dataconceptdoi", x$doi$data$concept), 
+                   f.latexcommand("dataversiondoi", x$doi$data$version),
+                   f.latexcommand("dataconcepturldoi",
                                 paste0("https://doi.org/", x$doi$data$concept)),
-                   latexcommand("dataversionurldoi",
+                   f.latexcommand("dataversionurldoi",
                                 paste0("https://doi.org/", x$doi$data$version)),
                    
                    "\n%-----Software DOIs-----",
-                   latexcommand("softwareconceptdoi", x$doi$software$concept),
-                   latexcommand("softwareversiondoi", x$doi$software$version), 
-                   latexcommand("softwareconcepturldoi",
+                   f.latexcommand("softwareconceptdoi", x$doi$software$concept),
+                   f.latexcommand("softwareversiondoi", x$doi$software$version), 
+                   f.latexcommand("softwareconcepturldoi",
                                 paste0("https://doi.org/", x$doi$software$concept)),
-                   latexcommand("softwareversionurldoi",
+                   f.latexcommand("softwareversionurldoi",
                                 paste0("https://doi.org/", x$doi$software$version)),
                    
                    "\n%-----Additional DOIs-----",
-                   latexcommand("aktenzeichenurldoi",
+                   f.latexcommand("aktenzeichenurldoi",
                                 paste0("https://doi.org/", x$doi$aktenzeichen)),
-                   latexcommand("personendatenurldoi",
+                   f.latexcommand("personendatenurldoi",
                                 paste0("https://doi.org/", x$doi$personendaten))
                    )
 
