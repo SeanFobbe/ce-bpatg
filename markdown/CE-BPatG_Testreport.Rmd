@@ -21,7 +21,7 @@ knitr::opts_chunk$set(fig.path = ".",
                       dev = config$fig$format,
                       dpi = config$fig$dpi,
                       fig.align = config$fig$align)
-)
+
 ```
 
 
