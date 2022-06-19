@@ -141,26 +141,34 @@ tar_option_set(packages = c("fs",           # Verbessertes File Handling
 
 ## End this file with a list of target objects.
 
-
-tar.download <- list(tar_target(scopefile,
+tar.data <- list(tar_target(scopefile,
                             "data/CE-BPatG_Scope.csv",
                             format = "file"),
                  tar_target(scope,
                             fread(scopefile)),
-                 tar_target(dt.download, f.make.download.table(x = scope,
-                                                               debug.toggle = config$debug$toggle,
-                                                               debug.pages = config$debug$pages)),
-                 tar_target(az_clean, f.clean_az_bpatg(dt.download$az)),
-                 tar_target(spruchgruppe_clean, f.clean_spruch_bpatg(dt.download$spruch)),
-                 tar_target(dt.download.final, f.clean_add_variables(x = dt.download,
-                                                                     az = az_clean,
-                                                                     spruchgruppe = spruchgruppe_clean)),
-                 tar_target(files.pdf,
-                            f.download(dt.download.final,
-                                       debug.toggle = FALSE,
-                                       debug.files = 500),
-                            format = "file")
+                 tar_target(file.az.brd,
+                            "data/AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv",
+                            format = "file"),
+                 tar_target(az.brd,
+                            fread(file.az.brd))
                  )
+)
+
+
+tar.download <- list(tar_target(dt.download, f.make.download.table(x = scope,
+                                                                   debug.toggle = config$debug$toggle,
+                                                                   debug.pages = config$debug$pages)),
+                     tar_target(az_clean, f.clean_az_bpatg(dt.download$az)),
+                     tar_target(spruchgruppe_clean, f.clean_spruch_bpatg(dt.download$spruch)),
+                     tar_target(dt.download.final, f.clean_add_variables(x = dt.download,
+                                                                         az = az_clean,
+                                                                         spruchgruppe = spruchgruppe_clean)),
+                     tar_target(files.pdf,
+                                f.download(dt.download.final,
+                                           debug.toggle = FALSE,
+                                           debug.files = 500),
+                                format = "file")
+                     )
 
 
 tar.convert <- list(tar_target(files.txt,
@@ -204,7 +212,8 @@ tar.zip <- list(tar_target(zip.pdf,
 
 
 
-list(tar.download,
+list(tar.data,
+     tar.download,
      tar.convert,
      tar.enhance,
      tar.zip)
@@ -217,5 +226,6 @@ list(tar.download,
 ## [4] "txt/BPatG_Nichtigkeit_NA_2002-08-05_3_Ni_65_00EU_0.txt"
 ## [5] "txt/BPatG_Nichtigkeit_NA_2013-02-07_2_Ni_38_11EP_0.txt"
 
-# todo: rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
-# standardize . and _
+## todo: rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
+## standardize . and _
+## replace "scopefile" with "file.scope" 
