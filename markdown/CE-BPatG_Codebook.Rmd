@@ -143,24 +143,22 @@ ZA-(Pat) & ZA-pat & Verfahren über Anträge außerhalb anhängiger Patentsachen
 
 ```{r}
 
-freqtable <- f.fast.freqtable(dt.bpatg,
+freqtable.az <- f.fast.freqtable(dt.bpatg,
 		    varlist = "spruchkoerper_az",
                      sumrow = TRUE,
                  output.list = TRUE,
                  output.kable = FALSE,
                  output.csv = FALSE,
-                 align = c("p{5cm}"))
+                 align = c("p{5cm}"))[[1]]
+
+freqtable.az.nosum <- freqtable.az[-.N]
 
 ```
 
 
 
-
-freqtable <- table.spruch.az[-.N]
-
-
-#+ CE-BGH_03_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9
-ggplot(data = freqtable) +
+#+ CE-BPatG_03_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9
+ggplot(data = freqtable.az) +
     geom_bar(aes(x = reorder(spruchkoerper_az,
                              -N),
                  y = N),
@@ -184,6 +182,19 @@ ggplot(data = freqtable) +
         plot.margin = margin(10, 20, 10, 10)
     )
 
+
+#'\vspace{1cm}
+
+
+kable(freqtable.az,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Senat",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
 
 
 
