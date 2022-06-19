@@ -238,7 +238,10 @@ tar.reports <- list(tar_target(latexdefs,
                                            datestamp = datestamp)),
                     tar_render(report.tests,
                                file.path("markdown",
-                                         "CE-BPatG_Testreport.Rmd"))
+                                         "CE-BPatG_Testreport.Rmd")),
+                    tar_render(report.codebook,
+                               file.path("markdown",
+                                         "CE-BPatG_Codebook.Rmd"))
                     )
 
 
