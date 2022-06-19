@@ -41,6 +41,7 @@ tar_load(variables)
 
 # Test
 
+```{r}
 kable(variables,
       format = "latex",
       align = '{P{3.5cm}P{3cm}p{8cm}',
@@ -49,7 +50,7 @@ kable(variables,
       col.names = c("Variable",
                     "Typ",
                     "Erläuterung"))  %>% kable_styling(latex_options = "repeat_header")
-
+```
 
 
 
