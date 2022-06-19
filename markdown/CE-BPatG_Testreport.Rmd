@@ -1,5 +1,5 @@
 #'---
-#'title: "Testbericht | Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)"
+#'title: "Testbericht Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)"
 #'author: Seán Fobbe
 #'geometry: margin=3cm
 #'papersize: a4
