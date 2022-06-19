@@ -19,6 +19,12 @@ output:
 
 ```{r}
 
+knitr::opts_chunk$set(fig.path = ".",
+                      dev = config$fig$format,
+                      dpi = config$fig$dpi,
+                      fig.align = config$fig$align)
+
+
 tar_load(dt.bpatg)
 tar_load(files.pdf)
 tar_load(files.txt)
