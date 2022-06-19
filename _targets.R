@@ -171,8 +171,11 @@ tar.convert <- list(tar_target(files.txt,
                                           docvarnames = docvarnames))
                     )
 
-tar.enhance <- list(tar_target(text_cleaned,
-                               lapply(dt.bpatg$text, f.hyphen.remove))
+tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
+                               f.clean_dates(dt.bpatg)),
+                    tar_target(text_cleaned,
+                               lapply(dt.bpatg.datecleaned$text,
+                                      f.hyphen.remove))                    
                     )
 
 
