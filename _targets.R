@@ -26,13 +26,22 @@ source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
 #source("R-fobbe-proto-package/f.dopar.spacyparse.R")
 
 
+## Datestamp
+datestamp <- Sys.Date()
+
+
+## Cleanup
+
+### Löscht Dateien, die nicht vom heutigen Tag sind
+unlink(grep(datestamp, list.files("output", full.names = TRUE), invert = TRUE))
+
+
 ## Create Directories
 #unlink("output", recursive = TRUE)
 dir.create("output")
 
 
-## Datestamp
-datestamp <- Sys.Date()
+
 
 
 ## Quellenangabe für Diagramme definieren
