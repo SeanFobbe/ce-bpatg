@@ -16,8 +16,6 @@ f.var_verfahrensart <- function(x,
                                 az.brd,
                                 gericht){
 
-    ## Die Registerzeichen werden an dieser Stelle mit ihren detaillierten Bedeutungen aus dem folgenden Datensatz abgeglichen:  Das Ergebnis des Abgleichs wird in der Variable "verfahrensart" in den Datensatz eingefügt.
-
     ## Datensatz auf relevante Daten reduzieren
     az.gericht <- az.brd[stelle == gericht & position == "hauptzeichen"]
     
