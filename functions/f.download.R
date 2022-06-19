@@ -9,7 +9,7 @@
 #' @param retry.sleep.max Maximum number of seconds to randomly sleep between requests in retry mode..
 #' @param debug.toggle Whether to activate debugging mode.
 #' @param debug.files The number of files to download during debugging mode. Default is 500.
-#'
+
 #' @return A vector of the downloaded file names.
 
 
@@ -104,7 +104,12 @@ f.download <- function(url,
         }
         
     }
-    
+
+    if(length(filename.missing) > 0){
+
+        message(paste("Missing files:", filename.missing, collapse = "\n"))
+        
+        }
 
 
     ## Final File Count
