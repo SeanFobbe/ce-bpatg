@@ -44,7 +44,7 @@ tar_load(variables)
 ```{r}
 kable(variables,
       format = "latex",
-      align = '{P{3.5cm}P{3cm}p{8cm}',
+      align = 'P{3.5cm}P{3cm}p{8cm}',
       booktabs = TRUE,
       longtable = TRUE,
       col.names = c("Variable",
