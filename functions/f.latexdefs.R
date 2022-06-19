@@ -78,9 +78,13 @@ f.latexdefs <- function(x,
 
     ## Write LaTeX Parameters to disk
 
+    filename <- file.path(dir, paste0(x$project$shortname,
+                                     "_Definitions.tex"))
+    
     writeLines(latexdefs,
-               file.path(dir, paste0(x$project$shortname,
-                                     "_Definitions.tex")))
+               filename)
+
+    return(filename)
 
 
     
