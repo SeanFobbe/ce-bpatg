@@ -46,30 +46,30 @@ f.latexdefs <- function(x,
                    f.latexcommand("datatitle", x$project$fullname),
                    f.latexcommand("datashort", x$project$shortname),
                    f.latexcommand("softwaretitle",
-                                paste0("Source Code des \\enquote{", x$project$fullname, "}")),
+                                  paste0("Source Code des \\enquote{", x$project$fullname, "}")),
                    f.latexcommand("softwareshort", paste0(x$project$shortname, "-Source")),
                    
                    "\n%-----Data DOIs-----",
                    f.latexcommand("dataconceptdoi", x$doi$data$concept), 
                    f.latexcommand("dataversiondoi", x$doi$data$version),
                    f.latexcommand("dataconcepturldoi",
-                                paste0("https://doi.org/", x$doi$data$concept)),
+                                  paste0("https://doi.org/", x$doi$data$concept)),
                    f.latexcommand("dataversionurldoi",
-                                paste0("https://doi.org/", x$doi$data$version)),
+                                  paste0("https://doi.org/", x$doi$data$version)),
                    
                    "\n%-----Software DOIs-----",
                    f.latexcommand("softwareconceptdoi", x$doi$software$concept),
                    f.latexcommand("softwareversiondoi", x$doi$software$version), 
                    f.latexcommand("softwareconcepturldoi",
-                                paste0("https://doi.org/", x$doi$software$concept)),
+                                  paste0("https://doi.org/", x$doi$software$concept)),
                    f.latexcommand("softwareversionurldoi",
-                                paste0("https://doi.org/", x$doi$software$version)),
+                                  paste0("https://doi.org/", x$doi$software$version)),
                    
                    "\n%-----Additional DOIs-----",
                    f.latexcommand("aktenzeichenurldoi",
-                                paste0("https://doi.org/", x$doi$aktenzeichen)),
+                                  paste0("https://doi.org/", x$doi$aktenzeichen)),
                    f.latexcommand("personendatenurldoi",
-                                paste0("https://doi.org/", x$doi$personendaten))
+                                  paste0("https://doi.org/", x$doi$personendaten))
                    )
 
 
@@ -79,7 +79,7 @@ f.latexdefs <- function(x,
     ## Write LaTeX Parameters to disk
 
     filename <- file.path(dir, paste0(x$project$shortname,
-                                     "_Definitions.tex"))
+                                      "_Definitions.tex"))
     
     writeLines(latexdefs,
                filename)
