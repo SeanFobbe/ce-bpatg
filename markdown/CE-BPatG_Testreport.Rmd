@@ -221,6 +221,95 @@ f.fast.freqtable(dt.bpatg,
 
 
 
+
+
+
+
+
+
+
+
+\newpage
+
+
+\section{Senatsgruppen am Bundespatentgericht}
+
+\label{senatsgruppe}
+
+\begin{centering}
+\begin{longtable}{p{5cm}p{8cm}}
+
+\toprule
+
+Codierung & Senatsgruppe\\
+
+\midrule
+
+
+GebrM & Gebrauchsmuster-Beschwerdesenat\\
+JurBeschw & Juristischer Beschwerdesenat\\
+JurBeschwNichtigkeit & Juristischer Beschwerdesenat und Nichtigkeitssenat\\
+Marken & Marken-Beschwerdesenat\\
+MarkenDesign & Marken- und Design-Beschwerdesenat\\
+Nichtigkeit & Nichtigkeitssenat\\
+Sortensch & Sortenschutz-Beschwerdesenat\\
+TechnBeschw & Technischer Beschwerdesenat\\
+
+\bottomrule
+
+\end{longtable}
+\end{centering}
+
+
+
+\vspace{1cm}
+
+\section{Registerzeichen am Bundespatentgericht}
+
+Die im Datensatz enthaltenen Registerzeichen wurden jeweils um die runden Klammern bereinigt, um Probleme bei der Nutzung unter Windows zu vermeiden.
+
+
+\vspace{0.5cm}
+
+\label{register}
+
+\ra{1.2}
+
+\begin{centering}
+\begin{longtable}{p{2cm}p{2cm}p{10cm}}
+
+\toprule
+
+Register- zeichen & Codierung & Erläuterung\\
+
+\midrule
+
+
+Li & Li & Zwangslizenzverfahren \\
+LiQ & LiQ & Einstweilige Verfügungen in Zwangslizenzverfahren\\
+Ni & Ni &  Patentnichtigkeitsverfahren \\
+W-(pat) & W-pat & Beschwerdeverfahren in Patentsachen, Gebrauchsmustersachen, Sortenschutzsachen, Markensachen\\
+ZA-(Pat) & ZA-pat & Verfahren über Anträge außerhalb anhängiger Patentsachen\\
+
+\bottomrule
+
+\end{longtable}
+\end{centering}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Parameter für strenge Replikationen
 
 
