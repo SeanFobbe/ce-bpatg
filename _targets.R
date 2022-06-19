@@ -159,15 +159,21 @@ tar.download <- list(tar_target(scopefile,
                             f.download(dt.download.final,
                                        debug.toggle = FALSE,
                                        debug.files = 500),
-                            format = "file"))
+                            format = "file")
+                 )
 
 
-tar.convert.pdf <- list(tar_target(files.txt,
+tar.convert <- list(tar_target(files.txt,
                                f.pdf_extract_targets(files.pdf),
                                format = "file"),
                     tar_target(dt.bpatg,
                                f.readtext(x = files.txt,
-                                          docvarnames = docvarnames)))
+                                          docvarnames = docvarnames))
+                    )
+
+tar.enhance <- list(tar_target(text_cleaned,
+                               lapply(dt.bpatg$text, f.hyphen.remove))
+                    )
 
 
 tar.zip <- list(tar_target(zip.pdf,
@@ -189,13 +195,15 @@ tar.zip <- list(tar_target(zip.pdf,
                            f.zip_targets(files.source,
                                          zipname.source,
                                          mode = "mirror"),
-                           format = "file"))
+                           format = "file")
+                )
 
 
 
 
 list(tar.download,
-     tar.convert.pdf,
+     tar.convert,
+     tar.enhance,
      tar.zip)
 
 
@@ -207,3 +215,4 @@ list(tar.download,
 ## [5] "txt/BPatG_Nichtigkeit_NA_2013-02-07_2_Ni_38_11EP_0.txt"
 
 # todo: rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
+# standardize . and _
