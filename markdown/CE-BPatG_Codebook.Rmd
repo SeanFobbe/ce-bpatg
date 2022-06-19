@@ -20,7 +20,10 @@ output:
 knitr::opts_chunk$set(fig.path = file.path("..", "analysis/"),
                       dev = config$fig$format,
                       dpi = config$fig$dpi,
-                      fig.align = config$fig$align)
+                      fig.align = config$fig$align,
+		      echo = FALSE,
+		      warning = FALSE,
+		      message = FALSE)
 
 ```
 
@@ -157,7 +160,7 @@ freqtable.az.nosum <- freqtable.az[-.N]
 
 
 
-#+ CE-BPatG_03_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9
+```{r, CE-BPatG_03_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.az) +
     geom_bar(aes(x = reorder(spruchkoerper_az,
                              -N),
@@ -182,10 +185,12 @@ ggplot(data = freqtable.az) +
         plot.margin = margin(10, 20, 10, 10)
     )
 
+```
+
 
 #'\vspace{1cm}
 
-
+```{r}
 kable(freqtable.az,
       format = "latex",
       align = 'P{3cm}',
@@ -196,7 +201,7 @@ kable(freqtable.az,
                     "% Gesamt",
                     "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
 
-
+```
 
 
 
