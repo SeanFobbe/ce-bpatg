@@ -161,7 +161,7 @@ freqtable.az.nosum <- freqtable.az[-.N]
 
 
 ```{r, CE-BPatG_03_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9}
-ggplot(data = freqtable.az) +
+ggplot(data = freqtable.az.nosum) +
     geom_bar(aes(x = reorder(spruchkoerper_az,
                              -N),
                  y = N),
