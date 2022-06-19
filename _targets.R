@@ -110,8 +110,6 @@ files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
 zipname.source <- paste0(prefix.files,
                          "_Source_Code.zip")
 
-zipname.source <- file.path("output", zipname.source)
-
 
 
 
@@ -209,7 +207,8 @@ tar.zip <- list(tar_target(zip.pdf,
                            format = "file"),
                 tar_target(zip.source,
                            f.zip_targets(files.source,
-                                         zipname.source,
+                                         filename = zipname.source,
+                                         dir = "output"
                                          mode = "mirror"),
                            format = "file")
                 )
