@@ -11,7 +11,7 @@ output:
     number_sections: true
     pandoc_args: --listings
     includes:
-      in_header: tex/Preamble_DE.tex
+      in_header: Preamble_DE.tex
 ---
 
 
