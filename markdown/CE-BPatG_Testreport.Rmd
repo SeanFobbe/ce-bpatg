@@ -232,7 +232,7 @@ f.fast.freqtable(dt.bpatg,
 \newpage
 
 
-\section{Senatsgruppen am Bundespatentgericht}
+# Senatsgruppen am Bundespatentgericht
 
 \label{senatsgruppe}
 
@@ -264,7 +264,9 @@ TechnBeschw & Technischer Beschwerdesenat\\
 
 \vspace{1cm}
 
-\section{Registerzeichen am Bundespatentgericht}
+
+
+# Registerzeichen am Bundespatentgericht
 
 Die im Datensatz enthaltenen Registerzeichen wurden jeweils um die runden Klammern bereinigt, um Probleme bei der Nutzung unter Windows zu vermeiden.
 
