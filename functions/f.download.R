@@ -109,13 +109,13 @@ f.download <- function(url,
 
         message(paste("Missing files:", filename.missing, collapse = "\n"))
         
-        }
+    }
 
 
     ## Final File Count
     files.all <- list.files(dir, full.names = TRUE)
 
-    message(paste("Downloaded", length(filename) - length(files.all), "of", length(filename), "files."))
+    message(paste("Downloaded", length(files.all), "of", length(filename), "files."))
 
     return(files.all)
     
