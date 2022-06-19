@@ -70,10 +70,5 @@ freqtable.ignore = ["text",
 		    "eingangsnummer",
 		    "datum",
 		    "doc_id",
-		    "seite",
-		    "name",
 		    "ecli",
-		    "aktenzeichen",
-		    "pressemitteilung",
-		    "zitiervorschlag",
-		    "kurzbeschreibung"]
+		    "aktenzeichen"]
