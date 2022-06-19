@@ -195,7 +195,7 @@ tar.zip <- list(tar_target(zip.pdf,
 
 
 list(tar.download,
-     tar.convert.pdf
+     tar.convert.pdf,
      tar.zip)
 
 
