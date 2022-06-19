@@ -1,21 +1,29 @@
 
+#' @param x Ein Vektor mit Registerzeichen, die im Datensatz "AZ-BRD" dokumentiert sind.
+
+#' @param az.brd Ein data.frame oder data.table mit dem Datensatz "Seán Fobbe (2021). Aktenzeichen der Bundesrepublik Deutschland (AZ-BRD). Version 1.0.1. Zenodo. DOI: 10.5281/zenodo.4569564."
+
+#' @param gericht Das Gericht, dessen Registerzeichen mit Bedeutung zu versehen sind.
+
+
+#' @param return Ein Vektor mit den Bedeutungen der jeweiligen Registerzeichen.
+
+
+
+
 
 f.var_verfahrensart <- function(x,
                                 az.brd,
                                 gericht){
 
-    ## Die Registerzeichen werden an dieser Stelle mit ihren detaillierten Bedeutungen aus dem folgenden Datensatz abgeglichen: "Seán Fobbe (2021). Aktenzeichen der Bundesrepublik Deutschland (AZ-BRD). Version 1.0.1. Zenodo. DOI: 10.5281/zenodo.4569564." Das Ergebnis des Abgleichs wird in der Variable "verfahrensart" in den Datensatz eingefügt.
-
-    ## Datensatz einlesen
-    az.source <- fread(az.source)
-
+    ## Die Registerzeichen werden an dieser Stelle mit ihren detaillierten Bedeutungen aus dem folgenden Datensatz abgeglichen:  Das Ergebnis des Abgleichs wird in der Variable "verfahrensart" in den Datensatz eingefügt.
 
     ## Datensatz auf relevante Daten reduzieren
-    az.gericht <- az.source[stelle == gericht & position == "hauptzeichen"]
+    az.gericht <- az.brd[stelle == gericht & position == "hauptzeichen"]
     
     
     ## Indizes bestimmen
-    targetindices <- match(x$registerzeichen,
+    targetindices <- match(x,
                            az.gericht$zeichen_code)
     
     ## Vektor der Verfahrensarten erstellen und einfügen
@@ -25,8 +33,3 @@ f.var_verfahrensart <- function(x,
     return(verfahrensart)
     
 }
-
-
-
-
-
