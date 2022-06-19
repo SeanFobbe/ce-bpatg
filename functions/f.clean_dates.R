@@ -20,5 +20,7 @@ f.clean_dates <- function(x){
     ## Nach Datum sortieren
     setorder(x,
              datum)
+
+    return(x)
     
 }
