@@ -5,7 +5,8 @@
 
 f.pdf_extract_targets <- function(x,
                                   outputdir){
-
+    
+    unlink("txt", recursive = TRUE)
     dir.create("txt")
 
     plan(multicore,
