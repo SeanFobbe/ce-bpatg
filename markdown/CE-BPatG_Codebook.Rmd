@@ -188,7 +188,7 @@ ggplot(data = freqtable.az.nosum) +
 ```
 
 
-#'\vspace{1cm}
+\vspace{1cm}
 
 ```{r}
 kable(freqtable.az,
