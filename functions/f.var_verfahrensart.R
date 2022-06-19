@@ -14,7 +14,7 @@ f.var_verfahrensart <- function(x
     
     
     ## Indizes bestimmen
-    targetindices <- match(txt.bpatg$registerzeichen,
+    targetindices <- match(x$registerzeichen,
                            az.bpatg$zeichen_code)
     
     ## Vektor der Verfahrensarten erstellen und einfügen
