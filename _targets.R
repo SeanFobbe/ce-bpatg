@@ -182,7 +182,9 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                                f.clean_dates(dt.bpatg)),
                     tar_target(text_cleaned,
                                lapply(dt.bpatg.datecleaned$text,
-                                      f.hyphen.remove))                    
+                                      f.hyphen.remove)),
+                    tar_target(var_verfahrensart,
+                               f.var_verfahrensart(dt.bpatg.cleaned$registerzeichen))
                     )
 
 
