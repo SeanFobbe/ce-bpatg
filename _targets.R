@@ -142,54 +142,61 @@ tar_option_set(packages = c("fs",           # Verbessertes File Handling
 ## End this file with a list of target objects.
 
 
-list(
-    tar_target(scopefile,
-               "data/CE-BPatG_Scope.csv",
-               format = "file"),
-    tar_target(scope,
-               fread(scopefile)),
-    tar_target(dt.download, f.make.download.table(x = scope,
-                                                  debug.toggle = config$debug$toggle,
-                                                  debug.pages = config$debug$pages)),
-    tar_target(az_clean, f.clean_az_bpatg(dt.download$az)),
-    tar_target(spruchgruppe_clean, f.clean_spruch_bpatg(dt.download$spruch)),
-    tar_target(dt.download.final, f.clean_add_variables(x = dt.download,
-                                                        az = az_clean,
-                                                        spruchgruppe = spruchgruppe_clean)),
-    tar_target(files.pdf,
-               f.download(dt.download.final,
-                          debug.toggle = FALSE,
-                          debug.files = 500),
-               format = "file"),
-    tar_target(files.txt,
-               f.pdf_extract_targets(files.pdf),
-               format = "file"),
+tar.download <- list(tar_target(scopefile,
+                            "data/CE-BPatG_Scope.csv",
+                            format = "file"),
+                 tar_target(scope,
+                            fread(scopefile)),
+                 tar_target(dt.download, f.make.download.table(x = scope,
+                                                               debug.toggle = config$debug$toggle,
+                                                               debug.pages = config$debug$pages)),
+                 tar_target(az_clean, f.clean_az_bpatg(dt.download$az)),
+                 tar_target(spruchgruppe_clean, f.clean_spruch_bpatg(dt.download$spruch)),
+                 tar_target(dt.download.final, f.clean_add_variables(x = dt.download,
+                                                                     az = az_clean,
+                                                                     spruchgruppe = spruchgruppe_clean)),
+                 tar_target(files.pdf,
+                            f.download(dt.download.final,
+                                       debug.toggle = FALSE,
+                                       debug.files = 500),
+                            format = "file"))
 
-    tar_target(zip.pdf,
-               f.zip_targets(files.pdf,
-                             zipname.pdf,
-                             mode = "cherry-pick"),
-               format = "file"),
-    
-    tar_target(zip.txt,
-               f.zip_targets(files.txt,
-                             zipname.txt,
-                             mode = "cherry-pick"),
-               format = "file"),
-    
-    tar_target(files.source,
-               files.source.raw,
-               format = "file"),
-    tar_target(zip.source,
-               f.zip_targets(files.source,
-                             zipname.source,
-                             mode = "mirror"),
-               format = "file"),
-    tar_target(dt.bpatg,
-               f.readtext(x = files.txt,
-                          docvarnames = docvarnames))
-    
-)
+
+tar.convert.pdf <- list(tar_target(files.txt,
+                               f.pdf_extract_targets(files.pdf),
+                               format = "file"),
+                    tar_target(dt.bpatg,
+                               f.readtext(x = files.txt,
+                                          docvarnames = docvarnames)))
+
+
+tar.zip <- list(tar_target(zip.pdf,
+                           f.zip_targets(files.pdf,
+                                         zipname.pdf,
+                                         mode = "cherry-pick"),
+                           format = "file"),
+                
+                tar_target(zip.txt,
+                           f.zip_targets(files.txt,
+                                         zipname.txt,
+                                         mode = "cherry-pick"),
+                           format = "file"),
+                
+                tar_target(files.source,
+                           files.source.raw,
+                           format = "file"),
+                tar_target(zip.source,
+                           f.zip_targets(files.source,
+                                         zipname.source,
+                                         mode = "mirror"),
+                           format = "file"))
+
+
+
+
+list(tar.download,
+     tar.convert.pdf
+     tar.zip)
 
 
 
