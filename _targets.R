@@ -80,21 +80,6 @@ docvarnames <- c("gericht",
 
 
 
-## ZIP-Datei für PDF (alle) definieren
-zipname.pdf <- paste(prefix.files,
-                     "DE_PDF_Datensatz.zip",
-                     sep = "_")
-
-## ZIP-Datei für PDF (Leitsatzentscheidungen) definieren
-zipname.pdfleitsatz <- paste(prefix.files,
-                             "DE_PDF_Leitsatz-Entscheidungen_Datensatz.zip",
-                             sep = "_")
-
-
-## ZIP-Datei für TXT definieren
-zipname.txt <- paste(prefix.files,
-                     "DE_TXT_Datensatz.zip",
-                     sep = "_")
 
 
 ## ZIP-Datei für Source definieren
@@ -110,11 +95,6 @@ files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
                        list.files("renv",
                                   pattern = "activate\\.R",
                                   full.names = TRUE))
-
-
-zipname.source <- paste0(prefix.files,
-                         "_Source_Code.zip")
-
 
 
 
@@ -195,21 +175,27 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
 
 tar.zip <- list(tar_target(zip.pdf.all,
                            f.zip_targets(files.pdf,
-                                         filename = zipname.pdf,
+                                         filename = paste(prefix.files,
+                                                          "DE_PDF_Datensatz.zip",
+                                                          sep = "_"),
                                          dir = "output",
                                          mode = "cherry-pick"),
                            format = "file"),
 
                 tar_target(zip.pdf.leitsatz,
                            f.zip_targets(grep("_LE_", files.pdf, value = TRUE),
-                                         filename = zipname.pdfleitsatz,
+                                         filename = paste(prefix.files,
+                                                          "DE_PDF_Leitsatz-Entscheidungen_Datensatz.zip",
+                                                          sep = "_"),
                                          dir = "output",
                                          mode = "cherry-pick"),
                            format = "file"),
                 
                 tar_target(zip.txt,
                            f.zip_targets(files.txt,
-                                         filename = zipname.txt,
+                                         filename = paste(prefix.files,
+                                                          "DE_TXT_Datensatz.zip",
+                                                          sep = "_"),
                                          dir = "output",
                                          mode = "cherry-pick"),
                            format = "file"),
@@ -219,7 +205,8 @@ tar.zip <- list(tar_target(zip.pdf.all,
                            format = "file"),
                 tar_target(zip.source,
                            f.zip_targets(files.source,
-                                         filename = zipname.source,
+                                         filename = paste0(prefix.files,
+                                                           "_Source_Code.zip"),
                                          dir = "output",
                                          mode = "mirror"),
                            format = "file")
@@ -233,6 +220,30 @@ list(tar.data,
      tar.convert,
      tar.enhance,
      tar.zip)
+
+
+## zipname.source <- paste0(prefix.files,
+##                          "_Source_Code.zip")
+
+## ## ZIP-Datei für PDF (alle) definieren
+## zipname.pdf <- paste(prefix.files,
+##                      "DE_PDF_Datensatz.zip",
+##                      sep = "_")
+
+## ## ZIP-Datei für PDF (Leitsatzentscheidungen) definieren
+## zipname.pdfleitsatz <- paste(prefix.files,
+##                              "DE_PDF_Leitsatz-Entscheidungen_Datensatz.zip",
+##                              sep = "_")
+
+
+## ## ZIP-Datei für TXT definieren
+## zipname.txt <- paste(prefix.files,
+##                      "DE_TXT_Datensatz.zip",
+##                      sep = "_")
+
+
+
+
 
 
 
