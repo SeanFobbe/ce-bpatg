@@ -15,11 +15,11 @@ license.code = "MIT-0"
 
 # Digital Object Identifier (DOI)
 
-doi.data.concept = "10.5281/zenodo.3954850"
-doi.data.version = "???" 
+doi.data.concept = "10.5281/zenodo.3954850" # do not change
+doi.data.version = "10.5281/zenodo.6667298" # checked
 
-doi.software.concept = "???"
-doi.software.version = "???" 
+doi.software.concept = "10.5281/zenodo.6667305" # do not change
+doi.software.version = "10.5281/zenodo.6667306" # checked
 
 doi.personendaten = "10.5281/zenodo.4568682" # checked
 doi.aktenzeichen = "10.5281/zenodo.4569564" # checked
@@ -27,7 +27,7 @@ doi.aktenzeichen = "10.5281/zenodo.4569564" # checked
 
 # Debugging
 
-debug.toggle = false   # Ob Debugging aktiv ist; Möglichkeiten sind "true" oder "false"
+debug.toggle = true   # Ob Debugging aktiv ist; Möglichkeiten sind "true" oder "false"
 debug.pages = 50     # Die Anzahl der zufällig ausgewählten Seiten aus der Datenbank, die im Debugging-Modus berücksichtigt werden sollen (jede Seite enthält idR 30 Entscheidungen).
 debug.files = 500 # Die Anzahl der Dateien, die testweise heruntergeladen werden soll.
 
