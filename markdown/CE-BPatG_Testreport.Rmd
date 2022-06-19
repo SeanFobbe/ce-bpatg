@@ -156,6 +156,8 @@ ggplot(data = dt.plot,
 # Frequenztabellen erstellen
 
 
+## Vorbereitung
+
 
 ```{r}
 
@@ -180,12 +182,13 @@ print(varlist)
 prefix <- paste0(config$project$shortname,
                  "_01_Frequenztabelle_var-")
 
-
+```
 
 ## Frequenztabellen berechnen
 
 
-#+ results = "asis"
+```{r, results = "asis"}
+
 f.fast.freqtable(dt.bpatg,
                  varlist = varlist,
                  sumrow = TRUE,
@@ -197,3 +200,4 @@ f.fast.freqtable(dt.bpatg,
                  align = c("p{5cm}",
                            rep("r", 4)))
 
+```
