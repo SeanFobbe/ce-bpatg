@@ -38,7 +38,7 @@ unlink(grep(datestamp, list.files("output", full.names = TRUE), invert = TRUE))
 
 ## Create Directories
 #unlink("output", recursive = TRUE)
-dir.create("output")
+dir.create("output", showWarnings = FALSE)
 
 
 
