@@ -186,7 +186,11 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                     tar_target(var_verfahrensart,
                                f.var_verfahrensart(dt.bpatg.datecleaned$registerzeichen,
                                                    az.brd = az.brd,
-                                                   gericht = "BPatG"))
+                                                   gericht = "BPatG")),
+                    tar_target(var_aktenzeichen,
+                               f.var_aktenzeichen(dt.bpatg.datecleaned,
+                                                  az.brd = az.brd,
+                                                  gericht = "BPatG")
                     )
 
 
