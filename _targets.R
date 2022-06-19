@@ -152,7 +152,6 @@ tar.data <- list(tar_target(scopefile,
                  tar_target(az.brd,
                             fread(file.az.brd))
                  )
-)
 
 
 tar.download <- list(tar_target(dt.download, f.make.download.table(x = scope,
