@@ -123,11 +123,11 @@ tar_option_set(packages = c("fs",           # Verbessertes File Handling
 
 ## End this file with a list of target objects.
 
-tar.data <- list(tar_target(scopefile,
+tar.data <- list(tar_target(file.scope,
                             "data/CE-BPatG_Scope.csv",
                             format = "file"),
                  tar_target(scope,
-                            fread(scopefile)),
+                            fread(file.scope)),
                  tar_target(file.az.brd,
                             "data/AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv",
                             format = "file"),
@@ -274,4 +274,3 @@ list(tar.data,
 
 ## todo: rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
 ## standardize . and _
-## replace "scopefile" with "file.scope" 
