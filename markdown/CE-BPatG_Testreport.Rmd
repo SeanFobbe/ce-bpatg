@@ -76,7 +76,7 @@ sum(txt.MB)
 
 
 
-```{r} CE-BPatG_13_Density_Dateigroessen_PDF, fig.height = 6, fig.width = 9
+```{r, CE-BPatG_13_Density_Dateigroessen_PDF, fig.height = 6, fig.width = 9}
 
 dt.plot <- data.table(pdf.MB)
 
@@ -102,6 +102,7 @@ ggplot(data = dt.plot,
         panel.spacing = unit(0.1, "lines"),
         plot.margin = margin(10, 20, 10, 10)
     )
+    
 ```
 
 
@@ -110,7 +111,7 @@ ggplot(data = dt.plot,
 
 
 
-```{r} CE-BPatG_14_Density_Dateigroessen_TXT, fig.height = 6, fig.width = 9
+```{r, CE-BPatG_14_Density_Dateigroessen_TXT, fig.height = 6, fig.width = 9}
 
 dt.plot <- data.table(txt.MB)
 
