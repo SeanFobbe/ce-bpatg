@@ -1,88 +1,117 @@
 
-#' @param x Die für das BPAtG speziell erstellte Download-Tabelle.
+#' @param url A vector of URLS.
+#' @param filename A vector of filenames.
+#' @param dir The destination directory. Will be created if not already present.
+#' @param sleep.min Minimum number of seconds to randomly sleep between requests.
+#' @param sleep.max Maximum number of seconds to randomly sleep between requests.
+#' @param retries Number of retries for entire download set.
+#' @param retry.sleep.min Minimum number of seconds to randomly sleep between requests in retry mode.
+#' @param retry.sleep.max Maximum number of seconds to randomly sleep between requests in retry mode..
+#' @param debug.toggle Whether to activate debugging mode.
+#' @param debug.files The number of files to download during debugging mode. Default is 500.
 #'
-#' @return Ein Vektor der Namen der heruntergeladenen PDF-Dateien.
-#'
-#' 
+#' @return A vector of the downloaded file names.
 
-f.download <- function(x,
+
+f.download <- function(url,
+                       filename,
+                       dir,
+                       sleep.min = 0,
+                       sleep.max = 0.1,
+                       retries = 3,
+                       retry.sleep.min = 2,
+                       retry.sleep.max = 5,
                        debug.toggle = FALSE,
                        debug.files = 500){
 
-    ## [Debugging Modus] Reduzierung des Download-Umfangs
+    
+    ## Test for equality of length
+    if(length(url) != length(filename)){
+
+        stop("Length of arguments url and filename is not equal.")
+        
+        }
+
+    ## [Debugging Mode] Reduce download scope
     if (debug.toggle == TRUE){
-        x <- x[sample(.N,
-                      debug.files)]
+
+        url <- url[sample(length(url), debug.files)]
+        filename <- filename[sample(length(filename), debug.files)]
+
     }
 
-    ## Ordner erstellen
-    dir.create("pdf")
+    ## Create folder
+    invisible(dir.create(dir))
 
-    ## Ordner säubern: Nur in Tabelle enthaltene PDFs dürfen verbleiben
-    files.all <- list.files("pdf", full.names = TRUE)
-    delete <- setdiff(files.all, file.path("pdf", x$filename))
+    ## Clean folder: Only files included in 'filename' may be present
+    files.all <- list.files(dir, full.names = TRUE)
+    delete <- setdiff(files.all, file.path(dir, filename))
     unlink(delete)
 
-    ## Bereits heruntergeladene Dateien ausklammern
-    files.pdf <- list.files("pdf", pattern = "\\.pdf")
-    x <- x[!filename %in% files.pdf]
+    ## Exclude already downloaded files
+    files.present <- list.files(dir)
+    filename.todo <- setdiff(filename, files.present)
+    url.todo  <- url[filename %in% filename.todo]
     
     
-    ## Download: Erstversuch
-    for (i in sample(x[,.N])){
-        tryCatch({download.file(url = x$link[i],
-                                destfile = file.path("pdf",
-                                                     x$filename[i]))
+    ## Download: First Try
+    for (i in sample(length(url.todo))){
+        tryCatch({download.file(url = url.todo[i],
+                                destfile = file.path(dir,
+                                                     filename.todo[i]))
         },
         error = function(cond) {
             return(NA)}
         )
-        Sys.sleep(runif(1, 0, 0.1))
+        
+        Sys.sleep(runif(1, sleep.min, sleep.max))
     }
 
     
-    ## [Debugging Modus] Löschen zufälliger Dateien
-    ## Dient dazu den Wiederholungsversuch zu testen.
-
-    if (debug.toggle == TRUE){
-        files.pdf <- list.files("pdf", pattern = "\\.pdf", full.names = TRUE)
-        unlink(sample(files.pdf, 5))
-    }
-
-    ## Fehlende Dateien
-    files.pdf <- list.files("pdf", pattern = "\\.pdf", full.names = TRUE)
-    missing <- setdiff(x$filename, basename(files.pdf))
 
 
-    ## Download: Wiederholungsversuch
-    if(length(missing) > 0){
+    ## Download: Retries
 
-        dt.retry <- x[filename %in% missing]
+    for(i in 1:retries){
+
+        ## Missing files
+        files.present <- list.files(dir)
+        filename.missing <- setdiff(filename, files.present)
+        url.missing  <- url[filename %in% filename.missing]
+
+        if(length(filename.missing) > 0){
+            
+            for (i in 1:length(filename.missing)){
+                
+                response <- GET(url.missing[i])
+                
+                Sys.sleep(runif(1, 0.25, 0.75))
+                
+                if (response$status_code == 200){
+                    tryCatch({download.file(url = url.missing[i],
+                                            destfile = file.path(dir,
+                                                                 filename.missing[i]))
+                    },
+                    error = function(cond) {
+                        return(NA)}
+                    )     
+                }else{
+                    message("Response code is not 200.")  
+                }
+                
+                Sys.sleep(runif(1, retry.sleep.min, retry.sleep.max))
+            } 
+        }
         
-        for (i in 1:dt.retry[,.N]){
-            
-            response <- GET(dt.retry$link[i])
-            
-            Sys.sleep(runif(1, 0.25, 0.75))
-            
-            if (response$headers$"content-type" == "application/pdf" & response$status_code == 200){
-                tryCatch({download.file(url = dt.retry$link[i],
-                                        destfile = file.path("pdf",
-                                                             dt.retry$filename[i]))
-                },
-                error = function(cond) {
-                    return(NA)}
-                )     
-            }else{
-                message(paste0(dt.retry$filenames.final[i], " : kein PDF vorhanden"))  
-            }
-            Sys.sleep(runif(1, 2, 5))
-        } 
     }
+    
+
 
     ## Final File Count
-    files.pdf <- list.files("pdf", pattern = "\\.pdf", full.names = TRUE)
+    files.all <- list.files(dir, full.names = TRUE)
 
-    return(files.pdf)
+    message(paste("Downloaded", length(filename) - length(files.all), "of", length(filename), "files."))
+
+    return(files.all)
     
 }
