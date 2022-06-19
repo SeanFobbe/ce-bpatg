@@ -59,7 +59,7 @@ prefix.figuretitle <- paste(config$project$shortname,
 ## Metadaten für TXT-Dateien definieren
 
 docvarnames <- c("gericht",
-                 "spruchkoerper_db",
+                 "spruchgruppe",
                  "leitsatz",
                  "datum",
                  "spruchkoerper_az",
@@ -67,7 +67,6 @@ docvarnames <- c("gericht",
                  "eingangsnummer",
                  "eingangsjahr_az",
                  "zusatz_az",
-                 "name",
                  "kollision")
 
 
