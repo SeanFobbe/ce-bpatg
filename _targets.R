@@ -208,7 +208,7 @@ tar.zip <- list(tar_target(zip.pdf,
                 tar_target(zip.source,
                            f.zip_targets(files.source,
                                          filename = zipname.source,
-                                         dir = "output"
+                                         dir = "output",
                                          mode = "mirror"),
                            format = "file")
                 )
