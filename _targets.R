@@ -39,6 +39,7 @@ unlink(grep(datestamp, list.files("output", full.names = TRUE), invert = TRUE))
 ## Create Directories
 #unlink("output", recursive = TRUE)
 dir.create("output", showWarnings = FALSE)
+dir.create("temp", showWarnings = FALSE)
 
 dir.analysis <- paste0(getwd(),
                        "/analysis")
@@ -231,7 +232,11 @@ tar.zip <- list(tar_target(zip.pdf.all,
 
 
 
-tar.reports <- list(tar_render(report.tests,
+tar.reports <- list(tar_target(latexdefs,
+                               f.latexdefs(config,
+                                           dir = "temp",
+                                           datestamp = datestamp)),
+                    tar_render(report.tests,
                                file.path("markdown",
                                          "CE-BPatG_Testreport.Rmd"))
                     )
