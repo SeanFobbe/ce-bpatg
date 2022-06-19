@@ -26,6 +26,8 @@ knitr::opts_chunk$set(fig.path = file.path("..", "analysis/"),
 
 
 
+# Ergebnisse laden
+
 
 ```{r}
 
@@ -199,5 +201,17 @@ f.fast.freqtable(dt.bpatg,
                  prefix = prefix,
                  align = c("p{5cm}",
                            rep("r", 4)))
+
+```
+
+
+
+# Parameter für strenge Replikationen
+
+
+```{r}
+system2("openssl", "version", stdout = TRUE)
+
+sessionInfo()
 
 ```
