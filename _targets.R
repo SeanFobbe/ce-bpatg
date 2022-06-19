@@ -85,15 +85,11 @@ zipname.pdf <- paste(prefix.files,
                      "DE_PDF_Datensatz.zip",
                      sep = "_")
 
-zipname.pdf <- file.path("output", zipname.pdf)
-
 
 ## ZIP-Datei für TXT definieren
 zipname.txt <- paste(prefix.files,
                      "DE_TXT_Datensatz.zip",
                      sep = "_")
-
-zipname.txt <- file.path("output", zipname.txt)
 
 
 ## ZIP-Datei für Source definieren
@@ -196,13 +192,15 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
 
 tar.zip <- list(tar_target(zip.pdf,
                            f.zip_targets(files.pdf,
-                                         zipname.pdf,
+                                         filename = zipname.pdf,
+                                         dir = "output",
                                          mode = "cherry-pick"),
                            format = "file"),
                 
                 tar_target(zip.txt,
                            f.zip_targets(files.txt,
-                                         zipname.txt,
+                                         filename = zipname.txt,
+                                         dir = "output",
                                          mode = "cherry-pick"),
                            format = "file"),
                 
