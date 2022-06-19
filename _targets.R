@@ -40,7 +40,10 @@ unlink(grep(datestamp, list.files("output", full.names = TRUE), invert = TRUE))
 #unlink("output", recursive = TRUE)
 dir.create("output", showWarnings = FALSE)
 
+dir.analysis <- paste0(getwd(),
+                       "/analysis")
 
+dir.create(dir.analysis, showWarnings = FALSE)
 
 
 
