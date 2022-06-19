@@ -1,9 +1,9 @@
 variable,type,explanation
 gericht,String,Es ist nur der Wert \enquote{BPatG} vergeben. Dies ist der ECLI-Code für \enquote{Bundespatentgericht}. Diese Variable dient vor allem zur einfachen und transparenten Verbindung der Daten mit anderen Datensätzen.
 datum,Datum (ISO),Das Datum der Entscheidung im Format YYYY-MM-DD (ISO-8601).
-spruchgruppe,String,Jeder Senat is aufgrund seines speziellen Aufgabengebiets einer Senatsgruppe zugeteilt. Die verschiedenen Senatsgruppen und ihre Codierung sind unter Punkt \ref{senatsgruppe} erläutert. 
+spruchgruppe,String,Jeder Senat is aufgrund seines speziellen Aufgabengebiets einer Senatsgruppe zugeteilt. Die verschiedenen Senatsgruppen und ihre Codierung sind unter Punkt  erläutert. 
 spruchkoerper_az,String,"Der Spruchkörper, wie er im jeweiligen amtlichen Aktenzeichen gelistet ist. Beim Bundespatentgericht handelt es sich um die Nummer des Senats. Aufgrund häufiger Senats- umbildungen liegen Entscheidungen vieler Senate vor, die aktuell nicht am Bundespatentgericht aktiv sind."
-registerzeichen,String,Das amtliche Registerzeichen. Eine Erläuterung der Abkürzungen findet sich unter Punkt \ref{register}.
+registerzeichen,String,Das amtliche Registerzeichen. Eine Erläuterung der Abkürzungen findet sich unter Punkt.
 eingangsnummer,Natürliche Zahl,"Verfahren des gleichen Eingangsjahres erhalten vom Gericht eine fortlaufene Nummer (Ordinalzahl) in der Reihenfolge ihres Eingangs, um sie voneinander abzugrenzen."
 eingangsjahr,Natürliche Zahl,Das Jahr in dem das Verfahren beim Gericht anhängig wurde. Das Format ist eine zweistellige Jahreszahl (YY).
 zusatz_az,String,"Entscheidungen, die ein Europäisches Patent betreffen, enthalten den Suffix \enquote{EP} (neuer) oder \enquote{EU} (älter). Alle anderen Entscheidungen sind mit \enquote{NA} markiert. Das Suffix ist, wenn nicht \enquote{NA}, Teil des amtlichen Aktenzeichens."
