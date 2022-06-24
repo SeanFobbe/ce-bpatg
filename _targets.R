@@ -279,11 +279,6 @@ list(tar.data,
 
 
 
-## "txt/BPatG_Nichtigkeit_NA_2000-05-23_1_Ni_6_99EU_0.txt" 
-## [2] "txt/BPatG_Nichtigkeit_NA_2001-01-30_3_Ni_40_99EU_0.txt"
-## [3] "txt/BPatG_Nichtigkeit_NA_2002-08-05_3_Ni_4_00EU_0.txt" 
-## [4] "txt/BPatG_Nichtigkeit_NA_2002-08-05_3_Ni_65_00EU_0.txt"
-## [5] "txt/BPatG_Nichtigkeit_NA_2013-02-07_2_Ni_38_11EP_0.txt"
-
 ## todo: rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
-## standardize . and _
+## - standardize . and _
+## - in download.table sollte der dateiname auch doc_id heißen für easier merge mit späterere voller tabelle
