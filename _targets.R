@@ -18,12 +18,10 @@ lapply(list.files("functions", full.names = TRUE), source)
 
 source("R-fobbe-proto-package/f.linkextract.R")
 source("R-fobbe-proto-package/f.year.iso.R")
-#source("R-fobbe-proto-package/f.dopar.pdfextract.R")
 source("R-fobbe-proto-package/f.hyphen.remove.R")
 source("R-fobbe-proto-package/f.fast.freqtable.R")
 source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
-#source("R-fobbe-proto-package/f.dopar.multihashes.R")
-#source("R-fobbe-proto-package/f.dopar.spacyparse.R")
+
 
 
 ## Datestamp
@@ -175,9 +173,6 @@ tar.convert <- list(tar_target(files.txt,
 
 tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                                f.clean_dates(dt.bpatg)),
-                    tar_target(text_cleaned,
-                               lapply(dt.bpatg.datecleaned$text,
-                                      f.hyphen.remove)),
                     tar_target(var_verfahrensart,
                                f.var_verfahrensart(dt.bpatg.datecleaned$registerzeichen,
                                                    az.brd = az.brd,
