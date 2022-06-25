@@ -6,7 +6,7 @@
 #' @param deubg.pages Anzahl der auszuwertenden Datenbankseiten.
 
 
-#' @return Eine Tabelle mit allen Links und in der Datenbank verfügbaren Metadaten.
+#' @return Eine Tabelle mit allen URLs und in der Datenbank verfügbaren Metadaten.
 
 
 
@@ -64,15 +64,15 @@ f.download_table_make <- function(x,
         
         html <- read_html(URL)
         
-        link <-  html_nodes(html, "a" )%>% html_attr('href')
+        url <-  html_nodes(html, "a" )%>% html_attr('href')
         
-        link <- grep ("Blank=1.pdf",
-                      link,
+        url <- grep ("Blank=1.pdf",
+                      url,
                       ignore.case = TRUE,
                       value = TRUE)
         
-        link <- sprintf("https://juris.bundespatentgericht.de/cgi-bin/rechtsprechung/%s",
-                        link)
+        url <- sprintf("https://juris.bundespatentgericht.de/cgi-bin/rechtsprechung/%s",
+                        url)
         
 
         datum <- html_nodes(html, "[class='EDatum']") %>% html_text(trim = TRUE)
@@ -85,7 +85,7 @@ f.download_table_make <- function(x,
 
         meta.all.list[[scope.random[i]]] <- data.table(year,
                                                        page,
-                                                       link,
+                                                       url,
                                                        datum,
                                                        spruch,
                                                        az,
