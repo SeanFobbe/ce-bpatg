@@ -23,6 +23,9 @@ f.readtext <- function(x,
     ## Coerce to Data.table
     setDT(dt)
 
+    ## Remove Hyphenation
+    dt[, text := lapply(.(text), f.hyphen.remove)]
+
     return(dt)
 
     
