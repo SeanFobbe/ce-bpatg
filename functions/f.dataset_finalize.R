@@ -44,7 +44,7 @@ f.dataset_finalize <- function(x,
     variablen <- gsub("\\\\", "", variablen)
 
     
-    data.table::setcolorder(dt.final, variablen)
+    #data.table::setcolorder(dt.final, variablen)
 
 
     return(dt.final)
@@ -54,12 +54,12 @@ f.dataset_finalize <- function(x,
 }
 
 
-x <- tar_read(dt.bpatg.datecleaned)
-download.table <- tar_read(dt.download.final)
+## x <- tar_read(dt.bpatg.datecleaned)
+## download.table <- tar_read(dt.download.final)
 
 
-verfahrensart <- tar_read(var_verfahrensart)
-entscheidung_typ <- tar_read(var_entscheidung_typ)
-aktenzeichen <- tar_read(var_aktenzeichen)
-ecli <- tar_read(var_ecli)
-variablen <- tar_read(variables)$variable
+## verfahrensart <- tar_read(var_verfahrensart)
+## entscheidung_typ <- tar_read(var_entscheidung_typ)
+## aktenzeichen <- tar_read(var_aktenzeichen)
+## ecli <- tar_read(var_ecli)
+## variablen <- tar_read(variables)$variable
