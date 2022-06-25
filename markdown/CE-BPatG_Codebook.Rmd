@@ -388,6 +388,13 @@ kable(freqtable.etyp,
 ```
 
 
+## Nach Senatsgruppe
+
+???
+
+
+
+
 
 ## Nach Aktenzeichen (Spruchkörper)
 
