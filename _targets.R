@@ -259,7 +259,7 @@ tar.write  <- list(tar_target(csv.full,
                               f.tar_fwrite(x = dt.bpatg.full,
                                            filename = file.path("output",
                                                                 paste0(prefix.files,
-                                                                       "_DE_CSV_Datensatz.zip"))
+                                                                       "_DE_CSV_Datensatz.csv"))
                                            )
                               ),
                    
@@ -267,7 +267,7 @@ tar.write  <- list(tar_target(csv.full,
                               f.tar_fwrite(x = dt.bpatg.full[, !"text"],
                                            filename = file.path("output",
                                                                 paste0(prefix.files,
-                                                                       "_DE_CSV_Meta.zip"))
+                                                                       "_DE_CSV_Meta.csv"))
                                            )
                               )
                    )
