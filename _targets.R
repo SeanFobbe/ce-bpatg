@@ -176,7 +176,7 @@ tar.data <- list(tar_target(file.scope,
                             fread(file.az.brd)),                                 
                 tar_target(files.source,
                            files.source.raw,
-                           format = "file"),
+                           format = "file")
                  )
 
 
