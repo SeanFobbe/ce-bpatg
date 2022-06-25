@@ -18,21 +18,25 @@ f.dataset_finalize <- function(x,
                                verfahrensart){
 
 
-    dt <- cbind(x,
-                aktenzeichen,
-                ecli,
-                entscheidung_typ,
-                verfahrensart)
+    dt.main <- cbind(x,
+                     aktenzeichen,
+                     ecli,
+                     entscheidung_typ,
+                     verfahrensart)
+
+    dt.download.reduced <- download.table[,.(doc_id,
+                                             url,
+                                             comment,
+                                             berichtigung,
+                                             wirkung,
+                                             ruecknahme,
+                                             erledigung)]
+
+    dt.download.reduced$doc_id <- gsub("\\.pdf", "\\.txt", dt.download.reduced$doc_id)
     
     
-    dt.final <- merge(dt.final, # not working
-                      download.table[,.(doc_id,
-                                        url,
-                                        comment,
-                                        berichtigung,
-                                        wirkung,
-                                        ruecknahme,
-                                        erledigung)],
+    dt.final <- merge(dt.main,
+                      dt.download.reduced,
                       by = "doc_id")
 
 
