@@ -12,7 +12,8 @@
 
 
 
-f.var_ecli_bpatg <- function(x){
+f.var_ecli_bpatg <- function(x,
+                             entscheidung_typ){
 
 
     ## ECLI erstellen
@@ -21,7 +22,7 @@ f.var_ecli_bpatg <- function(x){
                     ":",
                     format(x$datum,
                            "%d%m%y"),
-                    "B", # muss noch variable aufnehmen!!!
+                    entscheidung_typ,
                     x$spruchkoerper_az,
                     gsub("-", "", x$registerzeichen),
                     x$eingangsnummer,
