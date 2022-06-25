@@ -50,7 +50,7 @@ f.var_ecli_bpatg <- function(x){
                        value = TRUE,
                        invert = TRUE)
 
-    message("Folgende ECLIs sind fehlerhaft::")
+    message("Folgende ECLIs sind fehlerhaft:")
     message(test.regex)
 
     if (length(test.regex) > 0){
