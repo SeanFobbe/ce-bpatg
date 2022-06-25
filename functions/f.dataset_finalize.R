@@ -18,7 +18,9 @@ f.dataset_finalize <- function(x,
                                entscheidung_typ,
                                verfahrensart,
                                lingstats,
+                               constants,
                                variablen){
+
 
 
     dt.main <- cbind(x,
@@ -26,7 +28,13 @@ f.dataset_finalize <- function(x,
                      ecli,
                      entscheidung_typ,
                      verfahrensart,
-                     lingstats)
+                     lingstats,
+                     constants)
+
+    
+
+
+    
 
     dt.download.reduced <- download.table[,.(doc_id,
                                              url,
