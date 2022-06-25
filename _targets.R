@@ -227,7 +227,7 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                                f.lingstats(dt.bpatg.datecleaned,
                                            multicore = config$parallel$lingsummarize,
                                            cores = fullCores,
-                                           germanvars = TRUE)
+                                           germanvars = TRUE)),
                     tar_target(dt.bpatg.final,
                                f.dataset_finalize(dt.bpatg.datecleaned,
                                                   download.table = dt.download.final,
