@@ -35,7 +35,7 @@ tar_load(dt.bpatg.meta)
 tar_load(files.pdf)
 tar_load(files.txt)
 tar_load(variables)
-tar_load(lingstats_summary)
+tar_load(lingstats.summary)
 
 ```
 
@@ -182,7 +182,7 @@ Sätze & Entsprechen in etwa dem üblichen Verständnis eines Satzes. Die Regeln
 ## Werte der Kennzahlen
 
 ```{r}
-setnames(lingstats_summary, c("Variable",
+setnames(lingstats.summary, c("Variable",
                               "Summe",
                               "Min",
                               "Quart1",
@@ -191,7 +191,7 @@ setnames(lingstats_summary, c("Variable",
                               "Quart3",
                               "Max"))
 
-kable(lingstats_summary,
+kable(lingstats.summary,
       digits = 2,
       format.args = list(big.mark = ","),
       format = "latex",
