@@ -250,7 +250,9 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                                                   verfahrensart = var_verfahrensart,
                                                   lingstats = var_lingstats,
                                                   constants = var_constants,
-                                                  variablen = variables$variable))
+                                                  variablen = variables$variable)),
+                    tar_target(dt.bpatg.meta,
+                               dt.bpatg.full[, !"text"])
                     )
 
 
@@ -264,7 +266,7 @@ tar.write  <- list(tar_target(csv.full,
                               ),
                    
                    tar_target(csv.meta,
-                              f.tar_fwrite(x = dt.bpatg.full[, !"text"],
+                              f.tar_fwrite(x = dt.bpatg.meta,
                                            filename = file.path("output",
                                                                 paste0(prefix.files,
                                                                        "_DE_CSV_Metadaten.csv"))
