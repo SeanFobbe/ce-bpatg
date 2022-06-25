@@ -188,7 +188,15 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                     tar_target(var_entscheidung_typ,
                                f.var_entscheidung_typ_bpatg(dt.bpatg.datecleaned$text)),
                     tar_target(var_ecli,
-                               f.var_ecli_bpatg(dt.bpatg.datecleaned))                    
+                               f.var_ecli_bpatg(dt.bpatg.datecleaned,
+                                                entscheidung_typ = var_entscheidung_typ)),
+                    tar_target(dt.bpatg.final,
+                               f.dataset_finalize(dt.bpatg.datecleaned,
+                                                  download.table,
+                                                  aktenzeichen = var_aktenzeichen,
+                                                  ecli = var_ecli,
+                                                  entscheidung_typ = var_entscheidung_typ,
+                                                  verfahrensart = var_verfahrensart))
                     )
 
 
