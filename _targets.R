@@ -235,6 +235,7 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                                                   ecli = var_ecli,
                                                   entscheidung_typ = var_entscheidung_typ,
                                                   verfahrensart = var_verfahrensart,
+                                                  lingstats = var_lingstats,
                                                   variablen = variables$variable))
                     )
 
