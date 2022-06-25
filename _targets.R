@@ -2,6 +2,7 @@
 library(targets)
 library(tarchetypes)
 library(RcppTOML)
+library(future)
 
 
 ## General Options
@@ -20,7 +21,7 @@ source("R-fobbe-proto-package/f.linkextract.R")
 source("R-fobbe-proto-package/f.year.iso.R")
 source("R-fobbe-proto-package/f.hyphen.remove.R")
 source("R-fobbe-proto-package/f.fast.freqtable.R")
-source("R-fobbe-proto-package/f.lingsummarize.iterator.R")
+source("R-fobbe-proto-package/f.future_lingsummarize.R")
 
 
 
@@ -120,6 +121,36 @@ tar_option_set(packages = c("fs",           # Verbessertes File Handling
 
 
 
+#'## Parallelisierung aktivieren
+#' Parallelisierung wird zur Beschleunigung der Konvertierung von PDF zu TXT und der Datenanalyse mittels **quanteda** und **data.table** verwendet. Die Anzahl threads wird automatisch auf das verfügbare Maximum des Systems gesetzt, kann aber auch nach Belieben auf das eigene System angepasst werden. Die Parallelisierung kann deaktiviert werden, indem die Variable **fullCores** auf 1 gesetzt wird.
+
+
+
+#+
+#'### Anzahl logischer Kerne festlegen
+
+if (config$cores$max == TRUE){
+    fullCores <- availableCores()
+}
+
+
+if (config$cores$max == FALSE){
+    fullCores <- as.integer(config$cores$number)
+}
+
+message(paste("Using", fullCores, "cores."))
+
+#'### Quanteda
+quanteda_options(threads = fullCores) 
+
+#'### Data.table
+setDTthreads(threads = fullCores)  
+
+
+
+
+
+
 ## End this file with a list of target objects.
 
 tar.data <- list(tar_target(file.scope,
@@ -190,6 +221,11 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                     tar_target(var_ecli,
                                f.var_ecli_bpatg(dt.bpatg.datecleaned,
                                                 entscheidung_typ = var_entscheidung_typ)),
+                    tar_target(var_lingstats,
+                               f.lingstats(dt.bpatg.datecleaned,
+                                           multicore = config$parallel$lingsummarize,
+                                           cores = fullCores,
+                                           germanvars = TRUE)
                     tar_target(dt.bpatg.final,
                                f.dataset_finalize(dt.bpatg.datecleaned,
                                                   download.table = dt.download.final,
