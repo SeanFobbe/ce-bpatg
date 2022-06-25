@@ -176,6 +176,9 @@ tar.data <- list(tar_target(file.scope,
                             fread(file.az.brd)),                                 
                 tar_target(files.source,
                            files.source.raw,
+                           format = "file"),
+                tar_target(changelog,
+                           "CHANGELOG.md",
                            format = "file")
                  )
 
@@ -353,26 +356,6 @@ list(tar.data,
      )
 
 
-## zipname.source <- paste0(prefix.files,
-##                          "_Source_Code.zip")
-
-## ## ZIP-Datei für PDF (alle) definieren
-## zipname.pdf <- paste(prefix.files,
-##                      "DE_PDF_Datensatz.zip",
-##                      sep = "_")
-
-## ## ZIP-Datei für PDF (Leitsatzentscheidungen) definieren
-## zipname.pdfleitsatz <- paste(prefix.files,
-##                              "DE_PDF_Leitsatz-Entscheidungen_Datensatz.zip",
-##                              sep = "_")
-
-
-## ## ZIP-Datei für TXT definieren
-## zipname.txt <- paste(prefix.files,
-##                      "DE_TXT_Datensatz.zip",
-##                      sep = "_")
-
-
 
 
 
@@ -380,4 +363,4 @@ list(tar.data,
 
 ## todo: rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
 ## - standardize . and _
-## - in download.table sollte der dateiname auch doc_id heißen für easier merge mit späterere voller tabelle
+
