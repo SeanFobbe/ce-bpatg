@@ -17,6 +17,7 @@ f.dataset_finalize <- function(x,
                                ecli,
                                entscheidung_typ,
                                verfahrensart,
+                               lingstats,
                                variablen){
 
 
@@ -24,7 +25,8 @@ f.dataset_finalize <- function(x,
                      aktenzeichen,
                      ecli,
                      entscheidung_typ,
-                     verfahrensart)
+                     verfahrensart,
+                     lingstats)
 
     dt.download.reduced <- download.table[,.(doc_id,
                                              url,
@@ -34,7 +36,9 @@ f.dataset_finalize <- function(x,
                                              ruecknahme,
                                              erledigung)]
 
-    dt.download.reduced$doc_id <- gsub("\\.pdf", "\\.txt", dt.download.reduced$doc_id)
+    dt.download.reduced$doc_id <- gsub("\\.pdf",
+                                       "\\.txt",
+                                       dt.download.reduced$doc_id)
     
     
     dt.final <- merge(dt.main,
@@ -44,7 +48,7 @@ f.dataset_finalize <- function(x,
     variablen <- gsub("\\\\", "", variablen)
 
     
-    #data.table::setcolorder(dt.final, variablen)
+    data.table::setcolorder(dt.final, variablen)
 
 
     return(dt.final)
