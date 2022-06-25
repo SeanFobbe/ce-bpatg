@@ -33,8 +33,12 @@ datestamp <- Sys.Date()
 
 ## Cleanup
 
-### Löscht Dateien, die nicht vom heutigen Tag sind
-unlink(grep(datestamp, list.files("output", full.names = TRUE), invert = TRUE))
+### Löscht Dateien im Output-Ordner, die nicht vom heutigen Tag sind
+unlink(grep(datestamp,
+            list.files("output",
+                       full.names = TRUE),
+            invert = TRUE,
+            value = TRUE))
 
 
 ## Create Directories
@@ -290,6 +294,19 @@ tar.zip <- list(tar_target(zip.pdf.all,
                                          filename = paste(prefix.files,
                                                           "DE_TXT_Datensatz.zip",
                                                           sep = "_"),
+                                         dir = "output",
+                                         mode = "cherry-pick"),
+                           format = "file"),
+                
+                tar_target(zip.csv.full,
+                           f.zip_targets(csv.full,
+                                         filename = gsub("\\.csv", "\\.zip", basename(csv.full)),
+                                         dir = "output",
+                                         mode = "cherry-pick"),
+                           format = "file"),
+                tar_target(zip.csv.meta,
+                           f.zip_targets(csv.meta,
+                                         filename = gsub("\\.csv", "\\.zip", basename(csv.meta)),
                                          dir = "output",
                                          mode = "cherry-pick"),
                            format = "file"),
