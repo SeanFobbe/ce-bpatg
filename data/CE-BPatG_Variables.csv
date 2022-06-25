@@ -1,5 +1,5 @@
 variable,type,explanation
-doc_id,String,
+doc\_id,String,
 text,String,
 url,String,
 gericht,String,Es ist nur der Wert \enquote{BPatG} vergeben. Dies ist der ECLI-Code für \enquote{Bundespatentgericht}. Diese Variable dient vor allem zur einfachen und transparenten Verbindung der Daten mit anderen Datensätzen.
@@ -11,8 +11,8 @@ spruchkoerper\_az,String,"Der Spruchkörper, wie er im jeweiligen amtlichen Akte
 registerzeichen,String,Das amtliche Registerzeichen. Eine Erläuterung der Abkürzungen findet sich unter Punkt.
 verfahrensart,String,
 eingangsnummer,Natürliche Zahl,"Verfahren des gleichen Eingangsjahres erhalten vom Gericht eine fortlaufene Nummer (Ordinalzahl) in der Reihenfolge ihres Eingangs, um sie voneinander abzugrenzen."
-eingangsjahr_az,Natürliche Zahl,Das Jahr in dem das Verfahren beim Gericht anhängig wurde. Das Format ist eine zweistellige Jahreszahl (YY).
-eingangsjahr_iso,Natürliche Zahl,
+eingangsjahr\_az,Natürliche Zahl,Das Jahr in dem das Verfahren beim Gericht anhängig wurde. Das Format ist eine zweistellige Jahreszahl (YY).
+eingangsjahr\_iso,Natürliche Zahl,
 zusatz\_az,String,"Entscheidungen, die ein Europäisches Patent betreffen, enthalten den Suffix \enquote{EP} (neuer) oder \enquote{EU} (älter). Alle anderen Entscheidungen sind mit \enquote{NA} markiert. Das Suffix ist, wenn nicht \enquote{NA}, Teil des amtlichen Aktenzeichens."
 kollision,Natürliche Zahl,
 aktenzeichen,String,
