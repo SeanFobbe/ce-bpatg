@@ -3,6 +3,8 @@ library(targets)
 library(tarchetypes)
 library(RcppTOML)
 library(future)
+library(data.table)
+library(quanteda)
 
 
 ## General Options
@@ -138,7 +140,7 @@ if (config$cores$max == FALSE){
     fullCores <- as.integer(config$cores$number)
 }
 
-message(paste("Using", fullCores, "cores."))
+message(paste("Parallel processing: using", fullCores, "cores."))
 
 #'### Quanteda
 quanteda_options(threads = fullCores) 
