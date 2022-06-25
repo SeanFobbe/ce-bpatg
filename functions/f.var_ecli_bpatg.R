@@ -15,6 +15,7 @@
 f.var_ecli_bpatg <- function(x){
 
 
+    ## ECLI erstellen
     ecli <-  paste0("ECLI:DE:BPatG:",
                     x$entscheidungsjahr,
                     ":",
@@ -34,7 +35,8 @@ f.var_ecli_bpatg <- function(x){
                     ".",
                     x$kollision)
 
-    
+
+    ## ECLI testen
     test.regex <- grep(paste0("ECLI:DE:BPatG:", # Eingangsformel
                               "[0-9]{4}:", # Eingangsjahr (vierstellig)
                               "[0-9]{6}", # Datum
