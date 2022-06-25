@@ -11,7 +11,7 @@
 
 
 
-f.make.download.table <- function(x,
+f.download_table_make <- function(x,
                                   debug.toggle = FALSE,
                                   debug.pages = 50){
 

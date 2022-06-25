@@ -4,9 +4,9 @@
 #' @param spruch Korrigierte Spruchgruppen.
 
 
-f.clean_add_variables <- function(x,
-                                  az,
-                                  spruchgruppe){
+f.download_table_finalize <- function(x,
+                                      az,
+                                      spruchgruppe){
 
 
     ## Korrigierte Variablen einfügen
@@ -105,7 +105,7 @@ f.clean_add_variables <- function(x,
                        filenames1)
 
     ## Zufällige Auswahl zur Prüfung anzeigen
-    #filenames1[sample(length(filenames1), 50)]
+                                        #filenames1[sample(length(filenames1), 50)]
 
 
     ## PDF-Endung anfügen
@@ -118,31 +118,31 @@ f.clean_add_variables <- function(x,
     ## Strenge REGEX-Validierung: Gesamter Dateiname
     
     regex.test <- grep(paste0("^BPatG",  # gericht
-                             "_",
-                             "[A-Za-z-]+", # senatsgruppe
-                             "_",
-                             "(LE|NA)", # leitsatz 
-                             "_",
-                             "[0-9]{4}-[0-9]{2}-[0-9]{2}", # datum
-                             "_",
-                             "[0-9]{1,2}", # senatsnummer
-                             "_",
-                             "((Ni)|(W-pat)|(ZA-pat)|(Li)|(LiQ))", # registerzeichen
-                             "_",
-                             "[0-9]+", # eingangsnummer
-                             "_",
-                             "[0-9]{2}", # Ringangsjahr 
-                             "_",
-                             "EU|EP|NA", # zusatz_az
-                             "_",
-                             "[0-9]+"), # kollision
-                      filenames2,
-                      value = TRUE,
-                      invert = TRUE)
+                              "_",
+                              "[A-Za-z-]+", # senatsgruppe
+                              "_",
+                              "(LE|NA)", # leitsatz 
+                              "_",
+                              "[0-9]{4}-[0-9]{2}-[0-9]{2}", # datum
+                              "_",
+                              "[0-9]{1,2}", # senatsnummer
+                              "_",
+                              "((Ni)|(W-pat)|(ZA-pat)|(Li)|(LiQ))", # registerzeichen
+                              "_",
+                              "[0-9]+", # eingangsnummer
+                              "_",
+                              "[0-9]{2}", # Ringangsjahr 
+                              "_",
+                              "EU|EP|NA", # zusatz_az
+                              "_",
+                              "[0-9]+"), # kollision
+                       filenames2,
+                       value = TRUE,
+                       invert = TRUE)
 
     
     ## Ergebnis der REGEX-Validierung
-    #print(regex.test)
+                                        #print(regex.test)
 
 
     ## Stoppen falls REGEX-Validierung gescheitert
