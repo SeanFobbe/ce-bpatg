@@ -25,17 +25,15 @@ f.dataset_finalize <- function(x,
                 verfahrensart)
     
     
-    dt.final <- merge(dt.final,
+    dt.final <- merge(dt.final, # not working
                       download.table[,.(doc_id,
                                         url,
                                         comment,
-                                        leitsatz,
                                         berichtigung,
                                         wirkung,
                                         ruecknahme,
                                         erledigung)],
-                      by = "doc_id",
-                      all = TRUE)
+                      by = "doc_id")
 
 
     return(dt.final)
