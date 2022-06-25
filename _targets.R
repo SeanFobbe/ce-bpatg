@@ -234,7 +234,7 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                                           doi_version = config$doi$data$version,
                                           lizenz = as.character(config$license$data))[rep(1,
                                                                              nrow(dt.bpatg.datecleaned)),]),
-                    tar_target(dt.bpatg.final,
+                    tar_target(dt.bpatg.full,
                                f.dataset_finalize(dt.bpatg.datecleaned,
                                                   download.table = dt.download.final,
                                                   aktenzeichen = var_aktenzeichen,
@@ -246,6 +246,24 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                                                   variablen = variables$variable))
                     )
 
+
+
+tar.write  <- list(tar_target(csv.full,
+                              f.tar_fwrite(x = dt.bpatg.full,
+                                           filename = file.path("output",
+                                                                paste0(prefix.files,
+                                                                       "_DE_CSV_Datensatz.zip"))
+                                           )
+                              ),
+                   
+                   tar_target(csv.meta,
+                              f.tar_fwrite(x = dt.bpatg.full[, !"text"],
+                                           filename = file.path("output",
+                                                                paste0(prefix.files,
+                                                                       "_DE_CSV_Meta.zip"))
+                                           )
+                              )
+                   )
 
 
 
@@ -307,6 +325,7 @@ list(tar.data,
      tar.download,
      tar.convert,
      tar.enhance,
+     tar.write,
      tar.zip,
      tar.reports
      )
