@@ -15,7 +15,7 @@
 f.lingstats_summary <- function(x,
                                 germanvars = FALSE){
 
-    if(germanvars = TRUE){
+    if(germanvars == TRUE){
 
         vars <- c("zeichen",
                   "tokens",
@@ -59,7 +59,7 @@ f.lingstats_summary <- function(x,
                           )
 
 
-    if(germanvars = TRUE){
+    if(germanvars == TRUE){
 
         dt.sums.ling$typen <- nfeat(dfm(tokens.temp))
         
@@ -82,7 +82,7 @@ f.lingstats_summary <- function(x,
                                keep.names = "names")
 
 
-    if(germanvars = TRUE){
+    if(germanvars == TRUE){
 
         setnames(dt.stats.ling, c("Variable",
                                   "Summe",
