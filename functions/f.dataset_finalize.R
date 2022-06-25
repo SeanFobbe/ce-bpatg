@@ -6,6 +6,7 @@
 #' @param ecli Ein Vektor aus ECLIs.
 #' @param entscheidung_typ Ein Vektor aus Entscheidungstypen.
 #' @param verfahrensart Ein Vektor der jeweiligen Verfahrensarten.
+#' @param variablen Die im Datensatz erlaubten Variablen, in der im Codebook vorgegebenen Reihenfolge.
 
 
 
@@ -15,7 +16,8 @@ f.dataset_finalize <- function(x,
                                aktenzeichen,
                                ecli,
                                entscheidung_typ,
-                               verfahrensart){
+                               verfahrensart,
+                               variablen){
 
 
     dt.main <- cbind(x,
@@ -39,6 +41,11 @@ f.dataset_finalize <- function(x,
                       dt.download.reduced,
                       by = "doc_id")
 
+    variablen <- gsub("\\\\", "", variablen)
+
+    
+    data.table::setcolorder(dt.final, variablen)
+
 
     return(dt.final)
 
@@ -47,11 +54,12 @@ f.dataset_finalize <- function(x,
 }
 
 
-## x <- tar_read(dt.bpatg.datecleaned)
-## download.table <- tar_read(dt.download.final)
+x <- tar_read(dt.bpatg.datecleaned)
+download.table <- tar_read(dt.download.final)
 
 
-## verfahrensart <- tar_read(var_verfahrensart)
-## entscheidung_typ <- tar_read(var_entscheidung_typ)
-## aktenzeichen <- tar_read(var_aktenzeichen)
-## ecli <- tar_read(var_ecli)
+verfahrensart <- tar_read(var_verfahrensart)
+entscheidung_typ <- tar_read(var_entscheidung_typ)
+aktenzeichen <- tar_read(var_aktenzeichen)
+ecli <- tar_read(var_ecli)
+variablen <- tar_read(variables)$variable
