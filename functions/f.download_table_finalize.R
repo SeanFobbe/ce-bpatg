@@ -152,7 +152,7 @@ f.download_table_finalize <- function(x,
     }
 
     ## Vollen Dateinamen in Download Table einfügen
-    x$filename <- filenames2
+    x$doc_id <- filenames2
 
 
     ## Return
