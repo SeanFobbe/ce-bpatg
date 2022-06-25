@@ -173,7 +173,10 @@ tar.data <- list(tar_target(file.scope,
                             "data/AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv",
                             format = "file"),
                  tar_target(az.brd,
-                            fread(file.az.brd))
+                            fread(file.az.brd)),                                 
+                tar_target(files.source,
+                           files.source.raw,
+                           format = "file"),
                  )
 
 
@@ -310,10 +313,7 @@ tar.zip <- list(tar_target(zip.pdf.all,
                                          dir = "output",
                                          mode = "cherry-pick"),
                            format = "file"),
-                
-                tar_target(files.source,
-                           files.source.raw,
-                           format = "file"),
+
                 tar_target(zip.source,
                            f.zip_targets(files.source,
                                          filename = paste0(prefix.files,
