@@ -35,12 +35,14 @@ f.clean_az_bpatg <- function(x){
                        az,
                        invert = TRUE,
                        value = TRUE)
-
-    print(regex.test)
     
     ## Stoppen falls REGEX-Validierung gescheitert
 
     if (length(regex.test) != 0){
+
+        message("Folgende Aktenzeichen sind fehlerhaft:")
+        message(regex.test)
+        
         stop("REGEX VALIDIERUNG GESCHEITERT: AKTENZEICHEN ENTSPRECHEN NICHT DEM CODEBOOK-SCHEMA!")
     }
 
