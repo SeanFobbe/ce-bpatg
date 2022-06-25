@@ -7,6 +7,10 @@
 #' @param cores Positive integer. Number of cores to be used. Defautls to 2.
 #' @param germanvars Whether to return variable names in German. Defaults to FALSE.
 
+#' library(quanteda)
+#' library(future)
+#' library(future.apply)
+#' library(data.table)
 
 
 f.lingstats <- function(x,
@@ -31,7 +35,7 @@ f.lingstats <- function(x,
     lingstats <- f.future_lingsummarize(x)
 
 
-    ## Optional: Set German variablen names
+    ## Optional: Set German variable names
     if(germanvars == TRUE){
 
         setnames(lingstats,
