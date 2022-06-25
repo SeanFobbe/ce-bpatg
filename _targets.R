@@ -185,7 +185,13 @@ tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                     tar_target(var_aktenzeichen,
                                f.var_aktenzeichen(dt.bpatg.datecleaned,
                                                   az.brd = az.brd,
-                                                  gericht = "BPatG"))
+                                                  gericht = "BPatG")),
+                    tar_target(var_entscheidung_typ,
+                               f.var_entscheidung_typ_bpatg(dt.bpatg.datecleaned$text)),
+                    tar_target(var_ecli,
+                               f.var_ecli_bpatg(dt.bpatg.datecleaned))
+
+                    
                     )
 
 
