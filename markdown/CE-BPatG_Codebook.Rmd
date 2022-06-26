@@ -361,7 +361,7 @@ setnames(dt.stats.docvars, c("Variable",
 
 
 
-kable(stats.docvars,
+kable(dt.stats.docvars,
       digits = 2,
       format = "latex",
       booktabs = TRUE,
