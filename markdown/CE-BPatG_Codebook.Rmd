@@ -390,7 +390,63 @@ kable(freqtable.etyp,
 
 ## Nach Senatsgruppe
 
-???
+
+```{r}
+
+freqtable.senatsgruppe <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "senatsgruppe",
+                                 sumrow = TRUE,
+                                 output.list = TRUE,
+                                 output.kable = FALSE,
+                                 output.csv = FALSE,
+                                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
+
+freqtable.senatsgruppe.nosum <- freqtable.senatsgruppe[-.N]
+
+```
+
+
+```{r, CE-BPatG_03_Barplot_Senatsgruppe, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable.senatsgruppe.nosum) +
+    geom_bar(aes(x = reorder(senatsgruppe,
+                             -N),
+                 y = N),
+             stat = "identity",
+             fill = "#7e0731",
+             color = "black",
+             width = 0.5) +
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Entscheidungen je Senatsgruppe"),
+        caption = caption,
+        x = "Senat",
+        y = "Entscheidungen"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+
+```
+
+
+
+```{r}
+kable(freqtable.senatsgruppe,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Senatsgruppe",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
+
+```
 
 
 
@@ -414,7 +470,7 @@ freqtable.az.nosum <- freqtable.az[-.N]
 
 
 
-```{r, CE-BPatG_03_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_04_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.az.nosum) +
     geom_bar(aes(x = reorder(spruchkoerper_az,
                              -N),
@@ -476,7 +532,7 @@ freqtable.regz.nosum <- freqtable.regz[-.N]
 ```
 
 
-```{r, CE-BGH_04_Barplot_Registerzeichen, fig.height = 8, fig.width = 10}
+```{r, CE-BGH_05_Barplot_Registerzeichen, fig.height = 8, fig.width = 10}
 ggplot(data = freqtable.regz.nosum) +
     geom_bar(aes(x = reorder(registerzeichen,
                              N),
@@ -524,11 +580,124 @@ kable(freqtable.regz,
 
 ## Nach Entscheidungsjahr
 
-???
+
+```{r}
+
+freqtable.entscheidungsjahr <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "entscheidungsjahr",
+                                 sumrow = TRUE,
+                                 output.list = TRUE,
+                                 output.kable = FALSE,
+                                 output.csv = FALSE,
+                                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
+
+freqtable.entscheidungsjahr.nosum <- freqtable.entscheidungsjahr[-.N]
+
+```
+
+
+```{r, CE-BPatG_06_Barplot_Entscheidungsjahr, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable) +
+    geom_bar(aes(x = entscheidungsjahr,
+                 y = N),
+             stat = "identity",
+             fill = "#7e0731") +
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Entscheidungen je Entscheidungsjahr"),
+        caption = caption,
+        x = "Entscheidungsjahr",
+        y = "Entscheidungen"
+    )+
+    theme(
+        text = element_text(size = 16),
+        plot.title = element_text(size = 16,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+```
+
+
+
+```{r}
+kable(freqtable.entscheidungsjahr,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Entscheidungsjahr",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
+```
+
+
+
 
 ## Nach Eingangsjahr (ISO)
 
-???
+
+```{r}
+
+freqtable.eingangsjahr <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "eingangsjahr_iso",
+                                 sumrow = TRUE,
+                                 output.list = TRUE,
+                                 output.kable = FALSE,
+                                 output.csv = FALSE,
+                                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
+
+freqtable.eingangsjahr.nosum <- freqtable.eingangsjahr[-.N]
+
+```
+
+
+
+```{r, CE-BPatG_07_Barplot_EingangsjahrISO, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable) +
+    geom_bar(aes(x = eingangsjahr_iso,
+                 y = N),
+             stat = "identity",
+             fill = "#7e0731") +
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Entscheidungen je Eingangsjahr (ISO)"),
+        caption = caption,
+        x = "Eingangsjahr (ISO)",
+        y = "Entscheidungen"
+    )+
+    theme(
+        text = element_text(size = 16),
+        plot.title = element_text(size = 16,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+
+```
+
+
+
+```{r}
+kable(freqtable.eingangsjahr,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Eingangsjahr",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
+```
+
+
+
+
+
+
 
 
 
