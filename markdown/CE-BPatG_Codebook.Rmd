@@ -327,6 +327,51 @@ ggplot(data = dt.bpatg.meta)+
 
 ## Zusammenfassung
 
+```{r}
+
+dt.summary.docvars <- dt.bpatg.meta[,
+                                  lapply(.SD, function(x)unclass(summary(na.omit(x)))),
+                                  .SDcols = c("entscheidungsjahr",
+                                              "eingangsjahr_iso",
+                                              "eingangsnummer")]
+
+
+dt.unique.docvars <- dt.bpatg.meta[,
+                                 lapply(.SD, function(x)length(unique(na.omit(x)))),
+                                 .SDcols = c("entscheidungsjahr",
+                                             "eingangsjahr_iso",
+                                             "eingangsnummer")]
+
+
+dt.stats.docvars <- rbind(dt.unique.docvars,
+                          dt.summary.docvars)
+
+dt.stats.docvars <- transpose(dt.stats.docvars,
+                              keep.names = "names")
+
+
+setnames(dt.stats.docvars, c("Variable",
+                             "Anzahl",
+                             "Min",
+                             "Quart1",
+                             "Median",
+                             "Mean",
+                             "Quart3",
+                             "Max"))
+
+
+
+kable(stats.docvars,
+      digits = 2,
+      format = "latex",
+      booktabs = TRUE,
+      longtable = TRUE)
+
+
+```
+
+
+
 
 ## Nach Typ der Entscheidung
 
@@ -416,6 +461,7 @@ ggplot(data = freqtable.spruchgruppe.nosum) +
              color = "black",
              width = 0.5) +
     theme_bw() +
+    coord_flip()+
     labs(
         title = paste(prefix.figuretitle,
                       "| Entscheidungen je Spruchgruppe"),
