@@ -196,16 +196,16 @@ Die Dateinamen der PDF- und TXT-Dateien enthalten Gerichtsname, Spruchkörperang
 ### Schema für die Dateinamen
 
 \begin{verbatim}
- [gericht]_[spruchkoerper_db]_[leitsatz]_[datum]_[spruchkoerper_az]_
+ [gericht]_[spruchgruppe]_[leitsatz]_[datum]_[spruchkoerper_az]_
  [registerzeichen]_[eingangsnummer]_[eingangsjahr_az]_[zusatz_az]_
- [name]_[kollision]
+ [kollision]
 \end{verbatim}
 
 
 ### Beispiel eines Dateinamens
 
 \begin{verbatim}
- BGH_I_LE_2007-10-04_I_ZR_22_05_NA_Umsatzsteuerhinweis_0.pdf
+ BPatG_GebrM_LE_2011-04-14_35_W-pat_26_10_NA_0.pdf
 \end{verbatim}
 
 
@@ -369,7 +369,11 @@ ZA-(Pat) & ZA-pat & Verfahren über Anträge außerhalb anhängiger Patentsachen
 
 Zur besseren Einschätzung des inhaltlichen Umfangs des Korpus dokumentiere ich an dieser Stelle die Verteilung der Werte für einige klassische linguistische Kennzahlen:
 
+
+
 \medskip
+
+
 
 \begin{centering}
 \begin{longtable}{P{3.5cm}p{10.5cm}}
@@ -393,11 +397,15 @@ Sätze & Entsprechen in etwa dem üblichen Verständnis eines Satzes. Die Regeln
 \end{longtable}
 \end{centering}
 
- Es handelt sich bei den Diagrammen jeweils um \enquote{Density Charts}, die sich besonders dafür eignen die Schwerpunkte von Variablen mit stark schwankenden numerischen Werten zu visualisieren. Die Interpretation ist denkbar einfach: je höher die Kurve, desto dichter sind in diesem Bereich die Werte der Variable. Der Wert der y-Achse kann außer Acht gelassen werden, wichtig sind nur die relativen Flächenverhältnisse und die x-Achse.
+
+
+Es handelt sich bei den Diagrammen jeweils um \enquote{Density Charts}, die sich besonders dafür eignen die Schwerpunkte von Variablen mit stark schwankenden numerischen Werten zu visualisieren. Die Interpretation ist denkbar einfach: je höher die Kurve, desto dichter sind in diesem Bereich die Werte der Variable. Der Wert der y-Achse kann außer Acht gelassen werden, wichtig sind nur die relativen Flächenverhältnisse und die x-Achse.
 
  Vorsicht bei der Interpretation: Die x-Achse ist logarithmisch skaliert, d.h. in 10er-Potenzen und damit nicht-linear. Die kleinen Achsen-Markierungen zwischen den Schritten der Exponenten sind eine visuelle Hilfestellung um diese nicht-Linearität zu verstehen.
 
 \bigskip
+
+
 
 
 ## Werte der Kennzahlen
