@@ -685,7 +685,7 @@ ggplot(data = freqtable.entscheidungsjahr.nosum) +
         plot.title = element_text(size = 16,
                                   face = "bold"),
         legend.position = "none",
-        plot.margin = margin(10, 20, 10, 10)
+        plot.margin = margin(1, 2, 1, 1, unit = "cm")
     )
 ```
 
