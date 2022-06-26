@@ -390,6 +390,8 @@ freqtable.etyp.nosum <- freqtable.etyp[-.N]
 
 
 \vspace{0.5cm}
+
+
 ```{r, CE-BPatG_02_Barplot_Entscheidungstyp, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.etyp.nosum) +
     geom_bar(aes(x = reorder(entscheidung_typ,
@@ -436,6 +438,7 @@ kable(freqtable.etyp,
 
 
 \newpage
+
 ## Nach Spruchgruppe
 
 
@@ -455,7 +458,9 @@ freqtable.spruchgruppe.nosum <- freqtable.spruchgruppe[-.N]
 
 
 \vspace{0.5cm}
-```{r, CE-BPatG_03_Barplot_Spruchgruppe, fig.height = 9, fig.width = 6}
+
+
+```{r, CE-BPatG_03_Barplot_Spruchgruppe, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.spruchgruppe.nosum) +
     geom_bar(aes(x = reorder(spruchgruppe,
                              N),
@@ -502,6 +507,8 @@ kable(freqtable.spruchgruppe,
 
 
 \newpage
+
+
 ## Nach Aktenzeichen (Spruchkörper)
 
 ```{r}
@@ -520,6 +527,8 @@ freqtable.az.nosum <- freqtable.az[-.N]
 
 
 \vspace{0.5cm}
+
+
 ```{r, CE-BPatG_04_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.az.nosum) +
     geom_bar(aes(x = reorder(spruchkoerper_az,
@@ -565,6 +574,8 @@ kable(freqtable.az,
 
 
 \newpage
+
+
 ## Nach Registerzeichen
 
 ```{r}
@@ -583,6 +594,8 @@ freqtable.regz.nosum <- freqtable.regz[-.N]
 
 
 \vspace{0.5cm}
+
+
 ```{r, CE-BPatG_05_Barplot_Registerzeichen, fig.height = 8, fig.width = 10}
 ggplot(data = freqtable.regz.nosum) +
     geom_bar(aes(x = reorder(registerzeichen,
@@ -629,6 +642,8 @@ kable(freqtable.regz,
 
 
 \newpage
+
+
 ## Nach Entscheidungsjahr
 
 
@@ -648,12 +663,15 @@ freqtable.entscheidungsjahr.nosum <- freqtable.entscheidungsjahr[-.N]
 
 
 \vspace{0.5cm}
+
+
 ```{r, CE-BPatG_06_Barplot_Entscheidungsjahr, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.entscheidungsjahr.nosum) +
     geom_bar(aes(x = entscheidungsjahr,
                  y = N),
              stat = "identity",
              fill = "#7e0731") +
+    scale_x_continuous(breaks = seq(2000, 2020, 5))+
     theme_bw() +
     labs(
         title = paste(prefix.figuretitle,
@@ -711,6 +729,7 @@ ggplot(data = freqtable.eingangsjahr.nosum) +
                  y = N),
              stat = "identity",
              fill = "#7e0731") +
+    scale_x_continuous(breaks = seq(2000, 2020, 5))+
     theme_bw() +
     labs(
         title = paste(prefix.figuretitle,
