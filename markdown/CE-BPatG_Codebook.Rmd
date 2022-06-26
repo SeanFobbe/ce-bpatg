@@ -370,7 +370,7 @@ kable(dt.stats.docvars,
 
 ```
 
-
+\vspace{0.5cm}
 
 
 ## Nach Typ der Entscheidung
@@ -433,6 +433,8 @@ kable(freqtable.etyp,
 ```
 
 
+
+\newpage
 ## Nach Spruchgruppe
 
 
@@ -454,7 +456,7 @@ freqtable.spruchgruppe.nosum <- freqtable.spruchgruppe[-.N]
 ```{r, CE-BPatG_03_Barplot_Spruchgruppe, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.spruchgruppe.nosum) +
     geom_bar(aes(x = reorder(spruchgruppe,
-                             -N),
+                             N),
                  y = N),
              stat = "identity",
              fill = "#7e0731",
@@ -497,7 +499,7 @@ kable(freqtable.spruchgruppe,
 
 
 
-
+\newpage
 ## Nach Aktenzeichen (Spruchkörper)
 
 ```{r}
@@ -560,7 +562,7 @@ kable(freqtable.az,
 
 
 
-
+\newpage
 ## Nach Registerzeichen
 
 ```{r}
@@ -623,7 +625,7 @@ kable(freqtable.regz,
 
 
 
-
+\newpage
 ## Nach Entscheidungsjahr
 
 
@@ -681,7 +683,7 @@ kable(freqtable.entscheidungsjahr,
 
 
 
-
+\newpage
 ## Nach Eingangsjahr (ISO)
 
 
