@@ -532,7 +532,7 @@ freqtable.regz.nosum <- freqtable.regz[-.N]
 ```
 
 
-```{r, CE-BGH_05_Barplot_Registerzeichen, fig.height = 8, fig.width = 10}
+```{r, CE-BPatG_05_Barplot_Registerzeichen, fig.height = 8, fig.width = 10}
 ggplot(data = freqtable.regz.nosum) +
     geom_bar(aes(x = reorder(registerzeichen,
                              N),
