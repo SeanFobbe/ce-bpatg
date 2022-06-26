@@ -389,6 +389,7 @@ freqtable.etyp.nosum <- freqtable.etyp[-.N]
 ```
 
 
+\vspace{0.5cm}
 ```{r, CE-BPatG_02_Barplot_Entscheidungstyp, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.etyp.nosum) +
     geom_bar(aes(x = reorder(entscheidung_typ,
@@ -453,7 +454,8 @@ freqtable.spruchgruppe.nosum <- freqtable.spruchgruppe[-.N]
 ```
 
 
-```{r, CE-BPatG_03_Barplot_Spruchgruppe, fig.height = 6, fig.width = 9}
+\vspace{0.5cm}
+```{r, CE-BPatG_03_Barplot_Spruchgruppe, fig.height = 9, fig.width = 6}
 ggplot(data = freqtable.spruchgruppe.nosum) +
     geom_bar(aes(x = reorder(spruchgruppe,
                              N),
@@ -468,7 +470,7 @@ ggplot(data = freqtable.spruchgruppe.nosum) +
         title = paste(prefix.figuretitle,
                       "| Entscheidungen je Spruchgruppe"),
         caption = caption,
-        x = "Senat",
+        x = "Spruchgruppe",
         y = "Entscheidungen"
     )+
     theme(
@@ -517,7 +519,7 @@ freqtable.az.nosum <- freqtable.az[-.N]
 ```
 
 
-
+\vspace{0.5cm}
 ```{r, CE-BPatG_04_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.az.nosum) +
     geom_bar(aes(x = reorder(spruchkoerper_az,
@@ -580,6 +582,7 @@ freqtable.regz.nosum <- freqtable.regz[-.N]
 ```
 
 
+\vspace{0.5cm}
 ```{r, CE-BPatG_05_Barplot_Registerzeichen, fig.height = 8, fig.width = 10}
 ggplot(data = freqtable.regz.nosum) +
     geom_bar(aes(x = reorder(registerzeichen,
@@ -644,6 +647,7 @@ freqtable.entscheidungsjahr.nosum <- freqtable.entscheidungsjahr[-.N]
 ```
 
 
+\vspace{0.5cm}
 ```{r, CE-BPatG_06_Barplot_Entscheidungsjahr, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.entscheidungsjahr.nosum) +
     geom_bar(aes(x = entscheidungsjahr,
@@ -688,7 +692,6 @@ kable(freqtable.entscheidungsjahr,
 
 
 ```{r}
-
 freqtable.eingangsjahr <- f.fast.freqtable(dt.bpatg.meta,
                                  varlist = "eingangsjahr_iso",
                                  sumrow = TRUE,
@@ -698,11 +701,10 @@ freqtable.eingangsjahr <- f.fast.freqtable(dt.bpatg.meta,
                                  align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
 
 freqtable.eingangsjahr.nosum <- freqtable.eingangsjahr[-.N]
-
 ```
 
 
-
+\vspace{0.5cm}
 ```{r, CE-BPatG_07_Barplot_EingangsjahrISO, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.eingangsjahr.nosum) +
     geom_bar(aes(x = eingangsjahr_iso,
