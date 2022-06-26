@@ -62,16 +62,16 @@ kable(variables,
 \newpage
 
 
-# Senatsgruppen am Bundespatentgericht
+# Spruchgruppen am Bundespatentgericht
 
-\label{senatsgruppe}
+\label{spruchgruppe}
 
 \begin{centering}
 \begin{longtable}{p{5cm}p{8cm}}
 
 \toprule
 
-Codierung & Senatsgruppe\\
+Codierung & Spruchgruppe\\
 
 \midrule
 
@@ -388,27 +388,27 @@ kable(freqtable.etyp,
 ```
 
 
-## Nach Senatsgruppe
+## Nach Spruchgruppe
 
 
 ```{r}
 
-freqtable.senatsgruppe <- f.fast.freqtable(dt.bpatg.meta,
-                                 varlist = "senatsgruppe",
+freqtable.spruchgruppe <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "spruchgruppe",
                                  sumrow = TRUE,
                                  output.list = TRUE,
                                  output.kable = FALSE,
                                  output.csv = FALSE,
                                  align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
 
-freqtable.senatsgruppe.nosum <- freqtable.senatsgruppe[-.N]
+freqtable.spruchgruppe.nosum <- freqtable.spruchgruppe[-.N]
 
 ```
 
 
-```{r, CE-BPatG_03_Barplot_Senatsgruppe, fig.height = 6, fig.width = 9}
-ggplot(data = freqtable.senatsgruppe.nosum) +
-    geom_bar(aes(x = reorder(senatsgruppe,
+```{r, CE-BPatG_03_Barplot_Spruchgruppe, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable.spruchgruppe.nosum) +
+    geom_bar(aes(x = reorder(spruchgruppe,
                              -N),
                  y = N),
              stat = "identity",
@@ -418,7 +418,7 @@ ggplot(data = freqtable.senatsgruppe.nosum) +
     theme_bw() +
     labs(
         title = paste(prefix.figuretitle,
-                      "| Entscheidungen je Senatsgruppe"),
+                      "| Entscheidungen je Spruchgruppe"),
         caption = caption,
         x = "Senat",
         y = "Entscheidungen"
@@ -436,12 +436,12 @@ ggplot(data = freqtable.senatsgruppe.nosum) +
 
 
 ```{r}
-kable(freqtable.senatsgruppe,
+kable(freqtable.spruchgruppe,
       format = "latex",
       align = 'P{3cm}',
       booktabs = TRUE,
       longtable = TRUE,
-      col.names = c("Senatsgruppe",
+      col.names = c("Spruchgruppe",
                     "Entscheidungen",
                     "% Gesamt",
                     "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
