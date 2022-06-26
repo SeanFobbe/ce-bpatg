@@ -597,7 +597,7 @@ freqtable.entscheidungsjahr.nosum <- freqtable.entscheidungsjahr[-.N]
 
 
 ```{r, CE-BPatG_06_Barplot_Entscheidungsjahr, fig.height = 6, fig.width = 9}
-ggplot(data = freqtable) +
+ggplot(data = freqtable.entscheidungsjahr.nosum) +
     geom_bar(aes(x = entscheidungsjahr,
                  y = N),
              stat = "identity",
@@ -656,7 +656,7 @@ freqtable.eingangsjahr.nosum <- freqtable.eingangsjahr[-.N]
 
 
 ```{r, CE-BPatG_07_Barplot_EingangsjahrISO, fig.height = 6, fig.width = 9}
-ggplot(data = freqtable) +
+ggplot(data = freqtable.eingangsjahr.nosum) +
     geom_bar(aes(x = eingangsjahr_iso,
                  y = N),
              stat = "identity",
