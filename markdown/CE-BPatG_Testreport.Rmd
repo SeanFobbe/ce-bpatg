@@ -36,6 +36,8 @@ tar_load(dt.download.final)
 tar_load(dt.bpatg)
 tar_load(files.pdf)
 tar_load(files.txt)
+tar_load(csv.full)
+tar_load(csv.meta)
 tar_load(variables)
 
 ```
@@ -170,13 +172,13 @@ print(object.size(dt.bpatg),
 ## CSV Korpus (MB)
 
 ```{r}
-file.size(csvname.full) / 10 ^ 6
+file.size(csv.full) / 10 ^ 6
 ```
 
 ## CSV Metadaten (MB)
 
 ```{r}
-file.size(csvname.meta) / 10 ^ 6
+file.size(csv.meta) / 10 ^ 6
 ```
 
 
