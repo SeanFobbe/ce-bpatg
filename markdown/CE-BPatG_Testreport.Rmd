@@ -33,7 +33,7 @@ knitr::opts_chunk$set(fig.path = file.path("..", "analysis/"),
 
 tar_load(scope)
 tar_load(dt.download.final)
-tar_load(dt.bpatg)
+tar_load(dt.bpatg.full)
 tar_load(files.pdf)
 tar_load(files.txt)
 tar_load(csv.full)
@@ -162,7 +162,7 @@ setdiff(scope$loc,
 ## Datensatz in RAM (MB)
 
 ```{r}
-print(object.size(dt.bpatg),
+print(object.size(dt.bpatg.full),
       standard = "SI",
       humanReadable = TRUE,
       units = "MB")
@@ -222,7 +222,7 @@ print(config$freqtable$ignore)
 
 ## Liste zu prüfender Variablen
 
-varlist <- names(dt.bpatg)
+varlist <- names(dt.bpatg.full)
 varlist <- grep(paste(config$freqtable$ignore,
                       collapse = "|"),
                 varlist,
@@ -243,7 +243,7 @@ prefix <- paste0(config$project$shortname,
 
 ```{r, results = "asis"}
 
-f.fast.freqtable(dt.bpatg,
+f.fast.freqtable(dt.bpatg.full,
                  varlist = varlist,
                  sumrow = TRUE,
                  output.list = FALSE,
