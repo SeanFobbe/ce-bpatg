@@ -1,5 +1,13 @@
 
+#' Parallel Computation of SHA2 and SHA3 Hashes
 
+#' This function parallelizes computation of both SHA2-256 and SHA3-512 hashes for an arbitrary number of files. The function requires the existence of the openssl library (RPM) on the system.
+
+#' @param x A vector of filenames.
+#' @param multicore Whether to parallelize the computations.
+#' @param cores Number of cores to use for parallel computation.
+#'
+#' @param return A data frame of file names, SHA2-256 hashes and SHA3-512 hashes.
 
 
 
