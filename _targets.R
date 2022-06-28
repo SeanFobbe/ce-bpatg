@@ -325,7 +325,14 @@ tar.zip <- list(tar_target(zip.pdf.all,
                                                            "_Source_Code.zip"),
                                          dir = "output",
                                          mode = "mirror"),
-                           format = "file")
+                           format = "file"),
+                tar_target(zip.all,
+                           c(zip.pdf.all,
+                             zip.pdf.leitsatz,
+                             zip.txt,
+                             zip.csv.full,
+                             zip.csv.meta,
+                             zip.source))
                 )
 
 
