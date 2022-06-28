@@ -289,11 +289,12 @@ kable(hashes[,.(index,filename)],
                 "p{13cm}"),
       booktabs = TRUE,
       longtable = TRUE)
-
+```
 
 \newpage
 
 
+```{r}
 kable(hashes[,.(index,sha2.256)],
       format = "latex",
       align = c("c",
