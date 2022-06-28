@@ -1017,14 +1017,13 @@ kable(freqtable.eingangsjahr,
 
 
 pdf.MB <- file.size(files.pdf) / 10^6
-sum(pdf.MB)
 
 
 dt.plot <- data.table(pdf.MB)
 
 ggplot(data = dt.plot,
        aes(x = pdf.MB)) +
-    geom_density(fill = "#7e0731") +
+    geom_density(fill = "#005189") +
     scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
                   labels = trans_format("log10", math_format(10^.x)))+
     annotation_logticks(sides = "b")+
@@ -1055,13 +1054,12 @@ ggplot(data = dt.plot,
 ```{r, CE-BPatG_14_Density_Dateigroessen_TXT, fig.height = 6, fig.width = 9}
 
 txt.MB <- file.size(files.txt) / 10^6
-sum(txt.MB)
 
 dt.plot <- data.table(txt.MB)
 
 ggplot(data = dt.plot,
        aes(x = txt.MB)) +
-    geom_density(fill = "#7e0731") +
+    geom_density(fill = "#005189") +
     scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
                   labels = trans_format("log10", math_format(10^.x)))+
     annotation_logticks(sides = "b")+
