@@ -37,12 +37,7 @@ tar_load(files.txt)
 tar_load(variables)
 tar_load(lingstats.summary)
 
-tar_load(zip.pdf.all)
-tar_load(zip.pdf.leitsatz)
-tar_load(zip.txt)
-tar_load(zip.csv.full)
-tar_load(zip.csv.meta)
-tar_load(zip.source)
+tar_load(zip.all)
 
 ```
 
@@ -1080,13 +1075,7 @@ ggplot(data = dt.plot,
 
 
 ```{r}
-files.zip <- c(zip.pdf.all,
-               zip.pdf.leitsatz,
-               zip.txt,
-               zip.csv.full,
-               zip.csv.meta,
-               zip.source)
-
+files.zip <- zip.all
 
 filesize <- round(file.size(files.zip) / 10^6, digits = 2)
 
