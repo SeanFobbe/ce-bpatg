@@ -24,7 +24,7 @@ source("R-fobbe-proto-package/f.year.iso.R")
 source("R-fobbe-proto-package/f.hyphen.remove.R")
 source("R-fobbe-proto-package/f.fast.freqtable.R")
 source("R-fobbe-proto-package/f.future_lingsummarize.R")
-
+source("R-fobbe-proto-package/f.future_multihashes.R")
 
 
 ## Datestamp
@@ -332,7 +332,9 @@ tar.zip <- list(tar_target(zip.pdf.all,
                              zip.txt,
                              zip.csv.full,
                              zip.csv.meta,
-                             zip.source))
+                             zip.source)),
+                tar_target(zip.hashes,
+                           f.tar_multihashes(zip.all))
                 )
 
 
