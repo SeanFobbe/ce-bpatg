@@ -1008,11 +1008,6 @@ kable(freqtable.eingangsjahr,
 # Dateigrößen
 
 
-
-## Verteilung der Dateigrößen (PDF)
-
-
-
 ```{r, CE-BPatG_13_Density_Dateigroessen_PDF, fig.height = 6, fig.width = 9}
 
 
@@ -1046,8 +1041,6 @@ ggplot(data = dt.plot,
     
 ```
 
-
-## Verteilung der Dateigrößen (TXT)
 
 
 
@@ -1083,7 +1076,7 @@ ggplot(data = dt.plot,
 ```
 
 
-## Tabelle der Dateigrößen
+
 
 
 ```{r}
@@ -1117,7 +1110,7 @@ kable(table.size,
 
 
 
-
+\newpage
 
 ```{r, results = "asis"}
 cat(readLines(tar_read(changelog)),
