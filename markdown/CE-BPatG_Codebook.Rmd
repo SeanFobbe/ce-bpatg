@@ -1015,6 +1015,11 @@ kable(freqtable.eingangsjahr,
 
 ```{r, CE-BPatG_13_Density_Dateigroessen_PDF, fig.height = 6, fig.width = 9}
 
+
+pdf.MB <- file.size(files.pdf) / 10^6
+sum(pdf.MB)
+
+
 dt.plot <- data.table(pdf.MB)
 
 ggplot(data = dt.plot,
@@ -1048,6 +1053,9 @@ ggplot(data = dt.plot,
 
 
 ```{r, CE-BPatG_14_Density_Dateigroessen_TXT, fig.height = 6, fig.width = 9}
+
+txt.MB <- file.size(files.txt) / 10^6
+sum(txt.MB)
 
 dt.plot <- data.table(txt.MB)
 
