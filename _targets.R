@@ -333,7 +333,7 @@ tar.zip <- list(tar_target(zip.pdf.all,
                              zip.csv.full,
                              zip.csv.meta,
                              zip.source)),
-                tar_target(zip.hashes,
+                tar_target(hashes,
                            f.tar_multihashes(zip.all,
                                              multicore = config$parallel$lingsummarize,
                                              cores = fullCores))
