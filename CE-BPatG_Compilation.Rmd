@@ -211,7 +211,7 @@ Parallelisierung wird zur Beschleunigung der Konvertierung von PDF zu TXT und de
 
 ### Anzahl logischer Kerne festlegen
 
-```{r}
+```{targets global-parallel, tar_globals = TRUE}
 
 if (config$cores$max == TRUE){
     fullCores <- availableCores()
@@ -222,13 +222,7 @@ if (config$cores$max == FALSE){
     fullCores <- as.integer(config$cores$number)
 }
 
-message(paste("Parallel processing: using", fullCores, "cores."))
-
-## Quanteda
-quanteda_options(threads = fullCores) 
-
-## Data.table
-setDTthreads(threads = fullCores) 
+message(paste("Parallel processing: using", fullCores, "cores.")) 
 
 
 ```
