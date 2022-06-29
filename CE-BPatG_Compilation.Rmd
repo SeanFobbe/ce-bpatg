@@ -571,7 +571,7 @@ ggraph(g,
        'dendrogram',
        circular = TRUE) + 
     geom_edge_elbow(colour = "grey") + 
-    geom_node_text(aes(label = label),
+    geom_node_text(aes(label = names),
                    size = 2,
                    repel = TRUE)+
     theme_void()
