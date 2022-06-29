@@ -463,6 +463,6 @@ list(tar.data,
 # Kompilierung der vollen Pipeline
 
 
-```{r}
+```{r, results = "hide"}
 tar_make()
 ```
