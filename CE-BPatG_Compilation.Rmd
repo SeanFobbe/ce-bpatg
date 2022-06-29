@@ -38,7 +38,7 @@ tar_unscript()
 ```{r}
 
 datestamp <- Sys.Date()
-config <- parseTOML("CE-BPatG_Config.toml")
+config <- RcppTOML::parseTOML("CE-BPatG_Config.toml")
 dir.analysis <- paste0(getwd(),
                        "/analysis")
 
