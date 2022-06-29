@@ -41,16 +41,16 @@ tar_unscript()
 ```
 
 
-## Todo
+# Todo
 
 
 - rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
 - standardize "." and "_"
 
 
+# Vorbereitung
 
-
-## Konfiguration
+## Definitionen
 
 ```{r}
 
@@ -62,6 +62,68 @@ dir.analysis <- paste0(getwd(),
 
 ```
 
+
+## Aufräumen
+
+Löscht Dateien im Output-Ordner, die nicht vom heutigen Tag sind.
+
+
+```{r}
+
+unlink(grep(datestamp,
+            list.files("output",
+                       full.names = TRUE),
+            invert = TRUE,
+            value = TRUE))
+
+```
+
+
+
+## Ordner erstellen
+
+```{r}
+
+#unlink("output", recursive = TRUE)
+dir.create("output", showWarnings = FALSE)
+dir.create("temp", showWarnings = FALSE)
+
+dir.create(dir.analysis, showWarnings = FALSE)
+
+```
+
+
+
+
+# Globale Variablen
+
+
+## Packages definieren
+
+```{targets global-packages, tar_globals = TRUE}
+
+tar_option_set(packages = c("RcppTOML",     # TOML-Dateien lesen und schreiben
+                            "fs",           # Verbessertes File Handling
+                            "zip",          # Verbessertes ZIP Handling
+                            "mgsub",        # Vektorisiertes Gsub
+                            "httr",         # HTTP-Werkzeuge
+                            "rvest",        # HTML/XML-Extraktion
+                            "knitr",        # Professionelles Reporting
+                            "kableExtra",   # Verbesserte Kable Tabellen
+                            "pdftools",     # Verarbeitung von PDF-Dateien
+                            "ggplot2",      # Fortgeschrittene Datenvisualisierung
+                            "scales",       # Skalierung von Diagrammen
+                            "data.table",   # Fortgeschrittene Datenverarbeitung
+                            "readtext",     # TXT-Dateien einlesen
+                            "quanteda",     # Fortgeschrittene Computerlinguistik
+                            "future",       # Parallelisierung
+                            "future.apply"))# Funktionen höherer Ordnung für Parallelisierung
+
+
+```
+
+
+## Konfiguration
 
 
 ```{targets global-config, tar_globals = TRUE}
@@ -101,27 +163,9 @@ if (config$cores$max == FALSE){
 message(paste("Parallel processing: using", fullCores, "cores.")) 
 
 
-
-tar_option_set(packages = c("RcppTOML",     # TOML-Dateien lesen und schreiben
-                            "fs",           # Verbessertes File Handling
-                            "zip",          # Verbessertes ZIP Handling
-                            "mgsub",        # Vektorisiertes Gsub
-                            "httr",         # HTTP-Werkzeuge
-                            "rvest",        # HTML/XML-Extraktion
-                            "knitr",        # Professionelles Reporting
-                            "kableExtra",   # Verbesserte Kable Tabellen
-                            "pdftools",     # Verarbeitung von PDF-Dateien
-                            "ggplot2",      # Fortgeschrittene Datenvisualisierung
-                            "scales",       # Skalierung von Diagrammen
-                            "data.table",   # Fortgeschrittene Datenverarbeitung
-                            "readtext",     # TXT-Dateien einlesen
-                            "quanteda",     # Fortgeschrittene Computerlinguistik
-                            "future",       # Parallelisierung
-                            "future.apply"))# Funktionen höherer Ordnung für Parallelisierung
-
-
-
 ```
+
+
 
 
 ## Funktionen definieren
@@ -141,45 +185,6 @@ source("R-fobbe-proto-package/f.future_multihashes.R")
 
 
 
-
-## Aufräumen
-
-Löscht Dateien im Output-Ordner, die nicht vom heutigen Tag sind.
-
-
-```{r}
-
-unlink(grep(datestamp,
-            list.files("output",
-                       full.names = TRUE),
-            invert = TRUE,
-            value = TRUE))
-
-```
-
-
-
-## Ordner erstellen
-
-```{r}
-
-#unlink("output", recursive = TRUE)
-dir.create("output", showWarnings = FALSE)
-dir.create("temp", showWarnings = FALSE)
-
-dir.create(dir.analysis, showWarnings = FALSE)
-
-```
-
-
-
-## Standard-Angaben definieren
-
-
-
-
-
-
 ## Metadaten für TXT-Dateien definieren
 
 ```{targets global-txtvars, tar_globals = TRUE}
@@ -196,9 +201,6 @@ docvarnames <- c("gericht",
                  "kollision")
 
 ```
-
-
-
 
 
 ## ZIP-Datei für Source definieren
@@ -225,19 +227,7 @@ files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
 
 
 
-
-
-## Parallelisierung aktivieren
-
-Parallelisierung wird zur Beschleunigung der Konvertierung von PDF zu TXT und der Datenanalyse mittels **quanteda** und **data.table** verwendet. Die Anzahl threads wird automatisch auf das verfügbare Maximum des Systems gesetzt, kann aber auch nach Belieben auf das eigene System angepasst werden. Die Parallelisierung kann deaktiviert werden, indem die Variable **fullCores** auf 1 gesetzt wird.
-
-
-
-
- 
-
-
-
+# Formale Pipeline definieren
 
 
 
