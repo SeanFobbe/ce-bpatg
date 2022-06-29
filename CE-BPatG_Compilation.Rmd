@@ -501,7 +501,7 @@ kable(meta[order(type, name)],
 
 ```
 
-
+\newpage
 ## Timing
 
 
@@ -520,7 +520,7 @@ kable(meta[order(-seconds)],
 ```
 
 
-
+\newpage
 ## Warnungen
 
 
@@ -539,6 +539,7 @@ kable(meta,
 ```
 
 
+\newpage
 ## Fehlermeldungen
 
 ```{r, pipeline-errors}
@@ -556,7 +557,8 @@ kable(meta,
 ```
 
 
-## Graph
+\newpage
+## Netzwerk
 
 ```{r, pipeline-graph, width = 9, height = 9}
 
