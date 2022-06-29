@@ -56,6 +56,33 @@ config <- parseTOML("CE-BPatG_Config.toml")
 dir.analysis <- paste0(getwd(),
                        "/analysis")
 
+## Caption for diagrams
+caption <- paste("Fobbe | DOI:",
+                 config$doi$data$version)
+
+
+## Prefix for figure titles
+prefix.figuretitle <- paste(config$project$shortname,
+                            "| Version",
+                            datestamp)
+
+## File prefix
+prefix.files <- paste0(config$project$shortname,
+                       "_",
+                       datestamp)
+
+
+if (config$cores$max == TRUE){
+    fullCores <- availableCores()
+}
+
+
+if (config$cores$max == FALSE){
+    fullCores <- as.integer(config$cores$number)
+}
+
+message(paste("Parallel processing: using", fullCores, "cores.")) 
+
 
 
 tar_option_set(packages = c("fs",           # Verbessertes File Handling
@@ -130,26 +157,6 @@ dir.create(dir.analysis, showWarnings = FALSE)
 
 ## Standard-Angaben definieren
 
-```{targets global-boilerplate, tar_globals = TRUE}
-
-## Caption for diagrams
-caption <- paste("Fobbe | DOI:",
-                 config$doi$data$version)
-
-
-## Prefix for figure titles
-prefix.figuretitle <- paste(config$project$shortname,
-                            "| Version",
-                            datestamp)
-
-## File prefix
-prefix.files <- paste0(config$project$shortname,
-                       "_",
-                       datestamp)
-
-							
-```				
-
 
 
 
@@ -207,25 +214,6 @@ files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
 Parallelisierung wird zur Beschleunigung der Konvertierung von PDF zu TXT und der Datenanalyse mittels **quanteda** und **data.table** verwendet. Die Anzahl threads wird automatisch auf das verfügbare Maximum des Systems gesetzt, kann aber auch nach Belieben auf das eigene System angepasst werden. Die Parallelisierung kann deaktiviert werden, indem die Variable **fullCores** auf 1 gesetzt wird.
 
 
-
-
-### Anzahl logischer Kerne festlegen
-
-```{targets global-parallel, tar_globals = TRUE}
-
-if (config$cores$max == TRUE){
-    fullCores <- availableCores()
-}
-
-
-if (config$cores$max == FALSE){
-    fullCores <- as.integer(config$cores$number)
-}
-
-message(paste("Parallel processing: using", fullCores, "cores.")) 
-
-
-```
 
 
  
