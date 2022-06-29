@@ -1,12 +1,28 @@
 ---
-title: "Target Markdown"
-output: pdf_document
+title: "Compilation Report | Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)"
+author: Seán Fobbe
+geometry: margin=3cm
+fontsize: 11pt
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    pandoc_args: --listings
+    includes:
+      in_header: markdown/Preamble_DE.tex
+      before_body: [temp/CE-BPatG_Definitions.tex, tex/CE-BPatG_CompilationTitle.tex]
+papersize: a4
 ---
+
+
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE,
                       comment = "#>")
 ```
+
+
 
 
 ## Packages laden
@@ -228,7 +244,7 @@ Parallelisierung wird zur Beschleunigung der Konvertierung von PDF zu TXT und de
 ## Data Targets
 
 
-```{targets data}
+```{targets tar.data}
 
 list(tar_target(file.scope,
                 "data/CE-BPatG_Scope.csv",
@@ -254,6 +270,7 @@ list(tar_target(file.scope,
      )
 
 ```
+
 
 
 
