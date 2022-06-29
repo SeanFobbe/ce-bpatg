@@ -38,7 +38,7 @@ f.dataset_finalize <- function(x,
 
     dt.download.reduced <- download.table[,.(doc_id,
                                              url,
-                                             comment,
+                                             bemerkung,
                                              berichtigung,
                                              wirkung,
                                              ruecknahme,
