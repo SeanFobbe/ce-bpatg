@@ -564,9 +564,15 @@ setDT(edgelist)
 g  <- igraph::graph.data.frame(edgelist,
                                directed = TRUE)
 
+
 ggraph(g,
        'dendrogram',
-       circular = TRUE)
+       circular = TRUE) + 
+    geom_edge_elbow(colour = "grey") + 
+    geom_node_text(aes(label = label),
+                   size = 2,
+                   repel = TRUE)+
+    theme_void()
 
 ```
                        
