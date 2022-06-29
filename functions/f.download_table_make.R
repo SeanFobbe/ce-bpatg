@@ -81,7 +81,7 @@ f.download_table_make <- function(x,
         
         az <- html_nodes(html, "[class='EAz']") %>% html_text(trim = TRUE)
 
-        comment <- html_nodes(html, "[class='ETitel']") %>% html_text(trim = TRUE)
+        bemerkung <- html_nodes(html, "[class='ETitel']") %>% html_text(trim = TRUE)
 
         meta.all.list[[scope.random[i]]] <- data.table(year,
                                                        page,
@@ -89,7 +89,7 @@ f.download_table_make <- function(x,
                                                        datum,
                                                        spruchgruppe,
                                                        az,
-                                                       comment)
+                                                       bemerkung)
 
         remaining <- length(scope.random) - i
         
