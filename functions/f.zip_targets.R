@@ -7,9 +7,9 @@ f.zip_targets <- function(x,
 
     filename <- file.path(dir, filename)
     
-    zip(filename,
-        x,
-        mode = mode)
+    zip::zip(filename,
+             x,
+             mode = mode)
 
     return(filename)
     
