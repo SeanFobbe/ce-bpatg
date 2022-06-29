@@ -487,7 +487,7 @@ tar_make()
 
 ## Gesamte Liste
 
-```{r}
+```{r, pipeline-list}
 
 meta <- tar_meta(fields = c("type", "bytes"), complete_only = TRUE)
 setDT(meta)
@@ -505,7 +505,7 @@ kable(meta[order(type, name)],
 ## Timing
 
 
-```{r}
+```{r, pipeline-timing}
 
 meta <- tar_meta(fields = c("time", "seconds"), complete_only = TRUE)
 setDT(meta)
@@ -524,7 +524,7 @@ kable(meta[order(-seconds)],
 ## Warnungen
 
 
-```{r}
+```{r, pipeling-warnings}
 
 meta <- tar_meta(fields = "warnings", complete_only = TRUE)
 setDT(meta)
@@ -541,7 +541,7 @@ kable(meta,
 
 ## Fehlermeldungen
 
-```{r}
+```{r, pipeline-errors}
 
 meta <- tar_meta(fields = "error", complete_only = TRUE)
 setDT(meta)
@@ -558,7 +558,7 @@ kable(meta,
 
 ## Graph
 
-```{r}
+```{r, pipeline-graph, width = 9, height = 9}
 
 edgelist <- tar_network()$edges
 setDT(edgelist)
