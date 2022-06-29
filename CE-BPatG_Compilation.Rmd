@@ -229,7 +229,7 @@ files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
 
 
 
-# Formale Pipeline definieren
+# Pipeline: Konstruktion
 
 
 
@@ -472,7 +472,7 @@ tar.reports <- list(tar_target(latexdefs,
 
 
 
-# Kompilierung der vollen Pipeline
+# Pipeline: Kompilierung
 
 
 ```{r, results = "hide"}
@@ -480,13 +480,71 @@ tar_make()
 ```
 
 
-# Reporting
+# Pipeline: Analyse
+
+
+## Gesamte Liste
+
+```{r}
+
+meta <- tar_meta(fields = c("type", "bytes"), complete_only = TRUE)
+setDT(meta)
+
+kable(meta[order(type, name)],
+      format = "latex",
+      align = "r",
+      booktabs = TRUE,
+      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
+
+
+```
+
+
+## Timing
 
 
 ```{r}
 
+meta <- tar_meta(fields = c("time", "seconds"), complete_only = TRUE)
+setDT(meta)
 
-kable(tar_meta(fields = "time", complete_only = TRUE),
+kable(meta[order(-seconds)],
+      format = "latex",
+      align = "r",
+      booktabs = TRUE,
+      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
+
+
+```
+
+
+
+## Warnungen
+
+
+```{r}
+
+meta <- tar_meta(fields = "warnings", complete_only = TRUE)
+setDT(meta)
+
+kable(meta,
+      format = "latex",
+      align = "r",
+      booktabs = TRUE,
+      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
+
+
+```
+
+
+## Fehlermeldungen
+
+```{r}
+
+meta <- tar_meta(fields = "errors", complete_only = TRUE)
+setDT(meta)
+
+kable(meta,
       format = "latex",
       align = "r",
       booktabs = TRUE,
