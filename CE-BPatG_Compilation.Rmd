@@ -47,7 +47,7 @@ dir.analysis <- paste0(getwd(),
 
 
 
-```{targets global-config, tar_globals = TRUE}
+```{R global-config, tar_globals = TRUE}
 
 datestamp <- Sys.Date()
 
@@ -85,7 +85,8 @@ message(paste("Parallel processing: using", fullCores, "cores."))
 
 
 
-tar_option_set(packages = c("fs",           # Verbessertes File Handling
+tar_option_set(packages = c("RcppTOML"      # TOML-Dateien lesen und schreiben
+                            "fs",           # Verbessertes File Handling
                             "zip",          # Verbessertes ZIP Handling
                             "mgsub",        # Vektorisiertes Gsub
                             "httr",         # HTTP-Werkzeuge
