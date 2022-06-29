@@ -22,7 +22,7 @@ f.download_table_finalize <- function(x,
     ## Variable "leitsatz" erstellen
 
     x$leitsatz <- ifelse(grepl("Leitsatz",
-                               x$comment,
+                               x$bemerkung,
                                ignore.case = TRUE),
                          "LE",
                          "NA")
@@ -31,7 +31,7 @@ f.download_table_finalize <- function(x,
     ## Variable "berichtigung" erstellen
 
     x$berichtigung <- ifelse(grepl("berichtigung",
-                                   x$comment,
+                                   x$bemerkung,
                                    ignore.case = TRUE),
                              TRUE,
                              FALSE)
@@ -39,7 +39,7 @@ f.download_table_finalize <- function(x,
     ## Variable "wirkung" erstellen
 
     x$wirkung <- ifelse(grepl("Wirkungslos",
-                              x$comment,
+                              x$bemerkung,
                               ignore.case = TRUE),
                         FALSE,
                         TRUE)
@@ -47,7 +47,7 @@ f.download_table_finalize <- function(x,
     ## Variable "ruecknahme" erstellen
 
     x$ruecknahme <- ifelse(grepl("zurückgenommen",
-                                 x$comment,
+                                 x$bemerkung,
                                  ignore.case = TRUE),
                            TRUE,
                            FALSE)
@@ -56,7 +56,7 @@ f.download_table_finalize <- function(x,
     ## Variable "erledigung" erstellen
 
     x$erledigung <- ifelse(grepl("erledigt|Erledigung",
-                                 x$comment,
+                                 x$bemerkung,
                                  ignore.case = TRUE),
                            TRUE,
                            FALSE)
