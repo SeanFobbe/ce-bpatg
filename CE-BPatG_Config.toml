@@ -75,4 +75,5 @@ freqtable.ignore = ["text",
 		    "tokens",
 		    "typen",
 		    "saetze",
-		    "zeichen"]
+		    "zeichen",
+		    "bemerkung"]
