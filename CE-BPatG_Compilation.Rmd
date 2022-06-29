@@ -47,7 +47,7 @@ dir.analysis <- paste0(getwd(),
 
 
 
-```{R global-config, tar_globals = TRUE}
+```{targets global-config, tar_globals = TRUE}
 
 datestamp <- Sys.Date()
 
