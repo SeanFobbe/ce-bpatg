@@ -6,6 +6,7 @@ txt/
 analysis/
 output/
 temp/
+markdown/*.pdf
 
 # History files
 .Rhistory
