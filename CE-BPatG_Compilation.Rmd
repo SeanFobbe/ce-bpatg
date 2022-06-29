@@ -1,8 +1,6 @@
 ---
 title: "Target Markdown"
-output:
-   pdf_document:
-      latex_engine: xelatex
+output: pdf_document
 ---
 
 ```{r setup, include = FALSE}
