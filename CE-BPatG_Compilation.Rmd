@@ -35,6 +35,17 @@ tar_unscript()
 
 ## Konfiguration
 
+```{r}
+
+datestamp <- Sys.Date()
+config <- parseTOML("CE-BPatG_Config.toml")
+dir.analysis <- paste0(getwd(),
+                       "/analysis")
+
+
+```
+
+
 
 ```{targets global-config, tar_globals = TRUE}
 
@@ -260,6 +271,9 @@ list(tar_target(file.scope,
      )
 
 ```
+
+
+
 
 
 <!--
