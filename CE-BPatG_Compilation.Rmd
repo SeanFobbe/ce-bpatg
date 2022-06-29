@@ -472,9 +472,3 @@ list(tar.data,
 tar_make()
 ```
 
-# Pipeline Feedback
-
-
-```{r}
-tar_glimpse()
-```
