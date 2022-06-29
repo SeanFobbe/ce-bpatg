@@ -38,6 +38,8 @@ library(data.table)
 library(quanteda)
 library(knitr)
 library(kableExtra)
+library(igraph)
+library(ggraph)
 
 tar_unscript()
 ```
