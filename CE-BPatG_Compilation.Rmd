@@ -471,3 +471,10 @@ list(tar.data,
 ```{r, results = "hide"}
 tar_make()
 ```
+
+# Pipeline Feedback
+
+
+```{r}
+tar_glimpse()
+```
