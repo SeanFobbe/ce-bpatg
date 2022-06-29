@@ -552,3 +552,21 @@ kable(meta,
 
 
 ```
+
+
+## Graph
+
+```{r}
+
+edgelist <- tar_network()$edges
+setDT(edgelist)
+
+g  <- igraph::graph.data.frame(edgelist,
+                               directed = TRUE)
+
+ggraph(g,
+       'dendrogram',
+       circular = TRUE)
+
+```
+                       
