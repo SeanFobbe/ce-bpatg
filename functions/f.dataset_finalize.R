@@ -65,7 +65,9 @@ f.dataset_finalize <- function(x,
     
 }
 
+
 ## debugging
+
 ## x <- tar_read(dt.bpatg.datecleaned)
 ## download.table <- tar_read(dt.download.final)
 
@@ -75,3 +77,5 @@ f.dataset_finalize <- function(x,
 ## aktenzeichen <- tar_read(var_aktenzeichen)
 ## ecli <- tar_read(var_ecli)
 ## variablen <- tar_read(variables)$variable
+## lingstats <- tar_read(var_lingstats)
+## constants <- tar_read(var_constants)
