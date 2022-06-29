@@ -264,45 +264,57 @@ list(tar_target(file.scope,
 
 
 
+## Download Targets
+
+```{targets tar.download}
+
+list(tar_target(dt.download,
+                f.download_table_make(x = scope,
+                                      debug.toggle = config$debug$toggle,
+                                      debug.pages = config$debug$pages)),
+     tar_target(az_clean,
+                f.clean_az_bpatg(dt.download$az)),
+     tar_target(spruchgruppe_clean,
+                f.clean_spruch_bpatg(dt.download$spruch)),
+     tar_target(dt.download.final,
+                f.download_table_finalize(x = dt.download,
+                                          az = az_clean,
+                                          spruchgruppe = spruchgruppe_clean)),
+     tar_target(files.pdf,
+                f.download(url = dt.download.final$url,
+                           filename = dt.download.final$doc_id,
+                           dir = "pdf",
+                           sleep.min = 0,
+                           sleep.max = 0.1,
+                           retries = 3,
+                           retry.sleep.min = 2,
+                           retry.sleep.max = 5,
+                           timeout = config$download$timeout,
+                           debug.toggle = FALSE,
+                           debug.files = 500),
+                format = "file")
+     )
+
+```
+
+### Convert Targets
+
+```{targets tar.covert}
+
+list(tar_target(files.txt,
+                f.pdf_extract_targets(files.pdf),
+                format = "file"),
+     tar_target(dt.bpatg,
+                f.readtext(x = files.txt,
+                           docvarnames = docvarnames))
+     )
+					
+```					
+
 
 
 <!--
 
-tar.download <- list(tar_target(dt.download,
-                                f.download_table_make(x = scope,
-                                                      debug.toggle = config$debug$toggle,
-                                                      debug.pages = config$debug$pages)),
-                     tar_target(az_clean,
-                                f.clean_az_bpatg(dt.download$az)),
-                     tar_target(spruchgruppe_clean,
-                                f.clean_spruch_bpatg(dt.download$spruch)),
-                     tar_target(dt.download.final,
-                                f.download_table_finalize(x = dt.download,
-                                                          az = az_clean,
-                                                          spruchgruppe = spruchgruppe_clean)),
-                     tar_target(files.pdf,
-                                f.download(url = dt.download.final$url,
-                                           filename = dt.download.final$doc_id,
-                                           dir = "pdf",
-                                           sleep.min = 0,
-                                           sleep.max = 0.1,
-                                           retries = 3,
-                                           retry.sleep.min = 2,
-                                           retry.sleep.max = 5,
-										   timeout = config$download$timeout,
-                                           debug.toggle = FALSE,
-                                           debug.files = 500),
-                                format = "file")
-                     )
-
-
-tar.convert <- list(tar_target(files.txt,
-                               f.pdf_extract_targets(files.pdf),
-                               format = "file"),
-                    tar_target(dt.bpatg,
-                               f.readtext(x = files.txt,
-                                          docvarnames = docvarnames))
-                    )
 
 tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
                                f.clean_dates(dt.bpatg)),
@@ -450,14 +462,7 @@ tar.reports <- list(tar_target(latexdefs,
                     )
 
 
-list(tar.data,
-     tar.download,
-     tar.convert,
-     tar.enhance,
-     tar.write,
-     tar.zip,
-     tar.reports
-     )
+
 
 -->
 
