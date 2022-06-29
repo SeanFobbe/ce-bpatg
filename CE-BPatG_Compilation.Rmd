@@ -36,6 +36,8 @@ library(RcppTOML)
 library(future)
 library(data.table)
 library(quanteda)
+library(knitr)
+library(kableExtra)
 
 tar_unscript()
 ```
@@ -477,3 +479,18 @@ tar.reports <- list(tar_target(latexdefs,
 tar_make()
 ```
 
+
+# Reporting
+
+
+```{r}
+
+
+kable(tar_meta(fields = "time", complete_only = TRUE),
+      format = "latex",
+      align = "r",
+      booktabs = TRUE,
+      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
+
+
+```
