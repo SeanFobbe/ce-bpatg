@@ -274,6 +274,13 @@ tar.write  <- list(tar_target(csv.full,
                                                                 paste0(prefix.files,
                                                                        "_DE_CSV_Metadaten.csv"))
                                            )
+                              ),
+                   tar_target(csv.hashes,
+                              f.tar_fwrite(x = hashes,
+                                           filename = file.path("output",
+                                                                paste0(prefix.files,
+                                                                       "_DE_KryptographischeHashes.csv"))
+                                           )
                               )
                    )
 
