@@ -541,7 +541,7 @@ kable(meta,
 
 ```{r}
 
-meta <- tar_meta(fields = "errors", complete_only = TRUE)
+meta <- tar_meta(fields = "error", complete_only = TRUE)
 setDT(meta)
 
 kable(meta,
