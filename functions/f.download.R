@@ -6,7 +6,8 @@
 #' @param sleep.max Maximum number of seconds to randomly sleep between requests.
 #' @param retries Number of retries for entire download set.
 #' @param retry.sleep.min Minimum number of seconds to randomly sleep between requests in retry mode.
-#' @param retry.sleep.max Maximum number of seconds to randomly sleep between requests in retry mode..
+#' @param retry.sleep.max Maximum number of seconds to randomly sleep between requests in retry mode.
+#' @param timeout Number of seconds for a download to timeout, even active ongoing ones.
 #' @param debug.toggle Whether to activate debugging mode.
 #' @param debug.files The number of files to download during debugging mode. Default is 500.
 
@@ -21,9 +22,9 @@ f.download <- function(url,
                        retries = 3,
                        retry.sleep.min = 2,
                        retry.sleep.max = 5,
+                       timeout = 300,
                        debug.toggle = FALSE,
                        debug.files = 500){
-
     
     ## Test for equality of length
     if(length(url) != length(filename)){
@@ -31,6 +32,9 @@ f.download <- function(url,
         stop("Length of arguments url and filename is not equal.")
         
     }
+
+    ## Set timeout for downloads
+    options(timeout = timeout)
 
     ## [Debugging Mode] Reduce download scope
     if (debug.toggle == TRUE){
