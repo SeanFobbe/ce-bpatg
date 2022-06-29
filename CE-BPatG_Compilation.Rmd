@@ -303,7 +303,7 @@ list(tar_target(dt.download,
 
 ### Convert Targets
 
-```{targets tar.covert}
+```{targets tar.convert}
 
 list(tar_target(files.txt,
                 f.pdf_extract_targets(files.pdf),
@@ -315,161 +315,178 @@ list(tar_target(files.txt,
 					
 ```					
 
+### Enhance Targets
 
 
-<!--
+```{targets tar.enhance}
 
 
-tar.enhance <- list(tar_target(dt.bpatg.datecleaned,
-                               f.clean_dates(dt.bpatg)),
-                    tar_target(var_verfahrensart,
-                               f.var_verfahrensart(dt.bpatg.datecleaned$registerzeichen,
-                                                   az.brd = az.brd,
-                                                   gericht = "BPatG")),
-                    tar_target(var_aktenzeichen,
-                               f.var_aktenzeichen(dt.bpatg.datecleaned,
-                                                  az.brd = az.brd,
-                                                  gericht = "BPatG")),
-                    tar_target(var_entscheidung_typ,
-                               f.var_entscheidung_typ_bpatg(dt.bpatg.datecleaned$text)),
-                    tar_target(var_ecli,
-                               f.var_ecli_bpatg(dt.bpatg.datecleaned,
-                                                entscheidung_typ = var_entscheidung_typ)),
-                    tar_target(var_lingstats,
-                               f.lingstats(dt.bpatg.datecleaned,
-                                           multicore = config$parallel$lingsummarize,
-                                           cores = fullCores,
-                                           germanvars = TRUE)),
-                    tar_target(var_constants,
-                               data.frame(version = as.character(datestamp),
-                                          doi_concept = config$doi$data$concept,
-                                          doi_version = config$doi$data$version,
-                                          lizenz = as.character(config$license$data))[rep(1,
-                                                                             nrow(dt.bpatg.datecleaned)),]),
-                    tar_target(dt.bpatg.full,
-                               f.dataset_finalize(dt.bpatg.datecleaned,
-                                                  download.table = dt.download.final,
-                                                  aktenzeichen = var_aktenzeichen,
-                                                  ecli = var_ecli,
-                                                  entscheidung_typ = var_entscheidung_typ,
-                                                  verfahrensart = var_verfahrensart,
-                                                  lingstats = var_lingstats,
-                                                  constants = var_constants,
-                                                  variablen = variables$variable)),
-                    tar_target(dt.bpatg.meta,
-                               dt.bpatg.full[, !"text"])
-                    )
+list(tar_target(dt.bpatg.datecleaned,
+                f.clean_dates(dt.bpatg)),
+     tar_target(var_verfahrensart,
+                f.var_verfahrensart(dt.bpatg.datecleaned$registerzeichen,
+                                    az.brd = az.brd,
+                                    gericht = "BPatG")),
+     tar_target(var_aktenzeichen,
+                f.var_aktenzeichen(dt.bpatg.datecleaned,
+                                   az.brd = az.brd,
+                                   gericht = "BPatG")),
+     tar_target(var_entscheidung_typ,
+                f.var_entscheidung_typ_bpatg(dt.bpatg.datecleaned$text)),
+     tar_target(var_ecli,
+                f.var_ecli_bpatg(dt.bpatg.datecleaned,
+                                 entscheidung_typ = var_entscheidung_typ)),
+     tar_target(var_lingstats,
+                f.lingstats(dt.bpatg.datecleaned,
+                            multicore = config$parallel$lingsummarize,
+                            cores = fullCores,
+                            germanvars = TRUE)),
+     tar_target(var_constants,
+                data.frame(version = as.character(datestamp),
+                           doi_concept = config$doi$data$concept,
+                           doi_version = config$doi$data$version,
+                           lizenz = as.character(config$license$data))[rep(1,
+                                                                           nrow(dt.bpatg.datecleaned)),]),
+     tar_target(dt.bpatg.full,
+                f.dataset_finalize(dt.bpatg.datecleaned,
+                                   download.table = dt.download.final,
+                                   aktenzeichen = var_aktenzeichen,
+                                   ecli = var_ecli,
+                                   entscheidung_typ = var_entscheidung_typ,
+                                   verfahrensart = var_verfahrensart,
+                                   lingstats = var_lingstats,
+                                   constants = var_constants,
+                                   variablen = variables$variable)),
+     tar_target(dt.bpatg.meta,
+                dt.bpatg.full[, !"text"])
+     )
 
+```
 
-
-tar.write  <- list(tar_target(csv.full,
-                              f.tar_fwrite(x = dt.bpatg.full,
-                                           filename = file.path("output",
-                                                                paste0(prefix.files,
-                                                                       "_DE_CSV_Datensatz.csv"))
-                                           )
-                              ),
-                   
-                   tar_target(csv.meta,
-                              f.tar_fwrite(x = dt.bpatg.meta,
-                                           filename = file.path("output",
-                                                                paste0(prefix.files,
-                                                                       "_DE_CSV_Metadaten.csv"))
-                                           )
-                              ),
-                   tar_target(csv.hashes,
-                              f.tar_fwrite(x = hashes,
-                                           filename = file.path("output",
-                                                                paste0(prefix.files,
-                                                                       "_DE_KryptographischeHashes.csv"))
-                                           )
-                              )
-                   )
+### Write Targets
 
 
 
-tar.zip <- list(tar_target(zip.pdf.all,
-                           f.zip_targets(files.pdf,
-                                         filename = paste(prefix.files,
-                                                          "DE_PDF_Datensatz.zip",
-                                                          sep = "_"),
-                                         dir = "output",
-                                         mode = "cherry-pick"),
-                           format = "file"),
+```{targets tar.write}
 
-                tar_target(zip.pdf.leitsatz,
-                           f.zip_targets(grep("_LE_", files.pdf, value = TRUE),
-                                         filename = paste(prefix.files,
-                                                          "DE_PDF_Leitsatz-Entscheidungen.zip",
-                                                          sep = "_"),
-                                         dir = "output",
-                                         mode = "cherry-pick"),
-                           format = "file"),
-                
-                tar_target(zip.txt,
-                           f.zip_targets(files.txt,
-                                         filename = paste(prefix.files,
-                                                          "DE_TXT_Datensatz.zip",
-                                                          sep = "_"),
-                                         dir = "output",
-                                         mode = "cherry-pick"),
-                           format = "file"),
-                
-                tar_target(zip.csv.full,
-                           f.zip_targets(csv.full,
-                                         filename = gsub("\\.csv", "\\.zip", basename(csv.full)),
-                                         dir = "output",
-                                         mode = "cherry-pick"),
-                           format = "file"),
-                tar_target(zip.csv.meta,
-                           f.zip_targets(csv.meta,
-                                         filename = gsub("\\.csv", "\\.zip", basename(csv.meta)),
-                                         dir = "output",
-                                         mode = "cherry-pick"),
-                           format = "file"),
-
-                tar_target(zip.source,
-                           f.zip_targets(files.source,
-                                         filename = paste0(prefix.files,
-                                                           "_Source_Code.zip"),
-                                         dir = "output",
-                                         mode = "mirror"),
-                           format = "file"),
-                tar_target(zip.all,
-                           c(zip.pdf.all,
-                             zip.pdf.leitsatz,
-                             zip.txt,
-                             zip.csv.full,
-                             zip.csv.meta,
-                             zip.source)),
-                tar_target(hashes,
-                           f.tar_multihashes(zip.all,
-                                             multicore = config$parallel$lingsummarize,
-                                             cores = fullCores))
+list(tar_target(csv.full,
+                f.tar_fwrite(x = dt.bpatg.full,
+                             filename = file.path("output",
+                                                  paste0(prefix.files,
+                                                         "_DE_CSV_Datensatz.csv"))
+                             )
+                ),
+     
+     tar_target(csv.meta,
+                f.tar_fwrite(x = dt.bpatg.meta,
+                             filename = file.path("output",
+                                                  paste0(prefix.files,
+                                                         "_DE_CSV_Metadaten.csv"))
+                             )
+                ),
+     tar_target(csv.hashes,
+                f.tar_fwrite(x = hashes,
+                             filename = file.path("output",
+                                                  paste0(prefix.files,
+                                                         "_DE_KryptographischeHashes.csv"))
+                             )
                 )
+     )
+
+```
+
+### Zip Targets
+
+
+```{targets tar.zip}
+
+list(tar_target(zip.pdf.all,
+                f.zip_targets(files.pdf,
+                              filename = paste(prefix.files,
+                                               "DE_PDF_Datensatz.zip",
+                                               sep = "_"),
+                              dir = "output",
+                              mode = "cherry-pick"),
+                format = "file"),
+
+     tar_target(zip.pdf.leitsatz,
+                f.zip_targets(grep("_LE_", files.pdf, value = TRUE),
+                              filename = paste(prefix.files,
+                                               "DE_PDF_Leitsatz-Entscheidungen.zip",
+                                               sep = "_"),
+                              dir = "output",
+                              mode = "cherry-pick"),
+                format = "file"),
+     
+     tar_target(zip.txt,
+                f.zip_targets(files.txt,
+                              filename = paste(prefix.files,
+                                               "DE_TXT_Datensatz.zip",
+                                               sep = "_"),
+                              dir = "output",
+                              mode = "cherry-pick"),
+                format = "file"),
+     
+     tar_target(zip.csv.full,
+                f.zip_targets(csv.full,
+                              filename = gsub("\\.csv", "\\.zip", basename(csv.full)),
+                              dir = "output",
+                              mode = "cherry-pick"),
+                format = "file"),
+     tar_target(zip.csv.meta,
+                f.zip_targets(csv.meta,
+                              filename = gsub("\\.csv", "\\.zip", basename(csv.meta)),
+                              dir = "output",
+                              mode = "cherry-pick"),
+                format = "file"),
+
+     tar_target(zip.source,
+                f.zip_targets(files.source,
+                              filename = paste0(prefix.files,
+                                                "_Source_Code.zip"),
+                              dir = "output",
+                              mode = "mirror"),
+                format = "file"),
+     tar_target(zip.all,
+                c(zip.pdf.all,
+                  zip.pdf.leitsatz,
+                  zip.txt,
+                  zip.csv.full,
+                  zip.csv.meta,
+                  zip.source)),
+     tar_target(hashes,
+                f.tar_multihashes(zip.all,
+                                  multicore = config$parallel$lingsummarize,
+                                  cores = fullCores))
+     )
+
+```
+
+
+### Report Targets
 
 
 
-tar.reports <- list(tar_target(latexdefs,
-                               f.latexdefs(config,
-                                           dir = "temp",
-                                           datestamp = datestamp)),
-                    tar_target(lingstats.summary,
-                               f.lingstats_summary(dt.bpatg.full,
-                                                   germanvars = TRUE)),
-                    tar_render(report.tests,
-                               file.path("markdown",
-                                         "CE-BPatG_Testreport.Rmd")),
-                    tar_render(report.codebook,
-                               file.path("markdown",
-                                         "CE-BPatG_Codebook.Rmd"))
-                    )
+```{targets tar.report}
 
 
+list(tar_target(latexdefs,
+                f.latexdefs(config,
+                            dir = "temp",
+                            datestamp = datestamp)),
+     tar_target(lingstats.summary,
+                f.lingstats_summary(dt.bpatg.full,
+                                    germanvars = TRUE)),
+     tar_render(report.tests,
+                file.path("markdown",
+                          "CE-BPatG_Testreport.Rmd")),
+     tar_render(report.codebook,
+                file.path("markdown",
+                          "CE-BPatG_Codebook.Rmd"))
+     )
 
 
--->
-
+```
 
 
 
