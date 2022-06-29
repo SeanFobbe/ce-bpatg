@@ -104,7 +104,7 @@ dir.create(dir.analysis, showWarnings = FALSE)
 
 ## Packages definieren
 
-```{r global-packages, tar_globals = TRUE}
+```{targets global-packages, tar_globals = TRUE}
 
 tar_option_set(packages = c("tarchetypes",
                             "RcppTOML",     # TOML-Dateien lesen und schreiben
