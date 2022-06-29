@@ -17,7 +17,7 @@ zusatz\_az,String,"Entscheidungen, die ein Europäisches Patent betreffen, entha
 kollision,Natürliche Zahl,
 aktenzeichen,String,
 ecli,String,
-comment,String,
+bemerkung,String,
 berichtigung,Logisch,
 wirkung,Logisch,
 ruecknahme,Logisch,
