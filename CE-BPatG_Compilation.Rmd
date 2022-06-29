@@ -231,31 +231,38 @@ setDTthreads(threads = fullCores)
 
 
 
-## End this file with a list of target objects.
+## Data Targets
 
-tar.data <- list(tar_target(file.scope,
-                            "data/CE-BPatG_Scope.csv",
-                            format = "file"),
-                 tar_target(scope,
-                            fread(file.scope)),
-                 tar_target(file.variables,
-                            "data/CE-BPatG_Variables.csv",
-                            format = "file"),
-                 tar_target(variables,
-                            fread(file.variables)),
-                 tar_target(file.az.brd,
-                            "data/AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv",
-                            format = "file"),
-                 tar_target(az.brd,
-                            fread(file.az.brd)),                                 
-                tar_target(files.source,
-                           files.source.raw,
-                           format = "file"),
-                tar_target(changelog,
-                           "CHANGELOG.md",
-                           format = "file")
-                 )
 
+```{targets data}
+
+list(tar_target(file.scope,
+                "data/CE-BPatG_Scope.csv",
+                format = "file"),
+     tar_target(scope,
+                fread(file.scope)),
+     tar_target(file.variables,
+                "data/CE-BPatG_Variables.csv",
+                format = "file"),
+     tar_target(variables,
+                fread(file.variables)),
+     tar_target(file.az.brd,
+                "data/AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv",
+                format = "file"),
+     tar_target(az.brd,
+                fread(file.az.brd)),
+     tar_target(files.source,
+                files.source.raw,
+                format = "file"),
+     tar_target(changelog,
+                "CHANGELOG.md",
+                format = "file")
+     )
+
+```
+
+
+<!--
 
 tar.download <- list(tar_target(dt.download,
                                 f.download_table_make(x = scope,
@@ -447,7 +454,7 @@ list(tar.data,
      tar.reports
      )
 
-
+-->
 
 
 
