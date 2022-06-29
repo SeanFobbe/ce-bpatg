@@ -580,7 +580,7 @@ kable(meta,
 
 ```{r, pipeline-graph, width = 9, height = 9}
 
-edgelist <- tar_network(targets_only = TRUE, shortcut = TRUE)$edges
+edgelist <- tar_network(targets_only = TRUE)$edges
 setDT(edgelist)
 
 g  <- igraph::graph.data.frame(edgelist,
