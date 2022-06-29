@@ -588,9 +588,9 @@ g  <- igraph::graph.data.frame(edgelist,
 
 
 ggraph(g,
-       'dendrogram',
-       circular = TRUE) + 
-    geom_edge_elbow(colour = "grey") + 
+       'dh') + 
+    geom_edge_elbow(colour = "grey")+
+    geom_point()+
     geom_node_text(aes(label = name),
                    size = 2,
                    repel = TRUE)+
