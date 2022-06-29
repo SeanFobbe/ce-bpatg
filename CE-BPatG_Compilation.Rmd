@@ -1,4 +1,18 @@
-## Load Packages
+---
+title: "Target Markdown"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+
+## Packages laden
+
+
+```{r}
+
 library(targets)
 library(tarchetypes)
 library(RcppTOML)
@@ -6,108 +20,33 @@ library(future)
 library(data.table)
 library(quanteda)
 
-
-## General Options
-
-config <- parseTOML("CE-BPatG_Config.toml")
-
-options(timeout = config$download$timeout)
+tar_unscript()
+```
 
 
-
-## Define custom functions
-
-lapply(list.files("functions", full.names = TRUE), source)
-
-source("R-fobbe-proto-package/f.linkextract.R")
-source("R-fobbe-proto-package/f.year.iso.R")
-source("R-fobbe-proto-package/f.hyphen.remove.R")
-source("R-fobbe-proto-package/f.fast.freqtable.R")
-source("R-fobbe-proto-package/f.future_lingsummarize.R")
-source("R-fobbe-proto-package/f.future_multihashes.R")
+## Todo
 
 
-## Datestamp
+- rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
+- standardize "." and "_"
+
+
+
+
+## Konfiguration
+
+
+```{targets global-config, tar_globals = TRUE}
+
 datestamp <- Sys.Date()
 
-
-## Cleanup
-
-### Löscht Dateien im Output-Ordner, die nicht vom heutigen Tag sind
-unlink(grep(datestamp,
-            list.files("output",
-                       full.names = TRUE),
-            invert = TRUE,
-            value = TRUE))
-
-
-## Create Directories
-#unlink("output", recursive = TRUE)
-dir.create("output", showWarnings = FALSE)
-dir.create("temp", showWarnings = FALSE)
+config <- parseTOML("CE-BPatG_Config.toml")
 
 dir.analysis <- paste0(getwd(),
                        "/analysis")
 
-dir.create(dir.analysis, showWarnings = FALSE)
+options(timeout = config$download$timeout)
 
-
-
-## Quellenangabe für Diagramme definieren
-
-caption <- paste("Fobbe | DOI:",
-                 config$doi$data$version)
-
-
-## Präfix für Dateien definieren
-
-prefix.files <- paste0(config$project$shortname,
-                       "_",
-                       datestamp)
-
-
-## Präfix für Diagramme definieren
-
-prefix.figuretitle <- paste(config$project$shortname,
-                            "| Version",
-                            datestamp)
-
-
-
-## Metadaten für TXT-Dateien definieren
-
-docvarnames <- c("gericht",
-                 "spruchgruppe",
-                 "leitsatz",
-                 "datum",
-                 "spruchkoerper_az",
-                 "registerzeichen",
-                 "eingangsnummer",
-                 "eingangsjahr_az",
-                 "zusatz_az",
-                 "kollision")
-
-
-
-
-
-## ZIP-Datei für Source definieren
-files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
-                       "R-fobbe-proto-package",
-                       "data",
-                       "functions",
-                       "tex",
-                       "gpg",
-                       "buttons",
-                       list.files(pattern = "renv\\.lock|\\.Rprofile",
-                                  all.files = TRUE),
-                       list.files("renv",
-                                  pattern = "activate\\.R",
-                                  full.names = TRUE))
-
-
-
-## Targets Options
 
 tar_option_set(packages = c("fs",           # Verbessertes File Handling
                             "zip",          # Verbessertes ZIP Handling
@@ -127,13 +66,142 @@ tar_option_set(packages = c("fs",           # Verbessertes File Handling
 
 
 
-#'## Parallelisierung aktivieren
-#' Parallelisierung wird zur Beschleunigung der Konvertierung von PDF zu TXT und der Datenanalyse mittels **quanteda** und **data.table** verwendet. Die Anzahl threads wird automatisch auf das verfügbare Maximum des Systems gesetzt, kann aber auch nach Belieben auf das eigene System angepasst werden. Die Parallelisierung kann deaktiviert werden, indem die Variable **fullCores** auf 1 gesetzt wird.
+```
+
+
+## Funktionen definieren
+
+```{targets global-functions, tar_globals = TRUE}
+
+lapply(list.files("functions", full.names = TRUE), source)
+
+source("R-fobbe-proto-package/f.linkextract.R")
+source("R-fobbe-proto-package/f.year.iso.R")
+source("R-fobbe-proto-package/f.hyphen.remove.R")
+source("R-fobbe-proto-package/f.fast.freqtable.R")
+source("R-fobbe-proto-package/f.future_lingsummarize.R")
+source("R-fobbe-proto-package/f.future_multihashes.R")
+
+```
 
 
 
-#+
-#'### Anzahl logischer Kerne festlegen
+
+## Aufräumen
+
+Löscht Dateien im Output-Ordner, die nicht vom heutigen Tag sind.
+
+
+```{r}
+
+unlink(grep(datestamp,
+            list.files("output",
+                       full.names = TRUE),
+            invert = TRUE,
+            value = TRUE))
+
+```
+
+
+
+## Ordner erstellen
+
+```{r}
+
+#unlink("output", recursive = TRUE)
+dir.create("output", showWarnings = FALSE)
+dir.create("temp", showWarnings = FALSE)
+
+dir.create(dir.analysis, showWarnings = FALSE)
+
+```
+
+
+
+## Standard-Angaben definieren
+
+```{targets global-boilerplate, tar_globals = TRUE}
+
+## Caption for diagrams
+caption <- paste("Fobbe | DOI:",
+                 config$doi$data$version)
+
+
+## Prefix for figure titles
+prefix.figuretitle <- paste(config$project$shortname,
+                            "| Version",
+                            datestamp)
+
+## File prefix
+prefix.files <- paste0(config$project$shortname,
+                       "_",
+                       datestamp)
+
+							
+```				
+
+
+
+
+
+
+## Metadaten für TXT-Dateien definieren
+
+```{targets global-txtvars, tar_globals = TRUE}
+
+docvarnames <- c("gericht",
+                 "spruchgruppe",
+                 "leitsatz",
+                 "datum",
+                 "spruchkoerper_az",
+                 "registerzeichen",
+                 "eingangsnummer",
+                 "eingangsjahr_az",
+                 "zusatz_az",
+                 "kollision")
+
+```
+
+
+
+
+
+## ZIP-Datei für Source definieren
+
+```{targets global-sourcefiles, tar_globals = TRUE}
+
+files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
+                       "R-fobbe-proto-package",
+                       "data",
+                       "functions",
+                       "tex",
+                       "gpg",
+                       "buttons",
+                       list.files(pattern = "renv\\.lock|\\.Rprofile",
+                                  all.files = TRUE),
+                       list.files("renv",
+                                  pattern = "activate\\.R",
+                                  full.names = TRUE))
+
+```
+
+
+
+
+
+
+
+
+## Parallelisierung aktivieren
+
+Parallelisierung wird zur Beschleunigung der Konvertierung von PDF zu TXT und der Datenanalyse mittels **quanteda** und **data.table** verwendet. Die Anzahl threads wird automatisch auf das verfügbare Maximum des Systems gesetzt, kann aber auch nach Belieben auf das eigene System angepasst werden. Die Parallelisierung kann deaktiviert werden, indem die Variable **fullCores** auf 1 gesetzt wird.
+
+
+
+
+### Anzahl logischer Kerne festlegen
+
+```{r}
 
 if (config$cores$max == TRUE){
     fullCores <- availableCores()
@@ -146,11 +214,17 @@ if (config$cores$max == FALSE){
 
 message(paste("Parallel processing: using", fullCores, "cores."))
 
-#'### Quanteda
+## Quanteda
 quanteda_options(threads = fullCores) 
 
-#'### Data.table
-setDTthreads(threads = fullCores)  
+## Data.table
+setDTthreads(threads = fullCores) 
+
+
+```
+
+
+ 
 
 
 
@@ -377,8 +451,4 @@ list(tar.data,
 
 
 
-
-
-## todo: rename "spruch" in original downloadtable to "spruchgruppe" when major rerun is in order
-## - standardize . and _
 
