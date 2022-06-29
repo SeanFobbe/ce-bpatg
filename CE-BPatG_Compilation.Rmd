@@ -589,7 +589,8 @@ g  <- igraph::graph.data.frame(edgelist,
 
 ggraph(g,
        'dh') + 
-    geom_edge_elbow(colour = "grey")+
+    geom_edge_diagonal(colour = "grey")+
+    geom_node_point()+
     geom_node_text(aes(label = name),
                    size = 2,
                    repel = TRUE)+
