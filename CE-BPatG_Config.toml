@@ -60,21 +60,3 @@ quanteda.tokens_locale = "de_DE" # Locale in denen Tokens analyisert werden
 fig.format = [ "pdf", "png" ] 	# Ausgabe-Format für Diagramme
 fig.dpi = 300     	 	# Auflösung für Diagramme
 fig.align = "center"    	# Ausrichtung von Diagrammen im Compilation Report
-
-
-
-# Frequenztabellen: Ignorierte Variablen
-#' **Hinweis:** Diese Variablen werden bei der Erstellung der Frequenztabellen nicht berücksichtigt.
-
-freqtable.ignore = ["text",
-		    "eingangsnummer",
-		    "datum",
-		    "doc_id",
-		    "ecli",
-		    "aktenzeichen",
-		    "tokens",
-		    "typen",
-		    "saetze",
-		    "zeichen",
-		    "bemerkung",
-		    "url"]
