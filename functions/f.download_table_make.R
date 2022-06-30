@@ -29,13 +29,6 @@ f.download_table_make <- function(x,
                "page"))
 
 
-    ## Locator einfügen
-
-    scope[, loc := {
-        loc <- paste0(year, "-", page)
-        list(loc)
-    }]
-
     
     ## [Debugging Modus] Reduzierung des Such-Umfangs
 
