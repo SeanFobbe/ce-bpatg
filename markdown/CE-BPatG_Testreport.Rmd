@@ -210,20 +210,36 @@ sum(txt.MB)
 # Frequenztabellen erstellen
 
 
+## Ignorierte Variablen
+
+ **Hinweis:** Diese Variablen werden bei der Erstellung der Frequenztabellen nicht berücksichtigt.
+
+```{r}
+freqtable.ignore  <-  c("text",
+                        "eingangsnummer",
+                        "datum",
+                        "doc_id",
+                        "ecli",
+                        "aktenzeichen",
+                        "tokens",
+                        "typen",
+                        "saetze",
+                        "zeichen",
+                        "bemerkung",
+                        "url")
+```
+
+
+
 ## Vorbereitung
 
 
 ```{r}
 
-## Ignorierte Variablen
-print(config$freqtable$ignore)
-
-
-
 ## Liste zu prüfender Variablen
 
 varlist <- names(dt.bpatg.full)
-varlist <- grep(paste(config$freqtable$ignore,
+varlist <- grep(paste(freqtable.ignore,
                       collapse = "|"),
                 varlist,
                 invert = TRUE,
