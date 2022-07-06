@@ -98,6 +98,9 @@ rmarkdown::render("CE-BPatG_Compilation.Rmd",
 
 ## Ordnerstruktur
  
+ 
+```
+ 
 ├── CE-BPatG_Compilation.Rmd
 ├── CE-BPatG_Config.toml
 ├── CHANGELOG.md
@@ -114,7 +117,9 @@ rmarkdown::render("CE-BPatG_Compilation.Rmd",
 ├── reports
 └── tex
 
- 
+```
+
+
  
 ## Weitere Open Access Veröffentlichungen (Fobbe)
 
