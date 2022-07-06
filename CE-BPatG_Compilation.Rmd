@@ -23,6 +23,11 @@ knitr::opts_chunk$set(collapse = TRUE,
 ```
 
 
+```{r, results = "asis"}
+cat(readLines("README.md"),
+    sep = "\n")
+```
+
 
 
 ## Packages laden
