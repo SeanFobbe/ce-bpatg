@@ -22,20 +22,39 @@ Primäre Endprodukte des Skripts sind folgende ZIP-Archive:
 - Alle Analyse-Ergebnisse (Tabellen als CSV, Grafiken als PDF und PNG)
 - Der Source Code und alle weiteren Quelldaten
 
-Alle Ergebnisse werden im Ordner 'output' abgelegt. Zusätzlich werden für alle ZIP-Archive kryptographische Signaturen (SHA2-256 und SHA3-512) berechnet und in einer CSV-Datei hinterlegt. Weiterhin kann optional ein PDF-Bericht erstellt werden (siehe unter "Kompilierung").
+Alle Ergebnisse werden im Ordner 'output' abgelegt. Zusätzlich werden für alle ZIP-Archive kryptographische Signaturen (SHA2-256 und SHA3-512) berechnet und in einer CSV-Datei hinterlegt. 
+
+Weiterhin kann optional ein PDF-Bericht erstellt werden (siehe unter "Kompilierung").
 
 
 ## Kompilierung
 
-**Achtung:** Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb des Ordners (working directory) vollautomatisch alle Dateien mit bestimmten Datei-Endungen (PDF, TXT, CSV usw.), die den Datensatz verunreinigen könnten --- aber auch nur dort.
+**Achtung:** Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (txt/, pdf/, temp/ und output/) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
 
-Um den **vollständigen Datensatz** zu kompilieren, sowie Compilation Report und Codebook zu erstellen, kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!) und führen mit R diesen Befehl aus:
-
+1. **Vorbereitung.** Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispielsweise mit:
 
 ```
-targets::tar_make()
+git clone https://github.com/seanfobbe/ce-bpatg
 ```
 
+2. **Installation von *renv*.** Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von *renv* (package management) aufgefordert werden.
+
+3. **Packages installieren:** um alle packages in der benötigten Version zu installieren, führen Sie in der R session aus:
+
+```
+renv::restore()
+```
+
+4. **Datensatz erstellen:** den vollständigen Datensatz kompilieren Sie mit folgendem Befehl:
+
+```
+rmarkdown::render("CE-BPatG_Compilation.Rmd",
+                  output_file = paste0("output/CE-BPatG_",
+                                       Sys.Date(),
+                                       "_CompilationReport.pdf"))
+```
+
+5. **Ergebnis:** der Datensatz und alle weiteren Ergebnisse sind nun im Ordner *output/* abgelegt.
 
 
 ## Systemanforderungen
