@@ -493,7 +493,7 @@ list(tar_target(latexdefs,
 # Pipeline: Kompilierung
 
 
-```{r}
+```{r, results = "hide"}
 tar_make()
 ```
 
