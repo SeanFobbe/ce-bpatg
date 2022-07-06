@@ -3,7 +3,7 @@
 
 ## Überblick
 
-Das **CCorpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)** ist eine möglichst vollständige Sammlung der vom Bundespatentgericht veröffentlichten Entscheidungen. Der Datensatz nutzt als seine Datenquelle die Entscheidungsdatenbank des Bundespatentgerichts und wertet diese vollständig aus.
+Das **Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)** ist eine möglichst vollständige Sammlung der vom Bundespatentgericht veröffentlichten Entscheidungen. Der Datensatz nutzt als seine Datenquelle die Entscheidungsdatenbank des Bundespatentgerichts und wertet diese vollständig aus.
 
 Alle mit diesem Skript erstellten Datensätze werden dauerhaft kostenlos und urheberrechtsfrei auf Zenodo, dem wissenschaftlichen Archiv des CERN, veröffentlicht. Alle Versionen sind mit einem separaten und langzeit-stabilen (persistenten) Digital Object Identifier (DOI) versehen.
 

@@ -285,16 +285,16 @@ kable(variables,
 \newpage
 
 
-# Spruchgruppen am Bundespatentgericht
+# Senatsgruppen am Bundespatentgericht
 
-\label{spruchgruppe}
+\label{senatsgruppe}
 
 \begin{centering}
 \begin{longtable}{p{5cm}p{8cm}}
 
 \toprule
 
-Codierung & Spruchgruppe\\
+Codierung & Senatsgruppe\\
 
 \midrule
 
