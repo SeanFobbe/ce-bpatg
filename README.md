@@ -29,11 +29,11 @@ Weiterhin kann optional ein PDF-Bericht erstellt werden (siehe unter "Kompilieru
 
 ## Vorbereitung
 
-1. **R installieren**
+1. **Installation der Programmiersprache 'R'**
 
 Sie müssen die [Programmiersprache R](https://www.r-project.org/) installiert haben.
 
-2. **Ordner vorbereiten:** 
+2. **Ordner vorbereiten** 
 
 Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispielsweise mit:
 
@@ -46,18 +46,18 @@ Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilier
 
 3. **Installation von renv** 
 
-Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von [renv](https://rstudio.github.io/renv/articles/renv.html) (für das package management) aufgefordert werden.
+Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von [renv](https://rstudio.github.io/renv/articles/renv.html) (Versionierung von R packages) aufgefordert werden.
 
 
-4. **Packages installieren:**
+4. **Installation von R packages**
 
 Um alle packages in der benötigten Version zu installieren, führen Sie in der R session aus:
 
 ```
-renv::restore()
+renv::restore()   # in einer R-Konsole ausführen
 ```
 
-5. **(Optional) LaTeX installieren**
+5. **(Optional) Installation von LaTeX**
 
 Um die PDF Reports zu kompilieren benötigen Sie eine LaTeX-Installation. Sie können diese auf Fedora wie folgt installieren:
 
@@ -68,7 +68,7 @@ sudo dnf install texlive-scheme-full
 Alternativ können sie das R package **tinytex** installieren:
 
 ```
-install.packages("tinytex") # in einer R-Konsole ausführen
+install.packages("tinytex")   # in einer R-Konsole ausführen
 ```
 
 
