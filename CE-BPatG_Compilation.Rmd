@@ -478,7 +478,7 @@ list(tar_target(latexdefs,
                                     germanvars = TRUE)),
      tarchetypes::tar_render(report.tests,
                              file.path("reports",
-                                       "CE-BPatG_Testreport.Rmd")),
+                                       "CE-BPatG_RobustnessChecks.Rmd")),
      tarchetypes::tar_render(report.codebook,
                              file.path("reports",
                                        "CE-BPatG_Codebook.Rmd"))
