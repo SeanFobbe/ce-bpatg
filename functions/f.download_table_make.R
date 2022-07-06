@@ -70,7 +70,7 @@ f.download_table_make <- function(x,
 
         datum <- html_nodes(html, "[class='EDatum']") %>% html_text(trim = TRUE)
 
-        spruchgruppe <- html_nodes(html, "[class='ESpruchk']") %>% html_text(trim = TRUE)
+        senatsgruppe <- html_nodes(html, "[class='ESpruchk']") %>% html_text(trim = TRUE)
         
         az <- html_nodes(html, "[class='EAz']") %>% html_text(trim = TRUE)
 
@@ -80,7 +80,7 @@ f.download_table_make <- function(x,
                                                        page,
                                                        url,
                                                        datum,
-                                                       spruchgruppe,
+                                                       senatsgruppe,
                                                        az,
                                                        bemerkung)
 
