@@ -31,8 +31,9 @@ Weiterhin kann optional ein PDF-Bericht erstellt werden (siehe unter "Kompilieru
 
 0. **Systemanforderungen**
 
-- Nur unter Fedora Linux getestet
+- Nur mit Fedora Linux getestet. Vermutlich auch funktionsfähig unter anderen Linux-Distributionen.
 - 16 GB Speicherplatz auf Festplatte
+- Multi-core CPU stark empfohlen (8 cores/16 threads für die Referenzdatensätze). In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
 
 1. **Ordner vorbereiten** 
 
@@ -94,33 +95,25 @@ rmarkdown::render("CE-BPatG_Compilation.Rmd",
 5. **Ergebnis:** der Datensatz und alle weiteren Ergebnisse sind nun im Ordner *output/* abgelegt.
 
 
-## Systemanforderungen
 
-### Betriebssystem
-
-Der Code in seiner veröffentlichten Form kann nur unter Linux ausgeführt werden, da er Linux-spezifische Optimierungen (z.B. Fork Cluster) und Shell-Kommandos (z.B. OpenSSL) nutzt. Der Code wurde unter Fedora Linux entwickelt und getestet. Die zur Kompilierung benutzte Version entnehmen Sie bitte dem sessionInfo()-Ausdruck am Ende des Compilation Reports im Zenodo-Archiv.
-
-
-### Software
-
- Starten Sie danach eine Session im Ordner des Projekts, Sie sollten automatisch via **renv** zur Installation aller packages in der empfohlenen Version aufgefordert werden. Andernfalls führen Sie bitte folgenden Befehl aus:
-
-```
-renv::restore()
-```
-
-
-
-### Parallelisierung
-
-In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
-
-
-### Speicherplatz
-
-Auf der Festplatte sollten 16 GB Speicherplatz vorhanden sein.
-
+## Ordnerstruktur
  
+├── CE-BPatG_Compilation.Rmd
+├── CE-BPatG_Config.toml
+├── CHANGELOG.md
+├── LICENSE
+├── R-fobbe-proto-package
+├── README.md
+├── _targets_packages.R
+├── buttons
+├── data
+├── functions
+├── gpg
+├── renv
+├── renv.lock
+├── reports
+└── tex
+
  
  
 ## Weitere Open Access Veröffentlichungen (Fobbe)
