@@ -1,27 +1,27 @@
 variable,type,explanation
-doc\_id,String,(Nur CSV) Der Dateiname der extrahierten TXT-Datei.
-text,String,(Nur CSV) Der Volltext der Entscheidung. Über Zeilengrenzen getrennte Wörter sind zusammengefügt.
-url,String,(Nur CSV) Der Link zum Volltext der Entscheidung in der Datenbank des BPatG.
-gericht,String,Der Name des Gerichts. Es ist nur der Wert \enquote{BPatG} vergeben. Dies ist der ECLI-Code für \enquote{Bundespatentgericht}. Diese Variable dient vor allem zur einfachen und transparenten Verbindung der Daten mit anderen Datensätzen.
-datum,Datum (ISO),Das Datum der Entscheidung im Format YYYY-MM-DD (ISO-8601).
-entscheidungsjahr,Natürliche Zahl,(Nur CSV) Das Jahr der Entscheidung im Format YYYY (ISO-8601).
+doc\_id,String,(Nur CSV) Dateiname der extrahierten TXT-Datei.
+text,String,(Nur CSV) Volltext der Entscheidung. Über Zeilengrenzen getrennte Wörter sind zusammengefügt.
+url,String,(Nur CSV) Link zum Volltext der Entscheidung in der Datenbank des BPatG.
+gericht,String,Name des Gerichts. Es ist nur der Wert \enquote{BPatG} vergeben. Dies ist der ECLI-Code für \enquote{Bundespatentgericht}. Diese Variable dient vor allem zur einfachen und transparenten Verbindung der Daten mit anderen Datensätzen.
+datum,Datum (ISO),Datum der Entscheidung im Format YYYY-MM-DD (ISO-8601).
+entscheidungsjahr,Natürliche Zahl,(Nur CSV) Jahr der Entscheidung im Format YYYY (ISO-8601).
 leitsatz,String,Ob es sich um eine Leitsatzentscheidung handelt. Der Wert ist entweder \enquote{LE} oder \enquote{NA}.
-senatsgruppe,String,Die Senatsgruppe des Spruchkörpers. Jeder Senat is aufgrund seines speziellen Aufgabengebiets einer Senatsgruppe zugeteilt. Die verschiedenen Senatsgruppen und ihre Codierung sind im Abschnitt \ref{senatsgruppe} erläutert. 
-spruchkoerper\_az,String,"Der Spruchkörper, wie er im jeweiligen amtlichen Aktenzeichen gelistet ist. Beim Bundespatentgericht handelt es sich um die Nummer des Senats. Aufgrund häufiger Senats- umbildungen liegen Entscheidungen vieler Senate vor, die aktuell nicht am Bundespatentgericht aktiv sind."
-registerzeichen,String,Das amtliche Registerzeichen. Eine Erläuterung der Abkürzungen findet sich unter Punkt.
-verfahrensart,String,
-eingangsnummer,Natürliche Zahl,"Verfahren des gleichen Eingangsjahres erhalten vom Gericht eine fortlaufene Nummer (Ordinalzahl) in der Reihenfolge ihres Eingangs, um sie voneinander abzugrenzen."
-eingangsjahr\_az,Natürliche Zahl,Das Jahr in dem das Verfahren beim Gericht anhängig wurde. Das Format ist eine zweistellige Jahreszahl (YY).
-eingangsjahr\_iso,Natürliche Zahl,
-zusatz\_az,String,"Entscheidungen, die ein Europäisches Patent betreffen, enthalten den Suffix \enquote{EP} (neuer) oder \enquote{EU} (älter). Alle anderen Entscheidungen sind mit \enquote{NA} markiert. Das Suffix ist, wenn nicht \enquote{NA}, Teil des amtlichen Aktenzeichens."
-kollision,Natürliche Zahl,
-aktenzeichen,String,
-ecli,String,
-bemerkung,String,
-berichtigung,Logisch,
-wirkung,Logisch,
-ruecknahme,Logisch,
-erledigung,Logisch,
+senatsgruppe,String,Senatsgruppe des Spruchkörpers. Jeder Senat is aufgrund seines speziellen Aufgabengebiets einer Senatsgruppe zugeteilt. Die verschiedenen Senatsgruppen und ihre Codierung sind im Abschnitt \ref{senatsgruppe} erläutert. 
+spruchkoerper\_az,String,"Spruchkörper, wie er im jeweiligen amtlichen Aktenzeichen gelistet ist. Beim Bundespatentgericht handelt es sich um die Nummer des Senats. Aufgrund häufiger Senats- umbildungen liegen Entscheidungen vieler Senate vor, die aktuell nicht am Bundespatentgericht aktiv sind."
+registerzeichen,String,Das amtliche Registerzeichen. Eine Erläuterung der Abkürzungen findet sich im Abschnitt \ref{register}.
+verfahrensart,String,"Die Verfahrensart, auf die das Registerzeichen hinweist. Siehe auch Abschnitt \ref{register}."
+eingangsnummer,Natürliche Zahl,"Eingangsnummer. Verfahren des gleichen Eingangsjahres erhalten vom Gericht eine fortlaufene Nummer (Ordinalzahl) in der Reihenfolge ihres Eingangs, um sie voneinander abzugrenzen."
+eingangsjahr\_az,Natürliche Zahl,Eingangsjahr laut Aktenzeichen. Das Jahr in dem das Verfahren beim Gericht anhängig wurde. Das Format ist eine zweistellige Jahreszahl (YY).
+eingangsjahr\_iso,Natürliche Zahl,Eingangsjahr im Format YYYY-MM-DD (ISO-8601).
+zusatz\_az,String,"Optionaler Zusatz zum Aktenzeichen. Entscheidungen, die ein Europäisches Patent betreffen, enthalten den Zusatz \enquote{EP} (neuer) oder \enquote{EU} (älter). Alle anderen Entscheidungen sind mit \enquote{NA} markiert. Der Zusatz ist, wenn nicht \enquote{NA}, Teil des amtlichen Aktenzeichens."
+kollision,Natürliche Zahl,"Eine von mir vergebene Kollisionsnummer, falls die Dateinamen ansonsten identisch wären. Nicht vom BPatG vergeben!"
+aktenzeichen,String,Das amtliche Aktenzeichen im Format [senatsnummer] [registerzeichen] [eingangsnummer] / [eingangsjahr] [ggf. zusatz\_az]
+ecli,String,"European Case Law Identifier (ECLI) der Entscheidung. Die ECLI wurde von mir berechnet und kann in Einzelfällen von der offiziell vergebenen ECLI abweichen. Das ist vor allem dann der Fall, wenn eine am gleichen Tag Entscheidungen mit dem gleichen Aktenzeichen ergangen sind und von mir eine Kollisionsnummer außer 0 vergeben wurde."
+bemerkung,String,"Bemerkung zur Entscheidung, wie sie in der Datenbank des BPatG dokumentiert ist."
+berichtigung,Logisch,Ob das Dokument eine Berichtigung darstellt. Entweder \enquote{TRUE} oder \{FALSE}. Aus der Variable \enquote{bemerkung} mit regular expressions extrahiert.
+wirkung,Logisch,Ob die Entscheidung Wirkung entfaltet. Entweder \enquote{TRUE} oder \{FALSE}. Aus der Variable \enquote{bemerkung} mit regular expressions extrahiert.
+ruecknahme,Logisch,Ob die Klage zurückgenommen wurde. Entweder \enquote{TRUE} oder \{FALSE}. Aus der Variable \enquote{bemerkung} mit regular expressions extrahiert.
+erledigung,Logisch,Ob die Entscheidung erledigt ist. Entweder \enquote{TRUE} oder \{FALSE}. Aus der Variable \enquote{bemerkung} mit regular expressions extrahiert.
 zeichen,NatürlicheZahl,(Nur CSV-Datei) Die Anzahl Zeichen eines Dokumentes.
 tokens,NatürlicheZahl,(Nur CSV-Datei) Die Anzahl Tokens (beliebige Zeichenfolge getrennt durch whitespace) eines Dokumentes. Diese Zahl kann je nach Tokenizer und verwendeten Einstellungen erheblich schwanken. Für diese Berechnung wurde eine reine Tokenisierung ohne Entfernung von Inhalten durchgeführt. Benutzen Sie diesen Wert eher als Anhaltspunkt für die Größenordnung denn als exakte Aussage und führen sie ggf. mit ihrer eigenen Software eine Kontroll-Rechnung durch.
 typen,NatürlicheZahl,(Nur CSV-Datei) Die Anzahl \emph{einzigartiger} Tokens (beliebige Zeichenfolge getrennt durch whitespace) eines Dokumentes. Diese Zahl kann je nach Tokenizer und verwendeten Einstellungen erheblich schwanken. Für diese Berechnung wurde eine reine Tokenisierung und Typenzählung ohne Entfernung von Inhalten durchgeführt. Benutzen Sie diesen Wert eher als Anhaltspunkt für die Größenordnung denn als exakte Aussage und führen sie ggf. mit ihrer eigenen Software eine Kontroll-Rechnung durch.
