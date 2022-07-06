@@ -42,7 +42,7 @@ git clone https://github.com/seanfobbe/ce-bpatg
 3. **Packages installieren:** um alle packages in der benötigten Version zu installieren, führen Sie in der R session aus:
 
 ```
-renv::restore()
+renv::restore() # in R session ausführen
 ```
 
 4. **Datensatz erstellen:** den vollständigen Datensatz kompilieren Sie mit folgendem Befehl:
