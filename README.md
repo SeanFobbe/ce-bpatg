@@ -29,6 +29,11 @@ Weiterhin kann optional ein PDF-Bericht erstellt werden (siehe unter "Kompilieru
 
 ## Vorbereitung
 
+0. **Systemanforderungen**
+
+- Nur unter Fedora Linux getestet
+- 16 GB Speicherplatz auf Festplatte
+
 1. **Ordner vorbereiten** 
 
 Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispielsweise mit:
