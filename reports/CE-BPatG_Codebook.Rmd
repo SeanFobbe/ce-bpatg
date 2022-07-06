@@ -93,7 +93,7 @@ library(readtext)
 df.bpatg <- readtext("./*.txt",
                      docvarsfrom = "filenames", 
                      docvarnames =  c("gericht",
-                                      "spruchgruppe",
+                                      "senatsgruppe",
                                       "leitsatz",
                                       "datum",
                                       "spruchkoerper_az",
@@ -198,7 +198,7 @@ Die Dateinamen der PDF- und TXT-Dateien enthalten Gerichtsname, Spruchkörperang
 ### Schema für die Dateinamen
 
 \begin{verbatim}
- [gericht]_[spruchgruppe]_[leitsatz]_[datum]_[spruchkoerper_az]_
+ [gericht]_[senatsgruppe]_[leitsatz]_[datum]_[spruchkoerper_az]_
  [registerzeichen]_[eingangsnummer]_[eingangsjahr_az]_[zusatz_az]_
  [kollision]
 \end{verbatim}
@@ -670,28 +670,28 @@ kable(freqtable.etyp,
 
 \newpage
 
-## Nach Spruchgruppe
+## Nach Senatsgruppe
 
 
 ```{r}
 
-freqtable.spruchgruppe <- f.fast.freqtable(dt.bpatg.meta,
-                                 varlist = "spruchgruppe",
+freqtable.senatsgruppe <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "senatsgruppe",
                                  sumrow = TRUE,
                                  output.list = TRUE,
                                  output.kable = FALSE,
                                  output.csv = FALSE,
                                  align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
 
-freqtable.spruchgruppe.nosum <- freqtable.spruchgruppe[-.N]
+freqtable.senatsgruppe.nosum <- freqtable.senatsgruppe[-.N]
 
 ```
 
 
 
-```{r, CE-BPatG_03_Barplot_Spruchgruppe, fig.height = 6, fig.width = 9}
-ggplot(data = freqtable.spruchgruppe.nosum) +
-    geom_bar(aes(x = reorder(spruchgruppe,
+```{r, CE-BPatG_03_Barplot_Senatsgruppe, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable.senatsgruppe.nosum) +
+    geom_bar(aes(x = reorder(senatsgruppe,
                              N),
                  y = N),
              stat = "identity",
@@ -702,9 +702,9 @@ ggplot(data = freqtable.spruchgruppe.nosum) +
     coord_flip()+
     labs(
         title = paste(prefix.figuretitle,
-                      "| Entscheidungen je Spruchgruppe"),
+                      "| Entscheidungen je Senatsgruppe"),
         caption = caption,
-        x = "Spruchgruppe",
+        x = "Senatsgruppe",
         y = "Entscheidungen"
     )+
     theme(
@@ -722,12 +722,12 @@ ggplot(data = freqtable.spruchgruppe.nosum) +
 
 
 ```{r}
-kable(freqtable.spruchgruppe,
+kable(freqtable.senatsgruppe,
       format = "latex",
       align = 'P{3cm}',
       booktabs = TRUE,
       longtable = TRUE,
-      col.names = c("Spruchgruppe",
+      col.names = c("Senatsgruppe",
                     "Entscheidungen",
                     "% Gesamt",
                     "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
