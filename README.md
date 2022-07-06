@@ -29,11 +29,7 @@ Weiterhin kann optional ein PDF-Bericht erstellt werden (siehe unter "Kompilieru
 
 ## Vorbereitung
 
-1. **Installation der Programmiersprache 'R'**
-
-Sie müssen die [Programmiersprache R](https://www.r-project.org/) installiert haben.
-
-2. **Ordner vorbereiten** 
+1. **Ordner vorbereiten** 
 
 Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispielsweise mit:
 
@@ -42,6 +38,10 @@ git clone https://github.com/seanfobbe/ce-bpatg
 ```
 
 Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (txt/, pdf/, temp/ und output/) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
+
+2. **Installation der Programmiersprache 'R'**
+
+Sie müssen die [Programmiersprache R](https://www.r-project.org/) installiert haben.
 
 
 3. **Installation von renv** 
