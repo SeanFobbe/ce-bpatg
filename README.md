@@ -27,23 +27,55 @@ Alle Ergebnisse werden im Ordner 'output' abgelegt. Zusätzlich werden für alle
 Weiterhin kann optional ein PDF-Bericht erstellt werden (siehe unter "Kompilierung").
 
 
-## Kompilierung
+## Vorbereitung
 
-**Achtung:** Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (txt/, pdf/, temp/ und output/) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
+1. **R installieren**
 
-1. **Vorbereitung.** Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispielsweise mit:
+Sie müssen die [Programmiersprache R](https://www.r-project.org/) installiert haben.
+
+2. **Ordner vorbereiten:** 
+
+Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispielsweise mit:
 
 ```
 git clone https://github.com/seanfobbe/ce-bpatg
 ```
 
-2. **Installation von *renv*.** Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von *renv* (package management) aufgefordert werden.
+Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (txt/, pdf/, temp/ und output/) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
 
-3. **Packages installieren:** um alle packages in der benötigten Version zu installieren, führen Sie in der R session aus:
 
-```{r}
-renv::restore() # in R session ausführen
+3. **Installation von renv** 
+
+Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von [renv](https://rstudio.github.io/renv/articles/renv.html) (für das package management) aufgefordert werden.
+
+
+4. **Packages installieren:**
+
+Um alle packages in der benötigten Version zu installieren, führen Sie in der R session aus:
+
 ```
+renv::restore()
+```
+
+5. **(Optional) LaTeX installieren**
+
+Um die PDF Reports zu kompilieren benötigen Sie eine LaTeX-Installation. Sie können diese auf Fedora wie folgt installieren:
+
+```
+sudo dnf install texlive-scheme-full
+```
+
+Alternativ können sie das R package **tinytex** installieren:
+
+```
+install.packages("tinytex") # in einer R-Konsole ausführen
+```
+
+
+
+## Kompilierung
+
+
 
 4. **Datensatz erstellen:** den vollständigen Datensatz kompilieren Sie mit folgendem Befehl:
 
@@ -66,19 +98,12 @@ Der Code in seiner veröffentlichten Form kann nur unter Linux ausgeführt werde
 
 ### Software
 
-Sie müssen die [Programmiersprache R](https://www.r-project.org/) installiert haben. Starten Sie danach eine Session im Ordner des Projekts, Sie sollten automatisch via **renv** zur Installation aller packages in der empfohlenen Version aufgefordert werden. Andernfalls führen Sie bitte folgenden Befehl aus:
+ Starten Sie danach eine Session im Ordner des Projekts, Sie sollten automatisch via **renv** zur Installation aller packages in der empfohlenen Version aufgefordert werden. Andernfalls führen Sie bitte folgenden Befehl aus:
 
 ```
 renv::restore()
 ```
 
-Um die PDF Reports zu kompilieren benötigen Sie eine LaTeX-Installation. Sie können diese auf Fedora wie folgt installieren:
-
-```
-sudo dnf install texlive-scheme-full
-```
-
-Alternativ können sie das R package **tinytex** installieren.
 
 
 ### Parallelisierung
