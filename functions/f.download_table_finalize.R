@@ -1,18 +1,18 @@
 
 #' @param x Download table für das BPatG.
 #' @param az Korrigierte Aktenzeichen.
-#' @param spruch Korrigierte Spruchgruppen.
+#' @param senatsgruppe Korrigierte Senatsgruppen.
 
 
 f.download_table_finalize <- function(x,
                                       az,
-                                      spruchgruppe){
+                                      senatsgruppe){
 
 
     ## Korrigierte Variablen einfügen
 
     x$az <- az
-    x$spruchgruppe <- spruchgruppe
+    x$senatsgruppe <- senatsgruppe
 
     ## Einzelkorrektur
 
@@ -67,7 +67,7 @@ f.download_table_finalize <- function(x,
     ## Dateinamen erstellen
 
     filename <- paste("BPatG",
-                      x$spruchgruppe,
+                      x$senatsgruppe,
                       x$leitsatz,
                       x$datum,
                       x$az,
