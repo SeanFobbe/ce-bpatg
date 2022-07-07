@@ -53,6 +53,7 @@ tar_unscript()
 # Todo
 
 - standardize "." and "_"
+- add analysis zip archive
 
 
 # Vorbereitung
@@ -753,7 +754,6 @@ tar_target(hashes,
                 f.tar_multihashes(zip.all,
                                   multicore = config$parallel$lingsummarize,
                                   cores = fullCores))
-     )
 ```
 
 
