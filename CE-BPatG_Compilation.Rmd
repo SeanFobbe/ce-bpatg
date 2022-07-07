@@ -397,6 +397,9 @@ tar_target(files.pdf,
 
 ## Convert Targets
 
+Durch diese Schritte werden die PDF-Dateien in TXT konvertiert und mitsamt den Variablen in ihren Dateinamen eingelesen.
+
+
 ```{targets tar.convert}
 
 list(tar_target(files.txt,
@@ -408,6 +411,9 @@ list(tar_target(files.txt,
      )
 					
 ```					
+
+
+
 
 ## Enhance Targets
 
