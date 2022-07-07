@@ -163,7 +163,7 @@ Die Daten wurden unter Beachtung des Robot Exclusion Standard (RES) gesammelt. D
 
 
 
-```{r, pipeline-graph, width = 12, height = 9}
+```{r, CE-BPatG_00_Pipeline_Graph, width = 12, height = 9}
 
 edgelist <- tar_network(targets_only = TRUE)$edges
 setDT(edgelist)
