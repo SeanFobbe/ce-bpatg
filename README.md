@@ -72,7 +72,7 @@ Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Install
 Um alle packages in der benötigten Version zu installieren, führen Sie in der R session aus:
 
 ```
-renv::restore()   # in einer R-Konsole ausführen
+renv::restore()  # In einer R-Konsole ausführen
 ```
 
 *Achtung:* es reicht nicht, die Packages auf herkömmliche Art installiert zu haben. Sie müssen dies nochmal über [renv](https://rstudio.github.io/renv/articles/renv.html) tun, selbst wenn die Packages in ihrer normalen Library schon vorhanden sind.
@@ -92,7 +92,7 @@ sudo dnf install texlive-scheme-full
 Alternativ können sie das R package [tinytex](https://yihui.org/tinytex/) installieren, welches nur die benötigten \LaTeX\ packages installiert.
 
 ```
-install.packages("tinytex")   # in einer R-Konsole ausführen
+install.packages("tinytex")  # In einer R-Konsole ausführen
 ```
 
 Die für die Referenzdatensätze verwendete \LaTeX -Installation ist `texlive-scheme-full`.
@@ -106,6 +106,8 @@ Die für die Referenzdatensätze verwendete \LaTeX -Installation ist `texlive-sc
 Den vollständigen Datensatz kompilieren Sie mit folgendem Befehl:
 
 ```
+# In einer R-Konsole ausführen
+
 rmarkdown::render("CE-BPatG_Compilation.Rmd",
                   output_file = paste0("output/CE-BPatG_",
                                        Sys.Date(),
