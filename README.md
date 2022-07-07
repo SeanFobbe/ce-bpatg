@@ -70,7 +70,7 @@ Um alle packages in der benötigten Version zu installieren, führen Sie in der 
 renv::restore()   # in einer R-Konsole ausführen
 ```
 
-**Achtung:** es reicht nicht, die Packages auf herkömmliche Art installiert zu haben. Sie müssen dies nochmal über [renv](https://rstudio.github.io/renv/articles/renv.html) tun, selbst wenn die Packages in ihrer normalen Library schon vorhanden sind..
+**Achtung:** es reicht nicht, die Packages auf herkömmliche Art installiert zu haben. Sie müssen dies nochmal über [renv](https://rstudio.github.io/renv/articles/renv.html) tun, selbst wenn die Packages in ihrer normalen Library schon vorhanden sind.
 
 
 
