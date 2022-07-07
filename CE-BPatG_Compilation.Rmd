@@ -238,9 +238,11 @@ files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
 # Pipeline: Konstruktion
 
 
-## File Tracking
 
-Mit der Option \enquote{format = "file"} werden für Input-Dateien Prüfsummen berechnet. Falls sich diese verändern werden alle von ihnen abhängigen Pipeline-Schritte als veraltet markiert und neu berechnet.
+
+## File Tracking Targets
+
+Mit diesem Abschnitt der Pipeline werden Input-Dateien getrackt. Mit der Option \enquote{format = "file"} werden für Input-Dateien Prüfsummen berechnet. Falls sich diese verändern werden alle von ihnen abhängigen Pipeline-Schritte als veraltet markiert und neu berechnet.
 
 
 
@@ -304,7 +306,7 @@ tar_target(changelog,
 
 ## Data Targets
 
-Mit diesen Targets werden CSV-Dateien eingelesen, die im file tracking zuvor definiert wurden.
+Mit diesem Abschnitt der Pipeline werden CSV-Dateien eingelesen, die im file tracking zuvor definiert wurden.
 
 
 ```{targets tar.data}
@@ -323,6 +325,8 @@ list(tar_target(scope,
 
 
 ## Download Targets
+
+In diesem Abschnitt der Pipeline wird die Datenbank des BPatG abgerufen, die Links zu Volltexten und Metadaten zusammengeführt und schließlich abgerufen.
 
 
 ### Vorläufige Download-Tabelle erstellen
@@ -397,7 +401,7 @@ tar_target(files.pdf,
 
 ## Convert Targets
 
-Durch diese Schritte werden die PDF-Dateien in TXT konvertiert und mitsamt den Variablen in ihren Dateinamen eingelesen. Beim Einlesen werden die in PDF-Dateien üblichen über Zeilen gebrochene Wörter wieder zusammengefügt.
+Durch diesen Abschnitt der Pipeline werden die PDF-Dateien in TXT konvertiert und mitsamt den Variablen in ihren Dateinamen eingelesen. Beim Einlesen werden die in PDF-Dateien üblichen über Zeilen gebrochene Wörter wieder zusammengefügt.
 
 
 
@@ -419,6 +423,7 @@ list(tar_target(files.txt,
 
 ## Enhance Targets
 
+Dieser Abschnitt der Pipeline berechnet diverse Verbesserungen für den Datensatz und führt diese am Ende zusammen.
 
 
 ### Daten standardisieren
@@ -573,6 +578,8 @@ tar_target(dt.bpatg.meta,
 
 
 ## Write Targets
+
+
 
 
 
