@@ -46,7 +46,7 @@ Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispiel
 git clone https://github.com/seanfobbe/ce-bpatg
 ```
 
-Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (txt/, pdf/, temp/ und output/) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
+Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (`txt/`, `pdf/`, `temp/` und `output/`) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
 
 
 
@@ -76,13 +76,13 @@ renv::restore()   # in einer R-Konsole ausführen
 
 ### Installation von LaTeX
 
-Um die PDF Reports zu kompilieren benötigen Sie eine LaTeX-Installation. Sie können diese auf Fedora wie folgt installieren:
+Um die PDF Reports zu kompilieren benötigen Sie eine \LaTeX -Installation. Sie können diese auf Fedora wie folgt installieren:
 
 ```
 sudo dnf install texlive-scheme-full
 ```
 
-Alternativ können sie das R package **tinytex** installieren:
+Alternativ können sie das R package [tinytex](https://yihui.org/tinytex/) installieren, welches nur die benötigten \LaTeX\ packages abfragt:
 
 ```
 install.packages("tinytex")   # in einer R-Konsole ausführen
@@ -104,7 +104,7 @@ rmarkdown::render("CE-BPatG_Compilation.Rmd",
 
 ### Ergebnis
 
-Der Datensatz und alle weiteren Ergebnisse sind nun im Ordner *output/* abgelegt.
+Der Datensatz und alle weiteren Ergebnisse sind nun im Ordner `output/` abgelegt.
 
 
 
