@@ -25,12 +25,7 @@ Primäre Endprodukte des Skripts sind folgende ZIP-Archive:
 Alle Ergebnisse werden im Ordner 'output' abgelegt. Zusätzlich werden für alle ZIP-Archive kryptographische Signaturen (SHA2-256 und SHA3-512) berechnet und in einer CSV-Datei hinterlegt. 
 
 
-## Anleitung
-
-Diese Anleitung führt die Schritt für Schritt durch die Erstellung des Datensatzes. 
-
-
-### Systemanforderungen
+## Systemanforderungen
 
 - Nur mit **Fedora Linux** getestet. Vermutlich auch funktionsfähig unter anderen Linux-Distributionen.
 - **16 GB Speicherplatz** auf Festplatte
@@ -39,6 +34,9 @@ Diese Anleitung führt die Schritt für Schritt durch die Erstellung des Datensa
 
 In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
 
+
+
+## Anleitung
 
 
 ### Schritt 1: Ordner vorbereiten
@@ -114,7 +112,7 @@ Der Datensatz und alle weiteren Ergebnisse sind nun im Ordner `output/` abgelegt
 
 
 
-### Pipeline visualisieren
+## Pipeline visualisieren
 
 Sie können die Pipeline visualisieren, aber nur nachdem sie die zentrale .Rmd-Datei mindestens einmal gerendert haben:
 
@@ -124,7 +122,7 @@ targets::tar_visnetwork()  # Alle Objekte
 ```
 
 
-### Troubleshooting
+## Troubleshooting
 
 Hilfreiche Befehle um Fehler zu lokalisieren und zu beheben.
 
