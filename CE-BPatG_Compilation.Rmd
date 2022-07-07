@@ -59,7 +59,7 @@ tar_unscript()
 
 - standardize "." and "_"
 - add bibliography
-- ADD reports to hashing list
+- version reports and deliver to output
 
 
 # Vorbereitung
@@ -104,6 +104,15 @@ dir.create("temp", showWarnings = FALSE)
 
 dir.create(dir.analysis, showWarnings = FALSE)
 
+```
+
+
+
+## Vollzitate statistischer Software schreiben
+
+```{r}
+knitr::write_bib(renv::dependencies()$Package,
+                 "temp/packages.bib")
 ```
 
 
