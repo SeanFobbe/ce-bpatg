@@ -689,7 +689,8 @@ tar_target(zip.txt,
 
 ```{targets tar.zip4}
 tar_target(zip.analysis,
-           function(){report.codebook report.tests               
+           function(){report.codebook
+		   report.tests
 				f.zip_targets("analysis/",
                               filename = paste(prefix.files,
                                                "DE_Analyse.zip",
