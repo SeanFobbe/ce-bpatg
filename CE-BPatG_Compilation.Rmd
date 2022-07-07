@@ -764,9 +764,11 @@ tar_target(zip.all,
 
 ```{targets tar.zip9}
 tar_target(hashes,
-                f.tar_multihashes(zip.all,
-                                  multicore = config$parallel$lingsummarize,
-                                  cores = fullCores))
+           f.tar_multihashes(c(zip.all,
+                               report.codebook[1],
+                               report.tests[1]),
+                             multicore = config$parallel$lingsummarize,
+                             cores = fullCores))
 ```
 
 
@@ -1052,7 +1054,7 @@ kable(hashes[,.(index,sha3.512)],
 
 \newpage
 
-```{r, results = "asis"}
+```{r, results = "asis", echo = FALSE}
 cat(readLines("CHANGELOG.md"),
     sep = "\n")
 
