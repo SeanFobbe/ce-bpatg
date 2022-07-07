@@ -1,5 +1,5 @@
 ---
-title: "Testbericht Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)"
+title: "Robustness Checks | Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)"
 author: Seán Fobbe
 geometry: margin=3cm
 papersize: a4
@@ -151,53 +151,6 @@ setdiff(scope$loc,
         dt.download.final$loc)
 ```
 
-
-
-
-# Dateigrößen analysieren
-
-
-
-## Datensatz in RAM (MB)
-
-```{r}
-print(object.size(dt.bpatg.full),
-      standard = "SI",
-      humanReadable = TRUE,
-      units = "MB")
-      
-```
-
-
-## CSV Korpus (MB)
-
-```{r}
-file.size(csv.full) / 10 ^ 6
-```
-
-## CSV Metadaten (MB)
-
-```{r}
-file.size(csv.meta) / 10 ^ 6
-```
-
-
-
-## PDF-Dateien (MB)
-
-```{r}
-pdf.MB <- file.size(files.pdf) / 10^6
-sum(pdf.MB)
-```
-
-
-## TXT-Dateien (MB)
-
-
-```{r}
-txt.MB <- file.size(files.txt) / 10^6
-sum(txt.MB)
-```
 
 
 
