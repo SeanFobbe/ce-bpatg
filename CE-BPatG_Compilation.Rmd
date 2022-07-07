@@ -954,11 +954,48 @@ kable(meta,
 
 
 
-# Kryptographische Signaturen dokumentieren
+
+
+
+# Dateigrößen
+
+
+
+```{r}
+tar_load(zip.all)
+
+files.zip <- zip.all
+
+filesize <- round(file.size(files.zip) / 10^6, digits = 2)
+
+table.size <- data.table(basename(files.zip),
+                         filesize)
+
+
+kable(table.size,
+      format = "latex",
+      align = c("l", "r"),
+      format.args = list(big.mark = ","),
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Datei",
+                    "Größe in MB"))
+
+```
+
+
+
+
+
+
+# Kryptographische Signaturen
 
 ## Signaturen laden
 
+```{r}
 tar_load(hashes)
+```
+
 
 ## Leerzeichen hinzufügen um bei SHA3-512 Zeilenumbruch zu ermöglichen
 
