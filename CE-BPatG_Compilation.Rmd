@@ -58,8 +58,8 @@ tar_unscript()
 # Todo
 
 - standardize "." and "_"
-- add analysis zip archive; cue with comp report
 - add bibliography
+- ADD reports to hashing list
 
 
 # Vorbereitung
@@ -757,6 +757,7 @@ tar_target(zip.all,
                   zip.txt,
                   zip.csv.full,
                   zip.csv.meta,
+				  zip.analysis,
                   zip.source))
 ```
 
@@ -959,8 +960,6 @@ kable(meta,
 
 # Dateigrößen
 
-
-- ADD reports to hashing list
 
 
 
