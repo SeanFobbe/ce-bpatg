@@ -141,11 +141,11 @@ targets::tar_visnetwork()  # Alle Objekte
 Hilfreiche Befehle um Fehler zu lokalisieren und zu beheben.
 
 ```
-tar_progress() %>% print(n=100)   # Zeigt Fortschritt und Fehler an
-tar_meta() %>% print(n=100)       # Metadaten inspizieren
-tar_meta(fields = "warnings", complete_only = TRUE) # Zeigt Targets mit Warnungen an
-tar_meta(fields = "error", complete_only = TRUE)   # Zeigt Targets mit Fehlermeldungen an
-tar_meta(fields = "seconds") %>% print(n=40)      # Zeit Laufzeit der Targets an
+tar_progress()  # Zeigt Fortschritt und Fehler an
+tar_meta()      # Metadaten inspizieren
+tar_meta(fields = "warnings", complete_only = TRUE)  # Targets mit Warnungen
+tar_meta(fields = "error", complete_only = TRUE)  # Targets mit Fehlermeldungen
+tar_meta(fields = "seconds")  # Laufzeit der Targets
 ```
 
 
