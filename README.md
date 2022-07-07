@@ -107,11 +107,11 @@ Die folgende Struktur erläutert die wichtigsten Bestandteile des Projekts. Wäh
 ├── _targets_packages.R        # Automatisiert erstellte Package-Liste für renv
 ├── buttons                    # Buttons (nur optische Bedeutung)
 ├── data                       # Datensätze, auf denen die Pipeline aufbaut
-├── functions                  # Funktionen, die die Hauptarbeit der Pipeline leisten
+├── functions                  # Wichtige Schritte der Pipeline
 ├── gpg                        # Persönlicher Public GPG-Key für Seán Fobbe
-├── renv                       # Versionskontrolle für R Packages: Executables
-├── renv.lock                  # Versionskontrolle für R Packages: Versionsinformationen
-├── reports                    # Markdown-Dateien für Codebook und Robustness Checks
+├── renv                       # Versionskontrolle: Executables
+├── renv.lock                  # Versionskontrolle: Versionsinformationen
+├── reports                    # Markdown-Dateien
 └── tex                        # LaTeX-Templates
 
 ```
