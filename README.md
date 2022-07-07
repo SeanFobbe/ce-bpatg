@@ -32,13 +32,16 @@ Diese Anleitung führt die Schritt für Schritt durch die Erstellung des Datensa
 
 ### Systemanforderungen
 
-- Nur mit Fedora Linux getestet. Vermutlich auch funktionsfähig unter anderen Linux-Distributionen.
-- 16 GB Speicherplatz auf Festplatte
-- Multi-core CPU stark empfohlen (8 cores/16 threads für die Referenzdatensätze). In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
+- Nur mit **Fedora Linux** getestet. Vermutlich auch funktionsfähig unter anderen Linux-Distributionen.
+- **16 GB Speicherplatz** auf Festplatte
+- **Multi-core CPU empfohlen** (8 cores/16 threads für die Referenzdatensätze). 
+
+
+In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
 
 
 
-### Ordner vorbereiten
+### Schritt 1: Ordner vorbereiten
 
 Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispielsweise mit:
 
@@ -50,19 +53,19 @@ Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilier
 
 
 
-### Installation der Programmiersprache 'R'
+### Schritt 2: Installation der Programmiersprache 'R'
 
 Sie müssen die [Programmiersprache R](https://www.r-project.org/) installiert haben.
 
 
 
-### Installation von 'renv'
+### Schritt 3: Installation von 'renv'
 
 Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von [renv](https://rstudio.github.io/renv/articles/renv.html) (Tool zur Versionierung von R packages) aufgefordert werden.
 
 
 
-### Installation von R Packages
+### Schritt 4: Installation von R Packages
 
 Um alle packages in der benötigten Version zu installieren, führen Sie in der R session aus:
 
@@ -74,7 +77,7 @@ renv::restore()   # in einer R-Konsole ausführen
 
 
 
-### Installation von LaTeX
+### Schritt 5: Installation von LaTeX
 
 Um die PDF Reports zu kompilieren benötigen Sie eine \LaTeX -Installation. Sie können eine vollständige \LaTeX -Distribution auf Fedora wie folgt installieren (Acthung: mehrere Gigabyte Umfang):
 
@@ -91,7 +94,8 @@ install.packages("tinytex")   # in einer R-Konsole ausführen
 Die für die Referenzdatensätze verwendete \LaTeX -Installation ist `texlive-scheme-full`.
 
 
-### Datensatz erstellen
+
+### Schritt 6: Datensatz kompilieren
 
 Den vollständigen Datensatz kompilieren Sie mit folgendem Befehl:
 
@@ -101,6 +105,7 @@ rmarkdown::render("CE-BPatG_Compilation.Rmd",
                                        Sys.Date(),
                                        "_CompilationReport.pdf"))
 ```
+
 
 
 ### Ergebnis
