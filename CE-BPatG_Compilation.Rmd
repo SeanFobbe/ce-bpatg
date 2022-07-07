@@ -18,16 +18,14 @@ papersize: a4
 
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.path = file.path("..", "analysis/"),
-                      dev = c("pdf", "png"),
-                      dpi = 300,
-                      fig.align = "center",
-                      echo = TRUE,
+knitr::opts_chunk$set(echo = TRUE,
                       warning = TRUE,
                       message = TRUE,
                       collapse = TRUE,
                       comment = "#>")
 ```
+
+
 
 
 ```{r, results = "asis", echo = FALSE}
