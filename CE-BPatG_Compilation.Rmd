@@ -176,9 +176,6 @@ if (config$cores$max == FALSE){
     fullCores <- as.integer(config$cores$number)
 }
 
-message(paste("Parallel processing: using", fullCores, "cores.")) 
-
-
 ```
 
 
