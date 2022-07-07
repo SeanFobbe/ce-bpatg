@@ -761,30 +761,59 @@ tar_target(hashes,
 
 
 
-
-
 ## Report Targets
 
+Dieser Abschnitt der Pipeline erstellt die finalen Berichte (Codebook und Robustness Checks).
 
 
-```{targets tar.report}
 
 
-list(tar_target(latexdefs,
+
+### LaTeX-Definitionen schreiben
+
+Um gewisse Variablen aus der Pipeline in die LaTeX-Kompilierung einzuführen müssen diese als .tex-Datei auf die Festplatte geschrieben werden.
+
+```{targets tar.report1}
+tar_target(latexdefs,
                 f.latexdefs(config,
                             dir = "temp",
-                            datestamp = datestamp)),
-     tar_target(lingstats.summary,
+                            datestamp = datestamp))
+
+```
+
+
+
+### Zusammenfassungen linguistischer Kennwerte berechnen
+
+```{targets tar.report2}
+tar_target(lingstats.summary,
                 f.lingstats_summary(dt.bpatg.full,
-                                    germanvars = TRUE)),
-     tarchetypes::tar_render(report.tests,
+                                    germanvars = TRUE))
+
+```
+
+
+
+
+
+### Report erstellen: Robustness Checks
+
+```{targets tar.report3}
+tarchetypes::tar_render(report.tests,
                              file.path("reports",
-                                       "CE-BPatG_RobustnessChecks.Rmd")),
-     tarchetypes::tar_render(report.codebook,
+                                       "CE-BPatG_RobustnessChecks.Rmd"))
+
+```
+
+
+
+### Report erstellen: Codebook
+
+
+```{targets tar.report4}
+tarchetypes::tar_render(report.codebook,
                              file.path("reports",
                                        "CE-BPatG_Codebook.Rmd"))
-     )
-
 
 ```
 
@@ -794,88 +823,7 @@ list(tar_target(latexdefs,
 # Pipeline: Kompilierung
 
 
-```{r, results = "hide"}
-tar_make()
-```
-
-
-# Pipeline: Analyse
-
-
-## Gesamte Liste
-
-```{r, pipeline-list}
-
-meta <- tar_meta(fields = c("type", "bytes"), complete_only = TRUE)
-setDT(meta)
-
-kable(meta[order(type, name)],
-      format = "latex",
-      align = "r",
-      booktabs = TRUE,
-      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
-
-
-```
-
-\newpage
-## Timing
-
-
-```{r, pipeline-timing}
-
-meta <- tar_meta(fields = c("time", "seconds"), complete_only = TRUE)
-setDT(meta)
-
-kable(meta[order(-seconds)],
-      format = "latex",
-      align = "r",
-      booktabs = TRUE,
-      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
-
-
-```
-
-
-\newpage
-## Warnungen
-
-
-```{r, pipeling-warnings}
-
-meta <- tar_meta(fields = "warnings", complete_only = TRUE)
-setDT(meta)
-
-kable(meta,
-      format = "latex",
-      align = "r",
-      booktabs = TRUE,
-      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
-
-
-```
-
-
-\newpage
-## Fehlermeldungen
-
-```{r, pipeline-errors}
-
-meta <- tar_meta(fields = "error", complete_only = TRUE)
-setDT(meta)
-
-kable(meta,
-      format = "latex",
-      align = "r",
-      booktabs = TRUE,
-      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
-
-
-```
-
-
-\newpage
-## Netzwerk
+## Visualisierung
 
 ```{r, pipeline-graph, width = 9, height = 9}
 
@@ -897,3 +845,96 @@ ggraph(g,
 
 ```
                        
+
+
+## Durchführen der Kompilierung
+
+```{r, results = "hide"}
+tar_make()
+```
+
+
+
+
+# Pipeline: Analyse
+
+
+## Gesamte Liste
+
+Die vollständige Liste aller Targets, inklusive ihres Types und ihrer Größe in Bytes. Targets die auf Dateien verweisen (z.B. alle PDF-Dateien) geben die Gesamtgröße der Dateien auf der Festplatte an.
+
+
+
+```{r, pipeline-list}
+
+meta <- tar_meta(fields = c("type", "bytes"), complete_only = TRUE)
+setDT(meta)
+
+kable(meta[order(type, name)],
+      format = "latex",
+      align = "r",
+      booktabs = TRUE,
+      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
+
+
+```
+
+\newpage
+## Timing
+
+Der Zeitpunkt an dem die Targets berechnet wurden und ihre jeweilige Laufzeit in Sekunden.
+
+
+```{r, pipeline-timing}
+
+meta <- tar_meta(fields = c("time", "seconds"), complete_only = TRUE)
+setDT(meta)
+
+kable(meta[order(-seconds)],
+      format = "latex",
+      align = "r",
+      booktabs = TRUE,
+      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
+
+
+```
+
+
+
+
+\newpage
+## Warnungen
+
+
+```{r, pipeling-warnings}
+
+meta <- tar_meta(fields = "warnings", complete_only = TRUE)
+setDT(meta)
+
+kable(meta,
+      format = "latex",
+      align = "r",
+      booktabs = TRUE,
+      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
+
+
+```
+
+
+
+## Fehlermeldungen
+
+```{r, pipeline-errors}
+
+meta <- tar_meta(fields = "error", complete_only = TRUE)
+setDT(meta)
+
+kable(meta,
+      format = "latex",
+      align = "r",
+      booktabs = TRUE,
+      longtable = TRUE) %>% kable_styling(latex_options = "repeat_header")
+
+
+```
+
