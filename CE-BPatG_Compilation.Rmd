@@ -861,7 +861,7 @@ ggraph(g,
 
 ## Durchführen der Kompilierung
 
-```{r pipeline-run results = "hide"}
+```{r pipeline-run, results = "hide"}
 tar_make()
 ```
 
