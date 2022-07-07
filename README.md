@@ -27,9 +27,9 @@ Alle Ergebnisse werden im Ordner 'output' abgelegt. Zusätzlich werden für alle
 
 ## Systemanforderungen
 
-- Nur mit *Fedora Linux* getestet. Vermutlich auch funktionsfähig unter anderen Linux-Distributionen.
-- *16 GB Speicherplatz* auf Festplatte
-- *Multi-core CPU empfohlen* (8 cores/16 threads für die Referenzdatensätze). 
+- Nur mit Fedora Linux getestet. Vermutlich auch funktionsfähig unter anderen Linux-Distributionen.
+- 16 GB Speicherplatz auf Festplatte
+- Multi-core CPU empfohlen (8 cores/16 threads für die Referenzdatensätze). 
 
 
 In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
