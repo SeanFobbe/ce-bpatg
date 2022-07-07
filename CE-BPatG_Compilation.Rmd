@@ -1022,6 +1022,11 @@ kable(hashes[,.(index,filename)],
       booktabs = TRUE,
       longtable = TRUE)
 
+```
+
+\newpage
+
+```{r}
 
 kable(hashes[,.(index,sha2.256)],
       format = "latex",
@@ -1030,12 +1035,8 @@ kable(hashes[,.(index,sha2.256)],
       booktabs = TRUE,
       longtable = TRUE)
 
-```
-
-\newpage
 
 
-```{r}
 kable(hashes[,.(index,sha3.512)],
       format = "latex",
       align = c("c",
@@ -1052,7 +1053,7 @@ kable(hashes[,.(index,sha3.512)],
 \newpage
 
 ```{r, results = "asis"}
-cat(readLines(tar_read(changelog)),
+cat(readLines("CHANGELOG.md"),
     sep = "\n")
 
 ```
