@@ -1009,6 +1009,18 @@ kable(hashes[,.(index,sha3.512)],
 
 
 
+\newpage
+
+```{r, results = "asis"}
+cat(readLines(tar_read(changelog)),
+    sep = "\n")
+
+```
+
+
+
+
+
 # Parameter für strenge Replikationen
 
 
