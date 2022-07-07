@@ -37,8 +37,6 @@ tar_load(files.txt)
 tar_load(variables)
 tar_load(lingstats.summary)
 
-tar_load(zip.all)
-
 ```
 
 
@@ -1097,29 +1095,6 @@ ggplot(data = dt.plot,
 
 ```
 
-\newpage
-
-
-
-```{r}
-files.zip <- zip.all
-
-filesize <- round(file.size(files.zip) / 10^6, digits = 2)
-
-table.size <- data.table(basename(files.zip),
-                         filesize)
-
-
-kable(table.size,
-      format = "latex",
-      align = c("l", "r"),
-      format.args = list(big.mark = ","),
-      booktabs = TRUE,
-      longtable = TRUE,
-      col.names = c("Datei",
-                    "Größe in MB"))
-
-```
 
 
 
