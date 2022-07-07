@@ -687,7 +687,7 @@ tar_target(zip.txt,
 
 ### ZIP erstellen: Analyse-Dateien
 
-```{r tar.zip4}
+```{targets tar.zip4}
 tar_target(zip.analysis,
            f.zip_targets("analysis/",
                          filename = paste(prefix.files,
