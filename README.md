@@ -27,9 +27,9 @@ Alle Ergebnisse werden im Ordner 'output' abgelegt. Zusätzlich werden für alle
 
 ## Systemanforderungen
 
-- Nur mit **Fedora Linux** getestet. Vermutlich auch funktionsfähig unter anderen Linux-Distributionen.
-- **16 GB Speicherplatz** auf Festplatte
-- **Multi-core CPU empfohlen** (8 cores/16 threads für die Referenzdatensätze). 
+- Nur mit *Fedora Linux* getestet. Vermutlich auch funktionsfähig unter anderen Linux-Distributionen.
+- *16 GB Speicherplatz* auf Festplatte
+- *Multi-core CPU empfohlen* (8 cores/16 threads für die Referenzdatensätze). 
 
 
 In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
@@ -57,9 +57,13 @@ Sie müssen die [Programmiersprache R](https://www.r-project.org/) installiert h
 
 
 
+
+
 ### Schritt 3: Installation von 'renv'
 
 Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von [renv](https://rstudio.github.io/renv/articles/renv.html) (Tool zur Versionierung von R packages) aufgefordert werden.
+
+
 
 
 
@@ -71,13 +75,15 @@ Um alle packages in der benötigten Version zu installieren, führen Sie in der 
 renv::restore()   # in einer R-Konsole ausführen
 ```
 
-**Achtung:** es reicht nicht, die Packages auf herkömmliche Art installiert zu haben. Sie müssen dies nochmal über [renv](https://rstudio.github.io/renv/articles/renv.html) tun, selbst wenn die Packages in ihrer normalen Library schon vorhanden sind.
+*Achtung:* es reicht nicht, die Packages auf herkömmliche Art installiert zu haben. Sie müssen dies nochmal über [renv](https://rstudio.github.io/renv/articles/renv.html) tun, selbst wenn die Packages in ihrer normalen Library schon vorhanden sind.
+
+
 
 
 
 ### Schritt 5: Installation von LaTeX
 
-Um die PDF Reports zu kompilieren benötigen Sie eine \LaTeX -Installation. Sie können eine vollständige \LaTeX -Distribution auf Fedora wie folgt installieren (Acthung: mehrere Gigabyte Umfang):
+Um die PDF Reports zu kompilieren benötigen Sie eine \LaTeX -Installation. Sie können eine vollständige \LaTeX -Distribution auf Fedora wie folgt installieren:
 
 ```
 sudo dnf install texlive-scheme-full
@@ -93,6 +99,8 @@ Die für die Referenzdatensätze verwendete \LaTeX -Installation ist `texlive-sc
 
 
 
+
+
 ### Schritt 6: Datensatz kompilieren
 
 Den vollständigen Datensatz kompilieren Sie mit folgendem Befehl:
@@ -105,10 +113,11 @@ rmarkdown::render("CE-BPatG_Compilation.Rmd",
 ```
 
 
-
 ### Ergebnis
 
 Der Datensatz und alle weiteren Ergebnisse sind nun im Ordner `output/` abgelegt.
+
+
 
 
 
@@ -120,6 +129,9 @@ Sie können die Pipeline visualisieren, aber nur nachdem sie die zentrale .Rmd-D
 targets::tar_glimpse()     # Nur Datenobjekte
 targets::tar_visnetwork()  # Alle Objekte
 ```
+
+
+
 
 
 ## Troubleshooting
