@@ -861,7 +861,7 @@ ggraph(g,
 
 ## Durchführen der Kompilierung
 
-```{r, results = "hide"}
+```{r pipeline-run results = "hide"}
 tar_make()
 ```
 
@@ -960,8 +960,12 @@ kable(meta,
 # Dateigrößen
 
 
+- ADD reports to hashing list
 
-```{r}
+
+
+
+```{r filesize}
 tar_load(zip.all)
 
 files.zip <- zip.all
