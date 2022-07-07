@@ -935,7 +935,7 @@ ggplot(data = freqtable.entscheidungsjahr.nosum) +
     theme_bw() +
     labs(
         title = paste(prefix.figuretitle,
-                      "| Entscheidungen je Entscheidungsjahr-blubb"),
+                      "| Entscheidungen je Entscheidungsjahr"),
         caption = caption,
         x = "Entscheidungsjahr",
         y = "Entscheidungen"
