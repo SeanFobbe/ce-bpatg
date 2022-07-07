@@ -76,18 +76,19 @@ renv::restore()   # in einer R-Konsole ausführen
 
 ### Installation von LaTeX
 
-Um die PDF Reports zu kompilieren benötigen Sie eine \LaTeX -Installation. Sie können diese auf Fedora wie folgt installieren:
+Um die PDF Reports zu kompilieren benötigen Sie eine \LaTeX -Installation. Sie können eine vollständige \LaTeX -Distribution auf Fedora wie folgt installieren (Acthung: mehrere Gigabyte Umfang):
 
 ```
 sudo dnf install texlive-scheme-full
 ```
 
-Alternativ können sie das R package [tinytex](https://yihui.org/tinytex/) installieren, welches nur die benötigten \LaTeX\ packages abfragt:
+Alternativ können sie das R package [tinytex](https://yihui.org/tinytex/) installieren, welches nur die benötigten \LaTeX\ packages installiert.
 
 ```
 install.packages("tinytex")   # in einer R-Konsole ausführen
 ```
 
+Die für die Referenzdatensätze verwendete \LaTeX -Installation ist `texlive-scheme-full`.
 
 
 ### Datensatz erstellen
