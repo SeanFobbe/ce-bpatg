@@ -47,7 +47,7 @@ Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispiel
 git clone https://github.com/seanfobbe/ce-bpatg
 ```
 
-Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (`txt/`, `pdf/`, `temp/` und `output/`) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
+Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (`txt/`, `pdf/`, `temp/`, `analysis` und `output/`) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
 
 
 
@@ -154,7 +154,7 @@ tar_meta(fields = "seconds")  # Laufzeit der Targets
 
 ## Projektstruktur
 
-Die folgende Struktur erläutert die wichtigsten Bestandteile des Projekts. Währen der Kompilierung werden weitere Ordner erstellt (`pdf/`, `txt/`, `temp/` und `output/`). Die Endergebnisse werden alle in `output/` abgelegt.
+Die folgende Struktur erläutert die wichtigsten Bestandteile des Projekts. Währen der Kompilierung werden weitere Ordner erstellt (`pdf/`, `txt/`, `temp/` `analysis` und `output/`). Die Endergebnisse werden alle in `output/` abgelegt.
 
  
 ``` 
