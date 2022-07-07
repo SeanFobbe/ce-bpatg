@@ -969,16 +969,38 @@ kable(meta,
 
 
 
+# Dateigrößen analysieren
+
+
+
+## Datensatz in RAM (MB)
+
+```{r}
+print(object.size(dt.bpatg.full),
+      standard = "SI",
+      humanReadable = TRUE,
+      units = "MB")
+      
+```
+
+
+
+## ZIP und CSV-Dateien
 
 
 ```{r filesize}
 tar_load(zip.all)
+tar_load(csv.full)
+tar_load(csv.meta)
 
-files.zip <- zip.all
 
-filesize <- round(file.size(files.zip) / 10^6, digits = 2)
+files.all <- c(zip.all,
+               csv.full,
+               csv.meta)
 
-table.size <- data.table(basename(files.zip),
+filesize <- round(file.size(files.all) / 10^6, digits = 2)
+
+table.size <- data.table(basename(files.all),
                          filesize)
 
 
@@ -993,6 +1015,23 @@ kable(table.size,
 
 ```
 
+
+
+## PDF-Dateien (MB)
+
+```{r}
+pdf.MB <- file.size(files.pdf) / 10^6
+sum(pdf.MB)
+```
+
+
+## TXT-Dateien (MB)
+
+
+```{r}
+txt.MB <- file.size(files.txt) / 10^6
+sum(txt.MB)
+```
 
 
 
