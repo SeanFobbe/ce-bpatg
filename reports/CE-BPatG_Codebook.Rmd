@@ -13,6 +13,8 @@ output:
     includes:
       in_header: Preamble_DE.tex
       before_body: [../temp/CE-BPatG_Definitions.tex, ../tex/CE-BPatG_CodebookTitle.tex]
+bibliography: temp/packages.bib
+nocite: '@*'
 ---
 
 
@@ -1149,3 +1151,6 @@ system2("openssl", "version", stdout = TRUE)
 sessionInfo()
 
 ```
+
+
+# Literaturverzeichnis
