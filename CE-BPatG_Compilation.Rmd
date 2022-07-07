@@ -258,8 +258,8 @@ Der Umfang der Auswertung der Datenbank des BPatG.
 
 ```{targets tar.file1}
 tar_target(file.scope,
-                "data/CE-BPatG_Scope.csv",
-                format = "file")
+           "data/CE-BPatG_Scope.csv",
+           format = "file")
 
 ```
 
@@ -269,8 +269,8 @@ Die Variablen des Datensatzes, inklusive ihrer Erläuterung.
 
 ```{targets tar.file2}
 tar_target(file.variables,
-                "data/CE-BPatG_Variables.csv",
-                format = "file")
+           "data/CE-BPatG_Variables.csv",
+           format = "file")
 ```
 
 
@@ -281,8 +281,8 @@ Die Tabelle der Registerzeichen und der ihnen zugeordneten Verfahrensarten stamm
 
 ```{targets tar.file3}
 tar_target(file.az.brd,
-                "data/AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv",
-                format = "file")
+           "data/AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv",
+           format = "file")
 ```
 
 ### Source Code
@@ -291,8 +291,8 @@ Dies sind alle Dateien, die den Source Code für den Datensatz bereitstellen.
 
 ```{targets tar.file4}
 tar_target(files.source,
-                files.source.raw,
-                format = "file")
+           files.source.raw,
+           format = "file")
 
 ```
 
@@ -300,9 +300,10 @@ tar_target(files.source,
 
 ```{targets tar.file5}
 tar_target(changelog,
-                "CHANGELOG.md",
-                format = "file")
+           "CHANGELOG.md",
+           format = "file")
 ```
+
 
 ### Analyse-Dateien
 
