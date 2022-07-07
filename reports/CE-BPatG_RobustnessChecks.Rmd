@@ -36,9 +36,6 @@ tar_load(dt.download.final)
 tar_load(dt.bpatg.full)
 tar_load(files.pdf)
 tar_load(files.txt)
-tar_load(csv.full)
-tar_load(csv.meta)
-tar_load(variables)
 
 ```
 
@@ -153,9 +150,22 @@ setdiff(scope$loc,
 
 
 
+# Vollständigkeit der Texte
 
 
+## Download der PDF-Dateien
 
+```{r}
+setdiff(dt.download.final$doc_id,
+        basename(files.pdf))
+```
+
+## Konvertierung zu TXT-Dateien
+
+```{r}
+setdiff(tools::file_path_sans_ext(basename(files.pdf)),
+        tools::file_path_sans_ext(basename(files.txt)))
+```
 
 
 
