@@ -976,6 +976,7 @@ kable(meta,
 ## Datensatz in RAM (MB)
 
 ```{r}
+tar_load(dt.bpatg.full)
 print(object.size(dt.bpatg.full),
       standard = "SI",
       humanReadable = TRUE,
