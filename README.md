@@ -25,8 +25,9 @@ Primäre Endprodukte des Skripts sind folgende ZIP-Archive:
 Alle Ergebnisse werden im Ordner 'output' abgelegt. Zusätzlich werden für alle ZIP-Archive kryptographische Signaturen (SHA2-256 und SHA3-512) berechnet und in einer CSV-Datei hinterlegt. 
 
 
-## Vorbereitung
+## Anleitung
 
+Diese Anleitung führt die Schritt für Schritt durch die Erstellung des Datensatzes. 
 
 
 ### Systemanforderungen
@@ -57,7 +58,7 @@ Sie müssen die [Programmiersprache R](https://www.r-project.org/) installiert h
 
 ### Installation von 'renv'
 
-Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von [renv](https://rstudio.github.io/renv/articles/renv.html) (Versionierung von R packages) aufgefordert werden.
+Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von [renv](https://rstudio.github.io/renv/articles/renv.html) (Tool zur Versionierung von R packages) aufgefordert werden.
 
 
 
@@ -69,9 +70,11 @@ Um alle packages in der benötigten Version zu installieren, führen Sie in der 
 renv::restore()   # in einer R-Konsole ausführen
 ```
 
+**Achtung:** es reicht nicht, die Packages auf herkömmliche Art installiert zu haben. Sie müssen dies nochmal über [renv](https://rstudio.github.io/renv/articles/renv.html) tun, selbst wenn die Packages in ihrer normalen Library schon vorhanden sind..
 
 
-### (Optional) Installation von LaTeX
+
+### Installation von LaTeX
 
 Um die PDF Reports zu kompilieren benötigen Sie eine LaTeX-Installation. Sie können diese auf Fedora wie folgt installieren:
 
@@ -84,11 +87,6 @@ Alternativ können sie das R package **tinytex** installieren:
 ```
 install.packages("tinytex")   # in einer R-Konsole ausführen
 ```
-
-
-## Kompilierung
-
-
 
 
 
@@ -122,7 +120,7 @@ targets::tar_visnetwork()  # Alle Objekte
 
 ### Troubleshooting
 
-
+Hilfreiche Befehle um Fehler zu lokalisieren und zu beheben.
 
 ```
 tar_progress() %>% print(n=100)   # Zeigt Fortschritt und Fehler an
