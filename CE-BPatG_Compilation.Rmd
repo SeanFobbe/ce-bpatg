@@ -304,7 +304,13 @@ tar_target(changelog,
                 format = "file")
 ```
 
+### Analyse-Dateien
 
+```{targets tar.file7}
+tar_target(analysis,
+           "analysis/",
+           format = "file")
+```
 
 
 
@@ -686,12 +692,24 @@ tar_target(zip.txt,
                 format = "file")
 ```
 
+### ZIP erstellen: Analyse-Dateien
+
+```{targets tar.zip4}
+tar_target(zip.analysis,
+                f.zip_targets(analysis,
+                              filename = paste(prefix.files,
+                                               "DE_TXT_Analyse.zip",
+                                               sep = "_"),
+                              dir = "output",
+                              mode = "cherry-pick"),
+                format = "file")
+```
 
 
 ### ZIP erstellen: CSV-Datei (voller Datensatz)
 
 
-```{targets tar.zip4}
+```{targets tar.zip5}
 tar_target(zip.csv.full,
                 f.zip_targets(csv.full,
                               filename = gsub("\\.csv", "\\.zip", basename(csv.full)),
@@ -705,7 +723,7 @@ tar_target(zip.csv.full,
 ### ZIP erstellen: CSV-Datei (nur Metadaten)
 
 
-```{targets tar.zip5}
+```{targets tar.zip6}
 tar_target(zip.csv.meta,
                 f.zip_targets(csv.meta,
                               filename = gsub("\\.csv", "\\.zip", basename(csv.meta)),
@@ -720,7 +738,7 @@ tar_target(zip.csv.meta,
 ### ZIP erstellen: Source Code
 
 
-```{targets tar.zip6}
+```{targets tar.zip7}
 tar_target(zip.source,
                 f.zip_targets(files.source,
                               filename = paste0(prefix.files,
@@ -736,7 +754,7 @@ tar_target(zip.source,
 ### Kryptographische Hashes für alle ZIP-Archive berechnen
 
 
-```{targets tar.zip7}
+```{targets tar.zip8}
 tar_target(zip.all,
                 c(zip.pdf.all,
                   zip.pdf.leitsatz,
@@ -747,7 +765,7 @@ tar_target(zip.all,
 ```
 
 
-```{targets tar.zip8}
+```{targets tar.zip9}
 tar_target(hashes,
                 f.tar_multihashes(zip.all,
                                   multicore = config$parallel$lingsummarize,
