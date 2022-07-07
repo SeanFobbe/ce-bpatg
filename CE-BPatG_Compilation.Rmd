@@ -54,6 +54,7 @@ tar_unscript()
 
 - standardize "." and "_"
 - add analysis zip archive
+- add bibliography
 
 
 # Vorbereitung
