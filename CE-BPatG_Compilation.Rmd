@@ -13,6 +13,8 @@ output:
       in_header: reports/Preamble_DE.tex
       before_body: [temp/CE-BPatG_Definitions.tex, tex/CE-BPatG_CompilationTitle.tex]
 papersize: a4
+bibliography: temp/packages.bib
+nocite: '@*'
 ---
 
 
