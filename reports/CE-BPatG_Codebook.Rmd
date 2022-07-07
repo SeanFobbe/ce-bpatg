@@ -146,7 +146,11 @@ Speziell an Praktiker:innen richtet sich die PDF-Sammlung aller Leitsatzentschei
  Die Tabelle der Registerzeichen und der ihnen zugeordneten Verfahrensarten stammt aus dem folgenden Datensatz: \enquote{Seán Fobbe (2021). Aktenzeichen der Bundesrepublik Deutschland (AZ-BRD). Version 1.0.1. Zenodo. DOI: 10.5281/zenodo.4569564.}
 
 
-## Visualisierung des Prozesses der Kompilierung
+
+
+## Sammlung der Daten
+
+Die Daten wurden unter Beachtung des Robot Exclusion Standard (RES) gesammelt. Der Abruf geschieht ausschließlich über TLS-verschlüsselte Verbindungen. Die Entscheidungen sind laut dem Gericht anonymisiert, aber ungekürzt.
 
 
 ```{r, pipeline-graph, width = 9, height = 9}
@@ -169,12 +173,6 @@ ggraph(g,
 
 ```
      
-
-
-## Sammlung der Daten
-
-Die Daten wurden unter Beachtung des Robot Exclusion Standard (RES) gesammelt. Der Abruf geschieht ausschließlich über TLS-verschlüsselte Verbindungen. Die Entscheidungen sind laut dem Gericht anonymisiert, aber ungekürzt.
-
 
 
 ## Source Code und Compilation Report
