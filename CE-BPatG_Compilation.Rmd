@@ -238,36 +238,81 @@ files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
 # Pipeline: Konstruktion
 
 
+## File Tracking
+
+Mit der Option \enquote{format = "file"} werden für Input-Dateien Prüfsummen berechnet und, falls sich diese verändern, neu eingelesen.
+
+### Scope
+
+Der Umfang der Auswertung der Datenbank des BPatG.
+
+
+```{targets tar.file1}
+tar_target(file.scope,
+                "data/CE-BPatG_Scope.csv",
+                format = "file")
+
+```
+
+### Variablen
+
+Die Variablen des Datensatzes, inklusive ihrer Erläuterung.
+
+```{targets tar.file2}
+tar_target(file.variables,
+                "data/CE-BPatG_Variables.csv",
+                format = "file")
+```
+
+
+### Aktenzeichen der Bundesrepublik Deutschland (AZ-BRD)
+
+Die Tabelle der Registerzeichen und der ihnen zugeordneten Verfahrensarten stammt aus dem folgenden Datensatz: \enquote{Seán Fobbe (2021). Aktenzeichen der Bundesrepublik Deutschland (AZ-BRD). Version 1.0.1. Zenodo. DOI: 10.5281/zenodo.4569564.}
+
+
+```{targets tar.file3}
+tar_target(file.az.brd,
+                "data/AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv",
+                format = "file")
+```
+
+### Source Code
+
+Dies sind alle Dateien, die den Source Code für den Datensatz bereitstellen.
+
+```{targets tar.file4}
+tar_target(files.source,
+                files.source.raw,
+                format = "file")
+
+```
+
+### Changelog
+
+```{targets tar.file5}
+tar_target(changelog,
+                "CHANGELOG.md",
+                format = "file")
+```
+
+
 
 ## Data Targets
 
+Mit diesen Targets werden CSV-Dateien eingelesen, die im file tracking zuvor definiert wurden.
+
 
 ```{targets tar.data}
-
-list(tar_target(file.scope,
-                "data/CE-BPatG_Scope.csv",
-                format = "file"),
-     tar_target(scope,
+list(tar_target(scope,
                 fread(file.scope)),
-     tar_target(file.variables,
-                "data/CE-BPatG_Variables.csv",
-                format = "file"),
      tar_target(variables,
                 fread(file.variables)),
-     tar_target(file.az.brd,
-                "data/AZ-BRD_1-0-1_DE_Registerzeichen_Datensatz.csv",
-                format = "file"),
      tar_target(az.brd,
-                fread(file.az.brd)),
-     tar_target(files.source,
-                files.source.raw,
-                format = "file"),
-     tar_target(changelog,
-                "CHANGELOG.md",
-                format = "file")
-     )
+                fread(file.az.brd)))
+
 
 ```
+
 
 
 
