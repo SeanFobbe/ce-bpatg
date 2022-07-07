@@ -58,7 +58,7 @@ tar_unscript()
 # Todo
 
 - standardize "." and "_"
-- add analysis zip archive
+- add analysis zip archive; cue with comp report
 - add bibliography
 
 
@@ -304,14 +304,6 @@ tar_target(changelog,
            format = "file")
 ```
 
-
-### Analyse-Dateien
-
-```{targets tar.file7}
-tar_target(analysis,
-           "analysis/",
-           format = "file")
-```
 
 
 
@@ -695,14 +687,15 @@ tar_target(zip.txt,
 
 ### ZIP erstellen: Analyse-Dateien
 
-```{targets tar.zip4}
+```{r tar.zip4}
 tar_target(zip.analysis,
-                f.zip_targets(analysis,
+           function(){report.codebook report.tests               
+				f.zip_targets("analysis/",
                               filename = paste(prefix.files,
-                                               "DE_TXT_Analyse.zip",
+                                               "DE_Analyse.zip",
                                                sep = "_"),
                               dir = "output",
-                              mode = "cherry-pick"),
+                              mode = "cherry-pick")},
                 format = "file")
 ```
 
