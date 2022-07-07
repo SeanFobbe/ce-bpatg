@@ -956,7 +956,9 @@ kable(meta,
 
 # Kryptographische Signaturen dokumentieren
 
+## Signaturen laden
 
+tar_load(hashes)
 
 ## Leerzeichen hinzufügen um bei SHA3-512 Zeilenumbruch zu ermöglichen
 
