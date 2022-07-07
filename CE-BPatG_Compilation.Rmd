@@ -397,7 +397,9 @@ tar_target(files.pdf,
 
 ## Convert Targets
 
-Durch diese Schritte werden die PDF-Dateien in TXT konvertiert und mitsamt den Variablen in ihren Dateinamen eingelesen.
+Durch diese Schritte werden die PDF-Dateien in TXT konvertiert und mitsamt den Variablen in ihren Dateinamen eingelesen. Beim Einlesen werden die in PDF-Dateien üblichen über Zeilen gebrochene Wörter wieder zusammengefügt.
+
+
 
 
 ```{targets tar.convert}
@@ -418,36 +420,123 @@ list(tar_target(files.txt,
 ## Enhance Targets
 
 
-```{targets tar.enhance}
+
+### Daten standardisieren
+
+Das Datum wird im ISO-Format standardisiert und die Variablen \enquote{entscheidungsjahr} und \enquote{eingangsjahr\_iso} hinzugefügt.
 
 
-list(tar_target(dt.bpatg.datecleaned,
-                f.clean_dates(dt.bpatg)),
-     tar_target(var_verfahrensart,
+```{targets tar.enhance1}
+tar_target(dt.bpatg.datecleaned,
+                f.clean_dates(dt.bpatg))
+```
+
+
+
+
+
+
+### Variable erstellen: \enquote{verfahrensart}
+
+Die Variable \enquote{verfahrensart} wird aus den Registerzeichen berechnet.
+
+```{targets tar.enhance2}
+tar_target(var_verfahrensart,
                 f.var_verfahrensart(dt.bpatg.datecleaned$registerzeichen,
                                     az.brd = az.brd,
-                                    gericht = "BPatG")),
-     tar_target(var_aktenzeichen,
+                                    gericht = "BPatG"))
+```
+
+
+
+
+
+### Variable erstellen: \enquote{aktenzeichen}
+
+Das Aktenzeichen wird aus seinen Komponenten berechnet.
+
+
+```{targets tar.enhance3}
+tar_target(var_aktenzeichen,
                 f.var_aktenzeichen(dt.bpatg.datecleaned,
                                    az.brd = az.brd,
-                                   gericht = "BPatG")),
-     tar_target(var_entscheidung_typ,
-                f.var_entscheidung_typ_bpatg(dt.bpatg.datecleaned$text)),
-     tar_target(var_ecli,
+                                   gericht = "BPatG"))
+```
+
+
+
+
+### Variable erstellen: \enquote{entscheidung\_typ}
+
+Der Typ der Entscheidung wird aus dem Text extrahiert.
+
+
+```{targets tar.enhance4}
+tar_target(var_entscheidung_typ,
+                f.var_entscheidung_typ_bpatg(dt.bpatg.datecleaned$text))
+```
+
+
+
+### Variable erstellen: \enquote{ecli}
+
+Die ECLI wird aus ihren Komponenten berechnet. Achtung: weil die offizielle Kollisionsnummer nicht in der Datenbank dokumentiert ist, können Entscheidungen vom gleichen Tag mit dem gleichen Aktenzeichen potentiell fehlerhafte ECLIs aufweisen.
+
+
+
+```{targets tar.enhance5}
+tar_target(var_ecli,
                 f.var_ecli_bpatg(dt.bpatg.datecleaned,
-                                 entscheidung_typ = var_entscheidung_typ)),
-     tar_target(var_lingstats,
+                                 entscheidung_typ = var_entscheidung_typ))
+```
+
+
+
+
+
+
+### Variablen erstellen: \enquote{zeichen, token, typen, saetze}
+
+Berechnung klassischer linguistischer Kennzahlen.
+
+
+
+```{targets tar.enhance6}
+tar_target(var_lingstats,
                 f.lingstats(dt.bpatg.datecleaned,
                             multicore = config$parallel$lingsummarize,
                             cores = fullCores,
-                            germanvars = TRUE)),
-     tar_target(var_constants,
-                data.frame(version = as.character(datestamp),
-                           doi_concept = config$doi$data$concept,
-                           doi_version = config$doi$data$version,
-                           lizenz = as.character(config$license$data))[rep(1,
-                                                                           nrow(dt.bpatg.datecleaned)),]),
-     tar_target(dt.bpatg.full,
+                            germanvars = TRUE))
+```
+
+
+
+
+
+### Konstanten erstellen
+
+Konstanten die dem Datensatz wichtige Herkunftsinformationen hinzufügen. Darunter sind die Versionsnummer, die Version DOI, die Concept DOI und die Lizenz.
+
+
+
+```{targets tar.enhance7}
+tar_target(var_constants,
+           data.frame(version = as.character(datestamp),
+                      doi_concept = config$doi$data$concept,
+                      doi_version = config$doi$data$version,
+                      lizenz = as.character(config$license$data))[rep(1,
+                                                                      nrow(dt.bpatg.datecleaned)),])
+```
+
+
+
+### Finalen Datensatz erstellen
+
+Die Verbesserungen der vorherigen Schritte werden in dieser Funktion zusammengefügt um den finalen Datenatz herzustellen.
+
+
+```{targets tar.enhance8}
+tar_target(dt.bpatg.full,
                 f.dataset_finalize(dt.bpatg.datecleaned,
                                    download.table = dt.download.final,
                                    aktenzeichen = var_aktenzeichen,
@@ -456,12 +545,32 @@ list(tar_target(dt.bpatg.datecleaned,
                                    verfahrensart = var_verfahrensart,
                                    lingstats = var_lingstats,
                                    constants = var_constants,
-                                   variablen = variables$variable)),
-     tar_target(dt.bpatg.meta,
-                dt.bpatg.full[, !"text"])
-     )
+                                   variablen = variables$variable))
 
 ```
+
+
+
+
+### Variante erstellen: Nur Metadaten
+
+Hier wird nur die Text-Variable entfernt um eine deutlich platzsparendere Variante des Datensatzes nur mit den Metadaten zu erstellen.
+
+
+
+```{targets tar.enhance9}
+tar_target(dt.bpatg.meta,
+                dt.bpatg.full[, !"text"])
+
+```
+
+
+
+
+
+
+
+
 
 ## Write Targets
 
@@ -494,6 +603,8 @@ list(tar_target(csv.full,
      )
 
 ```
+
+
 
 ## Zip Targets
 
