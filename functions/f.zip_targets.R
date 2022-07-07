@@ -2,7 +2,8 @@
 f.zip_targets <- function(x,
                           filename,
                           dir,
-                          mode = "mirror"){
+                          mode = "mirror",
+                          ...){
 
 
     filename <- file.path(dir, filename)
