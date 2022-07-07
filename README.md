@@ -1,4 +1,4 @@
-# Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)
+# README: Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)
 
 
 ## Überblick
@@ -96,28 +96,27 @@ rmarkdown::render("CE-BPatG_Compilation.Rmd",
 
 
 
-## Ordnerstruktur
+## Projektstruktur
+
+Die folgende Struktur erläutert die wichtigsten Bestandteile des Projekts. Währen der Kompilierung werden weitere Ordner erstellt (`pdf/`, `txt/`, `temp/` und `output/`). Die Endergebnisse sind alle in `output/`
  
- 
-```
- 
-├── CE-BPatG_Compilation.Rmd
-├── CE-BPatG_Config.toml
-├── CHANGELOG.md
-├── LICENSE
-├── R-fobbe-proto-package
-├── README.md
-├── _targets_packages.R
-├── buttons
-├── data
-├── functions
-├── gpg
-├── renv
-├── renv.lock
-├── reports
-└── tex
+``` 
+├── CE-BPatG_Compilation.Rmd   # Zentrale Definition der Pipeline
+├── CE-BPatG_Config.toml       # Zentrale Konfigurations-Datei
+├── R-fobbe-proto-package      # Oft verwendete Funktionen 
+├── _targets_packages.R        # Automatisiert erstellte Package-Liste für renv
+├── buttons                    # Buttons (nur optische Bedeutung)
+├── data                       # Datensätze, auf denen die Pipeline aufbaut
+├── functions                  # Funktionen, die die Hauptarbeit der Pipeline leisten
+├── gpg                        # Persönlicher Public GPG-Key für Seán Fobbe
+├── renv                       # Versionskontrolle für R Packages: Executables
+├── renv.lock                  # Versionskontrolle für R Packages: Versionsinformationen
+├── reports                    # Markdown-Dateien für Codebook und Robustness Checks
+└── tex                        # LaTeX-Templates
 
 ```
+
+
 
 
  
