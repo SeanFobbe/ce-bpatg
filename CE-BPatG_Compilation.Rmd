@@ -240,7 +240,9 @@ files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
 
 ## File Tracking
 
-Mit der Option \enquote{format = "file"} werden für Input-Dateien Prüfsummen berechnet und, falls sich diese verändern, neu eingelesen.
+Mit der Option \enquote{format = "file"} werden für Input-Dateien Prüfsummen berechnet. Falls sich diese verändern werden alle von ihnen abhängigen Pipeline-Schritte als veraltet markiert und neu berechnet.
+
+
 
 ### Scope
 
@@ -297,6 +299,9 @@ tar_target(changelog,
 
 
 
+
+
+
 ## Data Targets
 
 Mit diesen Targets werden CSV-Dateien eingelesen, die im file tracking zuvor definiert wurden.
@@ -319,21 +324,57 @@ list(tar_target(scope,
 
 ## Download Targets
 
-```{targets tar.download}
 
-list(tar_target(dt.download,
+### Vorläufige Download-Tabelle erstellen
+
+Abfrage der Datenbank des BPatG und erstellen der vorläufigen Download-Tabelle.
+
+```{targets tar.download}
+tar_target(dt.download,
                 f.download_table_make(x = scope,
                                       debug.toggle = config$debug$toggle,
-                                      debug.pages = config$debug$pages)),
-     tar_target(az_clean,
+                                      debug.pages = config$debug$pages))
+
+```
+
+### Download-Tabelle Bereinigen
+
+Die Aktenzeichen und Senatsgruppen werden bereinigt und gespeichert.
+
+```{targets tar.download}
+
+list(
+    tar_target(az_clean,
                 f.clean_az_bpatg(dt.download$az)),
-     tar_target(senatsgruppe_clean,
-                f.clean_spruch_bpatg(dt.download$senatsgruppe)),
-     tar_target(dt.download.final,
+    tar_target(senatsgruppe_clean,
+               f.clean_spruch_bpatg(dt.download$senatsgruppe))
+    )
+				
+				
+```
+
+### Finale Download-Tabelle erstellen
+
+Die bereinigten Aktenzeichen und Senatsgruppen werden hier mit der vorläufigen Download-Tabelle zusammengeführt, weitere Bereinigungen durchgeführt, weitere Variablen aus den Bemerkungen extrahiert und schließlich auf ihre Konformität mit der Beschreibung im Codebook getestet.
+
+
+
+```{targets tar.download}
+
+tar_target(dt.download.final,
                 f.download_table_finalize(x = dt.download,
                                           az = az_clean,
-                                          senatsgruppe = senatsgruppe_clean)),
-     tar_target(files.pdf,
+                                          senatsgruppe = senatsgruppe_clean))
+```
+
+
+
+
+### Download durchführen
+
+
+```{targets tar.download}
+tar_target(files.pdf,
                 f.download(url = dt.download.final$url,
                            filename = dt.download.final$doc_id,
                            dir = "pdf",
@@ -346,11 +387,15 @@ list(tar_target(dt.download,
                            debug.toggle = FALSE,
                            debug.files = 500),
                 format = "file")
-     )
 
 ```
 
-### Convert Targets
+
+
+
+
+
+## Convert Targets
 
 ```{targets tar.convert}
 
@@ -364,7 +409,7 @@ list(tar_target(files.txt,
 					
 ```					
 
-### Enhance Targets
+## Enhance Targets
 
 
 ```{targets tar.enhance}
@@ -412,7 +457,7 @@ list(tar_target(dt.bpatg.datecleaned,
 
 ```
 
-### Write Targets
+## Write Targets
 
 
 
@@ -444,7 +489,7 @@ list(tar_target(csv.full,
 
 ```
 
-### Zip Targets
+## Zip Targets
 
 
 ```{targets tar.zip}
@@ -512,7 +557,7 @@ list(tar_target(zip.pdf.all,
 ```
 
 
-### Report Targets
+## Report Targets
 
 
 
