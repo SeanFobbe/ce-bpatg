@@ -579,37 +579,49 @@ tar_target(dt.bpatg.meta,
 
 ## Write Targets
 
+Dieser Abschnitt der Pipeline schreibt den Datensatz und die jeweiligen Prüfsummen auf die Festplatte.
 
+### CSV schreiben: Voller Datensatz
 
-
-
-```{targets tar.write}
-
-list(tar_target(csv.full,
-                f.tar_fwrite(x = dt.bpatg.full,
-                             filename = file.path("output",
-                                                  paste0(prefix.files,
-                                                         "_DE_CSV_Datensatz.csv"))
-                             )
-                ),
-     
-     tar_target(csv.meta,
-                f.tar_fwrite(x = dt.bpatg.meta,
-                             filename = file.path("output",
-                                                  paste0(prefix.files,
-                                                         "_DE_CSV_Metadaten.csv"))
-                             )
-                ),
-     tar_target(csv.hashes,
-                f.tar_fwrite(x = hashes,
-                             filename = file.path("output",
-                                                  paste0(prefix.files,
-                                                         "_DE_KryptographischeHashes.csv"))
-                             )
-                )
-     )
-
+```{targets tar.write1}
+tar_target(csv.full,
+           f.tar_fwrite(x = dt.bpatg.full,
+                        filename = file.path("output",
+                                             paste0(prefix.files,
+                                                    "_DE_CSV_Datensatz.csv"))
+                        )
+           )
 ```
+
+### CSV schreiben: Metadaten
+
+
+```{targets tar.write2}
+tar_target(csv.meta,
+           f.tar_fwrite(x = dt.bpatg.meta,
+                        filename = file.path("output",
+                                             paste0(prefix.files,
+                                                    "_DE_CSV_Metadaten.csv"))
+                        )
+           )
+```
+
+
+### CSV schreiben: Kryptographische Hashes
+
+
+```{targets tar.write3}
+tar_target(csv.hashes,
+           f.tar_fwrite(x = hashes,
+                        filename = file.path("output",
+                                             paste0(prefix.files,
+                                                    "_DE_KryptographischeHashes.csv"))
+                        )
+           )
+```
+
+
+
 
 
 
