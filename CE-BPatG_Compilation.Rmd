@@ -837,7 +837,7 @@ tarchetypes::tar_render(report.tests,
 values <- list(
   name = as.list(as.symbol("report.codebook")),
   file = as.list(file.path("reports", "CE-BPatG_Codebook.Rmd")),
-  params = data.frame(output_file = paste0("../output/CE-BPatG_", Sys.Date(), "_Codebook.pdf"))
+  params = as.list(data.frame(output_file = paste0("../output/CE-BPatG_", Sys.Date(), "_Codebook.pdf")))
 )
 
 
