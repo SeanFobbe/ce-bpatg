@@ -831,18 +831,11 @@ tarchetypes::tar_render(report.tests,
 
 
 
-
 ```{targets tar.report4}
-
-values <- list(
-  name = as.list(as.symbol("report.codebook")),
-  file = as.list(file.path("reports", "CE-BPatG_Codebook.Rmd")),
-  params = as.list(data.frame(output_file = paste0("../output/CE-BPatG_", Sys.Date(), "_Codebook.pdf")))
-)
-
-
-
-tarchetypes::tar_eval(tarchetypes::tar_render(name, file, params = params), values = values)
+tarchetypes::tar_render(report.codebook,
+                        file.path("reports",
+                                  "CE-BPatG_Codebook.Rmd"),
+                        output_file = "output/test.pdf")
 
 ```
 
