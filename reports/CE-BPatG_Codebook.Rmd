@@ -78,7 +78,7 @@ In einem funktionierenden Rechtsstaat muss die Rechtsprechung öffentlich, trans
 
 ```{r, eval = FALSE, echo = TRUE}
 library(data.table)
-dt.bgh <- fread("filename.csv")
+dt.bpatg <- fread("filename.csv")
 ```
 
 
