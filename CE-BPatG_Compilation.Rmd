@@ -835,8 +835,8 @@ tarchetypes::tar_render(report.tests,
 tarchetypes::tar_render(report.codebook,
                         file.path("reports",
                                   "CE-BPatG_Codebook.Rmd"),
-                        output_file = file.path("output",
-                                  paste0("CE-BPatG_", datestamp, "_Codebook.pdf")))
+                        output_file = file.path("../output",
+                                                paste0("CE-BPatG_", datestamp, "_Codebook.pdf")))
 
 ```
 
