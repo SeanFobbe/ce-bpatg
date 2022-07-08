@@ -842,7 +842,7 @@ values <- list(
 
 
 
-tar_eval(tar_render(name, file, params = params), values = values)
+tarchetypes::tar_eval(tar_render(name, file, params = params), values = values)
 
 ```
 
