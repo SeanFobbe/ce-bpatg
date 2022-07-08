@@ -767,7 +767,7 @@ kable(freqtable.senatsgruppe,
 \newpage
 
 
-## Nach Aktenzeichen (Spruchkörper)
+## Nach Spruchkörper (Aktenzeichen)
 
 ```{r}
 
