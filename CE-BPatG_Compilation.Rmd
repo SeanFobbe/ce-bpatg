@@ -833,12 +833,12 @@ tarchetypes::tar_render(report.tests,
 
 
 ```{targets tar.report4}
-tar_render_rep(
-    report.codebook,
-    file.path("reports", "CE-BPatG_Codebook.Rmd"),
-    params = data.frame(
-      output_file = paste0("CE-BPatG_", Sys.Date(), "_Codebook.pdf")
-    ))
+tarchetypes::tar_render_rep(
+                 report.codebook,
+                 file.path("reports", "CE-BPatG_Codebook.Rmd"),
+                 params = data.frame(
+                     output_file = paste0("CE-BPatG_", Sys.Date(), "_Codebook.pdf")
+                 ))
 ```
 
 
