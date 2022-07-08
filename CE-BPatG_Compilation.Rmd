@@ -832,7 +832,7 @@ tarchetypes::tar_render(report.tests,
 
 
 
-```{r tar.report4}
+```{targets tar.report4}
 tarchetypes::tar_render_rep(
                  report.codebook,
                  file.path("reports", "CE-BPatG_Codebook.Rmd"),
