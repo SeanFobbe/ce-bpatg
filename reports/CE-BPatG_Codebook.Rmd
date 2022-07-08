@@ -15,8 +15,6 @@ output:
       before_body: [../temp/CE-BPatG_Definitions.tex, ../tex/CE-BPatG_Titlepage_Codebook.tex]
 bibliography: ../temp/packages.bib
 nocite: '@*'
-params:
-  par: "default value"
 ---
 
 
