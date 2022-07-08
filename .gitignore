@@ -8,6 +8,8 @@ output/
 temp/
 markdown/*.pdf
 
+*/auto/
+
 # History files
 .Rhistory
 .Rapp.history
