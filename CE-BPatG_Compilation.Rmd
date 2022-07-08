@@ -701,7 +701,7 @@ tar_target(zip.analysis,
                          dir = "output",
                          mode = "cherry-pick",
                          report.codebook,
-                         report.tests),
+                         report.robustness),
            format = "file")
 ```
 
@@ -771,7 +771,7 @@ tar_target(zip.all,
 tar_target(hashes,
            f.tar_multihashes(c(zip.all,
                                report.codebook[1],
-                               report.tests[1]),
+                               report.robustness[1]),
                              multicore = config$parallel$lingsummarize,
                              cores = fullCores))
 ```
@@ -819,9 +819,11 @@ tar_target(lingstats.summary,
 ### Report erstellen: Robustness Checks
 
 ```{targets tar.report3}
-tarchetypes::tar_render(report.tests,
-                             file.path("reports",
-                                       "CE-BPatG_RobustnessChecks.Rmd"))
+tarchetypes::tar_render(report.robustness,
+                        file.path("reports",
+                                  "CE-BPatG_RobustnessChecks.Rmd"),
+                        output_file = file.path("../output",
+                                                paste0("CE-BPatG_", datestamp, "_RobustnessChecks.pdf")))
 
 ```
 
