@@ -10,7 +10,7 @@ output:
     number_sections: true
     pandoc_args: --listings
     includes:
-      in_header: reports/Preamble_DE.tex
+      in_header: tex/Preamble_DE.tex
       before_body: [temp/CE-BPatG_Definitions.tex, tex/CE-BPatG_CompilationTitle.tex]
 papersize: a4
 bibliography: temp/packages.bib
