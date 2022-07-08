@@ -838,7 +838,7 @@ tarchetypes::tar_render_rep(
                  file.path("reports", "CE-BPatG_Codebook.Rmd"),
                  par = data.frame(
 					 param = 1,
-                     output_file = paste0("CE-BPatG_", Sys.Date(), "_Codebook.pdf")
+                     output_file = paste0("output/CE-BPatG_", Sys.Date(), "_Codebook.pdf")
                  ))
 ```
 
