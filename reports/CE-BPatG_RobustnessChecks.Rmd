@@ -11,7 +11,8 @@ output:
     number_sections: true
     pandoc_args: --listings
     includes:
-      in_header: Preamble_DE.tex
+      in_header: ../tex/Preamble_DE.tex
+	  before_body: [../temp/CE-BPatG_Definitions.tex, ../tex/CE-BPatG_Titlepage_Robustness.tex]
 ---
 
 
