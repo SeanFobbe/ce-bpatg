@@ -832,7 +832,7 @@ tarchetypes::tar_render(report.tests,
 
 
 
-```{target tar.report4}
+```{targets tar.report4}
 
 values <- list(
   name = as.list(as.symbol("report.codebook")),
