@@ -166,7 +166,7 @@ Mit jeder Kompilierung des vollständigen Datensatzes wird auch ein umfangreiche
 
 
 
-```{r, CE-BPatG_00_Pipeline_Graph, width = 12, height = 9}
+```{r, CE-BPatG_00_Pipeline_Graph, width = 12, height = 9, fig.cap = "Der vollständige Prozess der Datensatz-Kompilierung."}
 
 edgelist <- tar_network(targets_only = TRUE)$edges
 setDT(edgelist)
