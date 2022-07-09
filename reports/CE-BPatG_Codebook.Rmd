@@ -1103,7 +1103,7 @@ ggplot(data = dt.plot,
 # Kryptographische Signaturen
 
 
-## Allgemeines
+## Zwei-Phasen-Signatur
 
 Die Integrität und Echtheit der einzelnen Archive des Datensatzes sind durch eine Zwei-Phasen-Signatur sichergestellt.
 
