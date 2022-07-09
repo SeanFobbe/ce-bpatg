@@ -133,7 +133,7 @@ Speziell an Praktiker:innen richtet sich die PDF-Sammlung aller Leitsatzentschei
 
 \midrule
 
- Primäre Datenquelle & \url{https://www.bundesgerichtshof.de}\\
+ Primäre Datenquelle & \url{https://www.bundespatentgericht.de/}\\
  Source Code & \url{\softwareversionurldoi}\\
  Registerzeichen & \url{\aktenzeichenurldoi}\\
 
