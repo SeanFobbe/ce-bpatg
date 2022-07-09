@@ -227,6 +227,7 @@ docvarnames <- c("gericht",
 
 files.source.raw <-  c(list.files(pattern = "\\.R$|\\.toml$|\\.md$|\\.Rmd$"),
                        "R-fobbe-proto-package",
+					   "reports",
                        "data",
                        "functions",
                        "tex",
