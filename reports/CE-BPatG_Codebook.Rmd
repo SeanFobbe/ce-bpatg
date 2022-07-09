@@ -195,8 +195,7 @@ Nutzer:innen sollten folgende wichtige Grenzen beachten:
 
 1. Der Datensatz enthält nur das, was das Gericht auch tatsächlich veröffentlicht, nämlich begründete Entscheidungen (\emph{publication bias}).
 2. Es kann aufgrund technischer Grenzen bzw. Fehler sein, dass manche --- im Grunde verfügbare --- Entscheidungen nicht oder nicht korrekt abgerufen werden (\emph{automation bias}).
-3. Es werden nur PDF-Dateien abgerufen (\emph{file type bias}). Manche Entscheidungen sind nur als HTML verfügbar. 
-4. Erst ab dem 1. Januar 2000 sind begründete Entscheidungen des Bundespatentgerichts einigermaßen vollständig veröffentlicht (\emph{temporal bias}). Die Frequenztabellen geben hierzu genauer Auskunft.
+3. Erst ab dem 1. Januar 2000 sind begründete Entscheidungen des Bundespatentgerichts einigermaßen vollständig veröffentlicht (\emph{temporal bias}). Die Frequenztabellen geben hierzu genauer Auskunft.
 
 
 
@@ -219,7 +218,7 @@ Die Metadaten in den Dateinamen sind größtenteils unverändert von den jeweili
 
 Der volle Satz an Metadaten ist nur in den CSV-Dateien enthalten. Alle hinzugefügten Metadaten sind vollständig maschinenlesbar dokumentiert. Sie sind entweder im Source Code enthalten, mit dem Source Code zusammen dokumentiert oder über dauerhaft stabile Identifikatoren (z.B. DOI) zitiert.
  
-Die Dateinamen der PDF- und TXT-Dateien enthalten Gerichtsname, Spruchkörperangabe aus der Datenbank, die Angabe ob es sich um eine Leitsatzentscheidung handelt, Datum, das offizielle Aktenzeichen, einen Zusatz zum Aktenzeichen, ggf. einen besonderen Namen und eine durch den Autor des Datensatzes generierte Kollisions-ID.
+Die Dateinamen der PDF- und TXT-Dateien enthalten Gerichtsname, Senatsgruppe, die Angabe ob es sich um eine Leitsatzentscheidung handelt, Datum, das offizielle Aktenzeichen, ggf. einen Zusatz zum Aktenzeichen und eine durch den Autor des Datensatzes generierte Kollisions-ID.
 
 
 ### Schema für die Dateinamen
@@ -240,12 +239,12 @@ Die Dateinamen der PDF- und TXT-Dateien enthalten Gerichtsname, Spruchkörperang
 
 ## Qualitätsprüfung
 
-Die Typen der Variablen wurden mit \emph{regular expressions} strikt validiert. Die möglichen Werte der jeweiligen Variablen wurden zudem durch Frequenztabellen und Visualisierungen auf ihre Plausibilität geprüft. Insgesamt werden zusammen mit jeder Kompilierung Dutzende Tests zur Qualitätsprüfung durchgeführt. Alle Ergebnisse der Qualitätsprüfungen sind aggregiert im Compilation Report und einzeln im Archiv \enquote{ANALYSE} zusammen mit dem Datensatz veröffentlicht.
+Die Typen der Variablen wurden mit \emph{regular expressions} strikt validiert. Die möglichen Werte der jeweiligen Variablen wurden zudem durch Frequenztabellen und Visualisierungen auf ihre Plausibilität geprüft. Insgesamt werden zusammen mit jeder Kompilierung Dutzende Tests zur Qualitätsprüfung durchgeführt. Alle Ergebnisse der Qualitätsprüfungen sind aggregiert im Bericht \enquote{Robustness Checks} zusammen mit dem Source Code und einzeln im Archiv \enquote{ANALYSE} zusammen mit dem Datensatz veröffentlicht.
 
 
 ## Grafische Darstellung
 
- Die Robenfarbe der Richter des Bundesgerichtshofss ist schwarz, mit stahlblauen Besätzen. Der Hex-Wert für stahlblau ist  \#005189. Das ist besonders bei der Erstellung thematisch passender Diagrammen hilfreich. Alle im Compilation Report und diesem Codebook präsentierten Diagramme sind in diesem stahlblau gehalten.
+Die Robenfarbe der Richter des Bundespatentgerichts ist schwarz, mit stahlblauen Besätzen. Der Hex-Wert für stahlblau ist  \#005189. Das ist besonders bei der Erstellung thematisch passender Diagrammen hilfreich. Alle im Compilation Report und diesem Codebook präsentierten Diagramme sind in diesem stahlblau gehalten.
 
 
 
