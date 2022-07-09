@@ -2,7 +2,7 @@
 
 ## Version \version
 
-- Umstellung des gesamten Source Code auf das *targets* framework
+- Neuer Entwurf des gesamten Source Code im *targets* Framework
 - Veröffentlichung des Source Codes
 
 ## Version 2020-07-20
