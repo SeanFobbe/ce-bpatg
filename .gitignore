@@ -1,6 +1,8 @@
 # Project-specific files
 
 _targets/
+_targets_r/
+_targets.R
 pdf/
 txt/
 analysis/
