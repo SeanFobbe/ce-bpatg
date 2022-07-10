@@ -1,11 +1,11 @@
+#' High-performance computation of linguistic statistics
 
+#' Iterated parallel computation of characters, tokens, types and sentences for each document of a given data table. Requires f.future_lingsummarize function from the R-fobbe-proto-package. Compatible with targets framework.
 
-#' #' Iterated parallel computation of characters, tokens, types and sentences for each document of a given data table. Requires f.future_lingsummarize function from the R-fobbe-proto-package.
-
-#' @param x A data.table containing texts in a "text" variable and document names in a "doc_id" variable.
+#' @param x Data.table. Must contain texts in a "text" variable and document names in a "doc_id" variable.
 #' @param multicore Logical. Whether to process each document sequentially or to use multiple cores. Defaults to TRUE.
 #' @param cores Positive integer. Number of cores to be used. Defautls to 2.
-#' @param germanvars Whether to return variable names in German. Defaults to FALSE.
+#' @param germanvars Logical. Whether to return variable names in German. Defaults to FALSE.
 
 #' library(quanteda)
 #' library(future)
