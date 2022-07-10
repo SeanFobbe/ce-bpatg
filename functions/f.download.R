@@ -1,17 +1,21 @@
+#' Download large number of files
+#'
+#' Downloads a large number of files with a wide range of options, including custom sleep times, custom retries, custom sleep during retries, timeout and a debug toggle for testing a reduced number of files. Will check the filenames in the destination folder to ensure that only files scheduled to be downloaded are present. Will skip already downloaded files.
 
-#' @param url A vector of URLS.
-#' @param filename A vector of filenames.
-#' @param dir The destination directory. Will be created if not already present.
-#' @param sleep.min Minimum number of seconds to randomly sleep between requests.
-#' @param sleep.max Maximum number of seconds to randomly sleep between requests.
-#' @param retries Number of retries for entire download set.
-#' @param retry.sleep.min Minimum number of seconds to randomly sleep between requests in retry mode.
-#' @param retry.sleep.max Maximum number of seconds to randomly sleep between requests in retry mode.
-#' @param timeout Number of seconds for a download to timeout, even active ongoing ones.
-#' @param debug.toggle Whether to activate debugging mode.
-#' @param debug.files The number of files to download during debugging mode. Default is 500.
 
-#' @return A vector of the downloaded file names.
+#' @param url Character. A vector of URLS.
+#' @param filename Character. A vector of filenames.
+#' @param dir Character. The destination directory. Will be created if not already present.
+#' @param sleep.min Positive Integer. Minimum number of seconds to randomly sleep between requests.
+#' @param sleep.max Positive Integer. Maximum number of seconds to randomly sleep between requests.
+#' @param retries Positive Integer. Number of retries for entire download set.
+#' @param retry.sleep.min Positive Integer. Minimum number of seconds to randomly sleep between requests in retry mode.
+#' @param retry.sleep.max Positive Integer. Maximum number of seconds to randomly sleep between requests in retry mode.
+#' @param timeout Positive Integer. Number of seconds for a download to timeout, even active ongoing ones.
+#' @param debug.toggle Logical. Whether to activate debugging mode.
+#' @param debug.files Positive Integer. The number of files to download during debugging mode. Default is 500.
+
+#' @return Character. A vector of the downloaded file names.
 
 
 f.download <- function(url,
