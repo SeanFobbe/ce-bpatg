@@ -23,6 +23,9 @@ f.clean_az_bpatg <- function(x){
     az <- gsub("30_W-pat103_00", "30_W-pat_103_00", az)
     az <- gsub("15_W-pat16_17", "15_W-pat_16_17", az)
     az <- gsub("([0-9]{2})(E[UP])", "\\1_\\2", az)
+    az <- gsub("8_W_(pat)_40/41", "\\1_\\2", az)
+    az <- gsub("8_W-pat_40_41", "8_W-pat_40_01", az) # fehlerhaftes Jahr, gemeint ist 2001; Verfahrensgegenstand ist von 2001, Entscheidung von 2002    
+
 
 
     ## Strenge REGEX-Validierung des Aktenzeichens
