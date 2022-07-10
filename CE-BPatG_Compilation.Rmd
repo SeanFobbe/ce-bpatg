@@ -662,7 +662,7 @@ Diese Abschnitt der Pipeline erstellt ZIP-Archive für alle zentralen Rechenerge
 
 ```{targets tar.zip1}
 tar_target(zip.pdf.all,
-                f.zip_targets(files.pdf,
+                f.tar_zip(files.pdf,
                               filename = paste(prefix.files,
                                                "DE_PDF_Datensatz.zip",
                                                sep = "_"),
@@ -677,7 +677,7 @@ tar_target(zip.pdf.all,
 
 ```{targets tar.zip2}
 tar_target(zip.pdf.leitsatz,
-                f.zip_targets(grep("_LE_", files.pdf, value = TRUE),
+                f.tar_zip(grep("_LE_", files.pdf, value = TRUE),
                               filename = paste(prefix.files,
                                                "DE_PDF_Leitsatz-Entscheidungen.zip",
                                                sep = "_"),
@@ -693,7 +693,7 @@ tar_target(zip.pdf.leitsatz,
 
 ```{targets tar.zip3}
 tar_target(zip.txt,
-                f.zip_targets(files.txt,
+                f.tar_zip(files.txt,
                               filename = paste(prefix.files,
                                                "DE_TXT_Datensatz.zip",
                                                sep = "_"),
@@ -706,7 +706,7 @@ tar_target(zip.txt,
 
 ```{targets tar.zip4}
 tar_target(zip.analysis,
-           f.zip_targets("analysis/",
+           f.tar_zip("analysis/",
                          filename = paste(prefix.files,
                                           "DE_Analyse.zip",
                                           sep = "_"),
@@ -724,7 +724,7 @@ tar_target(zip.analysis,
 
 ```{targets tar.zip5}
 tar_target(zip.csv.full,
-                f.zip_targets(csv.full,
+                f.tar_zip(csv.full,
                               filename = gsub("\\.csv", "\\.zip", basename(csv.full)),
                               dir = "output",
                               mode = "cherry-pick"),
@@ -738,7 +738,7 @@ tar_target(zip.csv.full,
 
 ```{targets tar.zip6}
 tar_target(zip.csv.meta,
-                f.zip_targets(csv.meta,
+                f.tar_zip(csv.meta,
                               filename = gsub("\\.csv", "\\.zip", basename(csv.meta)),
                               dir = "output",
                               mode = "cherry-pick"),
@@ -753,7 +753,7 @@ tar_target(zip.csv.meta,
 
 ```{targets tar.zip7}
 tar_target(zip.source,
-                f.zip_targets(files.source,
+                f.tar_zip(files.source,
                               filename = paste0(prefix.files,
                                                 "_Source_Code.zip"),
                               dir = "output",
