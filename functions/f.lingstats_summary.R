@@ -1,11 +1,10 @@
-
 #' #' Summarize linguistic variables in a given data set.
 
-#' @param x A data.table containing texts in a "text" variable and the output of the special f.lingstats() function for targets pipelines.
-#' @param germanvars Whether to return variable names in German. Defaults to FALSE.
+#' @param x Data.table. Containing texts in a "text" variable and the output of the special f.lingstats() function for targets pipelines.
+#' @param germanvars Logical. Whether to return variable names in German. Defaults to FALSE.
 
 
-#' @param return A table with summary statistics for each linguistic statistic.
+#' @param return Data.table. A table with summary statistics for each linguistic statistic.
 
 
 
