@@ -2,7 +2,7 @@
 
 #' Experimentell! Erstellt aus einer Reihe an Variablen ECLIs für Entscheidungen des Bundespatentgerichts. Die Struktur der ECLI des BPatG ist nicht dokumentiert, lautet aber vermutlich wie folgt: "ECLI:DE:BPatG:[entscheidungsjahr_iso]:[entscheidungstag][entscheidungsmonat][entscheidungsjahr][entscheidungstyp][senatsnummer][registerzeichen][eingangsnummer].[eingangsjahr].[kollisionsziffer]". Beispiel: "ECLI:DE:BPatG:2022:200622B28Wpat546.21.0".
 #'
-#' Achtung: alle ECLIs die sich nur in der Kollisionsziffer unterscheiden sind potentiell fehlerhaft, da mir aktuell keine Möglichkeit bekannt ist die originale Vergabe der Kollisionsziffer zu reproduzieren.
+#' Achtung: alle ECLIs die sich nur in der Kollisionsziffer unterscheiden sind potentiell fehlerhaft, da mir aktuell keine Möglichkeit bekannt ist, die originale Vergabe der Kollisionsziffer zu reproduzieren. Ebenso können ECLIs mit dem Entscheidungstyp "V" fehlerhaft sein, da mir nicht klar ist, ob das BPatG diesen verwendet.
 
 
 #' @param x Ein juristischer Datensatz als data.table mit den Variablen "datum", "entscheidungsjahr", "spruchkoerper_az", "registerzeichen", "eingangsnummer", "eingangsjahr_az", "zusatz_az" und "kollision".
@@ -43,7 +43,7 @@ f.var_ecli_bpatg <- function(x,
     test.regex <- grep(paste0("ECLI:DE:BPatG:", # Eingangsformel
                               "[0-9]{4}:", # Eingangsjahr (vierstellig)
                               "[0-9]{6}", # Datum
-                              "[BU]", # Entscheidungstyp
+                              "[BUV]", # Entscheidungstyp
                               "[0-9]{1,2}", # Senatsnummer
                               "((Ni)|(Wpat)|(ZApat)|(Li)|(LiQ))", # Registerzeichen
                               "[0-9]+\\.", # Eingangsnummer
