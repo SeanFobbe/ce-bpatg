@@ -1,11 +1,11 @@
-#' Spruchkörper säubern (BPatG)
+#' Senatsgruppen säubern (BPatG)
 #'
-#' Ein Vektor an Spruchkörpern aus der BPatG-Datenbank wird gesäubert, validiert und danach wieder ausgegeben.
+#' Ein Vektor an Senatsgruppen aus der BPatG-Datenbank wird gesäubert, validiert und danach wieder ausgegeben.
 
 
-#' @param x Character. Rohe Spruchkörper aus der BPatG-Datenbank.
+#' @param x Character. Rohe Senatsgruppen aus der BPatG-Datenbank.
 
-#' @return Character. Spruchgruppe des jeweiligen Senats.
+#' @return Character. Standardisierte Senatsgruppe des jeweiligen Senats.
 
 
 
