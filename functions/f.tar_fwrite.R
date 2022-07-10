@@ -1,11 +1,11 @@
+#' fwrite for targets workflows
 
-
-#' Implements the data.table::fwrite function for use in the targets context. Mainly necessary to return the CSV file name for later tracking.
+#' Wraps the data.table::fwrite function for use in the targets context. Mainly necessary to return the file name for later tracking.
 #'
-#' @param x The data.table to be written to disk.
-#' @param filename The filename of the CSV file.
+#' @param x Data.table to be written to disk.
+#' @param filename Character. Filename of the CSV file.
 #'
-#' @param return The filename of the CSV file.
+#' @param return Character. Filename of the CSV file on disk.
 
 
 
