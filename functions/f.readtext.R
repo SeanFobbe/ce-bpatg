@@ -21,8 +21,6 @@ f.readtext <- function(x,
                    encoding = "UTF-8")
 
 
-
-
     ## Coerce to Data.table
     setDT(dt)
 
