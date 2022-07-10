@@ -8,7 +8,7 @@
 #' @param return Character. Ein Vektor aller Entscheidungstypen. Entweder "B" für Beschluss oder "U" für Urteil.
 
 
-f.var_entscheidung_typ_bpatg <- function(x){
+f.var_entscheidung_typ <- function(x){
 
     ## Entscheidungstyp extrahieren
     entscheidung_typ <- stringi::stri_extract_first(str = x,
