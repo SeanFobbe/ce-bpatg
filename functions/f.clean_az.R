@@ -2,9 +2,9 @@
 #'
 #' Ein Vektor von BPAtG-Aktenzeichen aus der amtlichen Datenbank wird gesäubert und als Vektor wieder ausgegeben.
 
-#' @param x Rohe Aktenzeichen aus der BPatG-Datenbank.
+#' @param x Character. Rohe Aktenzeichen aus der BPatG-Datenbank.
 
-#' @return Korrigierte Aktenzeichen im Format [Senat]_[Registerzeichen]_[Eingangsnummer]_[Eingangsjahr]
+#' @return Character. Korrigierte Aktenzeichen im Format [Senat]_[Registerzeichen]_[Eingangsnummer]_[Eingangsjahr]
 
 
 
