@@ -1,7 +1,11 @@
+#' Download-Tabelle finalisieren
+#'
+#' Stellt die finale Download-Tabelle für das BPatG her. Die ursprüngliche aus der Datenbank extrahierte Tabelle wird mit korrigierten Aktenzeichen und Senatsgruppen angereichert. Zusätzliche Variablen werden aus der Variable "bemerkung" extrahiert. Ein Dateiname wird erstellt und auf Konformität mit dem Codebook geprüft, ansonsten bricht die Funktion mit einer Fehlermeldung ab. 
 
-#' @param x Download table für das BPatG.
-#' @param az Korrigierte Aktenzeichen.
-#' @param senatsgruppe Korrigierte Senatsgruppen.
+
+#' @param x Data.table. Download-Tabelle für das BPatG.
+#' @param az Character. Korrigierte Aktenzeichen.
+#' @param senatsgruppe Character. Korrigierte Senatsgruppen.
 
 
 f.download_table_finalize <- function(x,
