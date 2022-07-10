@@ -1,4 +1,6 @@
-
+#' Aktenzeichen für deutsche Bundesgerichte erstellen
+#'
+#' Erstellt ein Aktenzeichen aus den üblichen Bestandteilen für deutsche Bundesgerichte (Spruchkörper, Registerzeichen, Eingangsnummer und zweistelliges Eingangsjahr). Nicht anwendbar in Sonderfällen wie dem Bundespatentgericht.
 
 #' @param x Ein juristischer Datensatz als data.table mit den Variablen "spruchkoerper_az", "registerzeichen", "eingangsnummer", "eingangsjahr_az".
 
