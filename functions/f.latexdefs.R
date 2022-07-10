@@ -1,3 +1,5 @@
+#' Create new LaTeX command
+
 #' @param command.name The name of the new LaTeX command.
 #' @param command.body The body of the new LaTeX command.
 #'
@@ -20,7 +22,7 @@ f.latexcommand <- function(command.name,
 
 
 
-
+#' Write LaTeX definitions to file
 
 #' @param x A list with the relevant entries.
 #' @param dir The directory to write the LaTeX definitions file to.
