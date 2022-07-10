@@ -499,7 +499,7 @@ Der Typ der Entscheidung wird aus dem Text extrahiert.
 
 ```{targets tar.enhance4}
 tar_target(var_entscheidung_typ,
-                f.var_entscheidung_typ_bpatg(dt.bpatg.datecleaned$text))
+                f.var_entscheidung_typ(dt.bpatg.datecleaned$text))
 ```
 
 
