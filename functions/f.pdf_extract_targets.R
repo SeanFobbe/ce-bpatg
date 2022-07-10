@@ -1,16 +1,19 @@
-#' Parallel extraction of PDF to TXT.
+#' Parallel conversion of PDF files to TXT
+#'
+#' Extracts PDF files and converts to TXT files. Parallelized. Compatible with the targets framework. 
 
-#' @param x A vector of PDF filenames.
-#' @param outputdir The directory to store the extracted TXT files in.
+#' @param x Character. A vector of PDF filenames.
+#' @param outputdir Character. The directory to store the extracted TXT files in.
 
 f.pdf_extract_targets <- function(x,
-                                  outputdir){
+                                  outputdir,
+                                  cores = parallel::detectCores()){
     
     unlink("txt", recursive = TRUE)
     dir.create("txt")
 
     plan(multicore,
-         workers = availableCores())
+         workers = cores)
     
     pdf_extract(x,
                 outputdir = "txt")
