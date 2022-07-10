@@ -2,9 +2,9 @@
 #'
 #' Ein Datensatz mit Datums-Variable und Jahres-Variable wird in ISO-Formate konvertiert und nach Datum sortiert.
 
-#' @param x Eine data.table, die einen Datensatz mit Variable "datum", und "eingangsjahr_az" enthält.
+#' @param x Data.table. Muss Variable "datum", und "eingangsjahr_az" enthalten.
 
-#' @param return Datensatz mit standardisierten Jahresangaben und nach Datum sortiert.
+#' @param return Data.table. Datensatz mit ISO-standardisierten Jahresangaben und nach Datum sortiert.
 
 
 
