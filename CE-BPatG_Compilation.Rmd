@@ -937,8 +937,15 @@ kable(meta[order(-seconds)],
 
 ```
 
+Gesamte Laufzeit in Sekunden, Minuten und Stunden.
 
+```{r, pipeline-runtime}
+runtime.sum <- sum(meta$seconds)
 
+print(runtime.sum) # Sekunden
+runtime.sum / 60 # Minuten
+runtime.sum / 3600 # Stunden
+```
 
 \newpage
 ## Warnungen
