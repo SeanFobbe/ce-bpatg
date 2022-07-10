@@ -83,10 +83,6 @@ f.download_table_finalize <- function(x,
                        filename,
                        paste0(filename, "_NA"))
 
-    
-    ## Anzahl Duplikate
-    ##length(filename[duplicated(filename)])
-
 
     ## Kollisions-IDs vergeben
     filenames1 <- make.unique(filename, sep = "-----")
@@ -107,9 +103,6 @@ f.download_table_finalize <- function(x,
     filenames1 <- gsub("-----",
                        "_",
                        filenames1)
-
-    ## Zufällige Auswahl zur Prüfung anzeigen
-                                        #filenames1[sample(length(filenames1), 50)]
 
 
     ## PDF-Endung anfügen
