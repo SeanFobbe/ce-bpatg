@@ -14,6 +14,8 @@ f.var_entscheidung_typ <- function(x){
     entscheidung_typ <- stringi::stri_extract_first(str = x,
                                                     regex = paste0(gsub(" ", " *", "B E S C H L U S S"),
                                                                    "|",
+                                                                   gsub(" ", " *", "B E S C H L U ß"),
+                                                                   "|",
                                                                    gsub(" ", " *", "U R T E I L")),
                                                     case_insensitive = TRUE)
 
@@ -22,17 +24,17 @@ f.var_entscheidung_typ <- function(x){
                              "\\1",
                              toupper(entscheidung_typ))
 
-    ## Unit Test: Begrenzung auf bestimmte Entscheidungstypen
-    if (any(!entscheidung_typ %in% c("B", "U", "V"))){
-
-        stop("Entscheidungstypen entsprechen nicht der Definition.")
-        
-    }
-
     ## Unit Test: Vollständigkeit der Extraktion
     if (!length(x) == length(entscheidung_typ)){
 
         stop("Extraktion nicht vollständig.")
+        
+    }
+    
+    ## Unit Test: Begrenzung auf bestimmte Entscheidungstypen
+    if (any(!entscheidung_typ %in% c("B", "U"))){
+
+        stop("Entscheidungstypen entsprechen nicht der Definition.")
         
     }
 
