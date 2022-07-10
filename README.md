@@ -106,13 +106,9 @@ Die für die Referenzdatensätze verwendete \LaTeX -Installation ist `texlive-sc
 Den vollständigen Datensatz kompilieren Sie mit folgendem Befehl:
 
 ```
-# In einer R-Konsole ausführen
-
-rmarkdown::render("CE-BPatG_Compilation.Rmd",
-                  output_file = paste0("output/CE-BPatG_",
-                                       Sys.Date(),
-                                       "_CompilationReport.pdf"))
+source("run_dataset.R") # In einer R-Konsole ausführen
 ```
+
 
 
 ### Ergebnis
