@@ -43,7 +43,7 @@ f.var_ecli_bpatg <- function(x,
     test.regex <- grep(paste0("ECLI:DE:BPatG:", # Eingangsformel
                               "[0-9]{4}:", # Eingangsjahr (vierstellig)
                               "[0-9]{6}", # Datum
-                              "[BUV]", # Entscheidungstyp
+                              "[BU]", # Entscheidungstyp
                               "[0-9]{1,2}", # Senatsnummer
                               "((Ni)|(Wpat)|(ZApat)|(Li)|(LiQ))", # Registerzeichen
                               "[0-9]+\\.", # Eingangsnummer
