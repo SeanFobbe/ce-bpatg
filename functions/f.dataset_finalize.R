@@ -1,12 +1,14 @@
+#' Datensatz finalisieren
+#'
+#' Der BPatG-Datensatz wird mit dieser Funktion um bereits berechnete Variablen angereichert, mit Variablen aus der Download Table verbunden und in Reihenfolge der Variablen-Dokumentation des Codebooks sortiert. Sollten die Anzahl oder die Namen der Variablen von denen im Codebook abweichen wird die Funktion mit einer Fehlermeldung abbrechen.
 
-
-#' @param x Der nach Datum sortierte und im Text bereinigte Datensatz.
-#' @param downlod.table Die Tabelle mit den Informationen zum Download. Wird mit dem Hauptdatensatz vereinigt.
-#' @param aktenzeichen Ein Vektor aus Aktenzeichen.
-#' @param ecli Ein Vektor aus ECLIs.
-#' @param entscheidung_typ Ein Vektor aus Entscheidungstypen.
-#' @param verfahrensart Ein Vektor der jeweiligen Verfahrensarten.
-#' @param variablen Die im Datensatz erlaubten Variablen, in der im Codebook vorgegebenen Reihenfolge.
+#' @param x Data.table. Der nach Datum sortierte und im Text bereinigte Datensatz.
+#' @param downlod.table Data.table. Die Tabelle mit den Informationen zum Download. Wird mit dem Hauptdatensatz vereinigt.
+#' @param aktenzeichen Character. Ein Vektor aus Aktenzeichen.
+#' @param ecli Character. Ein Vektor aus ECLIs.
+#' @param entscheidung_typ Character. Ein Vektor aus Entscheidungstypen.
+#' @param verfahrensart Character. Ein Vektor der jeweiligen Verfahrensarten.
+#' @param variablen Character. Die im Datensatz erlaubten Variablen, in der im Codebook vorgegebenen Reihenfolge.
 
 
 
