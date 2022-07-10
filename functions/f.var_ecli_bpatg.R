@@ -6,6 +6,7 @@
 
 
 #' @param x Ein juristischer Datensatz als data.table mit den Variablen "datum", "entscheidungsjahr", "spruchkoerper_az", "registerzeichen", "eingangsnummer", "eingangsjahr_az", "zusatz_az" und "kollision".
+#' @param entscheidung_typ Typ der Entscheidung des Bundepatentgerichts.
 
 
 #' @param return Ein Vektor mit ECLIs für das Bundespatentgericht. 
