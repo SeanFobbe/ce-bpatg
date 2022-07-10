@@ -2,7 +2,7 @@
 
 library(targets)
 
-tar_destroy()
+tar_destroy(ask = FALSE)
 
 
 delete <- c("txt/",
