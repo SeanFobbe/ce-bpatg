@@ -1,10 +1,15 @@
-#' @param x Rohe Spruchkörper aus der BPatG-Datenbank.
+#' Spruchkörper säubern (BPatG)
+#'
+#' Ein Vektor an Spruchkörpern aus der BPatG-Datenbank wird gesäubert, validiert und danach wieder ausgegeben.
 
-#' @return Spruchgruppe des jeweiligen Senats.
+
+#' @param x Character. Rohe Spruchkörper aus der BPatG-Datenbank.
+
+#' @return Character. Spruchgruppe des jeweiligen Senats.
 
 
 
-f.clean_spruch_bpatg <- function(x){
+f.clean_senatsgruppe_bpatg <- function(x){
 
     spruch <- gsub(".*\\(", "", x)
     spruch <- gsub("\\)", "", spruch)
@@ -23,7 +28,7 @@ f.clean_spruch_bpatg <- function(x){
     ## Stoppen falls REGEX-Validierung gescheitert
 
     if (length(regex.test) != 0){
-        stop("REGEX VALIDIERUNG GESCHEITERT: SPRUCHKÖRPER ENTSPRECHEN NICHT DEM CODEBOOK-SCHEMA!")
+        stop("REGEX VALIDIERUNG GESCHEITERT: SENATSGRUPPEN ENTSPRECHEN NICHT DEM CODEBOOK-SCHEMA!")
     }
     
     return(spruch)
