@@ -64,8 +64,19 @@ tar_unscript()
 
 ```{r}
 
+## Datum
 datestamp <- Sys.Date()
+print(datestamp)
+
+## Datum und Uhrzeit (Beginn)
+begin.script <- Sys.time()
+
+## Konfiguration
 config <- RcppTOML::parseTOML("CE-BPatG_Config.toml")
+print(config)
+
+
+# Analyse-Ordner
 dir.analysis <- paste0(getwd(),
                        "/analysis")
 
@@ -1108,7 +1119,26 @@ cat(readLines("CHANGELOG.md"),
 ```
 
 
+# Abschluss
 
+```{r}
+
+## Datumsstempel
+print(datestamp) 
+
+## Datum und Uhrzeit (Anfang)
+print(begin.script)
+
+
+## Datum und Uhrzeit (Ende)
+end.script <- Sys.time()
+print(end.script)
+
+
+## Laufzeit des gesamten Skriptes
+print(end.script - begin.script)
+
+```
 
 
 # Parameter für strenge Replikationen
