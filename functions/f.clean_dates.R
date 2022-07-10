@@ -1,4 +1,6 @@
-
+#' Daten säubern und nach Datum sortieren
+#'
+#' Ein Datensatz mit Datums-Variable und Jahres-Variable wird in ISO-Formate konvertiert und nach Datum sortiert.
 
 #' @param x Eine data.table, die einen Datensatz mit Variable "datum", und "eingangsjahr_az" enthält.
 
