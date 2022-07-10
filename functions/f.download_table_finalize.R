@@ -152,6 +152,8 @@ f.download_table_finalize <- function(x,
     ## Stoppen falls REGEX-Validierung gescheitert
 
     if (length(regex.test) != 0){
+        warning("Fehlerhafte Dateinamen:")
+        warning(regex.test)
         stop("REGEX VALIDIERUNG GESCHEITERT: DATEINAMEN ENTSPRECHEN NICHT DEM CODEBOOK-SCHEMA!")
     }
 
