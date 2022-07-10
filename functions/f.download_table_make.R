@@ -1,12 +1,13 @@
+#' Vorläufige Download-Tabelle erstellen
 
 #' Diese Funktion wertet die Entscheidungsdatenbank des Bundespatentgerichts aus und sammelt Links zu den Entscheidungsvolltexten und verbindet sie mit den in der Datenbank angegebenen Metadaten.
 
-#' @param x Der Umfang der Datenbankseiten, der berücksichtigt werden soll
-#' @param debug.toggle Ob der Debugging-Modus aktiviert werden soll. Im Debugging-Modus wird nur eine reduzierte Anzahl Datenbankseiten ausgewertet. Jede Seite enthält idR 30 Entscheidungen.
-#' @param deubg.pages Anzahl der auszuwertenden Datenbankseiten.
+#' @param x Data.table. Der Umfang der Datenbankseiten, der berücksichtigt werden soll. Ist im Datensatz im Ordner data/ dokumentiert.
+#' @param debug.toggle Logical. Ob der Debugging-Modus aktiviert werden soll. Im Debugging-Modus wird nur eine reduzierte Anzahl Datenbankseiten ausgewertet. Jede Seite enthält idR 30 Entscheidungen.
+#' @param deubg.pages Integer. Anzahl der auszuwertenden Datenbankseiten.
 
 
-#' @return Eine Tabelle mit allen URLs und in der Datenbank verfügbaren Metadaten.
+#' @return Data.table. Eine Tabelle mit allen URLs und in der Datenbank verfügbaren Metadaten.
 
 
 
