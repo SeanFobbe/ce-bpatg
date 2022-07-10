@@ -1,4 +1,6 @@
-
+#' Aktenzeichen säubern (BPatG)
+#'
+#' Ein Vektor von BPAtG-Aktenzeichen aus der amtlichen Datenbank wird gesäubert und als Vektor wieder ausgegeben.
 
 #' @param x Rohe Aktenzeichen aus der BPatG-Datenbank.
 
@@ -35,13 +37,14 @@ f.clean_az_bpatg <- function(x){
                        az,
                        invert = TRUE,
                        value = TRUE)
+
     
     ## Stoppen falls REGEX-Validierung gescheitert
 
     if (length(regex.test) != 0){
 
-        message("Folgende Aktenzeichen sind fehlerhaft:")
-        message(regex.test)
+        warning("Folgende Aktenzeichen sind fehlerhaft:")
+        warning(regex.test)
         
         stop("REGEX VALIDIERUNG GESCHEITERT: AKTENZEICHEN ENTSPRECHEN NICHT DEM CODEBOOK-SCHEMA!")
     }
