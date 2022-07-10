@@ -1,8 +1,11 @@
-
-
-#' @param x A vector of TXT files.
+#' Read TXT files and remove hyphens
 #'
-#' @return A data.table containing the name of the TXT files, their content and the filename metadata.
+#' Reads a vector of TXT files, converts to data.table and removes hyphens.
+
+#' @param x Character. A vector of TXT files.
+#' @param docvarnames The variables names encoded in the TXT filenames. 
+#'
+#' @return Data.table containing the name of the TXT files, their content and the filename metadata.
 
 
 
