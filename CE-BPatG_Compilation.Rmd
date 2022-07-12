@@ -809,7 +809,8 @@ Um gewisse Variablen aus der Pipeline in die LaTeX-Kompilierung einzuführen mü
 tar_target(latexdefs,
                 f.latexdefs(config,
                             dir = "temp",
-                            datestamp = datestamp))
+                            datestamp = datestamp),
+	       format = "file")
 
 ```
 
