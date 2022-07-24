@@ -784,7 +784,7 @@ tar_target(hashes,
            f.tar_multihashes(c(zip.all,
                                report.codebook[1],
                                report.robustness[1]),
-                             multicore = config$parallel$lingsummarize,
+                             multicore = config$parallel$multihashes,
                              cores = fullCores))
 ```
 
