@@ -12,6 +12,7 @@
 #' @param return Ein Vektor mit ECLIs für das Bundespatentgericht. 
 
 
+# evtl prob: NOTZ:BRFG:
 
 
 f.var_ecli_bpatg <- function(x,
