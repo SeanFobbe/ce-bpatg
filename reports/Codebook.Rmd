@@ -1,0 +1,1155 @@
+---
+title: "Codebook | Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)"
+author: Seán Fobbe
+geometry: margin=3cm
+papersize: a4
+fontsize: 11pt
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    pandoc_args: --listings
+    includes:
+      in_header: ../tex/Preamble_DE.tex
+      before_body: [../temp/Definitions.tex, ../tex/Titlepage_Codebook.tex]
+bibliography: ../temp/packages.bib
+nocite: '@*'
+---
+
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(fig.path = file.path("..", "analysis/"),
+                      dev = config$fig$format,
+                      dpi = config$fig$dpi,
+                      fig.align = config$fig$align,
+                      echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+
+
+```{r, echo=FALSE}
+tar_load(latexdefs)
+tar_load(dt.bpatg.meta)
+tar_load(files.pdf)
+tar_load(files.txt)
+tar_load(variables)
+tar_load(lingstats.summary)
+
+```
+
+
+
+
+# Einführung
+
+Das **Bundespatentgericht (BPatG)** ist ein am 1. Juli 1961 speziell für den gewerblichen Rechtsschutz (z.b. Patente und Marken) errichtetes oberes Bundesgericht (Art. 96 Abs. 1 GG). Es ist für die Kontrolle von Entscheidungen des Deutschen Patent- und Markenamts und des Bundessortenamts, sowie Nichtigkeitsklagen gegen Patente und für Zwangslizenzverfahren zuständig (§§ 65 Abs. 1 PatG). Im Instanzenzug der ordentlichen Gerichtsbarkeit ist es nur dem Bundesgerichtshof untergeordnet.\footnote{Die \enquote{ordentliche Gerichtsbarkeit} ist eine historische gewachsene Bezeichnung. Früher war die Verwaltungsgerichtsbarkeit nicht mit unabhängigen Richtern, sondern mit Verwaltungsbeamten besetzt und daher \enquote{außerordentlich}. Die mit unabhängigen Richtern besetzten Gerichte wurden als \enquote{ordentlich} bezeichnet.} Es hat seinen Sitz in München am Sitz des Deutschen Patent- und Markenamts (§ 65 Abs. 1 PatG). 
+
+Im Jahr 2022 besteht des BPatG aus 24 Senaten: ein Juristischer Beschwerdesenat, 6 Nichtigkeitssenate, 10 Technische Beschwerdesenate, 4 Marken-Beschwerdesenate, ein Marken- und Design-Beschwerdesenat, ein Gebrauchsmuster-Beschwerdesenat und ein Beschwerdesenat für Sortenschutzsachen. Die Besetzung der Senate unterscheidet sich je nach Verfahrensart und beträgt zwischen drei und fünf Richter:innen (§ 67 BPatG). 
+
+Die Richterschaft des Bundespatengerichts unterscheidet sich merklich von der anderer Gerichte: in allen Verfahren in denen technischen Erfindungen zu beurteilen sind müssen sowohl Jurist:innen als auch \enquote{technische Richter:innen} mitwirken. Technische Richter:innen müssen ein technisches oder naturwissenschaftliches Studium, 5 Jahre Berufserfahrung  und entsprechende Rechtskenntnisse vorweisen können (§§ 65 Abs. 2 S. 3, 26 Abs. 3 PatG). Nur markenrechtliche Verfahren werden von Jurist:innen alleine geführt. Insgesamt 99 Richter:innen sind aktuell am Bundespatentgericht tätig, davon 57 technische Richter:innen (Stichtag 31. Dezember 2021).
+
+Wieso dieser Datensatz? Die quantitative Analyse von juristischen Texten, insbesondere denen des BPatG, ist in den deutschen Rechtswissenschaften ein noch junges und kaum bearbeitetes Feld.\footnote{Besonders positive Ausnahmen finden sich unter: \url{https://www.quantitative-rechtswissenschaft.de/}} Zu einem nicht unerheblichen Teil liegt dies auch daran, dass die Anzahl an frei nutzbaren Datensätzen außerordentlich gering ist.
+ 
+Die meisten hochwertigen Datensätze lagern (fast) unerreichbar in kommerziellen Datenbanken und sind wissenschaftlich gar nicht oder nur gegen Entgelt zu nutzen. Frei verfügbare Datenbanken wie \emph{Opinio Iuris}\footnote{\url{https://opinioiuris.de/}} und \emph{openJur}\footnote{\url{https://openjur.de/}} verbieten ausdrücklich das maschinelle Auslesen der Rohdaten. Wissenschaftliche Initiativen wie der Juristische Referenzkorpus (JuReKo) sind nach jahrelanger Arbeit hinter verschlossenen Türen verschwunden.
+ 
+In einem funktionierenden Rechtsstaat muss die Rechtsprechung öffentlich, transparent und nachvollziehbar sein. Im 21. Jahrhundert bedeutet dies auch, dass sie systematischer Überprüfung mittels quantitativen Analysen zugänglich sein muss. Der Erstellung und Aufbereitung des Datensatzes liegen daher die Prinzipien der allgemeinen Verfügbarkeit durch Urheberrechtsfreiheit, strenge Transparenz und vollständige wissenschaftliche Reproduzierbarkeit zugrunde. Die FAIR-Prinzipien (Findable, Accessible, Interoperable and Reusable) für freie wissenschaftliche Daten inspirieren sowohl die Konstruktion, als auch die Art der Publikation.\footnote{Wilkinson, M., Dumontier, M., Aalbersberg, I. et al. The FAIR Guiding Principles for Scientific Data Management and Stewardship. Sci Data 3, 160018 (2016). \url{https://doi.org/10.1038/sdata.2016.18}}
+
+
+
+
+
+
+# Nutzung
+
+ Die Daten sind in offenen, interoperablen und weit verbreiteten Formaten (CSV, TXT, PDF) veröffentlicht. Sie lassen sich grundsätzlich mit allen modernen Programmiersprachen (z.B. Python oder R), sowie mit grafischen Programmen nutzen.
+
+ **Wichtig:** Nicht vorhandene Werte sind sowohl in den Dateinamen als auch in den CSV-Dateien mit \enquote{NA} codiert.
+
+
+## CSV-Dateien
+
+ Am einfachsten ist es die **CSV-Dateien** einzulesen. CSV\footnote{Das CSV-Format ist in RFC 4180 definiert, siehe \url{https://tools.ietf.org/html/rfc4180}} ist ein einfaches und maschinell gut lesbares Tabellen-Format. In diesem Datensatz sind die Werte komma-separiert. Jede Spalte entspricht einer Variable, jede Zeile einer Entscheidung. Die Variablen sind unter Abschnitt \ref{variablen} genauer erläutert.
+
+ Zum Einlesen empfehle ich für **R** dringend das package **data.table** (via CRAN verfügbar). Dessen Funktion **fread()** ist etwa zehnmal so schnell wie die normale **read.csv()**-Funktion in Base-R. Sie erkennt auch den Datentyp von Variablen sicherer. Ein Vorschlag:
+
+```{r, eval = FALSE, echo = TRUE}
+library(data.table)
+dt.bpatg <- fread("filename.csv")
+```
+
+
+
+## TXT-Dateien
+
+Die **TXT-Dateien** inklusive Metadaten können zum Beispiel mit **R** und dem package **readtext** (via CRAN verfügbar) eingelesen werden. Ein Vorschlag:
+
+
+```{r, eval = FALSE, echo = TRUE}
+library(readtext)
+df.bpatg <- readtext("./*.txt",
+                     docvarsfrom = "filenames", 
+                     docvarnames =  c("gericht",
+                                      "senatsgruppe",
+                                      "leitsatz",
+                                      "datum",
+                                      "spruchkoerper_az",
+                                      "registerzeichen",
+                                      "eingangsnummer",
+                                      "eingangsjahr_az",
+                                      "zusatz_az",
+                                      "kollision"),
+                     dvsep = "_", 
+                     encoding = "UTF-8")
+```
+
+
+
+
+# Konstruktion
+
+
+## Beschreibung des Datensatzes
+
+Dieser Datensatz ist eine digitale Zusammenstellung von möglichst allen begründeten Entscheidungen, die auf der amtlichen Internetpräsenz des Bundespatentgerichts (BPatG) am jeweiligen Stichtag veröffentlicht waren. Die Stichtage für jede Version entsprechen exakt der Versionsnummer.
+
+Zusätzlich zu den aufbereiteten maschinenlesbaren Formaten (TXT und CSV) sind die PDF-Rohdaten enthalten, damit Analyst:innen gegebenenfalls ihre eigene Konvertierung vornehmen können. Die PDF-Rohdaten wurden inhaltlich nicht verändert und nur die Dateinamen angepasst, um die Lesbarkeit für Mensch und Maschine zu verbessern.
+
+Speziell an Praktiker:innen richtet sich die PDF-Sammlung aller Leitsatzentscheidungen.
+
+
+
+## Datenquellen
+
+\begin{centering}
+\begin{longtable}{P{5cm}p{9cm}}
+
+\toprule
+
+ Datenquelle & Fundstelle \\
+
+\midrule
+
+ Primäre Datenquelle & \url{https://www.bundespatentgericht.de/}\\
+ Source Code & \url{\softwareversionurldoi}\\
+ Registerzeichen & \url{\aktenzeichenurldoi}\\
+
+\bottomrule
+
+\end{longtable}
+\end{centering}
+
+ 
+ Die Tabelle der Registerzeichen und der ihnen zugeordneten Verfahrensarten stammt aus dem folgenden Datensatz: \enquote{Seán Fobbe (2021). Aktenzeichen der Bundesrepublik Deutschland (AZ-BRD). Version 1.0.1. Zenodo. DOI: 10.5281/zenodo.4569564.}
+
+
+
+
+
+
+## Sammlung der Daten
+
+Die Daten wurden unter Beachtung des Robot Exclusion Standard (RES) gesammelt. Der Abruf geschieht ausschließlich über TLS-verschlüsselte Verbindungen. Die Entscheidungen sind laut dem Gericht anonymisiert, aber ungekürzt.
+
+	 
+
+
+## Source Code und Compilation Report
+
+ Der gesamte Source Code --- sowohl für die Erstellung des Datensatzes, als auch für dieses Codebook --- ist öffentlich einsehbar und dauerhaft erreichbar im wissenschaftlichen Archiv des CERN unter dieser Addresse hinterlegt: \softwareversionurldoi
+
+Mit jeder Kompilierung des vollständigen Datensatzes wird auch ein umfangreicher **Compilation Report** in einem attraktiv designten PDF-Format erstellt (ähnlich diesem Codebook). Der Compilation Report enthält den vollständigen und kommentierten Source Code, dokumentiert relevante Rechenergebnisse, gibt sekundengenaue Zeitstempel an und ist mit einem klickbaren Inhaltsverzeichnis versehen. Er ist zusammen mit dem Source Code hinterlegt. Wenn Sie sich für Details der Herstellung interessieren, lesen Sie diesen bitte zuerst.
+
+
+
+
+```{r, CE-BPatG_00_Pipeline_Graph, width = 12, height = 9, fig.cap = "Der vollständige Prozess der Datensatz-Kompilierung."}
+
+edgelist <- tar_network(targets_only = TRUE)$edges
+setDT(edgelist)
+
+g  <- igraph::graph.data.frame(edgelist,
+                               directed = TRUE)
+
+
+ggraph(g,
+       'dh') + 
+    geom_edge_diagonal(colour = "grey")+
+    geom_node_point()+
+    geom_node_text(aes(label = name),
+                   size = 2,
+                   repel = TRUE)+
+    theme_void()
+
+```
+     
+
+
+## Grenzen des Datensatzes
+
+Nutzer:innen sollten folgende wichtige Grenzen beachten:
+ 
+
+1. Der Datensatz enthält nur das, was das Gericht auch tatsächlich veröffentlicht, nämlich begründete Entscheidungen (\emph{publication bias}).
+2. Es kann aufgrund technischer Grenzen bzw. Fehler sein, dass manche --- im Grunde verfügbare --- Entscheidungen nicht oder nicht korrekt abgerufen werden (\emph{automation bias}).
+3. Erst ab dem 1. Januar 2000 sind begründete Entscheidungen des Bundespatentgerichts einigermaßen vollständig veröffentlicht (\emph{temporal bias}). Die Frequenztabellen geben hierzu genauer Auskunft.
+
+
+
+
+## Urheberrechtsfreiheit von Rohdaten und Datensatz 
+
+An den Entscheidungstexten und amtlichen Leitsätzen besteht gem. § 5 Abs. 1 UrhG kein Urheberrecht, da sie amtliche Werke sind. § 5 UrhG ist auf amtliche Datenbanken analog anzuwenden (BPatG, Beschluss vom 28.09.2006, I ZR 261/03, \enquote{Sächsischer Ausschreibungsdienst}).
+
+Alle eigenen Beiträge (z.B. durch Zusammenstellung und Anpassung der Metadaten) und damit den gesamten Datensatz stelle ich gemäß einer \emph{CC0 1.0 Universal Public Domain Lizenz} vollständig urheberrechtsfrei.
+
+
+
+
+## Metadaten
+
+
+### Allgemein
+
+Die Metadaten in den Dateinamen sind größtenteils unverändert von den jeweiligen Datenbankeinträgen aus der amtlichen Datenbank des Bundespatentgerichts entnommen. Berechnet und hinzugefügt wurden durch den Autor des Datensatzes eine Reihe weitere Variablen, sowie in den Dateinamen der PDF/TXT-Dateien Unter- und Trennstriche, um die Maschinenlesbarkeit zu erleichtern. 
+
+Der volle Satz an Metadaten ist nur in den CSV-Dateien enthalten. Alle hinzugefügten Metadaten sind vollständig maschinenlesbar dokumentiert. Sie sind entweder im Source Code enthalten, mit dem Source Code zusammen dokumentiert oder über dauerhaft stabile Identifikatoren (z.B. DOI) zitiert.
+ 
+Die Dateinamen der PDF- und TXT-Dateien enthalten Gerichtsname, Senatsgruppe, die Angabe ob es sich um eine Leitsatzentscheidung handelt, Datum, das offizielle Aktenzeichen, ggf. einen Zusatz zum Aktenzeichen und eine durch den Autor des Datensatzes generierte Kollisions-ID.
+
+
+### Schema für die Dateinamen
+
+\begin{verbatim}
+ [gericht]_[senatsgruppe]_[leitsatz]_[datum]_[spruchkoerper_az]_
+ [registerzeichen]_[eingangsnummer]_[eingangsjahr_az]_[zusatz_az]_
+ [kollision]
+\end{verbatim}
+
+
+### Beispiel eines Dateinamens
+
+\begin{verbatim}
+ BPatG_GebrM_LE_2011-04-14_35_W-pat_26_10_NA_0.pdf
+\end{verbatim}
+
+
+## Qualitätsprüfung
+
+Die Typen der Variablen wurden mit \emph{regular expressions} strikt validiert. Die möglichen Werte der jeweiligen Variablen wurden zudem durch Frequenztabellen und Visualisierungen auf ihre Plausibilität geprüft. Insgesamt werden zusammen mit jeder Kompilierung Dutzende Tests zur Qualitätsprüfung durchgeführt. Alle Ergebnisse der Qualitätsprüfungen sind aggregiert im Bericht \enquote{Robustness Checks} zusammen mit dem Source Code und einzeln im Archiv \enquote{ANALYSE} zusammen mit dem Datensatz veröffentlicht.
+
+
+## Grafische Darstellung
+
+Die Robenfarbe der Richter des Bundespatentgerichts ist schwarz, mit stahlblauen Besätzen. Der Hex-Wert für stahlblau ist  \#005189. Das ist besonders bei der Erstellung thematisch passender Diagrammen hilfreich. Alle im Compilation Report und diesem Codebook präsentierten Diagramme sind in diesem stahlblau gehalten.
+
+
+
+
+
+
+
+# Varianten und Zielgruppen
+
+Dieser Datensatz ist in verschiedenen Varianten verfügbar, die sich an unterschiedliche Zielgruppen richten. Zielgruppe sind nicht nur quantitativ forschende Rechtswissenschaftler:innen, sondern auch traditionell arbeitende Jurist:innen. Idealerweise müssen quantitative Methoden ohnehin immer durch qualitative Interpretation, Theoriebildung und kritische Auseinandersetzung verstärkt werden (\emph{mixed methods approach}).
+
+Lehrende werden von den vorbereiteten Tabellen und Diagrammen besonders profitieren, die bei der Erläuterung der Charakteristika der Daten hilfreich sein können und Zeit im universitären Alltag sparen. Alle Tabellen und Diagramme liegen auch als separate Dateien vor um sie einfach z.B. in Präsentations-Folien oder Handreichungen zu integrieren.
+
+\begin{centering}
+\begin{longtable}{P{3.5cm}p{10.5cm}}
+
+\toprule
+
+Variante & Zielgruppe und Beschreibung\\
+
+\midrule
+
+\endhead
+
+PDF & \textbf{Traditionelle juristische Forschung}. Die PDF-Dokumente wie sie vom BPatG auf der amtlichen Webseite bereitgestellt werden, jedoch verbessert durch semantisch hochwertige Dateinamen, die der leichteren Auffindbarkeit von Entscheidungen dienen. Die Dateinamen sind so konzipiert, dass sie auch für die traditionelle qualitative juristische Arbeit einen erheblichen Mehrwert bieten. Im Vergleich zu den CSV-Dateien enthalten die Dateinamen nur einen reduzierten Umfang an Metadaten, um Kompatibilitätsprobleme zu vermeiden und die Lesbarkeit zu verbessern. Neben dem vollen Datensatz ist für Praktiker:innen auch eine Variante aufbereitet, die \emph{Leitsatzentscheidungen} enthält.\\
+
+CSV\_Datensatz & \textbf{Legal Tech/Quantitative Forschung}. Diese CSV-Datei ist die für statistische Analysen empfohlene Variante des Datensatzes. Sie enthält den Volltext aller Entscheidungen, sowie alle in diesem Codebook beschriebenen Metadaten. Über Zeilenumbrüche getrennte Wörter wurden zusammengefügt.\\
+ 
+CSV\_Metadaten & \textbf{Legal Tech/Quantitative Forschung}. Wie die andere CSV-Datei, nur ohne die Entscheidungstexte. Sinnvoll für Analyst:innen, die sich nur für die Metadaten interessieren und Speicherplatz sparen wollen.\\
+ 
+TXT & \textbf{Subsidiär für alle Zielgruppen}. Diese Variante enthält die vollständigen aus den PDF-Dateien extrahierten Entscheidungstexte, aber nur einen reduzierten Umfang an Metadaten, der dem der PDF-Dateien entspricht. Die TXT-Dateien sind optisch an das Layout der PDF-Dateien angelehnt. Geeignet für qualitativ arbeitende Forscher:innen, die nur wenig Speicherplatz oder eine langsame Internetverbindung zur Verfügung haben oder für quantitativ arbeitende Forscher:innen, die beim Einlesen der CSV-Dateien Probleme haben. Über Zeilenumbrüche getrennte Wörter wurden \emph{nicht} zusammengefügt.\\
+ 
+ANALYSE & \textbf{Alle Lehrenden und Forschenden}. Dieses Archiv enthält alle während dem Kompilierungs- und Prüfprozess erstellten Tabellen (CSV) und Diagramme (PDF, PNG) im Original. Sie sind inhaltsgleich mit den in diesem Codebook verwendeten Tabellen und Diagrammen. Das PDF-Format eignet sich besonders für die Verwendung in gedruckten Publikationen, das PNG-Format besonders für die Darstellung im Internet. Analyst:innen mit fortgeschrittenen Kenntnissen in R können auch auf den Source Code zurückgreifen. Empfohlen für Nutzer:innen die einzelne Inhalte aus dem Codebook für andere Zwecke (z.B. Präsentationen, eigene Publikationen) weiterverwenden möchten.\\
+
+
+\bottomrule
+
+\end{longtable}
+\end{centering}
+
+
+
+
+# Variablen
+
+
+
+```{r}
+kable(variables,
+      format = "latex",
+      align = 'P{3.5cm}P{3cm}p{8cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      escape = FALSE,
+      col.names = c("Variable",
+                    "Typ",
+                    "Erläuterung"))  %>% kable_styling(latex_options = "repeat_header")
+```
+
+
+
+
+
+\newpage
+
+
+# Senatsgruppen am Bundespatentgericht
+
+\label{senatsgruppe}
+
+\begin{centering}
+\begin{longtable}{p{4cm}p{10cm}}
+
+\toprule
+
+Codierung & Senatsgruppe\\
+
+\midrule
+
+
+GebrM & Gebrauchsmuster-Beschwerdesenat\\
+JurBeschw & Juristischer Beschwerdesenat\\
+JurBeschwNichtigkeit & Juristischer Beschwerdesenat und Nichtigkeitssenat\\
+Marken & Marken-Beschwerdesenat\\
+MarkenDesign & Marken- und Design-Beschwerdesenat\\
+Nichtigkeit & Nichtigkeitssenat\\
+Sortensch & Sortenschutz-Beschwerdesenat\\
+TechnBeschw & Technischer Beschwerdesenat\\
+
+\bottomrule
+
+\end{longtable}
+\end{centering}
+
+
+
+\vspace{1cm}
+
+
+
+
+
+
+
+
+# Registerzeichen am Bundespatentgericht
+
+Die im Datensatz enthaltenen Registerzeichen wurden jeweils um die runden Klammern bereinigt, um Probleme bei der Nutzung unter Windows zu vermeiden.
+
+
+\vspace{0.5cm}
+
+\label{register}
+
+\ra{1.2}
+
+\begin{centering}
+\begin{longtable}{p{2cm}p{2cm}p{10cm}}
+
+\toprule
+
+Register- zeichen & Codierung & Erläuterung\\
+
+\midrule
+
+
+Li & Li & Zwangslizenzverfahren \\
+LiQ & LiQ & Einstweilige Verfügungen in Zwangslizenzverfahren\\
+Ni & Ni &  Patentnichtigkeitsverfahren \\
+W-(pat) & W-pat & Beschwerdeverfahren in Patentsachen, Gebrauchsmustersachen, Sortenschutzsachen, Markensachen\\
+ZA-(Pat) & ZA-pat & Verfahren über Anträge außerhalb anhängiger Patentsachen\\
+
+\bottomrule
+
+\end{longtable}
+\end{centering}
+
+
+
+
+
+
+
+\newpage
+
+# Linguistische Kennzahlen
+
+
+## Erläuterung der Kennzahlen und Diagramme
+
+Zur besseren Einschätzung des inhaltlichen Umfangs des Korpus dokumentiere ich an dieser Stelle die Verteilung der Werte für einige klassische linguistische Kennzahlen:
+
+
+
+\medskip
+
+
+
+\begin{centering}
+\begin{longtable}{P{3.5cm}p{10.5cm}}
+
+\toprule
+
+Kennzahl & Definition\\
+
+\midrule
+
+Zeichen & Zeichen entsprechen grob den \emph{Graphemen}, den kleinsten funktionalen Einheiten in einem Schriftsystem. Beispiel: das Wort \enquote{Richterin} besteht aus 9 Zeichen.\\
+ 
+Tokens & Eine beliebige Zeichenfolge, getrennt durch whitespace-Zeichen, d.h. ein Token entspricht in der Regel einem \enquote{Wort}, kann aber auch Zahlen, Sonderzeichen oder sinnlose Zeichenfolgen enthalten, weil es rein syntaktisch berechnet wird.\\
+ 
+Typen & Einzigartige Tokens. Beispiel: wenn das Token \enquote{Verfassungsrecht} zehnmal in einer Entscheidung vorhanden ist, wird es als ein Typ gezählt.\\
+ 
+Sätze & Entsprechen in etwa dem üblichen Verständnis eines Satzes. Die Regeln für die Bestimmung von Satzanfang und Satzende sind im Detail aber sehr komplex und in \enquote{Unicode Standard: Annex No 29} beschrieben.\\
+
+\bottomrule
+
+\end{longtable}
+\end{centering}
+
+
+
+Es handelt sich bei den Diagrammen jeweils um \enquote{Density Charts}, die sich besonders dafür eignen die Schwerpunkte von Variablen mit stark schwankenden numerischen Werten zu visualisieren. Die Interpretation ist denkbar einfach: je höher die Kurve, desto dichter sind in diesem Bereich die Werte der Variable. Der Wert der y-Achse kann außer Acht gelassen werden, wichtig sind nur die relativen Flächenverhältnisse und die x-Achse.
+
+ Vorsicht bei der Interpretation: Die x-Achse ist logarithmisch skaliert, d.h. in 10er-Potenzen und damit nicht-linear. Die kleinen Achsen-Markierungen zwischen den Schritten der Exponenten sind eine visuelle Hilfestellung um diese nicht-Linearität zu verstehen.
+
+\bigskip
+
+
+
+
+## Werte der Kennzahlen
+
+```{r}
+setnames(lingstats.summary, c("Variable",
+                              "Summe",
+                              "Min",
+                              "Quart1",
+                              "Median",
+                              "Mittel",
+                              "Quart3",
+                              "Max"))
+
+kable(lingstats.summary,
+      digits = 2,
+      format.args = list(big.mark = ","),
+      format = "latex",
+      booktabs = TRUE,
+      longtable = TRUE)
+```
+
+
+
+## Verteilung Zeichen
+
+
+```{r, CE-BPatG_09_Density_Zeichen, fig.height = 6, fig.width = 9}
+ggplot(data = dt.bpatg.meta)+
+    geom_density(aes(x = zeichen),
+                 fill = "#005189")+
+    scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                  labels = trans_format("log10", math_format(10^.x)))+
+    annotation_logticks(sides = "b")+
+    coord_cartesian(xlim = c(1, 10^6))+
+    theme_bw()+
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Verteilung der Zeichen je Dokument"),
+        caption = caption,
+        x = "Zeichen",
+        y = "Dichte"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+```
+
+
+
+## Verteilung Tokens
+
+```{r,  CE-BPatG_10_Density_Tokens, fig.height = 6, fig.width = 9}
+ggplot(data = dt.bpatg.meta)+
+    geom_density(aes(x = tokens),
+                 fill = "#005189")+
+    scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                  labels = trans_format("log10", math_format(10^.x)))+
+    annotation_logticks(sides = "b")+
+    coord_cartesian(xlim = c(1, 10^6))+
+    theme_bw()+
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Verteilung der Tokens je Dokument"),
+        caption = caption,
+        x = "Tokens",
+        y = "Dichte"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+```
+
+
+## Verteilung Typen
+
+```{r, CE-BPatG_11_Density_Typen, fig.height = 6, fig.width = 9}
+ggplot(data = dt.bpatg.meta)+
+    geom_density(aes(x = typen),
+                 fill = "#005189")+
+    scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                  labels = trans_format("log10", math_format(10^.x)))+
+    annotation_logticks(sides = "b")+
+    coord_cartesian(xlim = c(1, 10^6))+
+    theme_bw()+
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Verteilung der Typen je Dokument"),
+        caption = caption,
+        x = "Typen",
+        y = "Dichte"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+```
+
+
+
+## Verteilung Sätze
+
+```{r, CE-BPatG_12_Density_Saetze, fig.height = 6, fig.width = 9}
+ggplot(data = dt.bpatg.meta)+
+    geom_density(aes(x = saetze),
+                 fill = "#005189")+
+    scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                  labels = trans_format("log10", math_format(10^.x)))+
+    annotation_logticks(sides = "b")+
+    coord_cartesian(xlim = c(1, 10^6))+
+    theme_bw()+
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Verteilung der Sätze je Dokument"),
+        caption = caption,
+        x = "Sätze",
+        y = "Dichte"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+```
+
+
+
+
+
+
+
+
+
+# Inhalt des Korpus
+
+## Zusammenfassung
+
+```{r}
+
+dt.summary.docvars <- dt.bpatg.meta[,
+                                  lapply(.SD, function(x)unclass(summary(na.omit(x)))),
+                                  .SDcols = c("entscheidungsjahr",
+                                              "eingangsjahr_iso",
+                                              "eingangsnummer")]
+
+
+dt.unique.docvars <- dt.bpatg.meta[,
+                                 lapply(.SD, function(x)length(unique(na.omit(x)))),
+                                 .SDcols = c("entscheidungsjahr",
+                                             "eingangsjahr_iso",
+                                             "eingangsnummer")]
+
+
+dt.stats.docvars <- rbind(dt.unique.docvars,
+                          dt.summary.docvars)
+
+dt.stats.docvars <- transpose(dt.stats.docvars,
+                              keep.names = "names")
+
+
+setnames(dt.stats.docvars, c("Variable",
+                             "Anzahl",
+                             "Min",
+                             "Quart1",
+                             "Median",
+                             "Mean",
+                             "Quart3",
+                             "Max"))
+
+
+
+kable(dt.stats.docvars,
+      digits = 2,
+      format = "latex",
+      booktabs = TRUE,
+      longtable = TRUE)
+
+
+```
+
+\vspace{0.5cm}
+
+
+## Nach Typ der Entscheidung
+
+```{r}
+freqtable.etyp <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "entscheidung_typ",
+                                 sumrow = TRUE,
+                                 output.list = TRUE,
+                                 output.kable = FALSE,
+                                 output.csv = FALSE,
+                                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
+
+freqtable.etyp.nosum <- freqtable.etyp[-.N]
+
+```
+
+
+
+
+```{r, CE-BPatG_02_Barplot_Entscheidungstyp, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable.etyp.nosum) +
+    geom_bar(aes(x = reorder(entscheidung_typ,
+                             -N),
+                 y = N),
+             stat = "identity",
+             fill = "#005189",
+             color = "black",
+             width = 0.5) +
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Entscheidungen je Typ"),
+        caption = caption,
+        x = "Typ der Entscheidung",
+        y = "Entscheidungen"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+
+```
+
+\vspace{0.5cm}
+
+
+```{r}
+
+kable(freqtable.etyp,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Typ",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
+
+```
+
+
+
+\newpage
+
+## Nach Senatsgruppe
+
+
+```{r}
+
+freqtable.senatsgruppe <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "senatsgruppe",
+                                 sumrow = TRUE,
+                                 output.list = TRUE,
+                                 output.kable = FALSE,
+                                 output.csv = FALSE,
+                                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
+
+freqtable.senatsgruppe.nosum <- freqtable.senatsgruppe[-.N]
+
+```
+
+
+
+```{r, CE-BPatG_03_Barplot_Senatsgruppe, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable.senatsgruppe.nosum) +
+    geom_bar(aes(x = reorder(senatsgruppe,
+                             N),
+                 y = N),
+             stat = "identity",
+             fill = "#005189",
+             color = "black",
+             width = 0.5) +
+    theme_bw() +
+    coord_flip()+
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Entscheidungen je Senatsgruppe"),
+        caption = caption,
+        x = "Senatsgruppe",
+        y = "Entscheidungen"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+
+```
+
+\vspace{0.5cm}
+
+
+
+```{r}
+kable(freqtable.senatsgruppe,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Senatsgruppe",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
+
+```
+
+
+
+
+\newpage
+
+
+## Nach Spruchkörper (Aktenzeichen)
+
+```{r}
+
+freqtable.az <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "spruchkoerper_az",
+                                 sumrow = TRUE,
+                                 output.list = TRUE,
+                                 output.kable = FALSE,
+                                 output.csv = FALSE,
+                                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
+
+freqtable.az.nosum <- freqtable.az[-.N]
+
+```
+
+
+
+
+
+```{r, CE-BPatG_04_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable.az.nosum) +
+    geom_bar(aes(x = reorder(spruchkoerper_az,
+                             -N),
+                 y = N),
+             stat = "identity",
+             fill = "#005189",
+             color = "black",
+             width = 0.5) +
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Entscheidungen je Senat (Aktenzeichen)"),
+        caption = caption,
+        x = "Senat",
+        y = "Entscheidungen"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+
+```
+
+\vspace{0.5cm}
+
+
+```{r}
+kable(freqtable.az,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Senat",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
+
+```
+
+
+
+\newpage
+
+
+## Nach Registerzeichen
+
+```{r}
+
+freqtable.regz <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "registerzeichen",
+                                 sumrow = TRUE,
+                                 output.list = TRUE,
+                                 output.kable = FALSE,
+                                 output.csv = FALSE,
+                                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
+
+freqtable.regz.nosum <- freqtable.regz[-.N]
+
+```
+
+
+
+
+
+```{r, CE-BPatG_05_Barplot_Registerzeichen, fig.height = 8, fig.width = 10}
+ggplot(data = freqtable.regz.nosum) +
+    geom_bar(aes(x = reorder(registerzeichen,
+                             N),
+                 y = N),
+             stat = "identity",
+             fill = "#005189",
+             color = "black") +
+    scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                  labels = trans_format("log10", math_format(10^.x)))+
+    coord_flip()+
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Entscheidungen je Registerzeichen"),
+        caption = caption,
+        x = "Registerzeichen",
+        y = "Entscheidungen"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+```
+
+\vspace{0.5cm}
+
+
+```{r}
+kable(freqtable.regz,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Registerzeichen",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
+```
+
+
+
+
+\newpage
+
+
+## Nach Entscheidungsjahr
+
+
+```{r}
+
+freqtable.entscheidungsjahr <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "entscheidungsjahr",
+                                 sumrow = TRUE,
+                                 output.list = TRUE,
+                                 output.kable = FALSE,
+                                 output.csv = FALSE,
+                                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
+
+freqtable.entscheidungsjahr.nosum <- freqtable.entscheidungsjahr[-.N]
+
+```
+
+
+
+
+
+```{r, CE-BPatG_06_Barplot_Entscheidungsjahr, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable.entscheidungsjahr.nosum) +
+    geom_bar(aes(x = entscheidungsjahr,
+                 y = N),
+             stat = "identity",
+             fill = "#005189") +
+    scale_x_discrete(breaks = seq(2000, 2020, 5))+
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Entscheidungen je Entscheidungsjahr"),
+        caption = caption,
+        x = "Entscheidungsjahr",
+        y = "Entscheidungen"
+    )+
+    theme(
+        text = element_text(size = 16),
+        plot.title = element_text(size = 16,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+```
+
+\vspace{0.5cm}
+
+
+```{r}
+kable(freqtable.entscheidungsjahr,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Entscheidungsjahr",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
+```
+
+
+
+\newpage
+## Nach Eingangsjahr (ISO)
+
+
+```{r}
+freqtable.eingangsjahr <- f.fast.freqtable(dt.bpatg.meta,
+                                 varlist = "eingangsjahr_iso",
+                                 sumrow = TRUE,
+                                 output.list = TRUE,
+                                 output.kable = FALSE,
+                                 output.csv = FALSE,
+                                 align = c("p{5cm}"))[[1]][,exactpercent:=NULL]
+
+freqtable.eingangsjahr.nosum <- freqtable.eingangsjahr[-.N]
+```
+
+
+
+```{r, CE-BPatG_07_Barplot_EingangsjahrISO, fig.height = 6, fig.width = 9}
+ggplot(data = freqtable.eingangsjahr.nosum) +
+    geom_bar(aes(x = eingangsjahr_iso,
+                 y = N),
+             stat = "identity",
+             fill = "#005189") +
+    scale_x_discrete(breaks = seq(2000, 2020, 5))+
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Entscheidungen je Eingangsjahr (ISO)"),
+        caption = caption,
+        x = "Eingangsjahr (ISO)",
+        y = "Entscheidungen"
+    )+
+    theme(
+        text = element_text(size = 16),
+        plot.title = element_text(size = 16,
+                                  face = "bold"),
+        legend.position = "none",
+        plot.margin = margin(10, 20, 10, 10)
+    )
+
+```
+
+\vspace{0.5cm}
+
+
+```{r}
+kable(freqtable.eingangsjahr,
+      format = "latex",
+      align = 'P{3cm}',
+      booktabs = TRUE,
+      longtable = TRUE,
+      col.names = c("Eingangsjahr",
+                    "Entscheidungen",
+                    "% Gesamt",
+                    "% Kumulativ"))  %>% kable_styling(latex_options = "repeat_header")
+```
+
+
+
+
+# Dateigrößen
+
+
+```{r, CE-BPatG_13_Density_Dateigroessen_PDF, fig.height = 6, fig.width = 9}
+
+
+pdf.MB <- file.size(files.pdf) / 10^6
+
+
+dt.plot <- data.table(pdf.MB)
+
+ggplot(data = dt.plot,
+       aes(x = pdf.MB)) +
+    geom_density(fill = "#005189") +
+    scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                  labels = trans_format("log10", math_format(10^.x)))+
+    annotation_logticks(sides = "b")+
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Verteilung der Dateigrößen (PDF)"),
+        caption = caption,
+        x = "Dateigröße in MB",
+        y = "Dichte"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        panel.spacing = unit(0.1, "lines"),
+        plot.margin = margin(10, 20, 10, 10)
+    )
+    
+```
+
+
+
+
+```{r, CE-BPatG_14_Density_Dateigroessen_TXT, fig.height = 6, fig.width = 9}
+
+txt.MB <- file.size(files.txt) / 10^6
+
+dt.plot <- data.table(txt.MB)
+
+ggplot(data = dt.plot,
+       aes(x = txt.MB)) +
+    geom_density(fill = "#005189") +
+    scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                  labels = trans_format("log10", math_format(10^.x)))+
+    annotation_logticks(sides = "b")+
+    theme_bw() +
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Verteilung der Dateigrößen (TXT)"),
+        caption = caption,
+        x = "Dateigröße in MB",
+        y = "Dichte"
+    )+
+    theme(
+        text = element_text(size = 14),
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        legend.position = "none",
+        panel.spacing = unit(0.1, "lines"),
+        plot.margin = margin(10, 20, 10, 10)
+    )
+
+```
+
+
+
+
+
+# Kryptographische Signaturen
+
+
+## Zwei-Phasen-Signatur
+
+Die Integrität und Echtheit der einzelnen Archive des Datensatzes sind durch eine Zwei-Phasen-Signatur sichergestellt.
+
+In **Phase I** werden während der Kompilierung für jedes ZIP-Archiv, das Codebook und die Robustness Checks Hash-Werte in zwei verschiedenen Verfahren (SHA2-256 und SHA3-512) berechnet und in einer CSV-Datei dokumentiert.
+
+In **Phase II** werden diese CSV-Datei und der Compilation Report mit meinem persönlichen geheimen GPG-Schlüssel signiert. Dieses Verfahren stellt sicher, dass die Kompilierung von jedermann durchgeführt werden kann, insbesondere im Rahmen von Replikationen, die persönliche Gewähr für Ergebnisse aber dennoch vorhanden bleibt.
+
+
+## Persönliche GPG-Signatur
+
+Die während der Kompilierung des Datensatzes erstellte CSV-Datei mit den Hash-Prüfsummen und der Compilation Report sind mit meiner persönlichen GPG-Signatur versehen. Der mit dieser Version korrespondierende Public Key ist sowohl mit dem Datensatz als auch mit dem Source Code hinterlegt. Er hat folgende Kenndaten:
+ 
+ **Name:** Sean Fobbe (fobbe-data@posteo.de)
+ 
+ **Fingerabdruck:** FE6F B888 F0E5 656C 1D25  3B9A 50C4 1384 F44A 4E42
+
+
+
+
+
+
+
+
+\newpage
+
+```{r, results = "asis"}
+cat(readLines(tar_read(changelog)),
+    sep = "\n")
+
+```
+
+
+
+
+
+
+
+# Parameter für strenge Replikationen
+
+
+```{r}
+system2("openssl", "version", stdout = TRUE)
+
+sessionInfo()
+
+```
+
+
+# Literaturverzeichnis
