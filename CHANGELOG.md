@@ -3,8 +3,25 @@
 ## Version \version
 
 - Vollständige Aktualisierung der Daten
+- Gesamte Laufzeitumgebung mit Docker versionskontrolliert
 - Neuorganisation des Repositories
+- Vereinfachung der Konfigurations-Datei
+- Run- und Delete-Skripte aktualisiert
+- Neue Funktion für automatischen clean run (Löschung aller Zwischenergebnisse)
 
+
+
+# Todo
+
+- Aktenzeichen aus dem Eingangszeitraum 2000 bis 2009 nun korrekt mit führender Null formatiert (z.B. 1 BvR 44/02 statt 1 BvR 44/2)
+- Proto-Package Mono-Repo entfernt, alle Funktionen nun fest projektbasiert versionskontrolliert
+
+- Update der Download-Funktion
+- Überflüssige Warnung in f.future_lingsummarize-Funktion entfernt
+- Alle Roh-Dateien werden nun im Unterordner "files" gespeichert
+- Verbesserte Formatierung von Profiling, Warnungen und Fehlermeldungen im Compilation Report
+- Verbesserung des Robustness Check Reports
+- README im Hinblick auf Docker überarbeitet
 
 
 ## Version 2022-07-11
