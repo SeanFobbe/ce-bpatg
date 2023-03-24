@@ -8,6 +8,7 @@
 - Vereinfachung der Konfigurations-Datei
 - Run- und Delete-Skripte aktualisiert
 - Neue Funktion für automatischen clean run (Löschung aller Zwischenergebnisse)
+- Inhalt des ZIP-Archivs mit dem Source Code orientiert sich nun an der Versionskontrolle mit Git und enthält auch die gesamte Git-Historie
 
 
 
