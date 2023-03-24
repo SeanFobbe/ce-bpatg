@@ -25,14 +25,19 @@ Primäre Endprodukte des Skripts sind folgende ZIP-Archive:
 Alle Ergebnisse werden im Ordner `output` abgelegt. Zusätzlich werden für alle ZIP-Archive kryptographische Signaturen (SHA2-256 und SHA3-512) berechnet und in einer CSV-Datei hinterlegt. 
 
 
+
+
+
 ## Systemanforderungen
 
-- Nur mit Fedora Linux getestet. Vermutlich auch funktionsfähig unter anderen Linux-Distributionen.
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 - 16 GB Speicherplatz auf Festplatte
 - Multi-core CPU empfohlen (8 cores/16 threads für die Referenzdatensätze). 
 
 
 In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
+
 
 
 
@@ -44,70 +49,39 @@ In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl 
 Kopieren Sie bitte den gesamten Source Code in einen leeren Ordner (!), beispielsweise mit:
 
 ```
-git clone https://github.com/seanfobbe/ce-bpatg
+$ git clone https://github.com/seanfobbe/ce-bpatg
 ```
 
-Verwenden Sie immer einen eigenständigen und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (`txt/`, `pdf/`, `temp/`, `analysis` und `output/`) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
+Verwenden Sie immer einen separaten und *leeren* Ordner für die Kompilierung. Die Skripte löschen innerhalb von bestimmten Unterordnern (`files/`, `temp/`, `analysis` und `output/`) alle Dateien die den Datensatz verunreinigen könnten --- aber auch nur dort.
 
 
 
-### Schritt 2: Installation der Programmiersprache 'R'
+### Schritt 2: Docker Image erstellen
 
-Sie müssen die [Programmiersprache R](https://www.r-project.org/) installiert haben.
-
-
-
-
-
-### Schritt 3: Installation von 'renv'
-
-Starten sie eine R Session in diesem Ordner, sie sollten automatisch zur Installation von [renv](https://rstudio.github.io/renv/articles/renv.html) (Tool zur Versionierung von R packages) aufgefordert werden.
-
-
-
-
-
-### Schritt 4: Installation von R Packages
-
-Um alle packages in der benötigten Version zu installieren, führen Sie in der R session aus:
+Ein Docker Image stellt ein komplettes Betriebssystem mit der gesamten verwendeten Software automatisch zusammen. Nutzen Sie zur Erstellung des Images einfach:
 
 ```
-renv::restore()  # In einer R-Konsole ausführen
+$ bash docker-build-image.sh
 ```
 
-*Achtung:* es reicht nicht, die Packages auf herkömmliche Art installiert zu haben. Sie müssen dies nochmal über [renv](https://rstudio.github.io/renv/articles/renv.html) tun, selbst wenn die Packages in ihrer normalen Library schon vorhanden sind.
 
 
 
+### Schritt 3: Datensatz kompilieren
 
-
-### Schritt 5: Installation von LaTeX
-
-Um die PDF Reports zu kompilieren benötigen Sie eine \LaTeX -Installation. Sie können eine vollständige \LaTeX -Distribution auf Fedora wie folgt installieren:
+Falls Sie zuvor den Datensatz schon einmal kompiliert haben (ob erfolgreich oder erfolglos), können Sie mit folgendem Befehl alle Arbeitsdaten im Ordner löschen:
 
 ```
-sudo dnf install texlive-scheme-full
+$ Rscript delete_all_data.R
 ```
 
-Alternativ können sie das R package [tinytex](https://yihui.org/tinytex/) installieren, welches nur die benötigten \LaTeX\ packages installiert.
+Den vollständigen Datensatz kompilieren Sie mit folgendem Skript:
 
 ```
-install.packages("tinytex")  # In einer R-Konsole ausführen
+$ bash docker-run-project.sh
 ```
 
-Die für die Referenzdatensätze verwendete \LaTeX -Installation ist `texlive-scheme-full`.
 
-
-
-
-
-### Schritt 6: Datensatz kompilieren
-
-Den vollständigen Datensatz kompilieren Sie mit folgendem Befehl:
-
-```
-source("run_dataset.R") # In einer R-Konsole ausführen
-```
 
 
 
@@ -119,13 +93,14 @@ Der Datensatz und alle weiteren Ergebnisse sind nun im Ordner `output/` abgelegt
 
 
 
+
 ## Pipeline visualisieren
 
 Sie können die Pipeline visualisieren, aber nur nachdem sie die zentrale .Rmd-Datei mindestens einmal gerendert haben:
 
 ```
-targets::tar_glimpse()     # Nur Datenobjekte
-targets::tar_visnetwork()  # Alle Objekte
+> targets::tar_glimpse()     # Nur Datenobjekte
+> targets::tar_visnetwork()  # Alle Objekte
 ```
 
 
@@ -137,11 +112,11 @@ targets::tar_visnetwork()  # Alle Objekte
 Hilfreiche Befehle um Fehler zu lokalisieren und zu beheben.
 
 ```
-tar_progress()  # Zeigt Fortschritt und Fehler an
-tar_meta()      # Metadaten inspizieren
-tar_meta(fields = "warnings", complete_only = TRUE)  # Targets mit Warnungen
-tar_meta(fields = "error", complete_only = TRUE)  # Targets mit Fehlermeldungen
-tar_meta(fields = "seconds")  # Laufzeit der Targets
+> tar_progress()  # Zeigt Fortschritt und Fehler an
+> tar_meta()      # Alle Metadaten
+> tar_meta(fields = "warnings", complete_only = TRUE)  # Warnungen
+> tar_meta(fields = "error", complete_only = TRUE)  # Fehlermeldungen
+> tar_meta(fields = "seconds")  # Laufzeit der Targets
 ```
 
 
@@ -150,25 +125,34 @@ tar_meta(fields = "seconds")  # Laufzeit der Targets
 
 ## Projektstruktur
 
-Die folgende Struktur erläutert die wichtigsten Bestandteile des Projekts. Währen der Kompilierung werden weitere Ordner erstellt (`pdf/`, `txt/`, `temp/` `analysis` und `output/`). Die Endergebnisse werden alle in `output/` abgelegt.
+Die folgende Struktur erläutert die wichtigsten Bestandteile des Projekts. Während der Kompilierung werden weitere Ordner erstellt (`files/`, `temp/` `analysis` und `output/`). Die Endergebnisse werden alle in `output/` abgelegt.
 
  
 ``` 
-├── CE-BPatG_Compilation.Rmd   # Zentrale Definition der Pipeline
-├── CE-BPatG_Config.toml       # Zentrale Konfigurations-Datei
-├── R-fobbe-proto-package      # Oft verwendete Funktionen 
-├── _targets_packages.R        # Automatisiert erstellte Package-Liste für renv
+.
 ├── buttons                    # Buttons (nur optische Bedeutung)
+├── CHANGELOG.md               # Alle Änderungen
+├── compose.yaml               # Konfiguration für Docker
+├── config.toml                # Zentrale Konfigurations-Datei
 ├── data                       # Datensätze, auf denen die Pipeline aufbaut
+├── delete_all_data.R          # Löscht den Datensatz und Zwischenschritte
+├── docker-build-image.sh      # Docker Image erstellen
+├── Dockerfile                 # Definition des Docker Images
+├── docker-run-project.sh      # Docker Image und Datensatz kompilieren
 ├── functions                  # Wichtige Schritte der Pipeline
 ├── gpg                        # Persönlicher Public GPG-Key für Seán Fobbe
-├── renv                       # Versionskontrolle: Executables
-├── renv.lock                  # Versionskontrolle: Versionsinformationen
+├── old                        # Alter Code aus früheren Versionen
+├── pipeline.Rmd               # Zentrale Definition der Pipeline
+├── README.md                  # Bedienungsanleitung
 ├── reports                    # Markdown-Dateien
+├── requirements-python.txt    # Benötigte Python packages
+├── requirements-R.R           # Benötigte R packages
+├── requirements-system.txt    # Benötigte system dependencies
+├── run_project.R              # Kompiliert den gesamten Datensatz
 └── tex                        # LaTeX-Templates
 
-```
 
+``` 
 
 
 
