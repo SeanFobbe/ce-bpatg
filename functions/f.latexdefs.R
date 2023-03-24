@@ -31,7 +31,7 @@ f.latexcommand <- function(command.name,
 
 
 f.latexdefs <- function(x,
-                        datestamp,
+                        version,
                         dir){
 
 
@@ -42,7 +42,7 @@ f.latexdefs <- function(x,
                    f.latexcommand("projectauthor", x$project$author),
                    
                    "\n%-----Version-----",
-                   f.latexcommand("version", datestamp),
+                   f.latexcommand("version", version),
                    
                    "\n%-----Titles-----",
                    f.latexcommand("datatitle", x$project$fullname),
@@ -74,14 +74,12 @@ f.latexdefs <- function(x,
                                   paste0("https://doi.org/", x$doi$personendaten))
                    )
 
-
-
+    
 
 
     ## Write LaTeX Parameters to disk
 
-    filename <- file.path(dir, paste0(x$project$shortname,
-                                      "_Definitions.tex"))
+    filename <- file.path(dir, "Definitions.tex")
     
     writeLines(latexdefs,
                filename)
