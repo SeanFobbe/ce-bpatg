@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  ce-bpatg:
+    container_name: ce-bpatg
+    image: ce-bpatg:4.2.2
+    tty: true
+    volumes:
+      - .:/ce-bpatg:z
+      - ./gitconfig:/etc/gitconfig:z
