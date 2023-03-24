@@ -384,7 +384,7 @@ tar_target(dt.download.final,
 tar_target(files.pdf,
                 f.download(url = dt.download.final$url,
                            filename = dt.download.final$doc_id,
-                           dir = "pdf",
+                           dir = "files/pdf",
                            sleep.min = 0,
                            sleep.max = 0.1,
                            retries = 3,
@@ -409,10 +409,13 @@ Durch diesen Abschnitt der Pipeline werden die PDF-Dateien in TXT konvertiert un
 
 
 
+
 ```{targets tar.convert}
 
 list(tar_target(files.txt,
-                f.tar_pdf_extract(files.pdf),
+                f.tar_pdf_extract(files.pdf,
+                                  outputdir = "files/txt",
+                                  cores = fullCores),
                 format = "file"),
      tar_target(dt.bpatg,
                 f.readtext(x = files.txt,
