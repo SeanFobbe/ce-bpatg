@@ -14,15 +14,18 @@
 - Update der Download-Funktion
 - Überflüssige Warnung in f.future_lingsummarize-Funktion entfernt
 - Zusätzliche Unit-Tests
+- Alle Roh-Dateien werden nun im Unterordner "files" gespeichert
+- Verbesserung des Robustness Check Reports
+- Verbesserte Formatierung von Profiling, Warnungen und Fehlermeldungen im Compilation Report
+- README im Hinblick auf Docker überarbeitet
+
 
 
 
 # Todo
 
-- Alle Roh-Dateien werden nun im Unterordner "files" gespeichert
-- Verbesserte Formatierung von Profiling, Warnungen und Fehlermeldungen im Compilation Report
-- Verbesserung des Robustness Check Reports
-- README im Hinblick auf Docker überarbeitet
+- Download/extraction an CE-BGH angleichen, inkl. Robustnss checks
+
 
 
 ## Version 2022-07-11
