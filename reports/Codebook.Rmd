@@ -492,7 +492,7 @@ kable(lingstats.summary,
 ## Verteilung Zeichen
 
 
-```{r, CE-BPatG_09_Density_Zeichen, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_01_Density_Zeichen, fig.height = 6, fig.width = 9}
 ggplot(data = dt.bpatg.meta)+
     geom_density(aes(x = zeichen),
                  fill = "#005189")+
@@ -521,7 +521,7 @@ ggplot(data = dt.bpatg.meta)+
 
 ## Verteilung Tokens
 
-```{r,  CE-BPatG_10_Density_Tokens, fig.height = 6, fig.width = 9}
+```{r,  CE-BPatG_02_Density_Tokens, fig.height = 6, fig.width = 9}
 ggplot(data = dt.bpatg.meta)+
     geom_density(aes(x = tokens),
                  fill = "#005189")+
@@ -549,7 +549,7 @@ ggplot(data = dt.bpatg.meta)+
 
 ## Verteilung Typen
 
-```{r, CE-BPatG_11_Density_Typen, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_03_Density_Typen, fig.height = 6, fig.width = 9}
 ggplot(data = dt.bpatg.meta)+
     geom_density(aes(x = typen),
                  fill = "#005189")+
@@ -578,7 +578,7 @@ ggplot(data = dt.bpatg.meta)+
 
 ## Verteilung Sätze
 
-```{r, CE-BPatG_12_Density_Saetze, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_04_Density_Saetze, fig.height = 6, fig.width = 9}
 ggplot(data = dt.bpatg.meta)+
     geom_density(aes(x = saetze),
                  fill = "#005189")+
@@ -679,7 +679,7 @@ freqtable.etyp.nosum <- freqtable.etyp[-.N]
 
 
 
-```{r, CE-BPatG_02_Barplot_Entscheidungstyp, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_05_Barplot_Entscheidungstyp, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.etyp.nosum) +
     geom_bar(aes(x = reorder(entscheidung_typ,
                              -N),
@@ -746,7 +746,7 @@ freqtable.senatsgruppe.nosum <- freqtable.senatsgruppe[-.N]
 
 
 
-```{r, CE-BPatG_03_Barplot_Senatsgruppe, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_06_Barplot_Senatsgruppe, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.senatsgruppe.nosum) +
     geom_bar(aes(x = reorder(senatsgruppe,
                              N),
@@ -817,7 +817,7 @@ freqtable.az.nosum <- freqtable.az[-.N]
 
 
 
-```{r, CE-BPatG_04_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_07_Barplot_Spruchkoerper_AZ, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.az.nosum) +
     geom_bar(aes(x = reorder(spruchkoerper_az,
                              -N),
@@ -885,7 +885,7 @@ freqtable.regz.nosum <- freqtable.regz[-.N]
 
 
 
-```{r, CE-BPatG_05_Barplot_Registerzeichen, fig.height = 8, fig.width = 10}
+```{r, CE-BPatG_08_Barplot_Registerzeichen, fig.height = 8, fig.width = 10}
 ggplot(data = freqtable.regz.nosum) +
     geom_bar(aes(x = reorder(registerzeichen,
                              N),
@@ -955,7 +955,7 @@ freqtable.entscheidungsjahr.nosum <- freqtable.entscheidungsjahr[-.N]
 
 
 
-```{r, CE-BPatG_06_Barplot_Entscheidungsjahr, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_09_Barplot_Entscheidungsjahr, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.entscheidungsjahr.nosum) +
     geom_bar(aes(x = entscheidungsjahr,
                  y = N),
@@ -1014,7 +1014,7 @@ freqtable.eingangsjahr.nosum <- freqtable.eingangsjahr[-.N]
 
 
 
-```{r, CE-BPatG_07_Barplot_EingangsjahrISO, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_10_Barplot_EingangsjahrISO, fig.height = 6, fig.width = 9}
 ggplot(data = freqtable.eingangsjahr.nosum) +
     geom_bar(aes(x = eingangsjahr_iso,
                  y = N),
@@ -1060,7 +1060,7 @@ kable(freqtable.eingangsjahr,
 # Dateigrößen
 
 
-```{r, CE-BPatG_13_Density_Dateigroessen_PDF, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_11_Density_Dateigroessen_PDF, fig.height = 6, fig.width = 9}
 
 
 pdf.MB <- file.size(files.pdf) / 10^6
@@ -1096,7 +1096,7 @@ ggplot(data = dt.plot,
 
 
 
-```{r, CE-BPatG_14_Density_Dateigroessen_TXT, fig.height = 6, fig.width = 9}
+```{r, CE-BPatG_12_Density_Dateigroessen_TXT, fig.height = 6, fig.width = 9}
 
 txt.MB <- file.size(files.txt) / 10^6
 
