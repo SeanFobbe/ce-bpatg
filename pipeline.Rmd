@@ -251,18 +251,6 @@ Mit diesem Abschnitt der Pipeline werden Input-Dateien getrackt. Mit der Option 
 
 
 
-### Scope
-
-Der Umfang der Auswertung der Datenbank des BPatG.
-
-
-```{targets tar.file.scope}
-tar_target(file.scope,
-           "data/CE-BPatG_Scope.csv",
-           format = "file")
-
-```
-
 ### Variablen
 
 Die Variablen des Datensatzes, inklusive ihrer Erläuterung.
@@ -320,40 +308,65 @@ tar_target(changelog,
 
 
 
-## Data Targets
-
-Mit diesem Abschnitt der Pipeline werden CSV-Dateien eingelesen, die im file tracking zuvor definiert wurden.
-
-
-```{targets tar.data}
-(tar_target(scope,
-                fread(file.scope))
-
-
-```
-
-
-
-
 
 ## Download Targets
 
 In diesem Abschnitt der Pipeline wird die Datenbank des BPatG abgerufen, die Links zu Volltexten und Metadaten zusammengeführt und schließlich abgerufen.
 
 
+
+
+
+### Maximalen Umfang der Datenbankabfrage bestimmen
+
+```{targets tar.download.scope}
+
+tarchetypes::tar_age(dt.scope,
+                     f.scope(debug.toggle = config$debug$toggle,
+                             debug.pages = config$debug$pages),
+                     age = as.difftime(1, units = "days"))
+
+```
+	
+
+
+### Datenbankseiten als HTML abrufen
+
+
+
+```{targets tar.download.html}
+tar_target(files.html,
+                f.download(url = dt.scope$url,
+                           filename = dt.scope$filename,
+                           dir = "files/html",
+                           sleep.min = 0.2,
+                           sleep.max = 0.5,
+                           retries = 3,
+                           retry.sleep.min = 2,
+                           retry.sleep.max = 5,
+                           timeout = config$download$timeout,
+                           debug.toggle = FALSE,
+                           debug.files = 500),
+                format = "file")
+
+```
+
+
 ### Vorläufige Download-Tabelle erstellen
 
 Abfrage der Datenbank des BPatG und erstellen der vorläufigen Download-Tabelle.
 
-```{targets tar.download.prelim}
+```{targets tar.download.make}
 tar_target(dt.download,
-                f.download_table_make(x = scope,
-                                      debug.toggle = config$debug$toggle,
-                                      debug.pages = config$debug$pages))
+           f.download_table_make(files.html = files.html))
 
 ```
 
-### Download-Tabelle Bereinigen
+
+
+
+
+### Download-Tabelle bereinigen
 
 Die Aktenzeichen und Senatsgruppen werden bereinigt und gespeichert.
 
