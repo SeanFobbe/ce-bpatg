@@ -156,6 +156,40 @@ Speziell an Praktiker:innen richtet sich die PDF-Sammlung aller Leitsatzentschei
 Die Daten wurden unter Beachtung des Robot Exclusion Standard (RES) gesammelt. Der Abruf geschieht ausschließlich über TLS-verschlüsselte Verbindungen. Die Entscheidungen sind laut dem Gericht anonymisiert, aber ungekürzt.
 
 	 
+	 
+	 
+	 
+	 
+
+```{r, CE-BPatG_00_Pipeline_Graph, fig.width = 12, fig.height = 18, fig.pos = "p", fig.cap = "Der vollständige Prozess der Datensatz-Kompilierung."}
+
+edgelist <- tar_network(targets_only = TRUE)$edges
+setDT(edgelist)
+
+g  <- igraph::graph.data.frame(edgelist,
+                               directed = TRUE)
+
+
+ggraph(g,
+       'sugiyama') + 
+    geom_edge_diagonal(colour = "grey")+
+    geom_node_point()+
+    geom_node_text(aes(label = name),
+                   size = 2,
+                   repel = TRUE)+
+    theme_void()+
+    labs(
+        title = paste(prefix.figuretitle,
+                      "| Vollständiger Prozess der Datensatz-Kompilierung"),
+        caption = caption
+    )+
+    theme(
+        plot.title = element_text(size = 14,
+                                  face = "bold"),
+        plot.margin = margin(10, 20, 10, 10)
+    )
+
+```
 
 
 ## Source Code und Compilation Report
@@ -167,36 +201,15 @@ Mit jeder Kompilierung des vollständigen Datensatzes wird auch ein umfangreiche
 
 
 
-```{r, CE-BPatG_00_Pipeline_Graph, width = 12, height = 9, fig.cap = "Der vollständige Prozess der Datensatz-Kompilierung."}
-
-edgelist <- tar_network(targets_only = TRUE)$edges
-setDT(edgelist)
-
-g  <- igraph::graph.data.frame(edgelist,
-                               directed = TRUE)
-
-
-ggraph(g,
-       'dh') + 
-    geom_edge_diagonal(colour = "grey")+
-    geom_node_point()+
-    geom_node_text(aes(label = name),
-                   size = 2,
-                   repel = TRUE)+
-    theme_void()
-
-```
-     
-
 
 ## Grenzen des Datensatzes
 
 Nutzer:innen sollten folgende wichtige Grenzen beachten:
  
 
-1. Der Datensatz enthält nur das, was das Gericht auch tatsächlich veröffentlicht, nämlich begründete Entscheidungen (\emph{publication bias}).
-2. Es kann aufgrund technischer Grenzen bzw. Fehler sein, dass manche --- im Grunde verfügbare --- Entscheidungen nicht oder nicht korrekt abgerufen werden (\emph{automation bias}).
-3. Erst ab dem 1. Januar 2000 sind begründete Entscheidungen des Bundespatentgerichts einigermaßen vollständig veröffentlicht (\emph{temporal bias}). Die Frequenztabellen geben hierzu genauer Auskunft.
+- Der Datensatz enthält nur das, was das Gericht auch tatsächlich veröffentlicht, nämlich begründete Entscheidungen (\emph{publication bias}).
+- Es kann aufgrund technischer Grenzen bzw. Fehler sein, dass manche --- im Grunde verfügbare --- Entscheidungen nicht oder nicht korrekt abgerufen werden (\emph{automation bias}).
+- Erst ab dem 1. Januar 2000 sind begründete Entscheidungen des Bundespatentgerichts einigermaßen vollständig veröffentlicht (\emph{temporal bias}). Die Frequenztabellen geben hierzu genauer Auskunft.
 
 
 
@@ -292,9 +305,25 @@ ANALYSE & \textbf{Alle Lehrenden und Forschenden}. Dieses Archiv enthält alle w
 # Variablen
 
 
+## Datenstruktur 
 
 ```{r}
-kable(variables,
+str(dt.bpatg.meta)
+```
+
+
+## Hinweise
+
+- **Abweichende Codierung der Registerzeichen** --- Die Registerzeichen wurden gekürzt und Sonderzeichen entfernt um die Arbeit mit ihnen zu vereinfachen. Beachten Sie bitte die Gegenüberstellungstabelle unter Punkt \ref{register}.
+- **Fehlende Werte** sind immer mit \enquote{NA} codiert.
+- **Strings** können grundsätzlich alle in UTF-8 definierten Zeichen (insbesondere Buchstaben, Zahlen und Sonderzeichen) enthalten.
+
+
+## Erläuterung der Variablen
+
+
+```{r}
+kable(variables.codebook,
       format = "latex",
       align = 'P{3.5cm}P{3cm}p{8cm}',
       booktabs = TRUE,
@@ -352,6 +381,7 @@ TechnBeschw & Technischer Beschwerdesenat\\
 
 
 # Registerzeichen am Bundespatentgericht
+
 
 Die im Datensatz enthaltenen Registerzeichen wurden jeweils um die runden Klammern bereinigt, um Probleme bei der Nutzung unter Windows zu vermeiden.
 
