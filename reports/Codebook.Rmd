@@ -36,8 +36,9 @@ tar_load(latexdefs)
 tar_load(dt.bpatg.meta)
 tar_load(files.pdf)
 tar_load(files.txt)
-tar_load(variables)
+tar_load(variables.codebook)
 tar_load(lingstats.summary)
+tar_load(az.brd)
 
 ```
 
