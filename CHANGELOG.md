@@ -16,9 +16,12 @@
 - Zusätzliche Unit-Tests
 - Alle Roh-Dateien werden nun im Ordner "files/" gespeichert
 - Verbesserung des Robustness Check Reports
+- Verbesserung des Codebooks
+- Alle Diagramme neu nummeriert
 - Verbesserte Formatierung von Profiling, Warnungen und Fehlermeldungen im Compilation Report
 - README im Hinblick auf Docker überarbeitet
 - Alle Zwischenergebnisse der Pipeline werden automatisch im Ordner "output/" archiviert
+
 
 
 
