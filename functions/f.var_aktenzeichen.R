@@ -14,6 +14,16 @@
 
 
 
+
+## DEBUGGING
+
+x <- tar_read(dt.bpatg.datecleaned)
+tar_load(az.brd)
+gericht  <-  "BPatG"
+
+
+
+
 f.var_aktenzeichen <- function(x,
                                az.brd,
                                gericht){
@@ -35,13 +45,13 @@ f.var_aktenzeichen <- function(x,
 
     aktenzeichen <- paste0(x$spruchkoerper_az,
                            " ",
-                           mgsub(x$registerzeichen,
-                                 az.gericht$zeichen_code,
-                                 az.gericht$zeichen_original),
+                           mgsub::mgsub(x$registerzeichen,
+                                        az.gericht$zeichen_code,
+                                        az.gericht$zeichen_original),
                            " ",
-                           formatC(x$eingangsjahr_az, flag = "0", width = 2),
+                           x$eingangsnummer,
                            "/",
-                           x$eingangsjahr_az)
+                           formatC(x$eingangsjahr_az, flag = "0", width = 2))
 
     
     ## evtl für andere gerichte nützlich
@@ -51,19 +61,29 @@ f.var_aktenzeichen <- function(x,
 
 
 
+
+
     
     ## REGEX-Validierung: Aktenzeichen
+
+    registerzeichen.regex <- gsub("(\\(|\\))", "\\\\\\1", az.gericht$zeichen_original)
+
+    registerzeichen.regex <- paste0("(", paste(registerzeichen.regex,
+                                               collapse = "|"), ")")
     
-    regex.test <- grep(paste0("[0-9NA]+", # Spruchkörper
+    
+    regex.test <- grep(paste0("[0-9]{1,2}", # Spruchkörper
                               " ",
-                              "[A-Za-z-]+", # Registerzeichen
+                              registerzeichen.regex, # Registerzeichen
                               " ",
                               "[0-9]+", # Eingangsnummer
-                              "\\.",
+                              "/",
                               "[0-9]{2}"), # Eingangsjahr
                        aktenzeichen,
                        value = TRUE,
                        invert = TRUE)
+
+    print(regex.test)
 
     ## Fehlerhafte Aktenzeichen
 
