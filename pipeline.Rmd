@@ -841,7 +841,7 @@ tar_target(lingstats.summary,
 ```{targets tar.report.robustness}
 tarchetypes::tar_render(report.robustness,
                         file.path("reports",
-                                  "CE-BPatG_RobustnessChecks.Rmd"),
+                                  "RobustnessChecks.Rmd"),
                         output_file = file.path("../output",
                                                 paste0("CE-BPatG_", datestamp, "_RobustnessChecks.pdf")))
 
@@ -856,7 +856,7 @@ tarchetypes::tar_render(report.robustness,
 ```{targets tar.report.codebook}
 tarchetypes::tar_render(report.codebook,
                         file.path("reports",
-                                  "CE-BPatG_Codebook.Rmd"),
+                                  "Codebook.Rmd"),
                         output_file = file.path("../output",
                                                 paste0("CE-BPatG_", datestamp, "_Codebook.pdf")))
 
