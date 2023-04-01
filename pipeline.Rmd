@@ -569,7 +569,7 @@ Die Verbesserungen der vorherigen Schritte werden in dieser Funktion zusammengef
 
 
 ```{targets tar.enhance.final}
-tar_target(dt.bpatg.full,
+tar_target(dt.bpatg.final,
                 f.dataset_finalize(dt.bpatg.datecleaned,
                                    download.table = dt.download.final,
                                    aktenzeichen = var_aktenzeichen,
@@ -593,7 +593,7 @@ Hier wird nur die Text-Variable entfernt um eine deutlich platzsparendere Varian
 
 ```{targets tar.enhance.meta}
 tar_target(dt.bpatg.meta,
-                dt.bpatg.full[, !"text"])
+                dt.bpatg.final[, !"text"])
 
 ```
 
@@ -615,7 +615,7 @@ Dieser Abschnitt der Pipeline schreibt den Datensatz und die jeweiligen Prüfsum
 
 ```{targets tar.write.full}
 tar_target(csv.full,
-           f.tar_fwrite(x = dt.bpatg.full,
+           f.tar_fwrite(x = dt.bpatg.final,
                         filename = file.path("output",
                                              paste0(prefix.files,
                                                     "_DE_CSV_Datensatz.csv"))
@@ -827,7 +827,7 @@ tar_target(latexdefs,
 
 ```{targets tar.report.lingstats}
 tar_target(lingstats.summary,
-                f.lingstats_summary(dt.bpatg.full,
+                f.lingstats_summary(dt.bpatg.final,
                                     germanvars = TRUE))
 
 ```
