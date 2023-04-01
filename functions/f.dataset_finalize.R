@@ -72,3 +72,12 @@ f.dataset_finalize <- function(x,
 
     
 }
+
+
+
+## DEBUGGING
+
+## x  <-  tar_read(dt.bpatg.datecleaned)
+## download.table  <-  tar_read(dt.download.final)
+## tar_load(vars_additional)
+## varnames  <-  tar_read(variables.codebook)$varname
