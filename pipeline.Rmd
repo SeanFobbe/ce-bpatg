@@ -864,6 +864,17 @@ tar_make()
 ```
 
 
+## Zwischenergebnisse archivieren
+
+
+```{r pipelinezip}
+zip(paste0("output/CE-BPatG_",
+           datestamp,
+           "_Targets_Storage.zip"),
+    "_targets/")
+```
+
+
 
 
 ## Visualisierung
