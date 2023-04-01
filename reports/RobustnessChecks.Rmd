@@ -42,6 +42,7 @@ tar_load(dt.download.final)
 tar_load(dt.bpatg.final)
 tar_load(files.pdf)
 tar_load(files.txt)
+tar_load(files.html)
 
 ```
 
