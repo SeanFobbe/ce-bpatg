@@ -22,7 +22,7 @@ f.dataset_finalize <- function(x,
     test_that("Argumente entsprechen Erwartungen.", {
         expect_s3_class(x, "data.table")
         expect_s3_class(download.table, "data.table")
-        expect_s3_class(vars.additional, "data.table")
+        expect_s3_class(vars_additional, "data.table")
         expect_type(varnames, "character")
     })
 
@@ -77,7 +77,7 @@ f.dataset_finalize <- function(x,
 
 ## DEBUGGING
 
-## x  <-  tar_read(dt.bpatg.datecleaned)
-## download.table  <-  tar_read(dt.download.final)
-## tar_load(vars_additional)
-## varnames  <-  tar_read(variables.codebook)$varname
+x  <-  tar_read(dt.bpatg.datecleaned)
+download.table  <-  tar_read(dt.download.final)
+tar_load(vars_additional)
+varnames  <-  tar_read(variables.codebook)$varname
