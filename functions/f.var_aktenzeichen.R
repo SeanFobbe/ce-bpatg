@@ -17,9 +17,9 @@
 
 ## DEBUGGING
 
-x <- tar_read(dt.bpatg.datecleaned)
-tar_load(az.brd)
-gericht  <-  "BPatG"
+## x <- tar_read(dt.bpatg.datecleaned)
+## tar_load(az.brd)
+## gericht  <-  "BPatG"
 
 
 
