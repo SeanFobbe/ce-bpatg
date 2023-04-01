@@ -18,7 +18,7 @@
 - Verbesserung des Robustness Check Reports
 - Verbesserte Formatierung von Profiling, Warnungen und Fehlermeldungen im Compilation Report
 - README im Hinblick auf Docker überarbeitet
-
+- Alle Zwischenergebnisse der Pipeline werden automatisch in output/ archiviert.
 
 
 
