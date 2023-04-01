@@ -563,6 +563,23 @@ tar_target(var_constants,
 
 
 
+
+### Zusätzliche Variablen zusammenführen
+
+```{targets tar.enhance.unify}
+tar_target(vars_additional,
+           data.table(verfahrensart = var_verfahrensart,
+                      aktenzeichen = var_aktenzeichen,
+                      ecli = var_ecli,
+					  entscheidung_typ = var_entscheidung_typ,
+                      var_lingstats,
+                      var_constants))
+
+```
+
+
+
+
 ### Finalen Datensatz erstellen
 
 Die Verbesserungen der vorherigen Schritte werden in dieser Funktion zusammengefügt um den finalen Datenatz herzustellen.
@@ -570,15 +587,10 @@ Die Verbesserungen der vorherigen Schritte werden in dieser Funktion zusammengef
 
 ```{targets tar.enhance.final}
 tar_target(dt.bpatg.final,
-                f.dataset_finalize(dt.bpatg.datecleaned,
-                                   download.table = dt.download.final,
-                                   aktenzeichen = var_aktenzeichen,
-                                   ecli = var_ecli,
-                                   entscheidung_typ = var_entscheidung_typ,
-                                   verfahrensart = var_verfahrensart,
-                                   lingstats = var_lingstats,
-                                   constants = var_constants,
-                                   variablen = variables$variable))
+           f.dataset_finalize(dt.bpatg.datecleaned,
+                              download.table = dt.download.final,
+                              vars.additional = vars_additional,
+                              varnames = variables.codebook$varname))
 
 ```
 
