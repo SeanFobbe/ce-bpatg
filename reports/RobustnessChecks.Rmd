@@ -52,7 +52,7 @@ tar_load(files.txt)
 
 
 
-```{r, CE-BPatG_00_Pipeline_Graph_karmesinrot, fig.width = 12, fig.height = 14, fig.pos = "p", fig.cap = "Der vollständige Prozess der Datensatz-Kompilierung."}
+```{r, CE-BPatG_00_Pipeline_Graph_stahlblau, fig.width = 12, fig.height = 14, fig.pos = "p", fig.cap = "Der vollständige Prozess der Datensatz-Kompilierung."}
 
 
 edgelist <- tar_network(targets_only = TRUE)$edges
@@ -95,34 +95,30 @@ ggraph(g,
 # Vollständigkeit der Datenbank-Auswertung
 
 
+
+
+
+
+
+
+
+
 ## Genauen Such-Umfang berechnen
 
-```{r}
-    scope <- f.extend(scope$year,
-                      scope$pagemax0)
 
 
-    scope <- rbindlist(scope)
-
-    setnames(scope,
-             c("year",
-               "page"))
-```
-
-
-## Locator einfügen
 
 ```{r}
 
+## SOLL
+year <- gsub("([0-9]{4})-[0-9]{4}\\.html", "\\1", basename(dt.scope$file))
+page <- gsub("[0-9]{4}-([0-9]{4})\\.html", "\\1", basename(dt.scope$file))
+loc <- paste0(year, "-", page)
 
-scope[, loc := {
-    loc <- paste0(year,
-                  "-",
-                  page)
-    list(loc)
-}]
+scope.test <- data.table(year, page, loc)
 
 
+## IST
 dt.download.final[, loc := {
     loc <- paste0(year,
                   "-",
@@ -131,14 +127,14 @@ dt.download.final[, loc := {
 }]
 
 
-
 ```
+
 
 
 ## Theoretischer Fehlbetrag
 
 ```{r}
-SOLL <- scope[,.N] * 15 
+SOLL <- scope.test[,.N] * 15 
 IST <- dt.download.final[,.N]
 
 missing.N <- SOLL - IST
@@ -182,7 +178,7 @@ Für jedes Jahr sollte es eine letzte Seite mit weniger als 15 Entscheidungen ge
 
 ```{r}
 if (config$debug$toggle == FALSE){
-    less15[,.N] - uniqueN(scope$year)
+    less15[,.N] - uniqueN(scope.test$year)
     }
 ```
 
@@ -193,13 +189,29 @@ Dieser Test zeigt an, ob alle Jahr/Seiten-Kombinationen auch in den Daten vorhan
 
 
 ```{r}
-setdiff(scope$loc,
+setdiff(scope.test$loc,
         dt.download.final$loc)
 ```
 
 
 
+
+
+
+
+
 # Vollständigkeit der Texte
+
+
+
+
+## Download: Fehlende HTML-Dateien
+
+```{r}
+setdiff(dt.scope$filename,
+        basename(files.html))
+```
+
 
 
 ## Download der PDF-Dateien
@@ -215,6 +227,37 @@ setdiff(dt.download.final$doc_id,
 setdiff(tools::file_path_sans_ext(basename(files.pdf)),
         tools::file_path_sans_ext(basename(files.txt)))
 ```
+
+
+
+
+
+# Variablen
+
+## Anzahl Variablen
+
+```{r}
+length(dt.bpatg.final)
+```
+
+
+## Alle Namen der Variablen
+
+```{r}
+names(dt.bpatg.final)
+```
+
+
+## Beispiel-Werte
+
+```{r}
+str(dt.bpatg.final)
+```
+
+
+
+
+
 
 
 
@@ -283,6 +326,13 @@ f.fast.freqtable(dt.bpatg.full,
 
 
 
+```{r, results = "asis"}
+cat(readLines(tar_read(changelog)),
+    sep = "\n")
+
+```
+
+
 
 
 
@@ -295,3 +345,7 @@ system2("openssl", "version", stdout = TRUE)
 sessionInfo()
 
 ```
+
+
+
+# Literaturverzeichnis
