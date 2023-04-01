@@ -37,9 +37,9 @@ knitr::opts_chunk$set(fig.path = file.path("..", "analysis/"),
 
 ```{r}
 tar_load(latexdefs)
-tar_load(scope)
+tar_load(dt.scope)
 tar_load(dt.download.final)
-tar_load(dt.bpatg.full)
+tar_load(dt.bpatg.final)
 tar_load(files.pdf)
 tar_load(files.txt)
 
