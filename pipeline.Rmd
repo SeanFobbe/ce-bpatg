@@ -1122,27 +1122,6 @@ kable(table.size,
 
 
 
-## PDF-Dateien (MB)
-
-```{r}
-tar_load(files.pdf)
-pdf.MB <- file.size(files.pdf) / 10^6
-sum(pdf.MB)
-```
-
-
-## TXT-Dateien (MB)
-
-
-```{r}
-tar_load(files.txt)
-txt.MB <- file.size(files.txt) / 10^6
-sum(txt.MB)
-```
-
-
-
-
 
 
 # Kryptographische Signaturen
