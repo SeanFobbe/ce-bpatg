@@ -22,6 +22,7 @@
 - README im Hinblick auf Docker überarbeitet
 - Alle Zwischenergebnisse der Pipeline werden automatisch im Ordner "output/" archiviert
 - Umfang der Datenbankabfrage ist nun vollständig automatisiert
+- Zwischenergebnisse werden im qs-Format gespeichert um Speicherplatz zu sparen
 
 
 
