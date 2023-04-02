@@ -4,11 +4,11 @@
 
 - Vollständige Aktualisierung der Daten
 - Gesamte Laufzeitumgebung mit Docker versionskontrolliert
-- Neuorganisation des Repositories
 - Aktenzeichen aus dem Eingangszeitraum 2000 bis 2009 nun korrekt mit führender Null formatiert (z.B. 1 BvR 44/02 statt 1 BvR 44/2)
-- Vereinfachung der Konfigurations-Datei
+- Vereinfachung der Konfigurationsdatei
 - Run- und Delete-Skripte aktualisiert
 - Neue Funktion für automatischen clean run (Löschung aller Zwischenergebnisse)
+- Neuorganisation des Repositories
 - Inhalt des ZIP-Archivs mit dem Source Code orientiert sich nun an der Versionskontrolle mit Git und enthält auch die gesamte Git-Historie
 - Proto-Package Mono-Repo entfernt, alle Funktionen nun fest projektbasiert versionskontrolliert
 - Update der Download-Funktion
@@ -21,13 +21,7 @@
 - Verbesserte Formatierung von Profiling, Warnungen und Fehlermeldungen im Compilation Report
 - README im Hinblick auf Docker überarbeitet
 - Alle Zwischenergebnisse der Pipeline werden automatisch im Ordner "output/" archiviert
-
-
-
-
-# Todo
-
-- Download/extraction an CE-BGH angleichen, inkl. Robustnss checks
+- Umfang der Datenbankabfrage ist nun vollständig automatisiert
 
 
 
