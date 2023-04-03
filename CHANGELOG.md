@@ -3,6 +3,11 @@
 ## Version \version
 
 - Vollständige Aktualisierung der Daten
+
+
+## Version 2023-04-02
+
+- Vollständige Aktualisierung der Daten
 - Gesamte Laufzeitumgebung mit Docker versionskontrolliert
 - Aktenzeichen aus dem Eingangszeitraum 2000 bis 2009 nun korrekt mit führender Null formatiert (z.B. 1 BvR 44/02 statt 1 BvR 44/2)
 - Vereinfachung der Konfigurationsdatei
