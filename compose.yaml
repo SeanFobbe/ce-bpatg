@@ -8,3 +8,5 @@ services:
     volumes:
       - .:/ce-bpatg
       - ./gitconfig:/etc/gitconfig
+    environment:
+      - TZ=Europe/Berlin
