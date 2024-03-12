@@ -3,6 +3,8 @@
 ## Version \version
 
 - Vollständige Aktualisierung der Daten
+- Anpassung von Compose File an Debian 11
+- Docker Zeitzone auf Berlin eingestellt
 
 
 ## Version 2023-04-02
