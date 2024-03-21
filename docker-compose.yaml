@@ -7,6 +7,6 @@ services:
     tty: true
     volumes:
       - .:/ce-bpatg
-      - ./gitconfig:/etc/gitconfig
+      - ./etc/gitconfig:/etc/gitconfig
     environment:
       - TZ=Europe/Berlin
