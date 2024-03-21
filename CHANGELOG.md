@@ -8,6 +8,8 @@
 - Docker Zeitzone auf Berlin eingestellt
 - Aktualisierung der Python Toolchain
 - Aktualisierung von Public GPG Key im Repository
+- Bei Auswahl maximaler Cores werden max-1 cores benutzt
+- Profiling der Größe von PDF- und TXT-Dateien
 
 
 
