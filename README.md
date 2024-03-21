@@ -36,7 +36,7 @@ Alle Ergebnisse werden im Ordner `output` abgelegt. Zusätzlich werden für alle
 - Multi-core CPU empfohlen (8 cores/16 threads für die Referenzdatensätze). 
 
 
-In der Standard-Einstellung wird das Skript vollautomatisch die maximale Anzahl an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
+In der Standard-Einstellung wird das Skript vollautomatisch fast die maximale Anzahl minus 1  an Rechenkernen/Threads auf dem System zu nutzen. Die Anzahl der verwendeten Kerne kann in der Konfigurationsatei angepasst werden. Wenn die Anzahl Threads auf 1 gesetzt wird, ist die Parallelisierung deaktiviert.
 
 
 
@@ -139,15 +139,13 @@ Die folgende Struktur erläutert die wichtigsten Bestandteile des Projekts. Wäh
 ├── docker-build-image.sh      # Docker Image erstellen
 ├── Dockerfile                 # Definition des Docker Images
 ├── docker-run-project.sh      # Docker Image und Datensatz kompilieren
+├── etc                        # Weitere Konfigurationsdateien
 ├── functions                  # Wichtige Schritte der Pipeline
 ├── gpg                        # Persönlicher Public GPG-Key für Seán Fobbe
 ├── old                        # Alter Code aus früheren Versionen
 ├── pipeline.Rmd               # Zentrale Definition der Pipeline
 ├── README.md                  # Bedienungsanleitung
 ├── reports                    # Markdown-Dateien
-├── requirements-python.txt    # Benötigte Python packages
-├── requirements-R.R           # Benötigte R packages
-├── requirements-system.txt    # Benötigte system dependencies
 ├── run_project.R              # Kompiliert den gesamten Datensatz
 └── tex                        # LaTeX-Templates
 
