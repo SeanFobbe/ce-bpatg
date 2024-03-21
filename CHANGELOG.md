@@ -3,8 +3,9 @@
 ## Version \version
 
 - Vollständige Aktualisierung der Daten
-- Anpassung von Compose File an Debian 11
+- Anpassung von Docker Compose File an Debian 11
 - Docker Zeitzone auf Berlin eingestellt
+
 
 
 ## Version 2023-04-02
@@ -38,6 +39,8 @@
 - Vollständige Aktualisierung der Daten
 - Neuer Entwurf des gesamten Source Code im {targets} Framework
 - Veröffentlichung des Source Codes
+
+
 
 ## Version 2020-07-20
 
