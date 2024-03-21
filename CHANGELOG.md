@@ -6,6 +6,8 @@
 - Vereinfachung der Repository-Struktur mit Ordner etc/ für Config Files
 - Anpassung von Docker Compose File an Debian 11
 - Docker Zeitzone auf Berlin eingestellt
+- Aktualisierung der Python Toolchain
+- Aktualisierung von Public GPG Key im Repository
 
 
 
