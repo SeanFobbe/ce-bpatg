@@ -3,6 +3,7 @@
 ## Version \version
 
 - Vollständige Aktualisierung der Daten
+- LIZENZÄNDERUNG: Source Code jetzt unter GNU General Public License Version 3 (GPLv3) oder später lizenziert 
 - Vereinfachung der Repository-Struktur mit Ordner etc/ für Config Files
 - Anpassung von Docker Compose File an Debian 11
 - Docker Zeitzone auf Berlin eingestellt
