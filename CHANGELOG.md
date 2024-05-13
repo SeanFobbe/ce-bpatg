@@ -2,16 +2,15 @@
 
 ## Version \version
 
-- Vollständige Aktualisierung der Daten
 - LIZENZÄNDERUNG: Source Code jetzt unter GNU General Public License Version 3 (GPLv3) oder später lizenziert 
+- Vollständige Aktualisierung der Daten
 - Vereinfachung der Repository-Struktur mit Ordner etc/ für Config Files
 - Anpassung von Docker Compose File an Debian 11
 - Docker Zeitzone auf Berlin eingestellt
-- Aktualisierung der Python Toolchain
 - Aktualisierung von Public GPG Key im Repository
-- Bei Auswahl maximaler Cores werden max-1 cores benutzt
-- Profiling der Größe von PDF- und TXT-Dateien
-
+- Bei Auswahl maximaler Cores werden max(cores)-1 benutzt
+- Neues Profiling der Größe von PDF- und TXT-Dateien
+- Python Toolchain entfernt
 
 
 ## Version 2023-04-02
