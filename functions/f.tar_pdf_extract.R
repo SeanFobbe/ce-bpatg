@@ -110,28 +110,37 @@ pdf_extract <- function(x,
 
 pdf_extract_single <- function(x,
                                outputdir = NULL){
-    
-    ## Extract text layer from PDF
-    pdf.extracted <- pdftools::pdf_text(x)
 
-    ## TXT filename
-    txtname <- gsub("\\.pdf$",
-                    "\\.txt",
-                    x,
-                    ignore.case = TRUE)
+    tryCatch({
+        
+        ## Extract text layer from PDF
+        pdf.extracted <- pdftools::pdf_text(x)
 
-    ## Alternate Folder Option
-    if (!is.null(outputdir)){
-        
-        txtname <- file.path(outputdir, basename(txtname))
-        
+        ## TXT filename
+        txtname <- gsub("\\.pdf$",
+                        "\\.txt",
+                        x,
+                        ignore.case = TRUE)
+
+        ## Alternate Folder Option
+        if (!is.null(outputdir)){
+            
+            txtname <- file.path(outputdir, basename(txtname))
+            
         }
-    
-    ## Write TXT to Disk
-    utils::write.table(pdf.extracted,
-                       txtname,
-                       quote = FALSE,
-                       row.names = FALSE,
-                       col.names = FALSE)
+        
+        ## Write TXT to Disk
+        utils::write.table(pdf.extracted,
+                           txtname,
+                           quote = FALSE,
+                           row.names = FALSE,
+                           col.names = FALSE)
+
+
+    },
+    error = function(cond) {
+        return(NA)}
+    )
+
     
 }
