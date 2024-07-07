@@ -12,6 +12,7 @@
 - Bei Auswahl maximaler Cores werden max(cores)-1 benutzt
 - Neues Profiling der Größe von PDF- und TXT-Dateien
 - Python Toolchain entfernt
+- Konvertierung von PDF zu TXT wird bei Fehlern nicht mehr unterbrochen (u.a. um fälschlich ausgelieferte HTML-Dateien zu übergehen)
 
 
 ## Version 2023-04-02
