@@ -3,8 +3,8 @@
 ## Version \version
 
 - LIZENZÄNDERUNG: Source Code jetzt unter GNU General Public License Version 3 (GPLv3) oder später lizenziert
-- R-Version auf 4.4.0 aktualisiert (wegen CVE-2024-27322)
 - Vollständige Aktualisierung der Daten
+- R-Version auf 4.4.0 aktualisiert (wegen CVE-2024-27322)
 - Vereinfachung der Repository-Struktur mit Ordner etc/ für Config Files
 - Anpassung von Docker Compose File an Debian 11
 - Docker Zeitzone auf Berlin eingestellt
