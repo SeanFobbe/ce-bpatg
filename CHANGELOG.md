@@ -13,6 +13,8 @@
 - Neues Profiling der Größe von PDF- und TXT-Dateien
 - Python Toolchain entfernt
 - Konvertierung von PDF zu TXT wird bei Fehlern nicht mehr unterbrochen (u.a. um fälschlich ausgelieferte HTML-Dateien zu übergehen)
+- Variable "entscheidung_typ" im Codebook dokumentiert
+- Pipeline prüft nun automatisch ob alle Variablen im Datensatz auch im Codebook dokumentiert wurden
 
 
 ## Version 2023-04-02
