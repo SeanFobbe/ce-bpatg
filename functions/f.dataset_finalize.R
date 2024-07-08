@@ -13,6 +13,7 @@
 
 f.dataset_finalize <- function(x,
                                download.table,
+                               files.txt,
                                vars.additional,
                                varnames){
 
@@ -63,7 +64,7 @@ f.dataset_finalize <- function(x,
     test_that("Ergebnis entspricht Erwartungen.", {
         expect_s3_class(dt.final, "data.table")
         expect_equal(dt.final[,.N],  x[,.N])
-        expect_equal(dt.final[,.N],  download.table[,.N])
+        expect_equal(dt.final[,.N],  length(files.txt))
     })
 
 
@@ -77,6 +78,8 @@ f.dataset_finalize <- function(x,
 
 ## DEBUGGING
 
+## library(data.table)
+## library(testthat)
 ## x  <-  tar_read(dt.bpatg.datecleaned)
 ## download.table  <-  tar_read(dt.download.final)
 ## vars.additional <- tar_read(vars_additional)
