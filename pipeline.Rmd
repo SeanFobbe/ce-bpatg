@@ -592,6 +592,7 @@ Die Verbesserungen der vorherigen Schritte werden in dieser Funktion zusammengef
 tar_target(dt.bpatg.final,
            f.dataset_finalize(x = dt.bpatg.datecleaned,
                               download.table = dt.download.final,
+							  files.txt = files.txt,
                               vars.additional = vars_additional,
                               varnames = variables.codebook$varname))
 
