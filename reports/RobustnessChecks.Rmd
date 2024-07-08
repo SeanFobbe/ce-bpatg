@@ -224,6 +224,9 @@ setdiff(dt.download.final$doc_id,
 
 ## Konvertierung zu TXT-Dateien
 
+Hinweis: Im Jahr 2024 liefert die Datenbank des Bundespatentgerichts ca. 90 Entscheidungen nicht aus, sondern antwortet mit "Fehlerhafter Dokumentaufruf". Das war auch bei manueller Überprüfung der Fall. Eine Lösung dieses Fehlers muss auf Ebene des Gerichts stattfinden, eine Korrektur im Rahmen der Datenpipeline ist nicht möglich.
+
+
 ```{r}
 setdiff(tools::file_path_sans_ext(basename(files.pdf)),
         tools::file_path_sans_ext(basename(files.txt)))
