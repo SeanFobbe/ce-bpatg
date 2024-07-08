@@ -132,17 +132,18 @@ Die folgende Struktur erläutert die wichtigsten Bestandteile des Projekts. Wäh
 .
 ├── buttons                    # Buttons (nur optische Bedeutung)
 ├── CHANGELOG.md               # Alle Änderungen
-├── compose.yaml               # Konfiguration für Docker
 ├── config.toml                # Zentrale Konfigurations-Datei
 ├── data                       # Datensätze, auf denen die Pipeline aufbaut
-├── delete_all_data.R          # Löscht den Datensatz und Zwischenschritte
+├── delete_all_data.R          # Löscht Datensatz und Zwischenergebnisse
 ├── docker-build-image.sh      # Docker Image erstellen
+├── docker-compose.yaml        # Konfiguration für Docker
+├── docker-delete-all-data.sh  # Löscht Datensatz und Zwischenergebnisse via Docker
 ├── Dockerfile                 # Definition des Docker Images
 ├── docker-run-project.sh      # Docker Image und Datensatz kompilieren
 ├── etc                        # Weitere Konfigurationsdateien
 ├── functions                  # Wichtige Schritte der Pipeline
 ├── gpg                        # Persönlicher Public GPG-Key für Seán Fobbe
-├── old                        # Alter Code aus früheren Versionen
+├── LICENSE                    # Volltext der Lizenz für den Source Code
 ├── pipeline.Rmd               # Zentrale Definition der Pipeline
 ├── README.md                  # Bedienungsanleitung
 ├── reports                    # Markdown-Dateien
