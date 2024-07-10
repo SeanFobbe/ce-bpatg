@@ -3,7 +3,7 @@ version: "3.7"
 services:
   ce-bpatg:
     container_name: ce-bpatg
-    image: ce-bpatg:4.2.2
+    image: ce-bpatg:4.4.0
     tty: true
     volumes:
       - .:/ce-bpatg
