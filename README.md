@@ -170,4 +170,4 @@ Volltexte regulärer Publikationen  —  https://zenodo.org/communities/sean-fob
 
 ## Kontakt
 
-Fehler gefunden? Anregungen? Kommentieren Sie gerne im Issue Tracker auf GitHub oder schreiben Sie mir eine E-Mail an [fobbe-data@posteo.de](fobbe-data@posteo.de)
+Fehler gefunden? Anregungen? Kommentieren Sie gerne im Issue Tracker auf GitHub oder kontaktieren Sie mich via https://www.seanfobbe.de/contact
