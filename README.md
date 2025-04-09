@@ -1,3 +1,10 @@
+# ACHTUNG: Weiterentwicklung ab sofort auf Codeberg
+
+Die Weiterentwicklung dieses Projekts findet ab sofort auf Codeberg statt: https://codeberg.org/seanfobbe/ce-bpatg 
+
+Das GitHub repository ist nur noch als Archivfassung verfügbar.
+
+
 # README: Corpus der Entscheidungen des Bundespatentgerichts (CE-BPatG)
 
 
